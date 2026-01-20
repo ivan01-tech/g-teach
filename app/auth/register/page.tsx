@@ -6,6 +6,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAuth, type UserRole } from "@/contexts/auth-context"
+import { createTutorProfile } from "@/lib/tutor-service"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -43,7 +44,20 @@ export default function RegisterPage() {
 
     try {
       await signUp(email, password, name, role)
-      router.push("/dashboard")
+      
+      // If tutor, create tutor profile and redirect to betreuer
+      if (role === "tutor") {
+        const { user } = await import("firebase/auth").then(m => ({ user: m.getAuth().currentUser }))
+        if (user) {
+          await createTutorProfile(user.uid, {
+            displayName: name,
+            email: email,
+          })
+        }
+        router.push("/betreuer")
+      } else {
+        router.push("/dashboard")
+      }
     } catch (err) {
       setError("Failed to create account. Please try again.")
       console.error(err)

@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button"
 import { Search, SlidersHorizontal, X } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import type { Tutor } from "@/lib/types"
-import Loading from "./loading"
 
 // Mock data for demonstration
 const mockTutors: Tutor[] = [
@@ -36,6 +35,12 @@ const mockTutors: Tutor[] = [
     totalStudents: 89,
     totalLessons: 1250,
     isVerified: true,
+    documents: [
+      
+    ],examTypes: ["Goethe", "TestDaF"],
+    verificationStatus: "verified",
+    verificationMessage: "Verified",
+
     isOnline: true,
     createdAt: new Date(),
     country: "Germany",
@@ -57,6 +62,11 @@ const mockTutors: Tutor[] = [
       { day: "Thursday", startTime: "10:00", endTime: "18:00" },
       { day: "Saturday", startTime: "10:00", endTime: "14:00" },
     ],
+    documents: [
+      
+    ],examTypes: ["Goethe", "TestDaF"],
+    verificationStatus: "verified",
+    verificationMessage: "Verified",
     rating: 4.8,
     reviewCount: 98,
     totalStudents: 67,
@@ -83,6 +93,11 @@ const mockTutors: Tutor[] = [
       { day: "Wednesday", startTime: "14:00", endTime: "20:00" },
       { day: "Friday", startTime: "14:00", endTime: "20:00" },
     ],
+    documents: [
+      
+    ],examTypes: ["Goethe", "TestDaF"],
+    verificationStatus: "verified",
+    verificationMessage: "Verified",
     rating: 4.7,
     reviewCount: 64,
     totalStudents: 45,
@@ -109,6 +124,11 @@ const mockTutors: Tutor[] = [
       { day: "Tuesday", startTime: "08:00", endTime: "12:00" },
       { day: "Thursday", startTime: "08:00", endTime: "12:00" },
     ],
+    documents: [
+      
+    ],examTypes: ["Goethe", "TestDaF"],
+    verificationStatus: "verified",
+    verificationMessage: "Verified",
     rating: 5.0,
     reviewCount: 156,
     totalStudents: 112,

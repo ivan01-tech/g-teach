@@ -17,6 +17,39 @@ import {
 import { db } from "./firebase"
 import type { Conversation, Message } from "./types"
 
+export interface ConversationWithDetails extends Conversation {
+  otherParticipantName?: string
+  otherParticipantPhoto?: string
+}
+
+export async function getConversations(userId: string): Promise<ConversationWithDetails[]> {
+  const conversationsRef = collection(db, "conversations")
+  const q = query(
+    conversationsRef,
+    where("participants", "array-contains", userId),
+    orderBy("lastMessageAt", "desc")
+  )
+
+  const snapshot = await getDocs(q)
+  
+  return snapshot.docs.map((doc) => {
+    const data = doc.data()
+    const otherParticipantId = data.participants.find((p: string) => p !== userId)
+    
+    return {
+      id: doc.id,
+      participants: data.participants,
+      participantNames: data.participantNames,
+      participantPhotos: data.participantPhotos,
+      lastMessage: data.lastMessage,
+      lastMessageAt: data.lastMessageAt?.toDate(),
+      unreadCount: data.unreadCount,
+      otherParticipantName: otherParticipantId ? data.participantNames[otherParticipantId] : undefined,
+      otherParticipantPhoto: otherParticipantId ? data.participantPhotos[otherParticipantId] : undefined,
+    }
+  })
+}
+
 export const chatService = {
   // Get or create a conversation between two users
   async getOrCreateConversation(

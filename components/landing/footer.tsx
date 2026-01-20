@@ -4,9 +4,9 @@ import { BookOpen } from "lucide-react"
 const navigation = {
   learn: [
     { name: "Find Tutors", href: "/tutors" },
-    { name: "How It Works", href: "/#how-it-works" },
-    { name: "Pricing", href: "/#pricing" },
-    { name: "FAQ", href: "/faq" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "For Students", href: "/for-students" },
+    { name: "For Tutors", href: "/for-tutors" },
   ],
   exams: [
     { name: "Goethe-Zertifikat", href: "/tutors?exam=goethe" },
@@ -16,8 +16,6 @@ const navigation = {
   ],
   company: [
     { name: "About Us", href: "/about" },
-    { name: "Become a Tutor", href: "/become-tutor" },
-    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ],
   legal: [

@@ -20,17 +20,20 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="#features" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Features
-          </Link>
-          <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+          <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             How It Works
           </Link>
           <Link href="/tutors" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             Find Tutors
           </Link>
-          <Link href="#pricing" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Pricing
+          <Link href="/for-students" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            For Students
+          </Link>
+          <Link href="/for-tutors" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            For Tutors
+          </Link>
+          <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            About
           </Link>
         </div>
 
@@ -59,14 +62,7 @@ export function Header() {
         <div className="border-t border-border bg-background md:hidden">
           <div className="space-y-1 px-4 py-4">
             <Link
-              href="#features"
-              className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Features
-            </Link>
-            <Link
-              href="#how-it-works"
+              href="/how-it-works"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -80,11 +76,32 @@ export function Header() {
               Find Tutors
             </Link>
             <Link
-              href="#pricing"
+              href="/for-students"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Pricing
+              For Students
+            </Link>
+            <Link
+              href="/for-tutors"
+              className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              For Tutors
+            </Link>
+            <Link
+              href="/about"
+              className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
             </Link>
             <div className="flex flex-col gap-2 pt-4">
               <Button variant="outline" asChild className="w-full bg-transparent">

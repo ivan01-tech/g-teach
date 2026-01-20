@@ -6,6 +6,8 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
+import { doc, getDoc } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -28,7 +30,22 @@ export default function LoginPage() {
 
     try {
       await signIn(email, password)
-      router.push("/dashboard")
+      
+      // Get user profile to determine redirect
+      const { getAuth } = await import("firebase/auth")
+      const currentUser = getAuth().currentUser
+      if (currentUser) {
+        const userDoc = await getDoc(doc(db, "users", currentUser.uid))
+        const userData = userDoc.data()
+        
+        if (userData?.role === "tutor") {
+          router.push("/betreuer")
+        } else {
+          router.push("/dashboard")
+        }
+      } else {
+        router.push("/dashboard")
+      }
     } catch (err) {
       setError("Invalid email or password. Please try again.")
       console.error(err)

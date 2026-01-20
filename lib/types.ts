@@ -1,3 +1,14 @@
+export type VerificationStatus = "pending" | "verified" | "rejected"
+
+export interface TutorDocument {
+  id: string
+  type: "certificate" | "diploma" | "cv" | "other"
+  name: string
+  url: string
+  uploadedAt: Date
+  status: VerificationStatus
+}
+
 export interface Tutor {
   uid: string
   displayName: string
@@ -6,6 +17,7 @@ export interface Tutor {
   bio?: string
   specializations: string[]
   teachingLevels: string[]
+  examTypes: string[]
   languages: string[]
   hourlyRate: number
   currency: string
@@ -14,11 +26,15 @@ export interface Tutor {
   reviewCount: number
   totalStudents: number
   totalLessons: number
-  isVerified: boolean
+  verificationStatus: VerificationStatus
+  verificationMessage?: string
+  documents: TutorDocument[]
   isOnline: boolean
   createdAt: Date
   country?: string
   timezone?: string
+  // Kept for backwards compatibility
+  isVerified?: boolean
 }
 
 export interface AvailabilitySlot {

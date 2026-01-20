@@ -17,7 +17,6 @@ export default function HomePage() {
         <ExamPrepSection />
         <CTASection />
       </main>
-      
       <Footer />
     </div>
   )
