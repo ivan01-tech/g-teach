@@ -1,58 +1,55 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useAuth } from "@/contexts/auth-context"
-import { doc, getDoc } from "firebase/firestore"
-import { db } from "@/lib/firebase"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { BookOpen, Loader2, AlertCircle } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthDispatch } from "@/hooks/use-auth-dispatch";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { BookOpen, Loader2, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const { signIn } = useAuth()
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [localError, setLocalError] = useState("");
+  const { signIn, loading, error: reduxError } = useAuthDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    setLoading(true)
+    e.preventDefault();
+    setLocalError("");
 
     try {
-      await signIn(email, password)
-      
-      // Get user profile to determine redirect
-      const { getAuth } = await import("firebase/auth")
-      const currentUser = getAuth().currentUser
-      if (currentUser) {
-        const userDoc = await getDoc(doc(db, "users", currentUser.uid))
-        const userData = userDoc.data()
-        
-        if (userData?.role === "tutor") {
-          router.push("/betreuer")
-        } else {
-          router.push("/dashboard")
-        }
+      const result = await signIn(email, password);
+
+      if (result.type === "auth/signIn/fulfilled") {
+        const payload = result.payload as any;
+        router.push(payload?.role === "tutor" ? "/betreuer" : "/dashboard");
       } else {
-        router.push("/dashboard")
+        // Thunk rejected
+        setLocalError(
+          // result.payload ||
+
+          "Invalid email or password. Please try again.",
+        );
       }
     } catch (err) {
-      setError("Invalid email or password. Please try again.")
-      console.error(err)
-    } finally {
-      setLoading(false)
+      setLocalError("Invalid email or password. Please try again.");
+      console.error(err);
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
@@ -66,14 +63,16 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Welcome Back</CardTitle>
-          <CardDescription>Sign in to continue your German learning journey</CardDescription>
+          <CardDescription>
+            Sign in to continue your German learning journey
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
+            {(localError || reduxError) && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
+                <AlertDescription>{localError || reduxError}</AlertDescription>
               </Alert>
             )}
 
@@ -92,7 +91,10 @@ export default function LoginPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link href="/auth/forgot-password" className="text-sm text-primary hover:underline">
+                <Link
+                  href="/auth/forgot-password"
+                  className="text-sm text-primary hover:underline"
+                >
                   Forgot password?
                 </Link>
               </div>
@@ -121,12 +123,15 @@ export default function LoginPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
-            <Link href="/auth/register" className="font-medium text-primary hover:underline">
+            <Link
+              href="/auth/register"
+              className="font-medium text-primary hover:underline"
+            >
               Sign up
             </Link>
           </p>
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useAuth } from "@/contexts/auth-context"
 import { cn } from "@/lib/utils"
 import {
   BookOpen,
@@ -16,6 +15,7 @@ import {
   Heart,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/hooks/use-auth"
 
 const studentNavItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },

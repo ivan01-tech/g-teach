@@ -1,6 +1,5 @@
 "use client"
 
-import { useAuth } from "@/contexts/auth-context"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -8,6 +7,7 @@ import { Calendar, MessageSquare, Search, Clock, Star, BookOpen, TrendingUp, Awa
 import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
 import Loading from "./loading"
+import { useAuth } from "@/hooks/use-auth"
 
 export default function DashboardPage() {
   const { userProfile } = useAuth()

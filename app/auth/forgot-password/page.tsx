@@ -4,7 +4,7 @@ import React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuthDispatch } from "@/hooks/use-auth-dispatch"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -16,22 +16,22 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const { resetPassword } = useAuth()
+  const { sendPasswordReset, loading } = useAuthDispatch()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
-    setLoading(true)
 
     try {
-      await resetPassword(email)
-      setSuccess(true)
+      const result = await sendPasswordReset(email)
+      if (result.type === "auth/sendPasswordReset/fulfilled") {
+        setSuccess(true)
+      } else {
+        setError(result.payload || "Failed to send reset email. Please check your email address.")
+      }
     } catch (err) {
       setError("Failed to send reset email. Please check your email address.")
       console.error(err)
-    } finally {
-      setLoading(false)
     }
   }
 

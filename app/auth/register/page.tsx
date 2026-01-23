@@ -1,71 +1,77 @@
-"use client"
+"use client";
 
-import React from "react"
+import React from "react";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useAuth,  } from "@/contexts/auth-context"
-import { createTutorProfile } from "@/lib/tutor-service"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { BookOpen, Loader2, AlertCircle, GraduationCap, Users } from "lucide-react"
-import { UserRole } from "@/lib/roles"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { createTutorProfile } from "@/lib/tutor-service";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  BookOpen,
+  Loader2,
+  AlertCircle,
+  GraduationCap,
+  Users,
+} from "lucide-react";
+import { UserRole } from "@/lib/roles";
+import { validateRegister } from "@/validators/register.validator";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { signIn, signUp } from "../thunks";
 
 export default function RegisterPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [role, setRole] = useState<UserRole>(UserRole.Student)
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const { signUp } = useAuth()
-  const router = useRouter()
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState<UserRole>(UserRole.Student);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+    e.preventDefault();
+    setError("");
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      return
+    const validationError = validateRegister(password, confirmPassword);
+
+    if (validationError) {
+      setError(validationError);
+      return;
     }
 
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters")
-      return
-    }
-
-    setLoading(true)
+    setLoading(true);
 
     try {
-      await signUp(email, password, name, role)
-      
+      await dispatch(signUp({ email, password, name, role }));
+
       // If tutor, create tutor profile and redirect to betreuer
       if (role === "tutor") {
-        const { user } = await import("firebase/auth").then(m => ({ user: m.getAuth().currentUser }))
-        if (user) {
-          await createTutorProfile(user.uid, {
-            displayName: name,
-            email: email,
-          })
-        }
-        router.push("/betreuer")
+        router.push("/betreuer");
       } else {
-        router.push("/dashboard")
+        router.push("/dashboard");
       }
     } catch (err) {
-      setError("Failed to create account. Please try again.")
-      console.error(err)
+      setError("Failed to create account. Please try again.");
+      console.error(err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
@@ -79,7 +85,9 @@ export default function RegisterPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Create Your Account</CardTitle>
-          <CardDescription>Start your German learning journey today</CardDescription>
+          <CardDescription>
+            Start your German learning journey today
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -98,7 +106,11 @@ export default function RegisterPage() {
                 className="grid grid-cols-2 gap-4"
               >
                 <div>
-                  <RadioGroupItem value="student" id="student" className="peer sr-only" />
+                  <RadioGroupItem
+                    value="student"
+                    id="student"
+                    className="peer sr-only"
+                  />
                   <Label
                     htmlFor="student"
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -108,7 +120,11 @@ export default function RegisterPage() {
                   </Label>
                 </div>
                 <div>
-                  <RadioGroupItem value="tutor" id="tutor" className="peer sr-only" />
+                  <RadioGroupItem
+                    value="tutor"
+                    id="tutor"
+                    className="peer sr-only"
+                  />
                   <Label
                     htmlFor="tutor"
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
@@ -194,12 +210,15 @@ export default function RegisterPage() {
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link href="/auth/login" className="font-medium text-primary hover:underline">
+            <Link
+              href="/auth/login"
+              className="font-medium text-primary hover:underline"
+            >
               Sign in
             </Link>
           </p>
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }

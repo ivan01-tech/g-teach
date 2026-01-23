@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useAuth } from "@/contexts/auth-context"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,14 +10,26 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { BookOpen, Menu, Bell, User, Settings, LogOut, MessageSquare } from "lucide-react"
-import { MobileSidebar } from "./mobile-sidebar"
+} from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  BookOpen,
+  Menu,
+  Bell,
+  User,
+  Settings,
+  LogOut,
+  MessageSquare,
+} from "lucide-react";
+import { MobileSidebar } from "./mobile-sidebar";
+import { useAuth } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export function DashboardHeader() {
-  const { userProfile, logout } = useAuth()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { userProfile, logout } = useAuth();
+  const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-border bg-background px-4 sm:px-6 lg:px-8">
@@ -98,7 +109,14 @@ export function DashboardHeader() {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => logout()} className="text-destructive">
+            <DropdownMenuItem
+              onClick={async () => {
+                await logout();
+                router.replace("/auth/login");
+                //  redirect("/auth/login");
+              }}
+              className="text-destructive"
+            >
               <LogOut className="mr-2 h-4 w-4" />
               Sign Out
             </DropdownMenuItem>
@@ -106,5 +124,5 @@ export function DashboardHeader() {
         </DropdownMenu>
       </div>
     </header>
-  )
+  );
 }

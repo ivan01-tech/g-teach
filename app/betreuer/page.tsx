@@ -17,10 +17,10 @@ import {
   Clock,
   Star,
 } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import { getStudentRequests } from "@/lib/tutor-service"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { useAuth } from "@/hooks/use-auth"
 
 export default function BetreuerDashboard() {
   const { user } = useAuth()

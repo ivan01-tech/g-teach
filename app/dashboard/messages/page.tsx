@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { useAuth } from "@/contexts/auth-context"
 import { chatService } from "@/lib/chat-service"
 import { ConversationList } from "@/components/chat/conversation-list"
 import { ChatWindow } from "@/components/chat/chat-window"
@@ -10,6 +9,7 @@ import { EmptyChat } from "@/components/chat/empty-chat"
 import type { Conversation, Message } from "@/lib/types"
 import { Loader2 } from "lucide-react"
 import Loading from "./loading"
+import { useAuth } from "@/hooks/use-auth"
 
 function MessagesContent() {
   const { user, userProfile } = useAuth()
@@ -123,14 +123,15 @@ function MessagesContent() {
       {/* Chat Window - Hidden on mobile when list is shown */}
       <div className={`flex-1 ${mobileShowChat ? "block" : "hidden md:block"}`}>
         {selectedConversation ? (
-          <ChatWindow
-            conversation={selectedConversation}
-            messages={messages}
-            currentUserId={user?.uid || ""}
-            otherParticipant={getOtherParticipant(selectedConversation)}
-            onSendMessage={handleSendMessage}
-            onBack={handleBackToList}
-          />
+          // <ChatWindow
+          //   conversation={selectedConversation}
+          //   messages={messages}
+          //   currentUserId={user?.uid || ""}
+          //   otherParticipant={getOtherParticipant(selectedConversation)}
+          //   onSendMessage={handleSendMessage}
+          //   onBack={handleBackToList}
+          // />
+          <div></div>
         ) : (
           <EmptyChat />
         )}
