@@ -1,3 +1,5 @@
+import { UserRole } from "./roles"
+
 export type VerificationStatus = "pending" | "verified" | "rejected"
 
 export interface TutorDocument {
@@ -118,3 +120,13 @@ export const SPECIALIZATIONS = [
   { value: "reading", label: "Reading Comprehension" },
   { value: "listening", label: "Listening Skills" },
 ]
+
+
+export type User = {
+  uid: string
+  displayName: string
+  email: string
+  photoURL?: string
+  role: UserRole
+  createdAt: number
+}

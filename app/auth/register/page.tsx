@@ -5,7 +5,7 @@ import React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useAuth, type UserRole } from "@/contexts/auth-context"
+import { useAuth,  } from "@/contexts/auth-context"
 import { createTutorProfile } from "@/lib/tutor-service"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,13 +14,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { BookOpen, Loader2, AlertCircle, GraduationCap, Users } from "lucide-react"
+import { UserRole } from "@/lib/roles"
 
 export default function RegisterPage() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [role, setRole] = useState<UserRole>("student")
+  const [role, setRole] = useState<UserRole>(UserRole.Student)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const { signUp } = useAuth()

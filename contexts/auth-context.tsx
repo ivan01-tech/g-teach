@@ -12,10 +12,10 @@ import {
 } from "firebase/auth"
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore"
 import { auth, db } from "@/lib/firebase"
+import { UserRole } from "@/lib/roles"
 
-export type UserRole = "student" | "tutor"
 
-export interface UserProfile {
+export  interface UserProfile {
   uid: string
   email: string
   displayName: string
@@ -32,7 +32,7 @@ export interface UserProfile {
   isVerified?: boolean
 }
 
-interface AuthContextType {
+export interface AuthContextType {
   user: User | null
   userProfile: UserProfile | null
   loading: boolean

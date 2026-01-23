@@ -2,7 +2,7 @@ import React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { AuthProvider } from "@/contexts/auth-context"
+import ReduxProvider from "@/components/providers/redux-provider"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Connect with certified German tutors and prepare for Goethe, TELC, TestDaF exams. Personalized lessons for all levels from A1 to C2.",
   keywords: ["German", "learn German", "German tutor", "Goethe exam", "TELC", "TestDaF", "German lessons"],
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
 
 export const viewport: Viewport = {
@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} font-sans antialiased`}>
-        <AuthProvider>{children}</AuthProvider>
+        <ReduxProvider>{children}</ReduxProvider>
         <Analytics />
       </body>
     </html>

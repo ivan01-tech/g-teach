@@ -13,7 +13,7 @@ export default function DashboardPage() {
   const { userProfile } = useAuth()
   const searchParams = useSearchParams()
 
-  const isStudent = userProfile?.role === "student"
+  const isStudent = userProfile?.role != "student"
 
   return (
     <Suspense fallback={<Loading />}>

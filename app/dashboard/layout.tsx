@@ -14,9 +14,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router = useRouter()
 
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/auth/login")
-    }
+    // if (!loading && !user) {
+    //   router.push("/auth/login")
+    // }
   }, [user, loading, router])
 
   if (loading) {
@@ -27,9 +27,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     )
   }
 
-  if (!user) {
-    return null
-  }
+  // if (!user) {
+  //   return null
+  // }
 
   return (
     <div className="flex min-h-screen">
