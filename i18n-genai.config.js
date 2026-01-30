@@ -1,6 +1,6 @@
 export default {
 	// Where translation JSON files live
-	localeFolder: 'locales',
+	localeFolder: 'messages',
 
 	// Default locale
 	defaultLocale: 'en',
@@ -9,7 +9,7 @@ export default {
 	skipDefaultLocale: false,
 
 	// File where extracted keys are stored
-	storageTranslationsFile: 'translations',
+	storageTranslationsFile: 'messages',
 
 	// Supported locales
 	locales: [

@@ -13,8 +13,11 @@ import {
   CheckCircle2,
   Star,
 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function ForStudentsPage() {
+
+  const t = useTranslations()
   const benefits = [
     {
       icon: ShieldCheck,
@@ -96,12 +99,12 @@ export default function ForStudentsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                Advantages for Students
+                {t("Advantages for Students")}
               </h1>
               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                Learn German with confidence. G-Teach connects you with verified
-                tutors who specialize in exam preparation and personalized
-                instruction.
+                {t(
+                  "Learn German with confidence. G-Teach connects you with verified tutors who specialize in exam preparation and personalized instruction.",
+                )}
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button size="lg" asChild>
@@ -123,8 +126,9 @@ export default function ForStudentsPage() {
                 Why Choose G-Teach?
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                We built G-Teach to solve the problems students face when
-                learning German.
+                {t(
+                  "We built G-Teach to solve the problems students face when learning German.",
+                )}
               </p>
             </div>
 
@@ -156,8 +160,9 @@ export default function ForStudentsPage() {
                 Exam Preparation
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Our tutors specialize in preparing students for all major German
-                language certifications.
+                {t(
+                  "Our tutors specialize in preparing students for all major German language certifications.",
+                )}
               </p>
             </div>
 
@@ -193,11 +198,10 @@ export default function ForStudentsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                What Students Say
+                {t("What Students Say")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Real success stories from students who achieved their goals with
-                G-Teach.
+                {t("Real success stories from students who achieved their goals with G-Teach.")}
               </p>
             </div>
 
@@ -241,15 +245,14 @@ export default function ForStudentsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
-                Start Your German Learning Journey Today
+                {t("Start Your German Learning Journey Today")}
               </h2>
               <p className="mt-4 text-lg text-primary-foreground/80">
-                Join thousands of successful students who found their perfect
-                tutor on G-Teach.
+                {t("Join thousands of successful students who found their perfect tutor on G-Teach.")}
               </p>
               <div className="mt-8">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/auth/register">Create Free Account</Link>
+                  <Link href="/auth/register">{t("Create Free Account")}</Link>
                 </Button>
               </div>
             </div>
