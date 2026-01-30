@@ -4,8 +4,6 @@ import { Suspense } from "react"
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { useAuth } from "@/hooks/use-auth"
-import { ConversationList } from "@/components/chat/conversation-list"
-import { ChatWindow } from "@/components/chat/chat-window"
 import { EmptyChat } from "@/components/chat/empty-chat"
 import { getConversations, type ConversationWithDetails } from "@/lib/chat-service"
 import Loading from "./loading"
@@ -43,22 +41,22 @@ function BetreuerMessagesContent() {
 
   return (
     <div className="flex h-[calc(100vh-8rem)] gap-4">
-      <ConversationList
+      {/* <ConversationList
         conversations={conversations}
         selectedId={conversationId}
         currentUserId={user?.uid || ""}
         basePath="/betreuer/messages"
-      />
+      /> */}
       
       <div className="flex-1">
-        {selectedConversation ? (
+        {/* {selectedConversation ? (
           <ChatWindow
             conversation={selectedConversation}
             currentUserId={user?.uid || ""}
           />
         ) : (
           <EmptyChat message="Exchange with your students. Discuss their goals and offer personalized support." />
-        )}
+        )} */}
       </div>
     </div>
   )
