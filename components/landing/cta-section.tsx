@@ -36,7 +36,7 @@ export function CTASection() {
           </div>
 
           {/* Background Pattern */}
-          <div className="absolute inset-0 -z-0 opacity-10">
+          <div className="absolute inset-0 z-0 opacity-10">
             <svg
               className="h-full w-full"
               xmlns="http://www.w3.org/2000/svg"
