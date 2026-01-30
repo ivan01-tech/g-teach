@@ -4,8 +4,10 @@ import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, BookOpen } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export function Header() {
+  const t = useTranslations("header")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -21,28 +23,28 @@ export function Header() {
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
           <Link href="/how-it-works" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            How It Works
+            {t("howItWorks")}
           </Link>
           <Link href="/tutors" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            Find Tutors
+            {t("findTutors")}
           </Link>
           <Link href="/for-students" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            For Students
+            {t("forStudents")}
           </Link>
           <Link href="/for-tutors" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            For Tutors
+            {t("forTutors")}
           </Link>
           <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-            About
+            {t("about")}
           </Link>
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
           <Button variant="ghost" asChild>
-            <Link href="/auth/login">Log In</Link>
+            <Link href="/auth/login">{t("login")}</Link>
           </Button>
           <Button asChild>
-            <Link href="/auth/register">Get Started</Link>
+            <Link href="/auth/register">{t("getStarted")}</Link>
           </Button>
         </div>
 
@@ -66,49 +68,49 @@ export function Header() {
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              How It Works
+              {t("howItWorks")}
             </Link>
             <Link
               href="/tutors"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Find Tutors
+              {t("findTutors")}
             </Link>
             <Link
               href="/for-students"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              For Students
+              {t("forStudents")}
             </Link>
             <Link
               href="/for-tutors"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              For Tutors
+              {t("forTutors")}
             </Link>
             <Link
               href="/about"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              {t("about")}
             </Link>
             <Link
               href="/contact"
               className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact
+              {t("contact")}
             </Link>
             <div className="flex flex-col gap-2 pt-4">
               <Button variant="outline" asChild className="w-full bg-transparent">
-                <Link href="/auth/login">Log In</Link>
+                <Link href="/auth/login">{t("login")}</Link>
               </Button>
               <Button asChild className="w-full">
-                <Link href="/auth/register">Get Started</Link>
+                <Link href="/auth/register">{t("getStarted")}</Link>
               </Button>
             </div>
           </div>

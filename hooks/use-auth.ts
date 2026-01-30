@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 import { UserRole } from "@/lib/roles"
-import { UserProfile } from "@/app/auth/auth-slice"
-import { logout, resetPassword, signIn, signUp, updateUserProfile } from "@/app/auth/thunks"
+import { UserProfile } from "@/app/[locale]/auth/auth-slice"
+import { logout, resetPassword, signIn, signUp, updateUserProfile } from "@/app/[locale]/auth/thunks"
 
 export function useAuth() {
     const dispatch = useAppDispatch()

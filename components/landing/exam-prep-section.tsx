@@ -1,50 +1,51 @@
 import { CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
-const exams = [
+const examsData = [
   {
+    id: "goethe",
     name: "Goethe-Zertifikat",
     levels: ["A1", "A2", "B1", "B2", "C1", "C2"],
-    description: "The most recognized German language certificate worldwide.",
-    features: ["Speaking practice", "Writing workshops", "Mock exams", "Grammar review"],
   },
   {
+    id: "telc",
     name: "TELC",
     levels: ["A1", "A2", "B1", "B2", "C1"],
-    description: "European Language Certificates recognized by employers and institutions.",
-    features: ["Job-focused preparation", "Listening exercises", "Reading comprehension", "Certificate coaching"],
   },
   {
+    id: "testdaf",
     name: "TestDaF",
     levels: ["TDN 3", "TDN 4", "TDN 5"],
-    description: "Required for university admission in Germany.",
-    features: ["Academic German", "University preparation", "Test strategies", "Time management"],
   },
 ]
 
 export function ExamPrepSection() {
+  const t = useTranslations("examPrep")
+
   return (
     <section className="bg-primary/5 py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Prepare for Official German Exams
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Our tutors specialize in preparing students for all major German language certifications.
-            Achieve your target score with expert guidance.
+            {t("description")}
           </p>
         </div>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-3">
-          {exams.map((exam) => (
+          {examsData.map((exam) => (
             <div
-              key={exam.name}
+              key={exam.id}
               className="rounded-xl border border-border bg-card p-8 shadow-sm transition-all hover:shadow-md"
             >
               <h3 className="text-xl font-bold text-card-foreground">{exam.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{exam.description}</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {t(`exams.${exam.id}.description`)}
+              </p>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {exam.levels.map((level) => (
@@ -58,7 +59,7 @@ export function ExamPrepSection() {
               </div>
 
               <ul className="mt-6 space-y-3">
-                {exam.features.map((feature) => (
+                {(t.raw(`exams.${exam.id}.features`) as string[]).map((feature) => (
                   <li key={feature} className="flex items-center gap-3 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" />
                     {feature}
@@ -67,8 +68,8 @@ export function ExamPrepSection() {
               </ul>
 
               <Button className="mt-6 w-full bg-transparent" variant="outline" asChild>
-                <Link href={`/tutors?specialization=exam-prep&exam=${exam.name.toLowerCase()}`}>
-                  Find {exam.name} Tutors
+                <Link href={`/tutors?specialization=exam-prep&exam=${exam.id}`}>
+                  {t("findTutors", { exam: exam.name })}
                 </Link>
               </Button>
             </div>

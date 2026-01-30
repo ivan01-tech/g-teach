@@ -1,53 +1,32 @@
 import { UserPlus, Search, MessageSquare, Video } from "lucide-react"
+import { useTranslations } from "next-intl"
 
-const steps = [
-  {
-    icon: UserPlus,
-    step: "01",
-    title: "Create Your Account",
-    description:
-      "Sign up for free and complete your profile. Tell us about your current level and learning goals.",
-  },
-  {
-    icon: Search,
-    step: "02",
-    title: "Find Your Tutor",
-    description:
-      "Browse our tutors, filter by specialization, read reviews, and find the perfect match for your needs.",
-  },
-  {
-    icon: MessageSquare,
-    step: "03",
-    title: "Connect & Discuss",
-    description:
-      "Send a message to introduce yourself. Discuss your goals and schedule a trial lesson.",
-  },
-  {
-    icon: Video,
-    step: "04",
-    title: "Start Learning",
-    description:
-      "Book your lessons and start your journey to German fluency with personalized instruction.",
-  },
+const stepsData = [
+  { icon: UserPlus, step: "01", key: "step1" },
+  { icon: Search, step: "02", key: "step2" },
+  { icon: MessageSquare, step: "03", key: "step3" },
+  { icon: Video, step: "04", key: "step4" },
 ]
 
 export function HowItWorksSection() {
+  const t = useTranslations("howItWorks")
+
   return (
     <section id="how-it-works" className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            How G-Teach Works
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Get started in four simple steps and begin your German learning journey today.
+            {t("subtitle")}
           </p>
         </div>
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((item, index) => (
+          {stepsData.map((item, index) => (
             <div key={item.step} className="relative">
-              {index < steps.length - 1 && (
+              {index < stepsData.length - 1 && (
                 <div className="absolute left-1/2 top-12 hidden h-0.5 w-full -translate-y-1/2 bg-border lg:block" />
               )}
               <div className="relative flex flex-col items-center text-center">
@@ -57,8 +36,12 @@ export function HowItWorksSection() {
                     {item.step}
                   </span>
                 </div>
-                <h3 className="mt-6 text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                <h3 className="mt-6 text-lg font-semibold text-foreground">
+                  {t(`steps.${item.key}.title`)}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {t(`steps.${item.key}.desc`)}
+                </p>
               </div>
             </div>
           ))}
