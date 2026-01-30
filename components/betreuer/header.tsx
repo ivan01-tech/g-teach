@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuth } from "@/hooks/use-auth"
 import Link from "next/link"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import { Badge } from "@/components/ui/badge"

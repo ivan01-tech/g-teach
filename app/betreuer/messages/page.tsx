@@ -3,7 +3,7 @@
 import { Suspense } from "react"
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuth } from "@/hooks/use-auth"
 import { ConversationList } from "@/components/chat/conversation-list"
 import { ChatWindow } from "@/components/chat/chat-window"
 import { EmptyChat } from "@/components/chat/empty-chat"

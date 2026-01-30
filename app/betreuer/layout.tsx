@@ -4,7 +4,7 @@ import React from "react"
 
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuth } from "@/hooks/use-auth"
 import { BetreuerSidebar } from "@/components/betreuer/sidebar"
 import { BetreuerHeader } from "@/components/betreuer/header"
 import { BetreuerMobileSidebar } from "@/components/betreuer/mobile-sidebar"

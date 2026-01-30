@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import { doc, onSnapshot } from "firebase/firestore"
 import { db } from "@/lib/firebase"
-import { useAuth } from "@/contexts/auth-context"
 import type { Tutor } from "@/lib/types"
+import { useAuth } from "./use-auth"
 
 export function useTutorProfile() {
   const { user } = useAuth()

@@ -13,7 +13,7 @@ import {
   LogOut,
   BookOpen,
 } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
 
 const navigation = [

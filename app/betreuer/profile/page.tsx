@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Camera, Save, Plus, X } from "lucide-react"
-import { useAuth } from "@/contexts/auth-context"
+import { useAuth } from "@/hooks/use-auth"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import {
   createTutorProfile,
