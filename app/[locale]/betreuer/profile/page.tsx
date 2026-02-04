@@ -152,6 +152,18 @@ export default function BetreuerProfilePage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="country">Country</Label>
+                <Select value={formData.country} onValueChange={(value) => setFormData((prev) => ({ ...prev, country: value }))}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="germany">Germany</SelectItem>
+                    <SelectItem value="cameroon">Cameroon</SelectItem>
+                    <SelectItem value="france">France</SelectItem>
+                    <SelectItem value="spain">Spain</SelectItem>
+                  </SelectContent>
+                </Select>
+                {/* 
                 <Input
                   id="country"
                   value={formData.country}
@@ -159,7 +171,7 @@ export default function BetreuerProfilePage() {
                     setFormData((prev) => ({ ...prev, country: e.target.value }))
                   }
                   placeholder="e.g., Germany"
-                />
+                /> */}
               </div>
             </div>
 

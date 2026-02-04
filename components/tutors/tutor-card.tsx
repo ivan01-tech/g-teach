@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { Star, CheckCircle2, User, MessageSquare, Heart } from "lucide-react"
+import { Star, CheckCircle2, User, MessageSquare, Heart, AlertTriangle } from "lucide-react"
 import type { Tutor } from "@/lib/types"
 import { SPECIALIZATIONS, GERMAN_LEVELS } from "@/lib/types"
 
@@ -13,6 +13,9 @@ interface TutorCardProps {
 }
 
 export function TutorCard({ tutor }: TutorCardProps) {
+  // const isVerified = true
+  const isVerified = tutor.verificationStatus === "verified" || tutor.isVerified
+
   const specializationLabels = tutor.specializations
     .slice(0, 3)
     .map((s) => SPECIALIZATIONS.find((spec) => spec.value === s)?.label || s)
@@ -21,8 +24,16 @@ export function TutorCard({ tutor }: TutorCardProps) {
     .map((l) => GERMAN_LEVELS.find((level) => level.value === l)?.value.toUpperCase() || l)
 
   return (
-    <Card className="group overflow-hidden transition-shadow hover:shadow-md">
+    <Card className={`group overflow-hidden transition-shadow hover:shadow-md ${!isVerified ? 'border-amber-200' : ''}`}>
       <CardContent className="p-0">
+        {!isVerified && (
+          <div className="bg-amber-50 px-4 py-1.5 flex items-center gap-2 border-b border-amber-100">
+            <AlertTriangle className="h-3.5 w-3.5 text-amber-600" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-700">
+              Non vérifié - Prudence
+            </span>
+          </div>
+        )}
         {/* Header */}
         <div className="relative bg-primary/5 p-4">
           <div className="flex items-start gap-4">
@@ -48,7 +59,7 @@ export function TutorCard({ tutor }: TutorCardProps) {
             <div className="flex-1">
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-card-foreground">{tutor.displayName}</h3>
-                {tutor.isVerified && (
+                {isVerified && (
                   <CheckCircle2 className="h-4 w-4 text-primary" />
                 )}
               </div>

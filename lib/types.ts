@@ -105,6 +105,7 @@ export const GERMAN_LEVELS = [
 export const EXAM_TYPES = [
   { value: "goethe", label: "Goethe-Zertifikat" },
   { value: "telc", label: "TELC" },
+  { value: "ecl", label: "ECL" },
   { value: "testdaf", label: "TestDaF" },
   { value: "dsh", label: "DSH" },
   { value: "osd", label: "ÖSD" },

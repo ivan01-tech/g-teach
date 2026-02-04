@@ -12,134 +12,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import type { Tutor } from "@/lib/types"
 
-// Mock data for demonstration
-const mockTutors: Tutor[] = [
-  {
-    uid: "1",
-    displayName: "Anna Schmidt",
-    email: "anna@example.com",
-    photoURL: "",
-    bio: "Native German speaker with 8 years of teaching experience. Specialized in Goethe exam preparation and business German. I focus on practical conversation skills and grammar foundations.",
-    specializations: ["exam-prep", "business", "grammar"],
-    teachingLevels: ["a1", "a2", "b1", "b2"],
-    languages: ["German", "English", "French"],
-    hourlyRate: 35,
-    currency: "EUR",
-    availability: [
-      { day: "Monday", startTime: "09:00", endTime: "17:00" },
-      { day: "Wednesday", startTime: "09:00", endTime: "17:00" },
-      { day: "Friday", startTime: "09:00", endTime: "17:00" },
-    ],
-    rating: 4.9,
-    reviewCount: 127,
-    totalStudents: 89,
-    totalLessons: 1250,
-    isVerified: true,
-    documents: [
-      
-    ],examTypes: ["Goethe", "TestDaF"],
-    verificationStatus: "verified",
-    verificationMessage: "Verified",
-
-    isOnline: true,
-    createdAt: new Date(),
-    country: "Germany",
-    timezone: "Europe/Berlin",
-  },
-  {
-    uid: "2",
-    displayName: "Marcus Weber",
-    email: "marcus@example.com",
-    photoURL: "",
-    bio: "Certified DaF teacher with a passion for making German accessible. I specialize in TestDaF and DSH preparation for university students. Interactive and patient teaching style.",
-    specializations: ["exam-prep", "conversation", "writing"],
-    teachingLevels: ["b1", "b2", "c1", "c2"],
-    languages: ["German", "English"],
-    hourlyRate: 40,
-    currency: "EUR",
-    availability: [
-      { day: "Tuesday", startTime: "10:00", endTime: "18:00" },
-      { day: "Thursday", startTime: "10:00", endTime: "18:00" },
-      { day: "Saturday", startTime: "10:00", endTime: "14:00" },
-    ],
-    documents: [
-      
-    ],examTypes: ["Goethe", "TestDaF"],
-    verificationStatus: "verified",
-    verificationMessage: "Verified",
-    rating: 4.8,
-    reviewCount: 98,
-    totalStudents: 67,
-    totalLessons: 890,
-    isVerified: true,
-    isOnline: false,
-    createdAt: new Date(),
-    country: "Austria",
-    timezone: "Europe/Vienna",
-  },
-  {
-    uid: "3",
-    displayName: "Lisa Hoffmann",
-    email: "lisa@example.com",
-    photoURL: "",
-    bio: "Friendly and experienced tutor focusing on beginners. I make learning German fun and stress-free! Perfect for those just starting their German journey.",
-    specializations: ["conversation", "pronunciation", "listening"],
-    teachingLevels: ["a1", "a2", "b1"],
-    languages: ["German", "English", "Spanish"],
-    hourlyRate: 28,
-    currency: "EUR",
-    availability: [
-      { day: "Monday", startTime: "14:00", endTime: "20:00" },
-      { day: "Wednesday", startTime: "14:00", endTime: "20:00" },
-      { day: "Friday", startTime: "14:00", endTime: "20:00" },
-    ],
-    documents: [
-      
-    ],examTypes: ["Goethe", "TestDaF"],
-    verificationStatus: "verified",
-    verificationMessage: "Verified",
-    rating: 4.7,
-    reviewCount: 64,
-    totalStudents: 45,
-    totalLessons: 520,
-    isVerified: true,
-    isOnline: true,
-    createdAt: new Date(),
-    country: "Germany",
-    timezone: "Europe/Berlin",
-  },
-  {
-    uid: "4",
-    displayName: "Thomas Müller",
-    email: "thomas@example.com",
-    photoURL: "",
-    bio: "Professional translator and language coach with 15 years experience. Expert in business German and professional communication. Help executives and professionals achieve fluency.",
-    specializations: ["business", "grammar", "writing"],
-    teachingLevels: ["b2", "c1", "c2"],
-    languages: ["German", "English", "Italian"],
-    hourlyRate: 55,
-    currency: "EUR",
-    availability: [
-      { day: "Monday", startTime: "08:00", endTime: "12:00" },
-      { day: "Tuesday", startTime: "08:00", endTime: "12:00" },
-      { day: "Thursday", startTime: "08:00", endTime: "12:00" },
-    ],
-    documents: [
-      
-    ],examTypes: ["Goethe", "TestDaF"],
-    verificationStatus: "verified",
-    verificationMessage: "Verified",
-    rating: 5.0,
-    reviewCount: 156,
-    totalStudents: 112,
-    totalLessons: 2100,
-    isVerified: true,
-    isOnline: true,
-    createdAt: new Date(),
-    country: "Switzerland",
-    timezone: "Europe/Zurich",
-  },
-]
+import { useTutors } from "./use-tutors"
 
 export interface FilterState {
   searchQuery: string
@@ -162,12 +35,13 @@ const initialFilters: FilterState = {
 }
 
 export default function TutorsPage() {
+  const { tutors, loading, error } = useTutors()
   const [filters, setFilters] = useState<FilterState>(initialFilters)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const searchParams = useSearchParams()
 
   const filteredTutors = useMemo(() => {
-    return mockTutors.filter((tutor) => {
+    return tutors.filter((tutor) => {
       // Search query
       if (filters.searchQuery) {
         const query = filters.searchQuery.toLowerCase()
@@ -210,7 +84,7 @@ export default function TutorsPage() {
 
       return true
     })
-  }, [filters])
+  }, [tutors, filters])
 
   const activeFilterCount = useMemo(() => {
     let count = 0
@@ -235,7 +109,7 @@ export default function TutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-foreground sm:text-4xl">Find Your Perfect German Tutor</h1>
             <p className="mt-2 text-lg text-muted-foreground">
-              Browse {mockTutors.length}+ certified tutors and start learning today
+              Browse {tutors.length || 'many'}+ certified tutors and start learning today
             </p>
 
             {/* Search Bar */}
@@ -297,9 +171,17 @@ export default function TutorsPage() {
             <div className="flex-1">
               <div className="mb-6 flex items-center justify-between">
                 <p className="text-sm text-muted-foreground">
-                  Showing <span className="font-medium text-foreground">{filteredTutors.length}</span> tutors
+                  {loading ? (
+                    "Loading tutors..."
+                  ) : error ? (
+                    <span className="text-destructive">{error}</span>
+                  ) : (
+                    <>
+                      Showing <span className="font-medium text-foreground">{filteredTutors.length}</span> tutors
+                    </>
+                  )}
                 </p>
-                {activeFilterCount > 0 && (
+                {activeFilterCount > 0 && !loading && (
                   <Button
                     variant="ghost"
                     size="sm"
@@ -312,7 +194,19 @@ export default function TutorsPage() {
                 )}
               </div>
 
-              {filteredTutors.length === 0 ? (
+              {loading ? (
+                <div className="flex h-64 items-center justify-center">
+                  <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+                </div>
+              ) : error ? (
+                <div className="rounded-xl border border-border bg-card py-16 text-center">
+                  <p className="text-lg font-medium text-card-foreground">Oops! Something went wrong</p>
+                  <p className="mt-1 text-muted-foreground">{error}</p>
+                  <Button variant="outline" className="mt-4 bg-transparent" onClick={() => window.location.reload()}>
+                    Try again
+                  </Button>
+                </div>
+              ) : filteredTutors.length === 0 ? (
                 <div className="rounded-xl border border-border bg-card py-16 text-center">
                   <p className="text-lg font-medium text-card-foreground">No tutors found</p>
                   <p className="mt-1 text-muted-foreground">Try adjusting your filters</p>

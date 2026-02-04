@@ -25,7 +25,7 @@ export async function createTutorProfile(
   data: Partial<Tutor>
 ): Promise<void> {
   const tutorRef = doc(db, "tutors", uid)
-  
+
   const tutorData: Partial<Tutor> = {
     uid,
     displayName: data.displayName || "",
@@ -60,7 +60,7 @@ export async function createTutorProfile(
 export async function getTutorProfile(uid: string): Promise<Tutor | null> {
   const tutorRef = doc(db, "tutors", uid)
   const tutorSnap = await getDoc(tutorRef)
-  
+
   if (tutorSnap.exists()) {
     return tutorSnap.data() as Tutor
   }
@@ -71,7 +71,7 @@ export async function updateTutorProfile(
   uid: string,
   data: Partial<Tutor>
 ): Promise<void> {
-  const tutorRef = doc(db, firebaseCollections.userProfiles, uid)
+  const tutorRef = doc(db, firebaseCollections.tutors, uid)
   await updateDoc(tutorRef, {
     ...data,
     updatedAt: serverTimestamp(),
@@ -86,10 +86,10 @@ export async function uploadTutorDocument(
   const timestamp = Date.now()
   const fileName = `${timestamp}_${file.name}`
   const storageRef = ref(storage, `tutors/${uid}/documents/${fileName}`)
-  
+
   await uploadBytes(storageRef, file)
   const downloadURL = await getDownloadURL(storageRef)
-  
+
   const document: TutorDocument = {
     id: `${timestamp}`,
     type: documentType,
@@ -98,12 +98,12 @@ export async function uploadTutorDocument(
     uploadedAt: new Date(),
     status: "pending",
   }
-  
+
   const tutorRef = doc(db, "tutors", uid)
   await updateDoc(tutorRef, {
     documents: arrayUnion(document),
   })
-  
+
   return document
 }
 
@@ -119,11 +119,11 @@ export async function deleteTutorDocument(
   } catch {
     // File might not exist, continue
   }
-  
+
   // Update Firestore
   const tutorRef = doc(db, "tutors", uid)
   const tutorSnap = await getDoc(tutorRef)
-  
+
   if (tutorSnap.exists()) {
     const tutor = tutorSnap.data() as Tutor
     const updatedDocuments = tutor.documents.filter((d) => d.id !== documentId)
@@ -135,30 +135,38 @@ export async function uploadTutorPhoto(uid: string, file: File): Promise<string>
   const storageRef = ref(storage, `tutors/${uid}/profile.jpg`)
   await uploadBytes(storageRef, file)
   const downloadURL = await getDownloadURL(storageRef)
-  
+
   await updateTutorProfile(uid, { photoURL: downloadURL })
-  
+
   return downloadURL
+}
+
+export async function getTutors(): Promise<Tutor[]> {
+  const tutorsRef = collection(db, firebaseCollections.tutors)
+  const q = query(tutorsRef)
+  const querySnapshot = await getDocs(q)
+
+  return querySnapshot.docs.map((doc) => doc.data() as Tutor)
 }
 
 export async function getTutorsByStatus(
   status: VerificationStatus
 ): Promise<Tutor[]> {
-  const tutorsRef = collection(db, "tutors")
+  const tutorsRef = collection(db, firebaseCollections.tutors)
   const q = query(tutorsRef, where("verificationStatus", "==", status))
   const querySnapshot = await getDocs(q)
-  
+
   return querySnapshot.docs.map((doc) => doc.data() as Tutor)
 }
 
 export async function getStudentRequests(tutorId: string) {
-  const conversationsRef = collection(db, "conversations")
+  const conversationsRef = collection(db, firebaseCollections.conversations)
   const q = query(
     conversationsRef,
     where("participants", "array-contains", tutorId)
   )
   const querySnapshot = await getDocs(q)
-  
+
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),

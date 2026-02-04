@@ -87,8 +87,19 @@ export const signUp = createAsyncThunk(
 
       await setDoc(doc(db, firebaseCollections.users, user.uid), {
         ...profile,
-        createdAt: serverTimestamp(),
       });
+
+
+      if (role === UserRole.Student) {
+        await setDoc(doc(db, firebaseCollections.students, user.uid), {
+          ...profile,
+        });
+      } else {
+        await setDoc(doc(db, firebaseCollections.tutors, user.uid), {
+          ...profile,
+        });
+      }
+
 
       return profile;
     } catch (error: any) {

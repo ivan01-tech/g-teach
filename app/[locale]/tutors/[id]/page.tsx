@@ -21,78 +21,55 @@ import {
   Heart,
   Share2,
   Play,
+  AlertTriangle,
 } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { SPECIALIZATIONS, GERMAN_LEVELS, type Tutor, type Review } from "@/lib/types"
 
-// Mock tutor data
-const mockTutor: Tutor = {
-  uid: "1",
-  displayName: "Anna Schmidt",
-  email: "anna@example.com",
-  photoURL: "",
-  bio: "I am a native German speaker with 8 years of teaching experience. I hold a Master's degree in German as a Foreign Language (DaF) from the University of Munich and am certified by the Goethe-Institut.\n\nMy teaching approach is communicative and student-centered. I believe that the best way to learn a language is through practice and real-life conversations. I adapt my lessons to your individual needs and goals, whether you're preparing for an exam, improving your business German, or just want to have conversations.\n\nI specialize in:\n- Goethe exam preparation (all levels)\n- Business German\n- Grammar foundations\n- Conversation practice\n\nI've helped over 80 students achieve their German language goals, and I'd love to help you too!",
-  specializations: ["exam-prep", "business", "grammar", "conversation"],
-  teachingLevels: ["a1", "a2", "b1", "b2", "c1"],
-  languages: ["German", "English", "French"],
-  hourlyRate: 35,
-  currency: "EUR",
-  availability: [
-    { day: "Monday", startTime: "09:00", endTime: "17:00" },
-    { day: "Tuesday", startTime: "09:00", endTime: "17:00" },
-    { day: "Wednesday", startTime: "09:00", endTime: "17:00" },
-    { day: "Thursday", startTime: "09:00", endTime: "17:00" },
-    { day: "Friday", startTime: "09:00", endTime: "15:00" },
-  ],
-  rating: 4.9,
-  reviewCount: 127,
-  totalStudents: 89,
-  totalLessons: 1250,
-  isVerified: true,
-  isOnline: true,
-  createdAt: new Date("2020-03-15"),
-  country: "Germany",
-  timezone: "Europe/Berlin",
-}
-
-const mockReviews: Review[] = [
-  {
-    id: "1",
-    tutorId: "1",
-    studentId: "s1",
-    studentName: "Maria C.",
-    rating: 5,
-    comment:
-      "Anna is an excellent teacher! She helped me prepare for my B2 Goethe exam and I passed with flying colors. Her lessons are well-structured and she makes grammar easy to understand.",
-    createdAt: new Date("2024-01-15"),
-  },
-  {
-    id: "2",
-    tutorId: "1",
-    studentId: "s2",
-    studentName: "John D.",
-    rating: 5,
-    comment:
-      "Great teacher with a lot of patience. I was a complete beginner and now after 6 months I can hold conversations in German. Highly recommended!",
-    createdAt: new Date("2024-01-10"),
-  },
-  {
-    id: "3",
-    tutorId: "1",
-    studentId: "s3",
-    studentName: "Sophie M.",
-    rating: 4,
-    comment:
-      "Very professional and knowledgeable. The business German lessons have been very helpful for my work. The only reason for 4 stars is scheduling can sometimes be tricky.",
-    createdAt: new Date("2024-01-05"),
-  },
-]
+import { useTutor } from "./use-tutor"
+import { useReviews } from "./use-reviews"
+import { ReviewForm } from "@/components/tutors/review-form"
 
 export default function TutorProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  const { tutor, loading, error } = useTutor(id)
+  const {
+    reviews,
+    loading: reviewsLoading,
+    addReview
+  } = useReviews(id)
   const [isFavorite, setIsFavorite] = useState(false)
 
-  // In a real app, you would fetch the tutor data based on the ID
-  const tutor = mockTutor
+  if (loading) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center bg-muted/30">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
+  if (error || !tutor) {
+    return (
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1 flex flex-col items-center justify-center bg-muted/30 p-4">
+          <h2 className="text-2xl font-bold text-foreground">Tutor not found</h2>
+          <p className="text-muted-foreground mt-2">{error || "The tutor you are looking for does not exist."}</p>
+          <Button variant="outline" className="mt-6" onClick={() => window.history.back()}>
+            Go Back
+          </Button>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
+  // const isVerified = true
+  const isVerified = tutor.verificationStatus === "verified" || tutor.isVerified
 
   const specializationLabels = tutor.specializations.map(
     (s) => SPECIALIZATIONS.find((spec) => spec.value === s)?.label || s
@@ -102,11 +79,25 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
     (l) => GERMAN_LEVELS.find((level) => level.value === l)?.label || l
   )
 
+  // Handle createdAt if it's a Firestore Timestamp or Date
+  const createdAtDate = tutor.createdAt && (tutor.createdAt as any).toDate
+    ? (tutor.createdAt as any).toDate()
+    : new Date(tutor.createdAt || Date.now())
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1 bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          {!isVerified && (
+            <Alert variant="destructive" className="mb-6 border-amber-500 bg-amber-50 text-amber-900">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+              <AlertTitle className="text-amber-800 font-bold">Attention : Profil non vérifié</AlertTitle>
+              <AlertDescription className="text-amber-700">
+                Ce tuteur n'a pas encore été vérifié par notre plateforme. G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions. Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification.
+              </AlertDescription>
+            </Alert>
+          )}
           <div className="grid gap-8 lg:grid-cols-3">
             {/* Main Content */}
             <div className="lg:col-span-2">
@@ -170,6 +161,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       <Button
                         variant="outline"
                         size="icon"
+                        // TODO: Add favorite functionality
                         onClick={() => setIsFavorite(!isFavorite)}
                       >
                         <Heart className={`h-4 w-4 ${isFavorite ? "fill-destructive text-destructive" : ""}`} />
@@ -209,16 +201,16 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                             ))}
                           </div>
                         </div>
-                        <div>
+                        {/* <div>
                           <h4 className="mb-2 font-medium">Languages</h4>
-                          <div className="flex flex-wrap gap-2">
+                           <div className="flex flex-wrap gap-2">
                             {tutor.languages.map((lang) => (
                               <Badge key={lang} variant="outline">
                                 {lang}
                               </Badge>
                             ))}
-                          </div>
-                        </div>
+                          </div> 
+                        </div> */}
                       </div>
                     </CardContent>
                   </Card>
@@ -247,36 +239,49 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       <CardTitle>Student Reviews</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                      {mockReviews.map((review) => (
-                        <div key={review.id} className="border-b border-border pb-6 last:border-0 last:pb-0">
-                          <div className="flex items-start gap-4">
-                            <Avatar>
-                              <AvatarFallback>{review.studentName[0]}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                              <div className="flex items-center justify-between">
-                                <p className="font-medium">{review.studentName}</p>
-                                <p className="text-sm text-muted-foreground">
-                                  {review.createdAt.toLocaleDateString()}
-                                </p>
-                              </div>
-                              <div className="mt-1 flex gap-0.5">
-                                {Array.from({ length: 5 }).map((_, i) => (
-                                  <Star
-                                    key={i}
-                                    className={`h-4 w-4 ${
-                                      i < review.rating
-                                        ? "fill-amber-400 text-amber-400"
-                                        : "text-muted-foreground/30"
-                                    }`}
-                                  />
-                                ))}
-                              </div>
-                              <p className="mt-2 text-muted-foreground">{review.comment}</p>
-                            </div>
-                          </div>
+                      <ReviewForm tutorId={id} onSuccess={addReview} />
+
+                      {reviewsLoading ? (
+                        <div className="flex h-32 items-center justify-center">
+                          <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
                         </div>
-                      ))}
+                      ) : reviews.length === 0 ? (
+                        <div className="py-12 text-center text-muted-foreground">
+                          No reviews yet. Be the first to review!
+                        </div>
+                      ) : (
+                        <div className="space-y-6">
+                          {reviews.map((review) => (
+                            <div key={review.id} className="border-b border-border pb-6 last:border-0 last:pb-0">
+                              <div className="flex items-start gap-4">
+                                <Avatar>
+                                  <AvatarFallback>{review.studentName[0]}</AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1">
+                                  <div className="flex items-center justify-between">
+                                    <p className="font-medium">{review.studentName}</p>
+                                    <p className="text-sm text-muted-foreground">
+                                      {new Date(review.createdAt).toLocaleDateString()}
+                                    </p>
+                                  </div>
+                                  <div className="mt-1 flex gap-0.5">
+                                    {Array.from({ length: 5 }).map((_, i) => (
+                                      <Star
+                                        key={i}
+                                        className={`h-4 w-4 ${i < review.rating
+                                            ? "fill-amber-400 text-amber-400"
+                                            : "text-muted-foreground/30"
+                                          }`}
+                                      />
+                                    ))}
+                                  </div>
+                                  <p className="mt-2 text-muted-foreground">{review.comment}</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 </TabsContent>
@@ -350,7 +355,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Teaching Since</p>
-                        <p className="font-medium">{tutor.createdAt.getFullYear()}</p>
+                        <p className="font-medium">{createdAtDate.getFullYear()}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">

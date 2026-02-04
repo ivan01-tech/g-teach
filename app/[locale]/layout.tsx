@@ -63,7 +63,7 @@ export default async function LocaleLayout({
             </AuthProvider>
           </ReduxProvider>
 
-          <Analytics />
+          {/* <Analytics /> */}
         </NextIntlClientProvider>
       </body>
     </html>
