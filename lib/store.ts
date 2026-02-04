@@ -1,5 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit"
+import { listenerMiddleware } from "./middleware/listener"
+import { setupEmailSideEffects } from "./middleware/email-side-effects"
 import authReducer from "@/app/[locale]/auth/auth-slice"
+
+// Initialize side effects
+setupEmailSideEffects();
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +20,7 @@ export const store = configureStore({
                 // Ignore these paths in the state
                 ignoredPaths: ["auth.user"],
             },
-        }),
+        }).prepend(listenerMiddleware.middleware),
 })
 
 export type RootState = ReturnType<typeof store.getState>

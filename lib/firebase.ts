@@ -12,10 +12,12 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
+const databaseId = process.env.NEXT_PUBLIC_FIRESTORE_DB_ID || "g-dev"
+
 // Initialize Firebase
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
 const auth = getAuth(app)
-const db = getFirestore(app)
+const db = getFirestore(app, databaseId)
 const storage = getStorage(app)
 
 export { app, auth, db, storage }

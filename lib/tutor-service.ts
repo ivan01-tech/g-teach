@@ -18,6 +18,7 @@ import {
 } from "firebase/storage"
 import { db, storage } from "@/lib/firebase"
 import type { Tutor, TutorDocument, VerificationStatus } from "@/lib/types"
+import { firebaseCollections } from "./collections"
 
 export async function createTutorProfile(
   uid: string,
@@ -70,7 +71,7 @@ export async function updateTutorProfile(
   uid: string,
   data: Partial<Tutor>
 ): Promise<void> {
-  const tutorRef = doc(db, "tutors", uid)
+  const tutorRef = doc(db, firebaseCollections.userProfiles, uid)
   await updateDoc(tutorRef, {
     ...data,
     updatedAt: serverTimestamp(),

@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { createTutorProfile } from "@/lib/tutor-service";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -27,51 +23,24 @@ import {
   Users,
 } from "lucide-react";
 import { UserRole } from "@/lib/roles";
-import { validateRegister } from "@/validators/register.validator";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { signIn, signUp } from "../thunks";
+import { useRegister } from "./use-register";
 
 export default function RegisterPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState<UserRole>(UserRole.Student);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-
-  const dispatch = useAppDispatch();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-
-    const validationError = validateRegister(password, confirmPassword);
-
-    if (validationError) {
-      setError(validationError);
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      await dispatch(signUp({ email, password, name, role }));
-
-      // If tutor, create tutor profile and redirect to betreuer
-      if (role === "tutor") {
-        router.push("/betreuer");
-      } else {
-        router.push("/dashboard");
-      }
-    } catch (err) {
-      setError("Failed to create account. Please try again.");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const {
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    confirmPassword,
+    setConfirmPassword,
+    role,
+    setRole,
+    error,
+    loading,
+    handleSubmit,
+  } = useRegister();
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
