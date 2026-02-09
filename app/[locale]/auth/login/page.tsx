@@ -41,7 +41,6 @@ export default function LoginPage() {
         // Thunk rejected
         setLocalError(
           // result.payload ||
-
           "Invalid email or password. Please try again.",
         );
       }
