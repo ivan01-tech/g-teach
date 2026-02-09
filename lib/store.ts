@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { listenerMiddleware } from "./middleware/listener"
 import { setupEmailSideEffects } from "./middleware/email-side-effects"
-import authReducer from "@/app/[locale]/auth/auth-slice"
+import authReducer from "@/app/auth/auth-slice"
+import userReducer from "@/app/dashboard/users/redux/user-slice"
 
 // Initialize side effects
 setupEmailSideEffects();
@@ -9,6 +10,7 @@ setupEmailSideEffects();
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        users: userReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

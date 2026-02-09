@@ -7,7 +7,7 @@ import {
   signIn,
   logout,
   updateUserProfile,
-} from "@/app/[locale]/auth/thunks";
+} from "@/app/auth/thunks";
 import { UserRole } from "@/lib/roles";
 
 /**

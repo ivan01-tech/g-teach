@@ -1,5 +1,5 @@
 import { startAppListening } from "./listener";
-import { signUp } from "@/app/[locale]/auth/thunks";
+import { signUp } from "@/app/auth/thunks";
 import { sendAccountEmail } from "../services/emails/sendEmails";
 
 /**

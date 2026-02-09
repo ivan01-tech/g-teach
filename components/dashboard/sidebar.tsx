@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import {
   BookOpen,
   LayoutDashboard,
@@ -10,37 +10,32 @@ import {
   MessageSquare,
   Calendar,
   User,
+  Users,
   Settings,
   LogOut,
+  ShieldCheck,
   Heart,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@/hooks/use-auth"
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
+import { UserRole } from "@/lib/roles";
 
-const studentNavItems = [
+const adminNavItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/tutors", label: "Find Tutors", icon: Search },
+  { href: "/dashboard/users", label: "Users", icon: Users },
   { href: "/dashboard/favorites", label: "Favorites", icon: Heart },
-  { href: "/dashboard/bookings", label: "My Bookings", icon: Calendar },
+  { href: "/dashboard/bookings", label: "Bookings", icon: Calendar },
   { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
   { href: "/dashboard/profile", label: "Profile", icon: User },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
-]
-
-const tutorNavItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/dashboard/bookings", label: "Bookings", icon: Calendar },
-  { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
-  { href: "/dashboard/profile", label: "My Profile", icon: User },
   { href: "/dashboard/availability", label: "Availability", icon: Calendar },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
-]
+];
 
 export function DashboardSidebar() {
-  const pathname = usePathname()
-  const { userProfile, logout } = useAuth()
+  const pathname = usePathname();
+  const { user, logout } = useAuth();
 
-  const navItems = userProfile?.role === "tutor" ? tutorNavItems : studentNavItems
+  const navItems = user?.role === UserRole.Admin ? adminNavItems : [];
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
@@ -49,13 +44,15 @@ export function DashboardSidebar() {
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sidebar-primary">
             <BookOpen className="h-5 w-5 text-sidebar-primary-foreground" />
           </div>
-          <span className="text-lg font-bold text-sidebar-foreground">G-Teach</span>
+          <span className="text-lg font-bold text-sidebar-foreground">
+            G-Teach
+          </span>
         </Link>
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto p-4">
         {navItems.map((item) => {
-          const isActive = pathname === item.href
+          const isActive = pathname === item.href;
           return (
             <Link
               key={item.href}
@@ -64,13 +61,13 @@ export function DashboardSidebar() {
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                  : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
               )}
             >
               <item.icon className="h-5 w-5" />
               {item.label}
             </Link>
-          )
+          );
         })}
       </nav>
 
@@ -81,10 +78,10 @@ export function DashboardSidebar() {
           </div>
           <div className="flex-1 truncate">
             <p className="truncate text-sm font-medium text-sidebar-foreground">
-              {userProfile?.displayName || "User"}
+              {user?.displayName || "User"}
             </p>
             <p className="truncate text-xs text-sidebar-foreground/70">
-              {userProfile?.role === "tutor" ? "Tutor" : "Student"}
+              {user?.role === UserRole.Admin ? "Admin" : "Unknown Role"}
             </p>
           </div>
         </div>
@@ -98,5 +95,5 @@ export function DashboardSidebar() {
         </Button>
       </div>
     </aside>
-  )
+  );
 }
