@@ -133,7 +133,7 @@ export type User = {
   createdAt: number
 }
 
-export type MatchingStatus = "open" | "confirmed" | "refused" | "continued"
+export type MatchingStatus = "requested" | "open" | "confirmed" | "refused" | "continued"
 
 export interface Matching {
   id: string

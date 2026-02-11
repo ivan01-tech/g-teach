@@ -11,6 +11,7 @@ import {
     addDoc,
     Timestamp,
     increment,
+    onSnapshot,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { firebaseCollections } from "../collections";
@@ -37,7 +38,7 @@ export async function initiateMatching(
         learnerName,
         tutorName,
         contactDate: serverTimestamp(),
-        status: "open" as MatchingStatus,
+        status: "requested" as MatchingStatus,
         learnerConfirmed: false,
         tutorConfirmed: false,
         reminderCount: 0,
@@ -52,11 +53,11 @@ export async function initiateMatching(
     );
 
     const existingSnapshot = await getDocs(existingQuery);
-    
-    // Si une mise en relation existe déjà en "open" ou "continued", ne pas créer de doublon
+
+    // Si une mise en relation existe déjà en "requested", "open" ou "continued", ne pas créer de doublon
     const activeMatching = existingSnapshot.docs.find(doc => {
         const data = doc.data();
-        return data.status === "open" || data.status === "continued";
+        return data.status === "requested" || data.status === "open" || data.status === "continued";
     });
 
     if (activeMatching) {
@@ -65,6 +66,29 @@ export async function initiateMatching(
 
     const docRef = await addDoc(matchingRef, newMatching);
     return docRef.id;
+}
+
+/**
+ * Le tuteur accepte une demande de contact.
+ * Le statut passe à "open", ce qui permet d'engager la discussion.
+ */
+export async function acceptMatching(matchingId: string): Promise<void> {
+    const matchingRef = doc(db, firebaseCollections.matchings, matchingId);
+    await updateDoc(matchingRef, {
+        status: "open",
+        acceptedAt: serverTimestamp(),
+    });
+}
+
+/**
+ * Le tuteur refuse une demande de contact.
+ */
+export async function refuseMatching(matchingId: string): Promise<void> {
+    const matchingRef = doc(db, firebaseCollections.matchings, matchingId);
+    await updateDoc(matchingRef, {
+        status: "refused",
+        refusedAt: serverTimestamp(),
+    });
 }
 
 /**
@@ -88,7 +112,7 @@ export async function getPendingMatchingsForUser(
     );
 
     const querySnapshot = await getDocs(q);
-    
+
     // Filtre les matchings qui sont expirés (plus de 7 jours)
     const matchings = querySnapshot.docs
         .map(doc => ({
@@ -249,4 +273,29 @@ export async function getTutorMatchingStats(tutorId: string): Promise<{
         refused: allMatchings.filter(m => m.status === "refused").length,
         pending: allMatchings.filter(m => m.status === "open" || m.status === "continued").length,
     };
+}
+
+/**
+ * S'abonne aux mises en relation d'un utilisateur en temps réel
+ */
+export function subscribeToMatchings(
+    userId: string,
+    role: 'student' | 'tutor',
+    callback: (matchings: Matching[]) => void
+) {
+    const matchingRef = collection(db, firebaseCollections.matchings);
+    const field = role === 'student' ? 'learnerId' : 'tutorId';
+
+    const q = query(
+        matchingRef,
+        where(field, "==", userId),
+    );
+
+    return onSnapshot(q, (snapshot) => {
+        const matchings = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        } as Matching));
+        callback(matchings);
+    });
 }

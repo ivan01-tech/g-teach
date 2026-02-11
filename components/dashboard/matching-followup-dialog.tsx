@@ -1,115 +1,161 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 import {
     Dialog,
     DialogContent,
     DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { useMatchingFollowup } from "@/hooks/use-matching-followup";
-import { useAuth } from "@/hooks/use-auth";
-import type { MatchingStatus, Matching } from "@/lib/types";
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { useAuth } from "@/hooks/use-auth"
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
+import { fetchPendingMatchings, closeMatchingAction } from "@/lib/store/matching-slice"
+import { MatchingStatus } from "@/lib/types"
+import { CheckCircle, XCircle, Search, MessageSquare } from "lucide-react"
 
 export function MatchingFollowupDialog() {
-    const { pendingMatchings, closeMatching, loading } = useMatchingFollowup();
-    const { user, userProfile } = useAuth();
-    const [currentMatching, setCurrentMatching] = useState<Matching | null>(null);
-    const [open, setOpen] = useState(false);
-    const [selectedStatus, setSelectedStatus] = useState<MatchingStatus | null>(null);
+    const { user, userProfile } = useAuth()
+    const dispatch = useAppDispatch()
+    const { pendingMatchings, loading } = useAppSelector((state) => state.matching)
+    const [open, setOpen] = useState(false)
+    const [currentMatching, setCurrentMatching] = useState<any>(null)
+
+    useEffect(() => {
+        if (user?.uid && userProfile?.role) {
+            dispatch(fetchPendingMatchings({
+                userId: user.uid,
+                role: userProfile.role as 'student' | 'tutor'
+            }))
+        }
+    }, [user?.uid, userProfile?.role, dispatch])
 
     useEffect(() => {
         if (pendingMatchings.length > 0 && !currentMatching) {
-            setCurrentMatching(pendingMatchings[0]);
-            setOpen(true);
+            setCurrentMatching(pendingMatchings[0])
+            setOpen(true)
+        } else if (pendingMatchings.length === 0) {
+            setOpen(false)
+            setCurrentMatching(null)
         }
-    }, [pendingMatchings, currentMatching]);
+    }, [pendingMatchings, currentMatching])
 
-    if (!user || !currentMatching) return null;
+    const handleAction = async (status: MatchingStatus) => {
+        if (!currentMatching || !userProfile?.role) return
 
-    const role = userProfile?.role as 'student' | 'tutor';
-    const otherPersonName = role === "student" ? currentMatching.tutorName : currentMatching.learnerName;
+        await dispatch(closeMatchingAction({
+            matchingId: currentMatching.id,
+            status,
+            role: userProfile.role as 'student' | 'tutor'
+        }))
 
-    const handleAction = async (status: MatchingStatus, feedback: string) => {
-        await closeMatching(currentMatching.id, status, feedback);
-        setOpen(false);
-        setCurrentMatching(null); // Will trigger next if available
-        setSelectedStatus(null);
-    };
+        // Clear current to trigger next one if any
+        setCurrentMatching(null)
+    }
+
+    if (!currentMatching) return null
+
+    const isStudent = userProfile?.role === "student"
 
     return (
-        <Dialog open={open} onOpenChange={(val) => !val && setOpen(false)}>
-            <DialogContent className="sm:max-w-[425px]">
+        <Dialog open={open} onOpenChange={(val) => {
+            // Force l'utilisateur à répondre, on ne peut pas fermer sans action
+            if (!val) return;
+            setOpen(val);
+        }}>
+            <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                    <DialogTitle>Suivi de mise en relation</DialogTitle>
-                    <DialogDescription>
+                    <DialogTitle className="flex items-center gap-2">
+                        <MessageSquare className="h-5 w-5 text-primary" />
+                        Suivi de votre mise en relation
+                    </DialogTitle>
+                    <DialogDescription className="pt-2">
                         Il y a quelques jours, vous avez été mis en relation avec{" "}
-                        <strong>{otherPersonName || "ce professionnel"}</strong>.
+                        <span className="font-semibold text-foreground">
+                            {isStudent ? currentMatching.tutorName : currentMatching.learnerName}
+                        </span>.
                         Où en est votre collaboration ?
                     </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-3 py-4">
-                    {role === "student" ? (
-                        <>
+
+                <div className="grid gap-4 py-4">
+                    {isStudent ? (
+                        <div className="grid grid-cols-1 gap-3">
                             <Button
-                                variant={selectedStatus === "confirmed" ? "default" : "outline"}
-                                onClick={() => handleAction("confirmed", "J'ai trouvé un formateur")}
+                                variant="outline"
+                                className="justify-start gap-3 h-auto py-3 px-4 border-green-200 hover:bg-green-50 hover:text-green-700"
+                                onClick={() => handleAction("confirmed")}
                                 disabled={loading}
-                                className="justify-start"
                             >
-                                <span className="mr-2">✅</span>
-                                J'ai trouvé un formateur
+                                <CheckCircle className="h-5 w-5 text-green-500" />
+                                <div className="text-left">
+                                    <p className="font-semibold">J'ai trouvé un formateur</p>
+                                    <p className="text-xs text-muted-foreground">Nous avons commencé les cours ensemble.</p>
+                                </div>
                             </Button>
+
                             <Button
-                                variant={selectedStatus === "refused" ? "destructive" : "outline"}
-                                onClick={() => handleAction("refused", "Pas intéressé")}
+                                variant="outline"
+                                className="justify-start gap-3 h-auto py-3 px-4 border-red-200 hover:bg-red-50 hover:text-red-700"
+                                onClick={() => handleAction("refused")}
                                 disabled={loading}
-                                className="justify-start"
                             >
-                                <span className="mr-2">❌</span>
-                                Pas intéressé
+                                <XCircle className="h-5 w-5 text-red-500" />
+                                <div className="text-left">
+                                    <p className="font-semibold">Pas intéressé</p>
+                                    <p className="text-xs text-muted-foreground">Le profil ne correspondait pas à mes besoins.</p>
+                                </div>
                             </Button>
+
                             <Button
-                                variant={selectedStatus === "continued" ? "secondary" : "outline"}
-                                onClick={() => handleAction("continued", "Je continue à chercher")}
+                                variant="outline"
+                                className="justify-start gap-3 h-auto py-3 px-4 border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                                onClick={() => handleAction("continued")}
                                 disabled={loading}
-                                className="justify-start"
                             >
-                                <span className="mr-2">🔄</span>
-                                Je continue à chercher
+                                <Search className="h-5 w-5 text-blue-500" />
+                                <div className="text-left">
+                                    <p className="font-semibold">Je continue à chercher</p>
+                                    <p className="text-xs text-muted-foreground">La discussion est toujours en cours.</p>
+                                </div>
                             </Button>
-                        </>
+                        </div>
                     ) : (
-                        <>
+                        <div className="grid grid-cols-1 gap-3">
                             <Button
-                                variant={selectedStatus === "confirmed" ? "default" : "outline"}
-                                onClick={() => handleAction("confirmed", "L'apprenant est devenu mon élève")}
+                                variant="outline"
+                                className="justify-start gap-3 h-auto py-3 px-4 border-green-200 hover:bg-green-50 hover:text-green-700"
+                                onClick={() => handleAction("confirmed")}
                                 disabled={loading}
-                                className="justify-start"
                             >
-                                <span className="mr-2">✅</span>
-                                L'apprenant est devenu mon élève
+                                <CheckCircle className="h-5 w-5 text-green-500" />
+                                <div className="text-left">
+                                    <p className="font-semibold">L'apprenant est devenu mon élève</p>
+                                    <p className="text-xs text-muted-foreground">Collaboration confirmée.</p>
+                                </div>
                             </Button>
+
                             <Button
-                                variant={selectedStatus === "refused" ? "destructive" : "outline"}
-                                onClick={() => handleAction("refused", "Pas de collaboration")}
+                                variant="outline"
+                                className="justify-start gap-3 h-auto py-3 px-4 border-red-200 hover:bg-red-50 hover:text-red-700"
+                                onClick={() => handleAction("refused")}
                                 disabled={loading}
-                                className="justify-start"
                             >
-                                <span className="mr-2">❌</span>
-                                Pas de collaboration
+                                <XCircle className="h-5 w-5 text-red-500" />
+                                <div className="text-left">
+                                    <p className="font-semibold">Pas de collaboration</p>
+                                    <p className="text-xs text-muted-foreground">Nous n'avons pas donné suite.</p>
+                                </div>
                             </Button>
-                        </>
+                        </div>
                     )}
                 </div>
-                {loading && (
-                    <p className="text-sm text-muted-foreground text-center">
-                        Enregistrement en cours...
-                    </p>
-                )}
+                <p className="text-[10px] text-center text-muted-foreground">
+                    Ces informations nous aident à améliorer la mise en relation et à valoriser votre profil.
+                </p>
             </DialogContent>
         </Dialog>
-    );
+    )
 }

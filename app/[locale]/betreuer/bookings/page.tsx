@@ -1,6 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect } from "react"
+import { useAuth } from "@/hooks/use-auth"
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
+import { subscribeToBookings } from "@/lib/services/booking-service"
+import { setBookings, setLoading, updateBookingStatusAction } from "@/lib/store/bookings-slice"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -9,43 +13,31 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Calendar, Clock, Video, MessageSquare, CheckCircle, XCircle } from "lucide-react"
 import type { Booking } from "@/lib/types"
 
-// Demo bookings data
-const DEMO_BOOKINGS: Booking[] = [
-  {
-    id: "1",
-    tutorId: "tutor1",
-    studentId: "student1",
-    tutorName: "You",
-    studentName: "Marie Dupont",
-    date: new Date(Date.now() + 86400000),
-    startTime: "14:00",
-    endTime: "15:00",
-    status: "pending",
-    price: 35,
-    currency: "EUR",
-    notes: "B1 exam preparation - Goethe",
-    createdAt: new Date(),
-  },
-  {
-    id: "2",
-    tutorId: "tutor1",
-    studentId: "student2",
-    tutorName: "You",
-    studentName: "Jean Martin",
-    date: new Date(Date.now() + 172800000),
-    startTime: "10:00",
-    endTime: "11:00",
-    status: "confirmed",
-    price: 35,
-    currency: "EUR",
-    notes: "Conversation practice",
-    createdAt: new Date(),
-  },
-]
-
 export default function BetreuerBookingsPage() {
-  const [bookings] = useState<Booking[]>(DEMO_BOOKINGS)
+  const { user } = useAuth()
+  const dispatch = useAppDispatch()
+  const { bookings, loading } = useAppSelector((state) => state.bookings)
 
+  useEffect(() => {
+    if (!user?.uid || !user?.role) return
+
+    dispatch(setLoading(true))
+    const unsubscribe = subscribeToBookings(
+      user.uid,
+      user.role as 'student' | 'tutor',
+      (data) => {
+        dispatch(setBookings(data))
+      }
+    )
+
+    return () => unsubscribe()
+  }, [user?.uid, user?.role, dispatch])
+
+  const handleUpdateStatus = async (bookingId: string, status: Booking["status"]) => {
+    await dispatch(updateBookingStatusAction({ bookingId, status }))
+  }
+
+  // filter bookings by status
   const pendingBookings = bookings.filter((b) => b.status === "pending")
   const upcomingBookings = bookings.filter((b) => b.status === "confirmed")
   const completedBookings = bookings.filter((b) => b.status === "completed")
@@ -100,20 +92,31 @@ export default function BetreuerBookingsPage() {
             </p>
           </div>
         </div>
-        
+
         {booking.status === "pending" && (
           <div className="mt-4 flex gap-2">
-            <Button size="sm" className="flex-1">
+            <Button
+              size="sm"
+              className="flex-1"
+              onClick={() => handleUpdateStatus(booking.id, "confirmed")}
+              disabled={loading}
+            >
               <CheckCircle className="mr-2 h-4 w-4" />
               Accept
             </Button>
-            <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+            <Button
+              size="sm"
+              variant="outline"
+              className="flex-1 bg-transparent"
+              onClick={() => handleUpdateStatus(booking.id, "cancelled")}
+              disabled={loading}
+            >
               <XCircle className="mr-2 h-4 w-4" />
               Decline
             </Button>
           </div>
         )}
-        
+
         {booking.status === "confirmed" && (
           <div className="mt-4 flex gap-2">
             <Button size="sm" className="flex-1">

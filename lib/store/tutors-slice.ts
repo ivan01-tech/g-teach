@@ -28,7 +28,7 @@ const tutorsSlice = createSlice({
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
       state.loading = false;
-      console.log("Tutors set : ", action.payload);
+      console.log("Tutors error : ", action.payload);
     },
   },
 });

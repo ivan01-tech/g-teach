@@ -4,9 +4,8 @@ import { Suspense } from "react"
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { useAuth } from "@/hooks/use-auth"
-import { EmptyChat } from "@/components/chat/empty-chat"
-import { getConversations, type ConversationWithDetails } from "@/lib/chat-service"
 import Loading from "./loading"
+import { ConversationWithDetails, getConversations } from "@/lib/services/chat-service"
 
 function BetreuerMessagesContent() {
   const { user } = useAuth()

@@ -4,16 +4,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Calendar, MessageSquare, Search, Clock, Star, BookOpen, TrendingUp, Award } from "lucide-react"
-import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
 import Loading from "./loading"
 import { useAuth } from "@/hooks/use-auth"
+import { StudentMatchingsCard } from "@/components/dashboard/student-matchings-card"
+import { StudentBookingsCard } from "@/components/dashboard/student-bookings-card"
+import { TutorMatchingsCard } from "@/components/dashboard/tutor-matchings-card"
+import { TutorBookingsCard } from "@/components/dashboard/tutor-bookings-card"
+import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog"
+import { useAppSelector } from "@/hooks/redux-store-hooks"
 
 export default function DashboardPage() {
-  const { userProfile,user } = useAuth()
-  const searchParams = useSearchParams()
+  const { userProfile, user } = useAuth()
+  const { bookings } = useAppSelector((state) => state.bookings)
+  const { allMatchings: matchings } = useAppSelector((state) => state.matching)
 
-  const isStudent = userProfile?.role != "student"
+  const isStudent = userProfile?.role == "student"
+
+  const upcomingBookingsCount = bookings.filter(b => b.status === "confirmed").length
+  const pendingBookingsCount = bookings.filter(b => b.status === "pending").length
+  const activeMatchingsCount = matchings.filter(m => m.status === "open").length
 
   return (
     <Suspense fallback={<Loading />}>
@@ -55,19 +65,22 @@ export default function DashboardPage() {
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">0</p>
+                  <p className="text-2xl font-bold">{upcomingBookingsCount}</p>
                   <p className="text-xs text-muted-foreground">Scheduled this week</p>
                 </CardContent>
               </Card>
 
               <Card className="transition-shadow hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-sm font-medium">Messages</CardTitle>
+                  <CardTitle className="text-sm font-medium">Pending Requests</CardTitle>
                   <MessageSquare className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">0</p>
-                  <p className="text-xs text-muted-foreground">Unread messages</p>
+                  <p className="text-2xl font-bold">{activeMatchingsCount}</p>
+                  <p className="text-xs text-muted-foreground">Tutors contacted</p>
+                  <Button variant="link" size="sm" className="mt-2 h-auto p-0" asChild>
+                    <Link href="/dashboard/matchings">View all →</Link>
+                  </Button>
                 </CardContent>
               </Card>
 
@@ -90,41 +103,44 @@ export default function DashboardPage() {
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">0</p>
+                  <p className="text-2xl font-bold">{upcomingBookingsCount}</p>
                   <p className="text-xs text-muted-foreground">Scheduled this week</p>
                 </CardContent>
               </Card>
 
               <Card className="transition-shadow hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-sm font-medium">Total Students</CardTitle>
+                  <CardTitle className="text-sm font-medium">Pending Bookings</CardTitle>
                   <BookOpen className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">0</p>
-                  <p className="text-xs text-muted-foreground">Active students</p>
+                  <p className="text-2xl font-bold">{pendingBookingsCount}</p>
+                  <p className="text-xs text-muted-foreground">Waiting for confirmation</p>
+                </CardContent>
+              </Card>
+
+              <Card className="transition-shadow hover:shadow-md">
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                  <CardTitle className="text-sm font-medium">New Contacts</CardTitle>
+                  <Star className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <p className="text-2xl font-bold">{activeMatchingsCount}</p>
+                  <p className="text-xs text-muted-foreground">Interested students</p>
+                  <Button variant="link" size="sm" className="mt-2 h-auto p-0" asChild>
+                    <Link href="/betreuer/matchings">View all →</Link>
+                  </Button>
                 </CardContent>
               </Card>
 
               <Card className="transition-shadow hover:shadow-md">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <CardTitle className="text-sm font-medium">Rating</CardTitle>
-                  <Star className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <p className="text-2xl font-bold">-</p>
-                  <p className="text-xs text-muted-foreground">Average rating</p>
-                </CardContent>
-              </Card>
-
-              <Card className="transition-shadow hover:shadow-md">
-                <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-sm font-medium">This Month</CardTitle>
                   <TrendingUp className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <p className="text-2xl font-bold">0h</p>
-                  <p className="text-xs text-muted-foreground">Teaching hours</p>
+                  {/* <p className="text-2xl font-bold">{userProfile?.rating || "-"}</p> */}
+                  <p className="text-xs text-muted-foreground">Average rating</p>
                 </CardContent>
               </Card>
             </>
@@ -133,6 +149,18 @@ export default function DashboardPage() {
 
         {/* Main Content Grid */}
         <div className="grid gap-6 lg:grid-cols-2">
+          {isStudent ? (
+            <>
+              <StudentMatchingsCard />
+              <StudentBookingsCard />
+            </>
+          ) : (
+            <>
+              <TutorMatchingsCard />
+              <TutorBookingsCard />
+            </>
+          )}
+
           {/* Recent Activity */}
           <Card>
             <CardHeader>
@@ -229,6 +257,7 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </div>
+        <MatchingFollowupDialog />
       </div>
     </Suspense>
   )

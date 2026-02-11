@@ -356,10 +356,10 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       <MessageSquare className="h-4 w-4" />
                       Send Message
                     </Button>
-                    <Button variant="outline" className="w-full gap-2 bg-transparent" size="lg">
+                    {/* <Button variant="outline" className="w-full gap-2 bg-transparent" size="lg">
                       <Calendar className="h-4 w-4" />
                       Book Trial Lesson
-                    </Button>
+                    </Button> */}
                   </div>
 
                   <div className="mt-6 space-y-4 border-t border-border pt-6">

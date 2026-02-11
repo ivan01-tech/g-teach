@@ -21,6 +21,8 @@ import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import { getStudentRequests } from "@/lib/services/tutor-service"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/hooks/use-auth"
+import { TutorMatchingsCard } from "@/components/betreuer/tutor-matchings-card"
+import { TutorBookingsCard } from "@/components/betreuer/tutor-bookings-card"
 
 export default function BetreuerDashboard() {
   const { user } = useAuth()
@@ -156,6 +158,11 @@ export default function BetreuerDashboard() {
             </p>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <TutorMatchingsCard />
+        <TutorBookingsCard />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

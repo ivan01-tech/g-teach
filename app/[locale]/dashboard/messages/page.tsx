@@ -2,13 +2,17 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
+import { Button } from "@/components/ui/button"
 import { chatService } from "@/lib/services/chat-service"
 import { ConversationList } from "@/components/chat/conversation-list"
+import { ChatWindow } from "@/components/chat/chat-window"
 import { EmptyChat } from "@/components/chat/empty-chat"
 import type { Conversation, Message } from "@/lib/types"
-import { Loader2 } from "lucide-react"
+import { Loader2, AlertCircle } from "lucide-react"
 import Loading from "./loading"
 import { useAuth } from "@/hooks/use-auth"
+import { useAppSelector } from "@/hooks/redux-store-hooks"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 function MessagesContent() {
   const { user, userProfile } = useAuth()
@@ -85,15 +89,24 @@ function MessagesContent() {
     )
   }
 
-  const getOtherParticipant = (conversation: Conversation) => {
-    if (!user) return { name: "", photo: "" }
-    const otherId = conversation.participants.find((p) => p !== user.uid) || ""
+  const getOtherParticipant = (conversation: Conversation): { id: string, name: string, photo: string } => {
+    const otherId = conversation.participants.find((p) => p !== user?.uid) || ""
     return {
       id: otherId,
       name: conversation.participantNames[otherId] || "Unknown",
       photo: conversation.participantPhotos[otherId] || "",
     }
   }
+
+  const { allMatchings: matchings } = useAppSelector((state) => state.matching)
+
+  // Find matching for selected conversation
+  const selectedMatching = selectedConversation ? matchings.find(m =>
+    (m.learnerId === user?.uid && m.tutorId === getOtherParticipant(selectedConversation).id) ||
+    (m.tutorId === user?.uid && m.learnerId === getOtherParticipant(selectedConversation).id)
+  ) : null
+
+  const isValidationPending = selectedMatching?.status === "requested"
 
   if (loading) {
     return (
@@ -107,9 +120,8 @@ function MessagesContent() {
     <div className="flex h-[calc(100vh-8rem)] overflow-hidden rounded-xl border border-border bg-card">
       {/* Conversation List - Hidden on mobile when chat is open */}
       <div
-        className={`w-full border-r border-border md:w-80 md:block ${
-          mobileShowChat ? "hidden" : "block"
-        }`}
+        className={`w-full border-r border-border md:w-80 md:block ${mobileShowChat ? "hidden" : "block"
+          }`}
       >
         <ConversationList
           conversations={conversations}
@@ -122,15 +134,31 @@ function MessagesContent() {
       {/* Chat Window - Hidden on mobile when list is shown */}
       <div className={`flex-1 ${mobileShowChat ? "block" : "hidden md:block"}`}>
         {selectedConversation ? (
-          // <ChatWindow
-          //   conversation={selectedConversation}
-          //   messages={messages}
-          //   currentUserId={user?.uid || ""}
-          //   otherParticipant={getOtherParticipant(selectedConversation)}
-          //   onSendMessage={handleSendMessage}
-          //   onBack={handleBackToList}
-          // />
-          <div></div>
+          isValidationPending ? (
+            <div className="flex h-full flex-col items-center justify-center p-6 text-center">
+              <Alert className="max-w-md border-blue-200 bg-blue-50">
+                <AlertCircle className="h-4 w-4 text-blue-600" />
+                <AlertTitle className="text-blue-800 font-semibold">Contact en attente de validation</AlertTitle>
+                <AlertDescription className="text-blue-700">
+                  {userProfile?.role === "student"
+                    ? "Le tuteur n'a pas encore validé votre demande de contact. Vous pourrez discuter dès qu'il aura accepté."
+                    : "Vous devez valider cette demande de contact depuis votre tableau de bord avant de pouvoir discuter avec l'étudiant."}
+                </AlertDescription>
+              </Alert>
+              <Button variant="outline" className="mt-4 md:hidden" onClick={handleBackToList}>
+                Retour à la liste
+              </Button>
+            </div>
+          ) : (
+            <ChatWindow
+              conversation={selectedConversation}
+              messages={messages}
+              currentUserId={user?.uid || ""}
+              otherParticipant={getOtherParticipant(selectedConversation)}
+              onSendMessage={handleSendMessage}
+              onBack={handleBackToList}
+            />
+          )
         ) : (
           <EmptyChat />
         )}

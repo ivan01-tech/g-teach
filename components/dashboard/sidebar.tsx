@@ -22,6 +22,7 @@ const studentNavItems = [
   { href: "/tutors", label: "Find Tutors", icon: Search },
   { href: "/dashboard/favorites", label: "Favorites", icon: Heart },
   { href: "/dashboard/bookings", label: "My Bookings", icon: Calendar },
+  { href: "/dashboard/matchings", label: "My Matchings", icon: Calendar },
   { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
   { href: "/dashboard/profile", label: "Profile", icon: User },
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
@@ -38,9 +39,9 @@ const tutorNavItems = [
 
 export function DashboardSidebar() {
   const pathname = usePathname()
-  const { userProfile, logout } = useAuth()
+  const { user, logout } = useAuth()
 
-  const navItems = userProfile?.role === "tutor" ? tutorNavItems : studentNavItems
+  const navItems = user?.role === "tutor" ? tutorNavItems : studentNavItems
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
@@ -81,10 +82,10 @@ export function DashboardSidebar() {
           </div>
           <div className="flex-1 truncate">
             <p className="truncate text-sm font-medium text-sidebar-foreground">
-              {userProfile?.displayName || "User"}
+              {user?.displayName || "User"}
             </p>
             <p className="truncate text-xs text-sidebar-foreground/70">
-              {userProfile?.role === "tutor" ? "Tutor" : "Student"}
+              {user?.role === "tutor" ? "Tutor" : "Student"}
             </p>
           </div>
         </div>

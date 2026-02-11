@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 
 export function DashboardHeader() {
-  const { userProfile, logout } = useAuth();
+  const { userProfile,user, logout } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -89,9 +89,9 @@ export function DashboardHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col">
-                <span>{userProfile?.displayName || "User"}</span>
+                <span>{user?.displayName || "User"}</span>
                 <span className="text-xs font-normal text-muted-foreground">
-                  {userProfile?.email}
+                  {user?.email}
                 </span>
               </div>
             </DropdownMenuLabel>

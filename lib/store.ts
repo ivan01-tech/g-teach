@@ -5,6 +5,7 @@ import authReducer from "@/app/[locale]/auth/auth-slice"
 import favoritesReducer from "./store/favorites-slice"
 import matchingReducer from "./store/matching-slice"
 import tutorsReducer from "./store/tutors-slice"
+import bookingsReducer from "./store/bookings-slice"
 
 // Initialize side effects
 setupEmailSideEffects();
@@ -15,6 +16,7 @@ export const store = configureStore({
         favorites: favoritesReducer,
         matching: matchingReducer,
         tutors: tutorsReducer,
+        bookings: bookingsReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

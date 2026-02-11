@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { 
-    getPendingMatchingsForUser, 
-    updateMatchingStatus, 
+import {
+    getPendingMatchingsForUser,
+    updateMatchingStatus,
     initiateMatching as initiateMatchingService,
+    acceptMatching as acceptMatchingService,
+    refuseMatching as refuseMatchingService,
     getTutorMatchingStats,
     sendReminderForExpiredMatchings
 } from "@/lib/services/matching-service";
@@ -122,6 +124,36 @@ export const triggerReminders = createAsyncThunk(
     }
 );
 
+/**
+ * Accepter une demande de contact (Tuteur uniquement)
+ */
+export const acceptMatchingAction = createAsyncThunk(
+    "matching/accept",
+    async (matchingId: string, { rejectWithValue }) => {
+        try {
+            await acceptMatchingService(matchingId);
+            return matchingId;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+/**
+ * Refuser une demande de contact (Tuteur uniquement)
+ */
+export const refuseMatchingAction = createAsyncThunk(
+    "matching/refuse",
+    async (matchingId: string, { rejectWithValue }) => {
+        try {
+            await refuseMatchingService(matchingId);
+            return matchingId;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const matchingSlice = createSlice({
     name: "matching",
     initialState,
@@ -133,6 +165,18 @@ const matchingSlice = createSlice({
             state.pendingMatchings = [];
             state.allMatchings = [];
             state.stats = null;
+        },
+        setAllMatchings: (state, action: PayloadAction<Matching[]>) => {
+            state.allMatchings = action.payload;
+            state.loading = false;
+            state.error = null;
+        },
+        setLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload;
+        },
+        setError: (state, action: PayloadAction<string | null>) => {
+            state.error = action.payload;
+            state.loading = false;
         },
     },
     extraReducers: (builder) => {
@@ -162,13 +206,13 @@ const matchingSlice = createSlice({
                 state.pendingMatchings = state.pendingMatchings.filter(
                     m => m.id !== matchingId
                 );
-                
+
                 // Met à jour dans la liste globale si présent
                 const matchingInList = state.allMatchings.find(m => m.id === matchingId);
                 if (matchingInList) {
                     matchingInList.status = status;
                 }
-                
+
                 state.loading = false;
             })
             .addCase(closeMatchingAction.rejected, (state, action) => {
@@ -203,15 +247,54 @@ const matchingSlice = createSlice({
                 state.error = action.payload as string;
             })
 
-            // Trigger Reminders
-            .addCase(triggerReminders.fulfilled, (state) => {
+            .addCase(triggerReminders.rejected, (state, action) => {
+                state.error = action.payload as string;
+            })
+
+            // Accept Matching
+            .addCase(acceptMatchingAction.pending, (state) => {
+                state.loading = true;
                 state.error = null;
             })
-            .addCase(triggerReminders.rejected, (state, action) => {
+            .addCase(acceptMatchingAction.fulfilled, (state, action) => {
+                const matchingId = action.payload;
+                const matching = state.allMatchings.find(m => m.id === matchingId);
+                if (matching) {
+                    matching.status = "open";
+                }
+                state.loading = false;
+            })
+            .addCase(acceptMatchingAction.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            // Refuse Matching
+            .addCase(refuseMatchingAction.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(refuseMatchingAction.fulfilled, (state, action) => {
+                const matchingId = action.payload;
+                const matching = state.allMatchings.find(m => m.id === matchingId);
+                if (matching) {
+                    matching.status = "refused";
+                }
+                state.loading = false;
+            })
+            .addCase(refuseMatchingAction.rejected, (state, action) => {
+                state.loading = false;
                 state.error = action.payload as string;
             });
     },
 });
 
-export const { clearError, resetMatchingState } = matchingSlice.actions;
+export const {
+    clearError,
+    resetMatchingState,
+    setAllMatchings,
+    setLoading,
+    setError
+} = matchingSlice.actions;
+
 export default matchingSlice.reducer;
