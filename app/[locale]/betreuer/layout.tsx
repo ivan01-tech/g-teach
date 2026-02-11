@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/use-auth"
 import { BetreuerSidebar } from "@/components/betreuer/sidebar"
 import { BetreuerHeader } from "@/components/betreuer/header"
 import { BetreuerMobileSidebar } from "@/components/betreuer/mobile-sidebar"
+import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog"
 
 export default function BetreuerLayout({
   children,
@@ -45,6 +46,7 @@ export default function BetreuerLayout({
         <BetreuerHeader />
         <BetreuerMobileSidebar />
         <main className="flex-1 overflow-auto p-4 lg:p-6">{children}</main>
+        <MatchingFollowupDialog />
       </div>
     </div>
   )

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch } from "@/hooks/redux-store-hooks";
 import { UserRole } from "@/lib/roles";
 import { validateRegister } from "@/validators/register.validator";
 import { signUp } from "../thunks";

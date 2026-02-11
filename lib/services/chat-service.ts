@@ -14,8 +14,8 @@ import {
   Timestamp,
   increment,
 } from "firebase/firestore"
-import { db } from "./firebase"
-import type { Conversation, Message } from "./types"
+import { db } from "../firebase"
+import type { Conversation, Message } from "../types"
 
 export interface ConversationWithDetails extends Conversation {
   otherParticipantName?: string

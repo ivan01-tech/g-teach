@@ -128,6 +128,34 @@ export type User = {
   displayName: string
   email: string
   photoURL: string | null
-  role: UserRole
+  role?: UserRole  // Optional - fetched from Firestore on auth state change
+  favorites?: string[]
   createdAt: number
+}
+
+export type MatchingStatus = "open" | "confirmed" | "refused" | "continued"
+
+export interface Matching {
+  id: string
+  learnerId: string
+  tutorId: string
+  learnerName?: string
+  tutorName?: string
+  contactDate: any // Timestamp
+  status: MatchingStatus
+  // Confirmations mutuelles
+  learnerConfirmed?: boolean
+  learnerConfirmedAt?: any // Timestamp
+  tutorConfirmed?: boolean
+  tutorConfirmedAt?: any // Timestamp
+  // Feedback & Raisons
+  learnerFeedback?: string
+  tutorFeedback?: string
+  // Gestion des rappels
+  reminderSentAt?: any // Timestamp
+  reminderCount?: number // Nombre de rappels envoyés
+  closedAt?: any // Timestamp
+  // Monétisation
+  isMonetized?: boolean // Est-ce une collaboration payante
+  transactionId?: string // Référence à une transaction
 }

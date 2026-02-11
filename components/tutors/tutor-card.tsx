@@ -7,12 +7,16 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Star, CheckCircle2, User, MessageSquare, Heart, AlertTriangle } from "lucide-react"
 import type { Tutor } from "@/lib/types"
 import { SPECIALIZATIONS, GERMAN_LEVELS } from "@/lib/types"
+import { useFavorites } from "@/hooks/use-favorites"
 
 interface TutorCardProps {
   tutor: Tutor
 }
 
 export function TutorCard({ tutor }: TutorCardProps) {
+  const { isFavorite, toggleFavorite } = useFavorites()
+  const favorite = isFavorite(tutor.uid)
+
   // const isVerified = true
   const isVerified = tutor.verificationStatus === "verified" || tutor.isVerified
 
@@ -72,8 +76,17 @@ export function TutorCard({ tutor }: TutorCardProps) {
             </div>
 
             {/* Favorite Button */}
-            <Button variant="ghost" size="icon" className="h-8 w-8">
-              <Heart className="h-4 w-4" />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                toggleFavorite(tutor.uid)
+              }}
+            >
+              <Heart className={`h-4 w-4 ${favorite ? "fill-primary text-primary" : ""}`} />
               <span className="sr-only">Add to favorites</span>
             </Button>
           </div>

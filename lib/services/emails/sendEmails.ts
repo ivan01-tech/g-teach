@@ -1,4 +1,5 @@
 import { AXIOS_INSTANCE } from "@/lib/axios";
+import { getRoleLabel } from "@/lib/roles";
 export type SendEmailData = {
     emails: string[],
     subject: string,
@@ -17,6 +18,8 @@ export const sendEmail = async (data: SendEmailData) => {
     }
 };
 
+
+
 // Envoie un email via ton endpoint Cloud Function
 export async function sendAccountEmail({
     to,
@@ -32,6 +35,7 @@ export async function sendAccountEmail({
     role: string;
 }) {
     const loginUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/login`;
+    const roleLabel = getRoleLabel(role);
 
     const htmlPart = `
     <div style="font-family: sans-serif; line-height: 1.5; color: #333; max-width: 600px;">
@@ -42,7 +46,7 @@ export async function sendAccountEmail({
       <p><strong>Vos accès :</strong><br>
       Email : <strong>${email}</strong><br>
       Mot de passe : <strong>${password}</strong><br>
-      Rôle : <strong>${role}</strong></p>
+      Rôle : <strong>${roleLabel}</strong></p>
 
       <p>Vous pouvez vous connecter ici : <br>
       <a href="${loginUrl}">${loginUrl}</a></p>

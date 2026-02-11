@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { UserRole } from "@/lib/roles"
 import { UserProfile } from "@/app/[locale]/auth/auth-slice"
 import { logout, resetPassword, signIn, signUp, updateUserProfile } from "@/app/[locale]/auth/thunks"

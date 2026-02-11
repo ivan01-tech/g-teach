@@ -27,7 +27,7 @@ import {
 } from "lucide-react"
 import { useAuth } from "@/hooks/use-auth"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
-import { uploadTutorDocument, deleteTutorDocument } from "@/lib/tutor-service"
+import { uploadTutorDocument, deleteTutorDocument } from "@/lib/services/tutor-service"
 import type { TutorDocument } from "@/lib/types"
 
 const DOCUMENT_TYPES = [

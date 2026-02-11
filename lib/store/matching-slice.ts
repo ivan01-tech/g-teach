@@ -1,0 +1,217 @@
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { 
+    getPendingMatchingsForUser, 
+    updateMatchingStatus, 
+    initiateMatching as initiateMatchingService,
+    getTutorMatchingStats,
+    sendReminderForExpiredMatchings
+} from "@/lib/services/matching-service";
+import type { Matching, MatchingStatus } from "@/lib/types";
+
+export interface MatchingState {
+    pendingMatchings: Matching[];
+    allMatchings: Matching[];
+    loading: boolean;
+    error: string | null;
+    stats: {
+        totalMatched: number;
+        confirmed: number;
+        refused: number;
+        pending: number;
+    } | null;
+}
+
+const initialState: MatchingState = {
+    pendingMatchings: [],
+    allMatchings: [],
+    loading: false,
+    error: null,
+    stats: null,
+};
+
+/**
+ * Récupère les matchings en attente (expirés et en attente de réponse)
+ */
+export const fetchPendingMatchings = createAsyncThunk(
+    "matching/fetchPending",
+    async ({ userId, role }: { userId: string; role: 'student' | 'tutor' }, { rejectWithValue }) => {
+        try {
+            return await getPendingMatchingsForUser(userId, role);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+/**
+ * Clôture un matching avec confirmation de l'utilisateur
+ */
+export const closeMatchingAction = createAsyncThunk(
+    "matching/close",
+    async ({
+        matchingId,
+        status,
+        feedback,
+        role
+    }: {
+        matchingId: string;
+        status: MatchingStatus;
+        feedback?: string;
+        role: 'student' | 'tutor'
+    }, { rejectWithValue }) => {
+        try {
+            await updateMatchingStatus(matchingId, status, feedback, role);
+            return { matchingId, status, role };
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+/**
+ * Enregistre un nouveau contact entre apprenant et tuteur
+ */
+export const recordContact = createAsyncThunk(
+    "matching/recordContact",
+    async ({
+        learnerId,
+        tutorId,
+        learnerName,
+        tutorName
+    }: {
+        learnerId: string;
+        tutorId: string;
+        learnerName: string;
+        tutorName: string
+    }, { rejectWithValue }) => {
+        try {
+            return await initiateMatchingService(learnerId, tutorId, learnerName, tutorName);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+/**
+ * Charger les statistiques de matching pour un tuteur
+ */
+export const fetchTutorStats = createAsyncThunk(
+    "matching/fetchTutorStats",
+    async (tutorId: string, { rejectWithValue }) => {
+        try {
+            return await getTutorMatchingStats(tutorId);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+/**
+ * Déclenche les rappels automatiques pour les matchings expirés
+ * (À appeler via un job/cron ou Cloud Function)
+ */
+export const triggerReminders = createAsyncThunk(
+    "matching/triggerReminders",
+    async (_, { rejectWithValue }) => {
+        try {
+            await sendReminderForExpiredMatchings();
+            return "Reminders sent";
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+const matchingSlice = createSlice({
+    name: "matching",
+    initialState,
+    reducers: {
+        clearError: (state) => {
+            state.error = null;
+        },
+        resetMatchingState: (state) => {
+            state.pendingMatchings = [];
+            state.allMatchings = [];
+            state.stats = null;
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+            // Fetch Pending Matchings
+            .addCase(fetchPendingMatchings.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchPendingMatchings.fulfilled, (state, action: PayloadAction<Matching[]>) => {
+                state.pendingMatchings = action.payload;
+                state.loading = false;
+            })
+            .addCase(fetchPendingMatchings.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            // Close Matching
+            .addCase(closeMatchingAction.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(closeMatchingAction.fulfilled, (state, action) => {
+                const { matchingId, status } = action.payload;
+                // Retire le matching de la liste des attentes
+                state.pendingMatchings = state.pendingMatchings.filter(
+                    m => m.id !== matchingId
+                );
+                
+                // Met à jour dans la liste globale si présent
+                const matchingInList = state.allMatchings.find(m => m.id === matchingId);
+                if (matchingInList) {
+                    matchingInList.status = status;
+                }
+                
+                state.loading = false;
+            })
+            .addCase(closeMatchingAction.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            // Record Contact
+            .addCase(recordContact.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(recordContact.fulfilled, (state) => {
+                state.loading = false;
+            })
+            .addCase(recordContact.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            // Fetch Tutor Stats
+            .addCase(fetchTutorStats.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchTutorStats.fulfilled, (state, action) => {
+                state.stats = action.payload;
+                state.loading = false;
+            })
+            .addCase(fetchTutorStats.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+
+            // Trigger Reminders
+            .addCase(triggerReminders.fulfilled, (state) => {
+                state.error = null;
+            })
+            .addCase(triggerReminders.rejected, (state, action) => {
+                state.error = action.payload as string;
+            });
+    },
+});
+
+export const { clearError, resetMatchingState } = matchingSlice.actions;
+export default matchingSlice.reducer;

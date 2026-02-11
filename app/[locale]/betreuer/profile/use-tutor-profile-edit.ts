@@ -7,7 +7,7 @@ import {
     createTutorProfile,
     updateTutorProfile,
     uploadTutorPhoto,
-} from "@/lib/tutor-service";
+} from "@/lib/services/tutor-service";
 import type { AvailabilitySlot } from "@/lib/types";
 
 export function useTutorProfileEdit() {

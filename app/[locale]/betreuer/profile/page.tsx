@@ -25,7 +25,7 @@ import {
   createTutorProfile,
   updateTutorProfile,
   uploadTutorPhoto,
-} from "@/lib/tutor-service"
+} from "@/lib/services/tutor-service"
 import { GERMAN_LEVELS, EXAM_TYPES, SPECIALIZATIONS } from "@/lib/types"
 import type { AvailabilitySlot } from "@/lib/types"
 

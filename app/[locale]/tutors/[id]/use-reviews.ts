@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getTutorReviews, addReview as submitReviewAction } from "@/lib/review-service";
+import { getTutorReviews, addReview as submitReviewAction } from "@/lib/services/review-service";
 import type { Review } from "@/lib/types";
 
 export function useReviews(tutorId: string) {

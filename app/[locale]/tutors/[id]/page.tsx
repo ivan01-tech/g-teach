@@ -29,6 +29,12 @@ import { SPECIALIZATIONS, GERMAN_LEVELS, type Tutor, type Review } from "@/lib/t
 import { useTutor } from "./use-tutor"
 import { useReviews } from "./use-reviews"
 import { ReviewForm } from "@/components/tutors/review-form"
+import { useFavorites } from "@/hooks/use-favorites"
+import { useAuth } from "@/hooks/use-auth"
+import { useDispatch } from "react-redux"
+import { AppDispatch } from "@/lib/store"
+import { recordContact } from "@/lib/store/matching-slice"
+import { useRouter } from "next/navigation"
 
 export default function TutorProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -38,7 +44,23 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
     loading: reviewsLoading,
     addReview
   } = useReviews(id)
-  const [isFavorite, setIsFavorite] = useState(false)
+  const { isFavorite: checkFavorite, toggleFavorite } = useFavorites()
+  const favorite = checkFavorite(id)
+  const { user: learner } = useAuth()
+  const dispatch = useDispatch<AppDispatch>()
+  const router = useRouter()
+
+  const handleContactTutor = async () => {
+    if (learner && tutor) {
+      await dispatch(recordContact({
+        learnerId: learner.uid,
+        tutorId: tutor.uid,
+        learnerName: learner.displayName,
+        tutorName: tutor.displayName
+      }))
+    }
+    router.push(`/dashboard/messages?tutor=${id}`)
+  }
 
   if (loading) {
     return (
@@ -161,10 +183,9 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       <Button
                         variant="outline"
                         size="icon"
-                        // TODO: Add favorite functionality
-                        onClick={() => setIsFavorite(!isFavorite)}
+                        onClick={() => toggleFavorite(id)}
                       >
-                        <Heart className={`h-4 w-4 ${isFavorite ? "fill-destructive text-destructive" : ""}`} />
+                        <Heart className={`h-4 w-4 ${favorite ? "fill-primary text-primary" : ""}`} />
                       </Button>
                       <Button variant="outline" size="icon">
                         <Share2 className="h-4 w-4" />
@@ -269,8 +290,8 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                                       <Star
                                         key={i}
                                         className={`h-4 w-4 ${i < review.rating
-                                            ? "fill-amber-400 text-amber-400"
-                                            : "text-muted-foreground/30"
+                                          ? "fill-amber-400 text-amber-400"
+                                          : "text-muted-foreground/30"
                                           }`}
                                       />
                                     ))}
@@ -327,11 +348,13 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                   </div>
 
                   <div className="mt-6 space-y-3">
-                    <Button className="w-full gap-2" size="lg" asChild>
-                      <Link href={`/dashboard/messages?tutor=${id}`}>
-                        <MessageSquare className="h-4 w-4" />
-                        Send Message
-                      </Link>
+                    <Button
+                      className="w-full gap-2"
+                      size="lg"
+                      onClick={handleContactTutor}
+                    >
+                      <MessageSquare className="h-4 w-4" />
+                      Send Message
                     </Button>
                     <Button variant="outline" className="w-full gap-2 bg-transparent" size="lg">
                       <Calendar className="h-4 w-4" />

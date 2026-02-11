@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -19,13 +19,24 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { BookOpen, Loader2, AlertCircle } from "lucide-react";
+import { toast } from "sonner";
+import { UserRole } from "@/lib/roles";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState("");
-  const { signIn, loading, error: reduxError } = useAuthDispatch();
+  const { signIn, loading, error: reduxError, user } = useAuthDispatch();
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      toast.success("Login successful");
+      router.push(
+        user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/dashboard" : "/auth/not-authorized",
+      );
+    }
+  }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +47,13 @@ export default function LoginPage() {
 
       if (result.type === "auth/signIn/fulfilled") {
         const payload = result.payload as any;
-        router.push(payload?.role === "tutor" ? "/betreuer" : "/dashboard");
+        toast.success("Login successful", {
+          description: `Welcome back, ${payload?.role || "user"}!`,
+        });
+        console.log("LOGIN : ", payload);
+        // router.push(
+        //   payload?.role === UserRole.Tutor ? "/betreuer" : "/dashboard",
+        // );
       } else {
         // Thunk rejected
         setLocalError(

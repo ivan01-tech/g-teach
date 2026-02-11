@@ -10,7 +10,7 @@ import {
     runTransaction,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { firebaseCollections } from "./collections";
+import { firebaseCollections } from "../collections";
 import type { Review } from "@/lib/types";
 
 export async function addReview(reviewData: Omit<Review, "id" | "createdAt" | "studentPhoto">) {

@@ -2,9 +2,8 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { chatService } from "@/lib/chat-service"
+import { chatService } from "@/lib/services/chat-service"
 import { ConversationList } from "@/components/chat/conversation-list"
-import { ChatWindow } from "@/components/chat/chat-window"
 import { EmptyChat } from "@/components/chat/empty-chat"
 import type { Conversation, Message } from "@/lib/types"
 import { Loader2 } from "lucide-react"

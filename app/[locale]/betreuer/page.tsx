@@ -18,7 +18,7 @@ import {
   Star,
 } from "lucide-react"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
-import { getStudentRequests } from "@/lib/tutor-service"
+import { getStudentRequests } from "@/lib/services/tutor-service"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/hooks/use-auth"
 

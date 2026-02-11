@@ -1,31 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getTutors } from "@/lib/tutor-service";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { subscribeToTutors } from "@/lib/services/tutor-service";
+import { setTutors, setLoading, setError } from "@/lib/store/tutors-slice";
+import { AppDispatch } from "@/lib/store";
 import type { Tutor } from "@/lib/types";
+import { useAppSelector } from "@/hooks/redux-store-hooks";
 
 export function useTutors() {
-    const [tutors, setTutors] = useState<Tutor[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const dispatch = useDispatch<AppDispatch>();
+    const { tutors, loading, error } = useAppSelector((state) => state.tutors);
 
     useEffect(() => {
-        async function fetchTutors() {
-            try {
-                setLoading(true);
-                const data = await getTutors();
-                setTutors(data);
-                setError(null);
-            } catch (err) {
-                console.error("Error fetching tutors:", err);
-                setError("Failed to load tutors. Please try again later.");
-            } finally {
-                setLoading(false);
-            }
-        }
+        dispatch(setLoading(true));
+        const unsubscribe = subscribeToTutors((data) => {
+            dispatch(setTutors(data));
+        });
 
-        fetchTutors();
-    }, []);
+        return () => unsubscribe();
+    }, [dispatch]);
 
     return { tutors, loading, error };
 }

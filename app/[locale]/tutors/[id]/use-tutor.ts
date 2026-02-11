@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTutorProfile } from "@/lib/tutor-service";
+import { getTutorProfile } from "@/lib/services/tutor-service";
 import type { Tutor } from "@/lib/types";
 
 export function useTutor(id: string) {

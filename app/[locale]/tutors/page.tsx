@@ -28,7 +28,7 @@ const initialFilters: FilterState = {
   searchQuery: "",
   levels: [],
   specializations: [],
-  priceRange: [0, 100],
+  priceRange: [0, 0],
   availability: [],
   onlineOnly: false,
   verifiedOnly: false,
@@ -39,7 +39,7 @@ export default function TutorsPage() {
   const [filters, setFilters] = useState<FilterState>(initialFilters)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const searchParams = useSearchParams()
-
+  console.log('HEREHEHEHEHEHEHEH : ', tutors, filters)
   const filteredTutors = useMemo(() => {
     return tutors.filter((tutor) => {
       // Search query
@@ -68,17 +68,17 @@ export default function TutorsPage() {
       }
 
       // Price range
-      if (tutor.hourlyRate < filters.priceRange[0] || tutor.hourlyRate > filters.priceRange[1]) {
-        return false
-      }
+      // if (tutor.hourlyRate < filters.priceRange[0] || tutor.hourlyRate > filters.priceRange[1]) {
+      //   return false
+      // }
 
       // Online only
       if (filters.onlineOnly && !tutor.isOnline) {
         return false
       }
 
-      // Verified only
-      if (filters.verifiedOnly && !tutor.isVerified) {
+      // // Verified only
+      if (filters.verifiedOnly && tutor.verificationStatus !== "verified") {
         return false
       }
 

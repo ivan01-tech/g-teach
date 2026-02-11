@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/lib/firebase";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setUser, setLoading } from "@/app/[locale]/auth/auth-slice";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth, db } from "@/lib/firebase";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks";
+import { setUser, setLoading, setError } from "@/app/[locale]/auth/auth-slice";
 import { fetchUserProfile } from "@/app/[locale]/auth/thunks";
 import LoadingScreen from "@/components/ui/loading-screen";
-import { UserRole } from "@/lib/roles";
 import { User } from "@/lib/types";
+import { firebaseCollections } from "@/lib/collections";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function AuthProvider({
     children,
@@ -21,23 +22,65 @@ export default function AuthProvider({
     useEffect(() => {
         dispatch(setLoading(true));
 
-        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
             if (firebaseUser) {
-                // Map Firebase user to our application's User type
-                const user: User = {
-                    uid: firebaseUser.uid,
-                    email: firebaseUser.email || "",
-                    displayName: firebaseUser.displayName || "",
-                    photoURL: firebaseUser.photoURL || null,
-                    role: UserRole.Student, // Default role, will be updated by fetchUserProfile
-                    createdAt: new Date(firebaseUser.metadata.creationTime || "").getTime(),
-                };
+                try {
+                    // Recherche le document utilisateur dans Firestore pour obtenir le vrai rôle
+                    const userDocRef = doc(db, firebaseCollections.users, firebaseUser.uid);
+                    const userDocSnap = await getDoc(userDocRef);
 
-                dispatch(setUser(user));
-                // Fetch detailed profile from Firestore
-                dispatch(fetchUserProfile(firebaseUser.uid));
+                    if (userDocSnap.exists()) {
+                        // Utiliser les données de Firestore (avec le vrai rôle)
+                        const firestoreData = userDocSnap.data();
+                        const user: User = {
+                            uid: firebaseUser.uid,
+                            email: firebaseUser.email || "",
+                            displayName: firebaseUser.displayName || firestoreData?.displayName || "",
+                            photoURL: firebaseUser.photoURL || firestoreData?.photoURL || null,
+                            role: firestoreData?.role, // Utiliser le rôle de Firestore
+                            favorites: firestoreData?.favorites || [],
+                            createdAt: firestoreData?.createdAt?.toMillis?.() || new Date(firebaseUser.metadata.creationTime || "").getTime(),
+                        };
+
+                        dispatch(setUser(user));
+                        dispatch(setError(null)); // Clear any previous errors
+                        // Fetch detailed profile from Firestore pour mettre à jour les autres données
+                        dispatch(fetchUserProfile(firebaseUser.uid));
+                    } else {
+                        // Le compte n'existe pas dans Firestore
+                        // Signaler l'erreur et déconnecter l'utilisateur
+                        const errorMessage = "Votre compte n'existe pas dans notre base de données. Veuillez vous réinscrire.";
+                        dispatch(setError(errorMessage));
+                        dispatch(setUser(null));
+                        
+                        // Déconnecter l'utilisateur de Firebase
+                        try {
+                            await signOut(auth);
+                        } catch (signOutError) {
+                            console.error("Error signing out:", signOutError);
+                        }
+                        
+                        dispatch(setLoading(false));
+                    }
+                } catch (error) {
+                    console.error("Error fetching user account:", error);
+                    
+                    // En cas d'erreur, déconnecter l'utilisateur
+                    const errorMessage = "Erreur lors de la vérification de votre compte. Veuillez réessayer.";
+                    dispatch(setError(errorMessage));
+                    dispatch(setUser(null));
+                    
+                    try {
+                        await signOut(auth);
+                    } catch (signOutError) {
+                        console.error("Error signing out:", signOutError);
+                    }
+                    
+                    dispatch(setLoading(false));
+                }
             } else {
                 dispatch(setUser(null));
+                dispatch(setError(null)); // Clear error when user logs out
                 dispatch(setLoading(false));
             }
         });

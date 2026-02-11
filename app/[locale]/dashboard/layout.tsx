@@ -8,6 +8,7 @@ import { DashboardSidebar } from "@/components/dashboard/sidebar";
 import { DashboardHeader } from "@/components/dashboard/header";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
+import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog";
 
 export default function DashboardLayout({
   children,
@@ -41,6 +42,7 @@ export default function DashboardLayout({
       <div className="flex flex-1 flex-col lg:pl-64">
         <DashboardHeader />
         <main className="flex-1 bg-muted/30 p-4 sm:p-6 lg:p-8">{children}</main>
+        <MatchingFollowupDialog />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import {
   getDocs,
   serverTimestamp,
   arrayUnion,
+  onSnapshot,
 } from "firebase/firestore"
 import {
   ref,
@@ -18,7 +19,7 @@ import {
 } from "firebase/storage"
 import { db, storage } from "@/lib/firebase"
 import type { Tutor, TutorDocument, VerificationStatus } from "@/lib/types"
-import { firebaseCollections } from "./collections"
+import { firebaseCollections } from "../collections"
 
 export async function createTutorProfile(
   uid: string,
@@ -147,6 +148,16 @@ export async function getTutors(): Promise<Tutor[]> {
   const querySnapshot = await getDocs(q)
 
   return querySnapshot.docs.map((doc) => doc.data() as Tutor)
+}
+
+export function subscribeToTutors(callback: (tutors: Tutor[]) => void) {
+  const tutorsRef = collection(db, firebaseCollections.tutors)
+  const q = query(tutorsRef)
+
+  return onSnapshot(q, (snapshot) => {
+    const tutors = snapshot.docs.map((doc) => doc.data() as Tutor)
+    callback(tutors)
+  })
 }
 
 export async function getTutorsByStatus(

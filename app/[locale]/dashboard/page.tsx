@@ -10,7 +10,7 @@ import Loading from "./loading"
 import { useAuth } from "@/hooks/use-auth"
 
 export default function DashboardPage() {
-  const { userProfile } = useAuth()
+  const { userProfile,user } = useAuth()
   const searchParams = useSearchParams()
 
   const isStudent = userProfile?.role != "student"
@@ -21,7 +21,7 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div>
           <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
-            Welcome back, {userProfile?.displayName?.split(" ")[0] || "User"}!
+            Welcome back, {user?.displayName?.split(" ")[0] || "User"}!
           </h1>
           <p className="mt-1 text-muted-foreground">
             {isStudent

@@ -9,6 +9,9 @@ import ReduxProvider from '@/components/providers/redux-provider';
 import AuthProvider from '@/components/providers/auth-provider';
 
 import '../globals.css';
+import Bootstrap from '@/components/bootstrap';
+import { ToastProvider as ToastProvider1  } from '@radix-ui/react-toast';
+import { ToastProvider } from '@/components/ui/toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -57,7 +60,10 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body className={`${inter.className} font-sans antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
+        <ToastProvider1 />
+        <ToastProvider />
           <ReduxProvider>
+            <Bootstrap></Bootstrap>
             <AuthProvider>
               {children}
             </AuthProvider>
