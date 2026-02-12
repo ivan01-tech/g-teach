@@ -11,6 +11,7 @@ import { useAuth } from "@/hooks/use-auth"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { subscribeToMatchings } from "@/lib/services/matching-service"
 import { setAllMatchings, setLoading } from "@/lib/store/matching-slice"
+import { formatDate } from "@/lib/utils"
 
 export default function StudentMatchingsPage() {
     const { user } = useAuth()
@@ -96,15 +97,11 @@ export default function StudentMatchingsPage() {
                                             <CardTitle className="text-lg">{matching.tutorName || "Tuteur"}</CardTitle>
                                             <CardDescription className="flex items-center gap-2 mt-1">
                                                 <Calendar className="h-3 w-3" />
-                                                Contacté il y a{" "}
+                                                Contacté le{" "}
                                                 {matching.contactDate
-                                                    ? Math.floor(
-                                                        (Date.now() - (matching.contactDate?.toDate?.() || new Date(matching.contactDate)).getTime()) /
-                                                        (1000 * 60 * 60 * 24)
-                                                    )
+                                                    ? formatDate(matching.contactDate)
                                                     : 0}{" "}
-                                                jours
-                                            </CardDescription>
+                                        </CardDescription>
                                         </div>
                                     </div>
                                     {getStatusBadge(matching.status)}

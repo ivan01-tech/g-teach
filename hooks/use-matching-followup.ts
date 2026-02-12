@@ -82,6 +82,16 @@ export function useMatchingFollowup() {
         refreshPending();
     }, [refreshPending]);
 
+    // Periodically refresh pending matchings so that time-based followups
+    // (e.g. followupAt after 5 minutes) are detected without a full page reload.
+    useEffect(() => {
+        const interval = setInterval(() => {
+            refreshPending();
+        }, 30_000); // every 30s
+
+        return () => clearInterval(interval);
+    }, [refreshPending]);
+
     return {
         pendingMatchings,
         loading,

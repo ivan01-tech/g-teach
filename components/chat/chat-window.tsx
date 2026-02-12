@@ -92,7 +92,7 @@ export function ChatWindow({
             <ArrowLeft className="h-5 w-5" />
           </Button>
           <Avatar>
-            <AvatarImage src={otherParticipant.photo || "/placeholder.svg"} alt={otherParticipant.name} />
+            <AvatarImage src={otherParticipant.photo || "/placeholder-user.jpg"} alt={otherParticipant.name} />
             <AvatarFallback>{otherParticipant.name[0]?.toUpperCase()}</AvatarFallback>
           </Avatar>
           <div>

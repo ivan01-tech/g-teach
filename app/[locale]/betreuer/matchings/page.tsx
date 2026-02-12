@@ -12,12 +12,27 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { subscribeToMatchings } from "@/lib/services/matching-service"
 import { setAllMatchings, setLoading, acceptMatchingAction, refuseMatchingAction } from "@/lib/store/matching-slice"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { formatDate } from "@/lib/utils"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
 
 export default function TutorMatchingsPage() {
     const { user } = useAuth()
     const dispatch = useAppDispatch()
     const { allMatchings: matchings, loading } = useAppSelector((state) => state.matching)
     const [actionInProgress, setActionInProgress] = useState<string | null>(null)
+    const [refusalDialogOpen, setRefusalDialogOpen] = useState(false)
+    const [refusalReason, setRefusalReason] = useState("")
+    const [matchingToRefuse, setMatchingToRefuse] = useState<string | null>(null)
+    const [refusalError, setRefusalError] = useState("")
 
     useEffect(() => {
         if (!user?.uid) return
@@ -40,10 +55,27 @@ export default function TutorMatchingsPage() {
         setActionInProgress(null)
     }
 
-    const handleRefuse = async (id: string) => {
-        setActionInProgress(id)
-        await dispatch(refuseMatchingAction(id))
+    const handleRefuse = (id: string) => {
+        setMatchingToRefuse(id)
+        setRefusalReason("")
+        setRefusalError("")
+        setRefusalDialogOpen(true)
+    }
+
+    const confirmRefusal = async () => {
+        if (!refusalReason.trim()) {
+            setRefusalError("Veuillez indiquer un motif pour le refus")
+            return
+        }
+
+        if (!matchingToRefuse) return
+
+        setActionInProgress(matchingToRefuse)
+        await dispatch(refuseMatchingAction({ matchingId: matchingToRefuse, reason: refusalReason }))
         setActionInProgress(null)
+        setRefusalDialogOpen(false)
+        setRefusalReason("")
+        setMatchingToRefuse(null)
     }
 
     const getStatusBadge = (status: string) => {
@@ -89,14 +121,10 @@ export default function TutorMatchingsPage() {
                             <CardTitle className="text-lg">{matching.learnerName || "Étudiant"}</CardTitle>
                             <CardDescription className="flex items-center gap-2 mt-1">
                                 <Calendar className="h-3 w-3" />
-                                Demande reçue il y a{" "}
+                                Demande reçue le{" "}
                                 {matching.contactDate
-                                    ? Math.floor(
-                                        (Date.now() - (matching.contactDate?.toDate?.() || new Date(matching.contactDate)).getTime()) /
-                                        (1000 * 60 * 60 * 24)
-                                    )
-                                    : 0}{" "}
-                                jours
+                                    ? formatDate(matching.contactDate, "fr-FR")
+                                    : ""}
                             </CardDescription>
                         </div>
                     </div>
@@ -145,7 +173,7 @@ export default function TutorMatchingsPage() {
                         ) : (
                             matching.status !== "refused" && matching.status !== "requested" && (
                                 <Button size="sm" asChild>
-                                    <Link href={`/dashboard/messages?student=${matching.learnerId}`}>
+                                    <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
                                         <MessageSquare className="mr-2 h-4 w-4" />
                                         Discuter
                                     </Link>
@@ -240,6 +268,52 @@ export default function TutorMatchingsPage() {
                     )}
                 </TabsContent>
             </Tabs>
+
+            {/* Refusal Dialog */}
+            <Dialog open={refusalDialogOpen} onOpenChange={setRefusalDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Refuser la demande de contact</DialogTitle>
+                        <DialogDescription>
+                            Veuillez indiquer le motif du refus. L'étudiant recevra un email avec votre explication.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="reason">Motif du refus *</Label>
+                            <Textarea
+                                id="reason"
+                                placeholder="Exemple: Je ne suis pas disponible pour le moment, Mon emploi du temps est plein..."
+                                value={refusalReason}
+                                onChange={(e) => {
+                                    setRefusalReason(e.target.value)
+                                    if (refusalError) setRefusalError("")
+                                }}
+                                className={refusalError ? "border-destructive" : ""}
+                                rows={4}
+                            />
+                            {refusalError && (
+                                <p className="text-sm text-destructive">{refusalError}</p>
+                            )}
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            variant="outline"
+                            onClick={() => setRefusalDialogOpen(false)}
+                        >
+                            Annuler
+                        </Button>
+                        <Button
+                            variant="destructive"
+                            onClick={confirmRefusal}
+                            disabled={actionInProgress !== null}
+                        >
+                            {actionInProgress ? "Envoi..." : "Confirmer le refus"}
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

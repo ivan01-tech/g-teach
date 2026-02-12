@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { XIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -52,6 +53,14 @@ function SheetContent({
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: 'top' | 'right' | 'bottom' | 'left'
 }) {
+  // Detect if a title is already provided by the consumer (either via
+  // `SheetPrimitive.Title` or our `SheetTitle` wrapper). If not, render a
+  // visually-hidden title to satisfy accessibility requirements from Radix.
+  const hasTitle = React.Children.toArray(children).some((child) => {
+    const el = child as React.ReactElement | null
+    if (!el || typeof el !== 'object') return false
+    return el.type === SheetPrimitive.Title || el.type === SheetTitle
+  })
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -71,6 +80,11 @@ function SheetContent({
         )}
         {...props}
       >
+        {!hasTitle && (
+          <VisuallyHidden asChild>
+            <SheetPrimitive.Title>Sheet</SheetPrimitive.Title>
+          </VisuallyHidden>
+        )}
         {children}
         <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
           <XIcon className="size-4" />

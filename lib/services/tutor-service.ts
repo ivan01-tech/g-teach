@@ -18,7 +18,7 @@ import {
   deleteObject,
 } from "firebase/storage"
 import { db, storage } from "@/lib/firebase"
-import type { Tutor, TutorDocument, VerificationStatus } from "@/lib/types"
+import type { Tutor, TutorDocument, User, VerificationStatus } from "@/lib/types"
 import { firebaseCollections } from "../collections"
 
 export async function createTutorProfile(
@@ -59,11 +59,21 @@ export async function createTutorProfile(
 }
 
 export async function getTutorProfile(uid: string): Promise<Tutor | null> {
-  const tutorRef = doc(db, "tutors", uid)
+  const tutorRef = doc(db, firebaseCollections.tutors, uid)
   const tutorSnap = await getDoc(tutorRef)
 
   if (tutorSnap.exists()) {
     return tutorSnap.data() as Tutor
+  }
+  return null
+}
+
+export async function getUserById(uid: string): Promise<User | null> {
+  const userRef = doc(db, firebaseCollections.users, uid)
+  const userSnap = await getDoc(userRef)
+
+  if (userSnap.exists()) {
+    return userSnap.data() as User
   }
   return null
 }

@@ -27,10 +27,10 @@ export function MatchingFollowupDialog() {
         if (user?.uid && userProfile?.role) {
             dispatch(fetchPendingMatchings({
                 userId: user.uid,
-                role: userProfile.role as 'student' | 'tutor'
+                role: user.role as 'student' | 'tutor'
             }))
         }
-    }, [user?.uid, userProfile?.role, dispatch])
+    }, [user?.uid, user?.role, dispatch])
 
     useEffect(() => {
         if (pendingMatchings.length > 0 && !currentMatching) {
@@ -60,12 +60,12 @@ export function MatchingFollowupDialog() {
     const isStudent = userProfile?.role === "student"
 
     return (
-        <Dialog open={open} onOpenChange={(val) => {
+        <Dialog open={true} onOpenChange={(val) => {
             // Force l'utilisateur à répondre, on ne peut pas fermer sans action
             if (!val) return;
             setOpen(val);
         }}>
-            <DialogContent className="sm:max-w-[500px]">
+            <DialogContent className="sm:max-w-125">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">
                         <MessageSquare className="h-5 w-5 text-primary" />

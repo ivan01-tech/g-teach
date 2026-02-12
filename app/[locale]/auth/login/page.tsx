@@ -32,6 +32,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (user) {
       toast.success("Login successful");
+      console.log("LOGIN : ", user);
       router.push(
         user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/dashboard" : "/auth/not-authorized",
       );

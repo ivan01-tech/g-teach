@@ -16,6 +16,7 @@ import {
 } from "firebase/firestore"
 import { db } from "../firebase"
 import type { Conversation, Message } from "../types"
+import { firebaseCollections } from "../collections"
 
 export interface ConversationWithDetails extends Conversation {
   otherParticipantName?: string
@@ -23,7 +24,7 @@ export interface ConversationWithDetails extends Conversation {
 }
 
 export async function getConversations(userId: string): Promise<ConversationWithDetails[]> {
-  const conversationsRef = collection(db, "conversations")
+  const conversationsRef = collection(db, firebaseCollections.conversations)
   const q = query(
     conversationsRef,
     where("participants", "array-contains", userId),
@@ -31,11 +32,11 @@ export async function getConversations(userId: string): Promise<ConversationWith
   )
 
   const snapshot = await getDocs(q)
-  
+
   return snapshot.docs.map((doc) => {
     const data = doc.data()
     const otherParticipantId = data.participants.find((p: string) => p !== userId)
-    
+
     return {
       id: doc.id,
       participants: data.participants,
@@ -53,14 +54,16 @@ export async function getConversations(userId: string): Promise<ConversationWith
 export const chatService = {
   // Get or create a conversation between two users
   async getOrCreateConversation(
-    userId1: string,
-    userId2: string,
-    user1Name: string,
-    user2Name: string,
-    user1Photo?: string,
-    user2Photo?: string
+    { userId1, userId2, user1Name, user2Name, user1Photo, user2Photo }: {
+      userId1: string,
+      userId2: string,
+      user1Name: string,
+      user2Name: string,
+      user1Photo?: string,
+      user2Photo?: string
+    }
   ): Promise<string> {
-    const conversationsRef = collection(db, "conversations")
+    const conversationsRef = collection(db, firebaseCollections.conversations)
 
     // Check if conversation already exists
     const q = query(
@@ -104,11 +107,10 @@ export const chatService = {
     userId: string,
     callback: (conversations: Conversation[]) => void
   ): () => void {
-    const conversationsRef = collection(db, "conversations")
+    const conversationsRef = collection(db, firebaseCollections.conversations)
     const q = query(
       conversationsRef,
       where("participants", "array-contains", userId),
-      orderBy("lastMessageAt", "desc")
     )
 
     return onSnapshot(q, (snapshot) => {
@@ -133,7 +135,7 @@ export const chatService = {
     conversationId: string,
     callback: (messages: Message[]) => void
   ): () => void {
-    const messagesRef = collection(db, "conversations", conversationId, "messages")
+    const messagesRef = collection(db, firebaseCollections.conversations, conversationId, firebaseCollections.messages)
     const q = query(messagesRef, orderBy("createdAt", "asc"))
 
     return onSnapshot(q, (snapshot) => {
@@ -162,8 +164,8 @@ export const chatService = {
     text: string,
     senderPhoto?: string
   ): Promise<void> {
-    const messagesRef = collection(db, "conversations", conversationId, "messages")
-    const conversationRef = doc(db, "conversations", conversationId)
+    const messagesRef = collection(db, firebaseCollections.conversations, conversationId, firebaseCollections.messages)
+    const conversationRef = doc(db, firebaseCollections.conversations, conversationId)
 
     // Add the message
     await addDoc(messagesRef, {
@@ -192,7 +194,7 @@ export const chatService = {
 
   // Mark messages as read
   async markAsRead(conversationId: string, userId: string): Promise<void> {
-    const conversationRef = doc(db, "conversations", conversationId)
+    const conversationRef = doc(db, firebaseCollections.conversations, conversationId)
 
     await updateDoc(conversationRef, {
       [`unreadCount.${userId}`]: 0,
@@ -201,7 +203,7 @@ export const chatService = {
 
   // Get conversation details
   async getConversation(conversationId: string): Promise<Conversation | null> {
-    const conversationRef = doc(db, "conversations", conversationId)
+    const conversationRef = doc(db, firebaseCollections.conversations, conversationId)
     const snapshot = await getDoc(conversationRef)
 
     if (!snapshot.exists()) {

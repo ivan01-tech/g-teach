@@ -124,7 +124,7 @@ export function TutorMatchingsCard() {
                             </div>
                           </div>
                           <Button size="sm" variant="ghost" asChild>
-                            <Link href={`/betreuer/messages?conversation=${matching.id}`}>
+                            <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
                               <MessageSquare className="h-4 w-4" />
                             </Link>
                           </Button>
@@ -172,7 +172,7 @@ export function TutorMatchingsCard() {
                             </div>
                           </div>
                           <Button size="sm" asChild>
-                            <Link href={`/betreuer/messages?conversation=${matching.id}`}>
+                            <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
                               Répondre
                             </Link>
                           </Button>

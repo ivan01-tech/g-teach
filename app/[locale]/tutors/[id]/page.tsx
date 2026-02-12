@@ -52,6 +52,8 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
 
   const handleContactTutor = async () => {
     if (learner && tutor) {
+      console.log("learner", learner)
+      console.log("tutor", tutor)
       await dispatch(recordContact({
         learnerId: learner.uid,
         tutorId: tutor.uid,

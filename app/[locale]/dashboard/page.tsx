@@ -9,8 +9,6 @@ import Loading from "./loading"
 import { useAuth } from "@/hooks/use-auth"
 import { StudentMatchingsCard } from "@/components/dashboard/student-matchings-card"
 import { StudentBookingsCard } from "@/components/dashboard/student-bookings-card"
-import { TutorMatchingsCard } from "@/components/dashboard/tutor-matchings-card"
-import { TutorBookingsCard } from "@/components/dashboard/tutor-bookings-card"
 import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog"
 import { useAppSelector } from "@/hooks/redux-store-hooks"
 
@@ -156,8 +154,6 @@ export default function DashboardPage() {
             </>
           ) : (
             <>
-              <TutorMatchingsCard />
-              <TutorBookingsCard />
             </>
           )}
 

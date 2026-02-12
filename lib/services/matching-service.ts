@@ -26,25 +26,34 @@ const MAX_REMINDERS = 2;
  * Crée un nouvel enregistrement de matching et une conversation
  */
 export async function initiateMatching(
-    learnerId: string,
-    tutorId: string,
-    learnerName: string,
-    tutorName: string
+    { learnerId,
+        tutorId,
+        learnerName,
+        tutorName, }: {
+            learnerId: string;
+            tutorId: string;
+            learnerName: string;
+            tutorName: string;
+        }
 ): Promise<string> {
     const matchingRef = collection(db, firebaseCollections.matchings);
+    const followupAt = Timestamp.fromDate(new Date(Date.now() + 5 * 60 * 1000)) // 5 minutes from now
+
     const newMatching = {
         learnerId,
         tutorId,
         learnerName,
         tutorName,
         contactDate: serverTimestamp(),
+        followupAt,
         status: "requested" as MatchingStatus,
         learnerConfirmed: false,
         tutorConfirmed: false,
         reminderCount: 0,
-        isMonetized: false,
     };
 
+    // console.log(newMatching);
+    // return "";
     // Check if a matching already exists between them in the last 30 days
     const existingQuery = query(
         matchingRef,
@@ -65,6 +74,14 @@ export async function initiateMatching(
     }
 
     const docRef = await addDoc(matchingRef, newMatching);
+
+    // Record contact/statistics for later reporting
+    try {
+        await recordContactInitiated(learnerId, tutorId)
+    } catch (e) {
+        console.error('Failed to record contact stats', e)
+    }
+
     return docRef.id;
 }
 
@@ -81,13 +98,14 @@ export async function acceptMatching(matchingId: string): Promise<void> {
 }
 
 /**
- * Le tuteur refuse une demande de contact.
+ * Le tuteur refuse une demande de contact avec un motif.
  */
-export async function refuseMatching(matchingId: string): Promise<void> {
+export async function refuseMatching(matchingId: string, reason: string): Promise<void> {
     const matchingRef = doc(db, firebaseCollections.matchings, matchingId);
     await updateDoc(matchingRef, {
         status: "refused",
         refusedAt: serverTimestamp(),
+        refusalReason: reason,
     });
 }
 
@@ -96,24 +114,37 @@ export async function refuseMatching(matchingId: string): Promise<void> {
  */
 export async function getPendingMatchingsForUser(
     userId: string,
-    role: 'student' | 'tutor'
+    role: 'student' | 'tutor',
+    options?: {
+        /** Override the "expired" threshold in days (defaults to MATCHING_TIMEOUT_DAYS) */
+        timeoutDays?: number,
+        /** Include matchings with status `requested` in the initial query */
+        includeRequested?: boolean,
+        /** Use a custom "now" date for testing */
+        now?: Date,
+    }
 ): Promise<Matching[]> {
     const matchingRef = collection(db, firebaseCollections.matchings);
     const field = role === 'student' ? 'learnerId' : 'tutorId';
-
-    // Récupère les matchings "open" ou "continued" datant de plus de 7 jours
+    // Compute thresholds (allow overrides for testing)
+    const timeoutDays = options?.timeoutDays ?? MATCHING_TIMEOUT_DAYS;
     const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - MATCHING_TIMEOUT_DAYS);
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - timeoutDays);
+    const now = options?.now ?? new Date();
+
+    // Build status filter list; allow including `requested` when testing
+    const statuses: string[] = ["open", "continued"];
+    if (options?.includeRequested) statuses.push("requested");
 
     const q = query(
         matchingRef,
         where(field, "==", userId),
-        where("status", "in", ["open", "continued"]),
+        where("status", "in", statuses),
     );
 
     const querySnapshot = await getDocs(q);
 
-    // Filtre les matchings qui sont expirés (plus de 7 jours)
+    // Filtre les matchings qui sont expirés (plus de X jours) ou dont le followupAt est passé
     const matchings = querySnapshot.docs
         .map(doc => ({
             id: doc.id,
@@ -121,7 +152,15 @@ export async function getPendingMatchingsForUser(
         } as Matching))
         .filter(m => {
             const contactDate = m.contactDate?.toDate?.() || new Date(m.contactDate);
-            return contactDate <= sevenDaysAgo;
+            const followupAt = m.followupAt?.toDate?.() || (m.followupAt ? new Date(m.followupAt) : null);
+            const expiredByDays = contactDate <= sevenDaysAgo;
+            const followupExpired = followupAt ? followupAt <= now : false;
+
+            // If `includeRequested` is set, allow `requested` matchings to be included
+            // when their followupAt has passed (useful for fast testing).
+            const requestedFollowup = options?.includeRequested && m.status === 'requested' && followupExpired;
+
+            return expiredByDays || followupExpired || requestedFollowup;
         });
 
     return matchings;
@@ -204,6 +243,62 @@ export async function recordCollaborationStats(
         startedAt: serverTimestamp(),
         status: "active",
     });
+    
+    // Update global stats
+    try {
+        await setDoc(doc(db, "stats", "global"), {
+            nbCollaborationsConfirmed: increment(1),
+        }, { merge: true })
+    } catch (e) {
+        console.error('Failed to update global stats for collaborations', e)
+    }
+}
+
+/**
+ * Record that a contact (matching) was initiated and mark users as engaged
+ */
+export async function recordContactInitiated(learnerId: string, tutorId: string): Promise<void> {
+    try {
+        await setDoc(doc(db, "stats", "global"), {
+            nbContactsInitiated: increment(1),
+        }, { merge: true })
+
+        // Ensure engagedUsers entries exist and update engaged users count
+        await addEngagedUser(learnerId)
+        await addEngagedUser(tutorId)
+    } catch (e) {
+        console.error('Failed to record contact initiated', e)
+    }
+}
+
+/**
+ * Adds a user to engagedUsers collection and increments global engagedUsersCount when new
+ */
+export async function addEngagedUser(userId: string): Promise<void> {
+    const userRef = doc(db, "engagedUsers", userId);
+    const snap = await getDoc(userRef);
+    if (!snap.exists()) {
+        await setDoc(userRef, { addedAt: serverTimestamp() });
+        try {
+            await setDoc(doc(db, "stats", "global"), { engagedUsersCount: increment(1) }, { merge: true })
+        } catch (e) {
+            console.error('Failed to increment engagedUsersCount', e)
+        }
+    } else {
+        await updateDoc(userRef, { lastSeen: serverTimestamp() });
+    }
+}
+
+/**
+ * Record a user connection (call from auth on successful login)
+ */
+export async function recordConnection(userId: string): Promise<void> {
+    try {
+        await setDoc(doc(db, "stats", "global"), { nbConnections: increment(1) }, { merge: true })
+        await addEngagedUser(userId)
+    } catch (e) {
+        console.error('Failed to record connection', e)
+    }
 }
 
 /**
@@ -296,6 +391,7 @@ export function subscribeToMatchings(
             id: doc.id,
             ...doc.data()
         } as Matching));
+        console.log("matchings", matchings)
         callback(matchings);
     });
 }

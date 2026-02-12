@@ -7,8 +7,6 @@ import matchingReducer from "./store/matching-slice"
 import tutorsReducer from "./store/tutors-slice"
 import bookingsReducer from "./store/bookings-slice"
 
-// Initialize side effects
-setupEmailSideEffects();
 
 export const store = configureStore({
     reducer: {
@@ -24,12 +22,50 @@ export const store = configureStore({
                 // Ignore these action types
                 ignoredActions: ["auth/setUser"],
                 // Ignore these field paths in all actions
-                ignoredActionPaths: ["payload.createdAt"],
+                ignoredActionPaths: [
+                    "payload.createdAt",
+                    "payload.updatedAt",
+                    "payload.contactDate",
+                    "payload.acceptedAt",
+                    "payload.closedAt",
+                    "payload.refusedAt",
+                    // For array payloads (e.g., matching lists)
+                    /payload\.\d+\.createdAt/,
+                    /payload\.\d+\.updatedAt/,
+                    /payload\.\d+\.contactDate/,
+                    /payload\.\d+\.acceptedAt/,
+                    /payload\.\d+\.closedAt/,
+                    /payload\.\d+\.refusedAt/,
+                ],
                 // Ignore these paths in the state
-                ignoredPaths: ["auth.user"],
+                ignoredPaths: [
+                    "auth.user",
+                    // Ignore timestamp fields in state arrays
+                    /matching\.allMatchings\.\d+\.createdAt/,
+                    /matching\.allMatchings\.\d+\.updatedAt/,
+                    /matching\.allMatchings\.\d+\.contactDate/,
+                    /matching\.allMatchings\.\d+\.acceptedAt/,
+                    /matching\.allMatchings\.\d+\.closedAt/,
+                    /matching\.allMatchings\.\d+\.refusedAt/,
+                    /matching\.pendingMatchings\.\d+\.createdAt/,
+                    /matching\.pendingMatchings\.\d+\.updatedAt/,
+                    /matching\.pendingMatchings\.\d+\.contactDate/,
+                    /matching\.pendingMatchings\.\d+\.acceptedAt/,
+                    /matching\.pendingMatchings\.\d+\.closedAt/,
+                    /matching\.pendingMatchings\.\d+\.refusedAt/,
+                    /bookings\..*\.\d+\.createdAt/,
+                    /bookings\..*\.\d+\.updatedAt/,
+                    /tutors\..*\.\d+\.createdAt/,
+                    /tutors\..*\.\d+\.updatedAt/,
+                    /favorites\..*\.\d+\.createdAt/,
+                    /favorites\..*\.\d+\.updatedAt/,
+                ],
             },
         }).prepend(listenerMiddleware.middleware),
 })
+
+
+setupEmailSideEffects();
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

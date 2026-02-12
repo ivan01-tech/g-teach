@@ -153,6 +153,7 @@ export interface Matching {
   tutorFeedback?: string
   // Gestion des rappels
   reminderSentAt?: any // Timestamp
+  followupAt?: any // Timestamp pour relance courte (e.g. 5 minutes)
   reminderCount?: number // Nombre de rappels envoyés
   closedAt?: any // Timestamp
   // Monétisation

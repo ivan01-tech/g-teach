@@ -11,10 +11,11 @@ import {
   updateProfile,
   type User as FirebaseUser,
 } from "firebase/auth";
+import { recordConnection } from "@/lib/services/matching-service";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { UserRole } from "@/lib/roles";
-import { AuthState, UserProfile } from "./auth-slice";
+import authSlice, { AuthState, setUser, setUserProfile, UserProfile } from "./auth-slice";
 import { User } from "@/lib/types";
 import { firebaseCollections } from "@/lib/collections";
 
@@ -49,7 +50,13 @@ export const signIn = createAsyncThunk(
     { rejectWithValue },
   ) => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      // record connection for stats
+      try {
+        await recordConnection(cred.user.uid);
+      } catch (e) {
+        console.error('Failed to record connection', e);
+      }
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -110,9 +117,11 @@ export const signUp = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   "auth/logout",
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       await signOut(auth);
+      dispatch(setUser(null));
+      dispatch(setUserProfile(null));
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
