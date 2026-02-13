@@ -18,22 +18,22 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/use-auth"
 
 const studentNavItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/student", label: "Dashboard", icon: LayoutDashboard },
   { href: "/tutors", label: "Find Tutors", icon: Search },
-  { href: "/dashboard/favorites", label: "Favorites", icon: Heart },
-  // { href: "/dashboard/bookings", label: "My Bookings", icon: Calendar },
-  { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
-  { href: "/dashboard/profile", label: "Profile", icon: User },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  { href: "/student/favorites", label: "Favorites", icon: Heart },
+  // { href: "/student/bookings", label: "My Bookings", icon: Calendar },
+  { href: "/student/messages", label: "Messages", icon: MessageSquare },
+  { href: "/student/profile", label: "Profile", icon: User },
+  { href: "/student/settings", label: "Settings", icon: Settings },
 ]
 
 const tutorNavItems = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  // { href: "/dashboard/bookings", label: "Bookings", icon: Calendar },
-  { href: "/dashboard/messages", label: "Messages", icon: MessageSquare },
-  { href: "/dashboard/profile", label: "My Profile", icon: User },
-  { href: "/dashboard/availability", label: "Availability", icon: Calendar },
-  { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  { href: "/student", label: "Dashboard", icon: LayoutDashboard },
+  // { href: "/student/bookings", label: "Bookings", icon: Calendar },
+  { href: "/student/messages", label: "Messages", icon: MessageSquare },
+  { href: "/student/profile", label: "My Profile", icon: User },
+  { href: "/student/availability", label: "Availability", icon: Calendar },
+  { href: "/student/settings", label: "Settings", icon: Settings },
 ]
 
 interface MobileSidebarProps {

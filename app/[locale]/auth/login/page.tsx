@@ -34,7 +34,7 @@ export default function LoginPage() {
       toast.success("Login successful");
       console.log("LOGIN : ", user);
       router.push(
-        user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/dashboard" : "/auth/not-authorized",
+        user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/student" : "/auth/not-authorized",
       );
     }
   }, [user, router]);
@@ -53,7 +53,7 @@ export default function LoginPage() {
         });
         console.log("LOGIN : ", payload);
         // router.push(
-        //   payload?.role === UserRole.Tutor ? "/betreuer" : "/dashboard",
+        //   payload?.role === UserRole.Tutor ? "/betreuer" : "/student",
         // );
       } else {
         // Thunk rejected
@@ -115,6 +115,9 @@ export default function LoginPage() {
                   Forgot password?
                 </Link>
               </div>
+              {/* <p className="text-[10px] text-muted-foreground italic -mt-1">
+                (If you reset your password, remember to check your **spam folder**)
+              </p> */}
               <Input
                 id="password"
                 type="password"

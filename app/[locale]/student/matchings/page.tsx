@@ -10,7 +10,7 @@ import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { subscribeToMatchings } from "@/lib/services/matching-service"
-import { setAllMatchings, setLoading } from "@/lib/store/matching-slice"
+import { setAllMatchings, setLoading, setManualFollowup } from "@/lib/store/matching-slice"
 import { formatDate } from "@/lib/utils"
 
 export default function StudentMatchingsPage() {
@@ -101,7 +101,7 @@ export default function StudentMatchingsPage() {
                                                 {matching.contactDate
                                                     ? formatDate(matching.contactDate)
                                                     : 0}{" "}
-                                        </CardDescription>
+                                            </CardDescription>
                                         </div>
                                     </div>
                                     {getStatusBadge(matching.status)}
@@ -129,7 +129,7 @@ export default function StudentMatchingsPage() {
                                     <div className="flex gap-2">
                                         {matching.status !== "requested" && matching.status !== "refused" && (
                                             <Button size="sm" asChild>
-                                                <Link href={`/dashboard/messages?tutor=${matching.tutorId}`}>
+                                                <Link href={`/student/messages?tutor=${matching.tutorId}`}>
                                                     <MessageSquare className="mr-2 h-4 w-4" />
                                                     Discuter
                                                 </Link>
@@ -140,6 +140,16 @@ export default function StudentMatchingsPage() {
                                                 Voir le profil
                                             </Link>
                                         </Button>
+                                        {(matching.status === "open" || matching.status === "continued") && (
+                                            <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={() => dispatch(setManualFollowup(matching))}
+                                            >
+                                                <Clock className="mr-2 h-4 w-4" />
+                                                Suivi
+                                            </Button>
+                                        )}
                                     </div>
                                 </div>
                             </CardContent>

@@ -9,7 +9,9 @@ import {
     where,
     getDocs,
     orderBy,
+    limit,
 } from "firebase/firestore";
+import { toSerializable } from "../serializable-utils";
 import { db } from "@/lib/firebase";
 import { firebaseCollections } from "../collections";
 import type { Tutor, Review } from "@/lib/types";
@@ -21,7 +23,7 @@ export async function toggleFavorite(userId: string, tutorId: string): Promise<b
     if (!userSnap.exists()) {
         throw new Error("User not found");
     }
-
+    // TODO vient ici 
     const userData = userSnap.data();
     const favorites = userData.favorites || [];
     const isFavorite = favorites.includes(tutorId);
@@ -55,20 +57,39 @@ export async function getFavorites(userId: string): Promise<Tutor[]> {
     const q = query(tutorsRef, where("uid", "in", favorites));
     const querySnapshot = await getDocs(q);
 
-    return querySnapshot.docs.map((doc) => doc.data() as Tutor);
+    return querySnapshot.docs.map((doc) => toSerializable(doc.data()) as Tutor);
 }
 
-export async function getCommentedProfiles(userId: string): Promise<Tutor[]> {
+export async function getCommentedProfiles(userId: string): Promise<{ tutor: Tutor, review: Review }[]> {
     const reviewsRef = collection(db, firebaseCollections.reviews);
-    const q = query(reviewsRef, where("studentId", "==", userId), orderBy("createdAt", "desc"));
+    const q = query(reviewsRef, where("studentId", "==", userId));
     const querySnapshot = await getDocs(q);
 
-    const tutorIds = [...new Set(querySnapshot.docs.map((doc) => (doc.data() as Review).tutorId))];
+    if (querySnapshot.empty) return [];
+
+    const reviews = querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...toSerializable(doc.data())
+    } as Review));
+
+    const tutorIds = [...new Set(reviews.map(r => r.tutorId))];
     if (tutorIds.length === 0) return [];
 
     const tutorsRef = collection(db, firebaseCollections.tutors);
-    const qTutors = query(tutorsRef, where("uid", "in", tutorIds));
-    const querySnapshotTutors = await getDocs(qTutors);
+    // Fetch tutors in batches if necessary, but 10 is usually the limit for 'in' query
+    const results: { tutor: Tutor, review: Review }[] = [];
 
-    return querySnapshotTutors.docs.map((doc) => doc.data() as Tutor);
+    // Simple implementation for now (up to 10 tutors)
+    const qTutors = query(tutorsRef, where("uid", "in", tutorIds.slice(0, 10)));
+    const querySnapshotTutors = await getDocs(qTutors);
+    const tutorsMap = new Map(querySnapshotTutors.docs.map(doc => [doc.id, toSerializable(doc.data()) as Tutor]));
+
+    reviews.forEach(review => {
+        const tutor = tutorsMap.get(review.tutorId);
+        if (tutor) {
+            results.push({ tutor, review });
+        }
+    });
+
+    return results;
 }

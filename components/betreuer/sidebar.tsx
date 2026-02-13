@@ -12,18 +12,19 @@ import {
   Settings,
   LogOut,
   BookOpen,
+  Contact,
 } from "lucide-react"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
 
 const navigation = [
   { name: "Dashboard", href: "/betreuer", icon: LayoutDashboard },
-  { name: "My Profile", href: "/betreuer/profile", icon: User },
+  { name: "Profile", href: "/betreuer/profile", icon: User },
   { name: "Documents", href: "/betreuer/documents", icon: FileCheck },
   { name: "Messages", href: "/betreuer/messages", icon: MessageSquare },
-  { name: "Matchings", href: "/betreuer/matchings", icon: MessageSquare },
+  { name: "Matchings", href: "/betreuer/matchings", icon: Contact },
   // { name: "Bookings", href: "/betreuer/bookings", icon: Calendar },
-  { name: "Resources", href: "/betreuer/resources", icon: BookOpen },
+  // { name: "Resources", href: "/betreuer/resources", icon: BookOpen },
   { name: "Settings", href: "/betreuer/settings", icon: Settings },
 ]
 

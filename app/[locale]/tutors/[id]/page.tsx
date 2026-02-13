@@ -61,7 +61,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
         tutorName: tutor.displayName
       }))
     }
-    router.push(`/dashboard/messages?tutor=${id}`)
+    router.push(`/student/messages?tutor=${id}`)
   }
 
   if (loading) {

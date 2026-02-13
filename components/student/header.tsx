@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 
 export function DashboardHeader() {
-  const { userProfile,user, logout } = useAuth();
+  const { userProfile, user, logout } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -71,7 +71,7 @@ export function DashboardHeader() {
 
         {/* Messages */}
         <Button variant="ghost" size="icon" asChild>
-          <Link href="/dashboard/messages">
+          <Link href="/student/messages">
             <MessageSquare className="h-5 w-5" />
             <span className="sr-only">Messages</span>
           </Link>
@@ -97,13 +97,13 @@ export function DashboardHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/dashboard/profile" className="flex items-center">
+              <Link href="/student/profile" className="flex items-center">
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/dashboard/settings" className="flex items-center">
+              <Link href="/student/settings" className="flex items-center">
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </Link>

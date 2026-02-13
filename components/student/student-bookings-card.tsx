@@ -118,7 +118,7 @@ export function StudentBookingsCard() {
               })}
               {upcomingBookings.length > 3 && (
                 <Button variant="link" size="sm" asChild>
-                  <Link href="/dashboard/bookings">
+                  <Link href="/student/bookings">
                     Voir toutes les leçons ({upcomingBookings.length})
                   </Link>
                 </Button>

@@ -70,7 +70,7 @@ export async function sendAccountEmail({
 }
 
 export const sendValidationEmail = async ({ to, tutorName, displayName, email, role, tutorId }: { to: string, tutorName: string, displayName: string, email: string, role: string, tutorId: string }) => {
-  const chatUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard/messages?tutor=${tutorId}`;
+  const chatUrl = `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/student/messages?tutor=${tutorId}`;
   const roleLabel = getRoleLabel(role);
 
   const htmlPart = `

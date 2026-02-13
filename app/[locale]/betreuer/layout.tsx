@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/use-auth"
 import { BetreuerSidebar } from "@/components/betreuer/sidebar"
 import { BetreuerHeader } from "@/components/betreuer/header"
 import { BetreuerMobileSidebar } from "@/components/betreuer/mobile-sidebar"
-import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog"
+import { MatchingFollowupDialog } from "@/components/student/matching-followup-dialog"
 
 export default function BetreuerLayout({
   children,
@@ -23,7 +23,7 @@ export default function BetreuerLayout({
       router.push("/auth/login?redirect=/betreuer")
     }
     if (!loading && userProfile && userProfile.role !== "tutor") {
-      router.push("/dashboard")
+      router.push("/student")
     }
   }, [user, userProfile, loading, router])
 

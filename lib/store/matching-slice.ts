@@ -21,6 +21,7 @@ export interface MatchingState {
     refused: number;
     pending: number;
   } | null;
+  manualFollowupMatching: Matching | null;
 }
 
 const initialState: MatchingState = {
@@ -29,6 +30,7 @@ const initialState: MatchingState = {
   loading: false,
   error: null,
   stats: null,
+  manualFollowupMatching: null,
 };
 
 /**
@@ -199,6 +201,9 @@ const matchingSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    setManualFollowup: (state, action: PayloadAction<Matching | null>) => {
+      state.manualFollowupMatching = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -237,6 +242,11 @@ const matchingSlice = createSlice({
         );
         if (matchingInList) {
           matchingInList.status = status;
+        }
+
+        // Si c'était un suivi manuel, on le nettoie
+        if (state.manualFollowupMatching?.id === matchingId) {
+          state.manualFollowupMatching = null;
         }
 
         state.loading = false;
@@ -321,6 +331,7 @@ export const {
   setAllMatchings,
   setLoading,
   setError,
+  setManualFollowup,
 } = matchingSlice.actions;
 
 export default matchingSlice.reducer;

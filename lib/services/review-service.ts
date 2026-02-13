@@ -74,3 +74,41 @@ export async function getTutorReviews(tutorId: string): Promise<Review[]> {
         } as Review;
     });
 }
+
+export async function updateReview(
+    reviewId: string,
+    tutorId: string,
+    oldRating: number,
+    newReviewData: Partial<Review>
+) {
+    const reviewRef = doc(db, firebaseCollections.reviews, reviewId);
+    const tutorRef = doc(db, firebaseCollections.tutors, tutorId);
+
+    try {
+        await runTransaction(db, async (transaction) => {
+            // 1. Get current tutor data
+            const tutorSnap = await transaction.get(tutorRef);
+            if (!tutorSnap.exists()) throw new Error("Tutor not found");
+
+            const tutorData = tutorSnap.data();
+            const currentRating = tutorData.rating || 0;
+            const currentReviewCount = tutorData.reviewCount || 0;
+
+            // 2. Handle rating update if changed
+            if (newReviewData.rating !== undefined && newReviewData.rating !== oldRating) {
+                const totalRatingSum = currentRating * currentReviewCount - oldRating + newReviewData.rating;
+                const newRating = Number((totalRatingSum / currentReviewCount).toFixed(1));
+                transaction.update(tutorRef, { rating: newRating });
+            }
+
+            // 3. Update the review
+            transaction.update(reviewRef, {
+                ...newReviewData,
+                updatedAt: serverTimestamp(),
+            });
+        });
+    } catch (error) {
+        console.error("Error updating review:", error);
+        throw error;
+    }
+}

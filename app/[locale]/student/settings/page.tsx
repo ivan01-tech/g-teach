@@ -9,12 +9,16 @@ import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
-import { CheckCircle2, Loader2, AlertTriangle } from "lucide-react"
+import { useAuthDispatch } from "@/hooks/use-auth-dispatch"
+import { CheckCircle2, Loader2, AlertTriangle, Mail } from "lucide-react"
+import { toast } from "sonner"
 
 export default function SettingsPage() {
-  const { userProfile, logout } = useAuth()
+  const { userProfile,user, logout } = useAuth()
+  const { sendPasswordReset, loading: authLoading } = useAuthDispatch()
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
 
   // Notification settings
   const [emailNotifications, setEmailNotifications] = useState(true)
@@ -32,6 +36,27 @@ export default function SettingsPage() {
     setTimeout(() => setSuccess(false), 3000)
   }
 
+  const handleResetPassword = async () => {
+    if (!user?.email) return
+
+    setLoading(true)
+    try {
+      await sendPasswordReset(user.email)
+      setResetSent(true)
+      setTimeout(() => setResetSent(false), 6000)
+      toast("Email sent", {
+        description: "Check your email or spam folder for a password reset link.",
+      })
+    } catch (err) {
+      console.error(err)
+      toast("Error", {
+        description: "Failed to send reset email. Please check your email address.",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
@@ -46,8 +71,17 @@ export default function SettingsPage() {
         </Alert>
       )}
 
+      {resetSent && (
+        <Alert className="border-primary bg-primary/10">
+          <Mail className="h-4 w-4 text-primary" />
+          <AlertDescription className="text-primary font-medium">
+            Email de réinitialisation envoyé ! Si vous ne le voyez pas, veuillez vérifier vos **courriers indésirables (spam)**.
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* Notification Settings */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle>Notifications</CardTitle>
           <CardDescription>Choose how you want to be notified</CardDescription>
@@ -142,10 +176,10 @@ export default function SettingsPage() {
             )}
           </Button>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Privacy Settings */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle>Privacy</CardTitle>
           <CardDescription>Control your privacy settings</CardDescription>
@@ -175,7 +209,7 @@ export default function SettingsPage() {
             <Switch defaultChecked />
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Account Actions */}
       <Card>
@@ -189,20 +223,26 @@ export default function SettingsPage() {
               <p className="font-medium">Change Password</p>
               <p className="text-sm text-muted-foreground">Update your password</p>
             </div>
-            <Button variant="outline">Change</Button>
+            <Button
+              variant="outline"
+              onClick={handleResetPassword}
+              disabled={loading || authLoading}
+            >
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Change"}
+            </Button>
           </div>
 
           <Separator />
 
-          <div className="flex items-center justify-between">
+          {/* <div className="flex items-center justify-between">
             <div>
               <p className="font-medium">Export Data</p>
               <p className="text-sm text-muted-foreground">Download a copy of your data</p>
             </div>
             <Button variant="outline">Export</Button>
-          </div>
+          </div> */}
 
-          <Separator />
+          {/* <Separator /> */}
 
           <div className="flex items-center justify-between">
             <div>

@@ -4,11 +4,11 @@ import React from "react";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { DashboardSidebar } from "@/components/dashboard/sidebar";
-import { DashboardHeader } from "@/components/dashboard/header";
+import { DashboardSidebar } from "@/components/student/sidebar";
+import { DashboardHeader } from "@/components/student/header";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
-import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog";
+import { MatchingFollowupDialog } from "@/components/student/matching-followup-dialog";
 
 export default function DashboardLayout({
   children,

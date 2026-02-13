@@ -7,9 +7,9 @@ import { Calendar, MessageSquare, Search, Clock, Star, BookOpen, TrendingUp, Awa
 import { Suspense } from "react"
 import Loading from "./loading"
 import { useAuth } from "@/hooks/use-auth"
-import { StudentMatchingsCard } from "@/components/dashboard/student-matchings-card"
-import { StudentBookingsCard } from "@/components/dashboard/student-bookings-card"
-import { MatchingFollowupDialog } from "@/components/dashboard/matching-followup-dialog"
+import { StudentMatchingsCard } from "@/components/student/student-matchings-card"
+import { StudentBookingsCard } from "@/components/student/student-bookings-card"
+import { MatchingFollowupDialog } from "@/components/student/matching-followup-dialog"
 import { useAppSelector } from "@/hooks/redux-store-hooks"
 
 export default function DashboardPage() {
@@ -77,7 +77,7 @@ export default function DashboardPage() {
                   <p className="text-2xl font-bold">{activeMatchingsCount}</p>
                   <p className="text-xs text-muted-foreground">Tutors contacted</p>
                   <Button variant="link" size="sm" className="mt-2 h-auto p-0" asChild>
-                    <Link href="/dashboard/matchings">View all →</Link>
+                    <Link href="/student/matchings">View all →</Link>
                   </Button>
                 </CardContent>
               </Card>

@@ -17,6 +17,7 @@ export interface Tutor {
   email: string
   photoURL?: string
   bio?: string
+  city?: string
   specializations: string[]
   teachingLevels: string[]
   examTypes: string[]
@@ -37,6 +38,12 @@ export interface Tutor {
   timezone?: string
   // Kept for backwards compatibility
   isVerified?: boolean
+}
+
+export interface City {
+  id: string
+  name: string
+  country?: string
 }
 
 export interface AvailabilitySlot {

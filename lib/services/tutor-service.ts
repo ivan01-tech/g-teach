@@ -20,6 +20,7 @@ import {
 import { db, storage } from "@/lib/firebase"
 import type { Tutor, TutorDocument, User, VerificationStatus } from "@/lib/types"
 import { firebaseCollections } from "../collections"
+import { toSerializable } from "../serializable-utils"
 
 export async function createTutorProfile(
   uid: string,
@@ -49,6 +50,7 @@ export async function createTutorProfile(
     isOnline: false,
     createdAt: new Date(),
     country: data.country,
+    city: data.city,
     timezone: data.timezone,
   }
 
@@ -63,7 +65,7 @@ export async function getTutorProfile(uid: string): Promise<Tutor | null> {
   const tutorSnap = await getDoc(tutorRef)
 
   if (tutorSnap.exists()) {
-    return tutorSnap.data() as Tutor
+    return toSerializable(tutorSnap.data()) as Tutor
   }
   return null
 }
@@ -157,7 +159,7 @@ export async function getTutors(): Promise<Tutor[]> {
   const q = query(tutorsRef)
   const querySnapshot = await getDocs(q)
 
-  return querySnapshot.docs.map((doc) => doc.data() as Tutor)
+  return querySnapshot.docs.map((doc) => toSerializable(doc.data()) as Tutor)
 }
 
 export function subscribeToTutors(callback: (tutors: Tutor[]) => void) {
@@ -165,7 +167,7 @@ export function subscribeToTutors(callback: (tutors: Tutor[]) => void) {
   const q = query(tutorsRef)
 
   return onSnapshot(q, (snapshot) => {
-    const tutors = snapshot.docs.map((doc) => doc.data() as Tutor)
+    const tutors = snapshot.docs.map((doc) => toSerializable(doc.data()) as Tutor)
     callback(tutors)
   })
 }
@@ -177,7 +179,7 @@ export async function getTutorsByStatus(
   const q = query(tutorsRef, where("verificationStatus", "==", status))
   const querySnapshot = await getDocs(q)
 
-  return querySnapshot.docs.map((doc) => doc.data() as Tutor)
+  return querySnapshot.docs.map((doc) => toSerializable(doc.data()) as Tutor)
 }
 
 export async function getStudentRequests(tutorId: string) {

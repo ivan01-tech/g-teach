@@ -11,9 +11,12 @@ import { useAuth } from "@/hooks/use-auth"
 import { collection, query, where, getDocs } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import type { Matching } from "@/lib/types"
+import { useAppDispatch } from "@/hooks/redux-store-hooks"
+import { setManualFollowup } from "@/lib/store/matching-slice"
 
 export function TutorMatchingsCard() {
   const { user } = useAuth()
+  const dispatch = useAppDispatch()
   const [matchings, setMatchings] = useState<Matching[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -165,17 +168,27 @@ export function TutorMatchingsCard() {
                                 {Math.floor(
                                   (Date.now() -
                                     (matching.contactDate?.toDate?.() || new Date(matching.contactDate)).getTime()) /
-                                    (1000 * 60 * 60 * 24)
+                                  (1000 * 60 * 60 * 24)
                                 )}{" "}
                                 jours
                               </p>
                             </div>
                           </div>
-                          <Button size="sm" asChild>
-                            <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
-                              Répondre
-                            </Link>
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button size="sm" asChild>
+                              <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
+                                Répondre
+                              </Link>
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              onClick={() => dispatch(setManualFollowup(matching))}
+                              title="Suivi de la mise en relation"
+                            >
+                              <Clock className="h-4 w-4 text-primary" />
+                            </Button>
+                          </div>
                         </div>
                       ))}
                   </div>

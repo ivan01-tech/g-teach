@@ -13,34 +13,41 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "@/hooks/use-auth"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { fetchPendingMatchings, closeMatchingAction } from "@/lib/store/matching-slice"
-import { MatchingStatus } from "@/lib/types"
-import { CheckCircle, XCircle, Search, MessageSquare } from "lucide-react"
+import { MatchingStatus, Matching } from "@/lib/types"
+import { CheckCircle, XCircle, Search, MessageSquare, User } from "lucide-react"
+import { UserRole } from "@/lib/roles"
 
 export function MatchingFollowupDialog() {
     const { user, userProfile } = useAuth()
     const dispatch = useAppDispatch()
-    const { pendingMatchings, loading } = useAppSelector((state) => state.matching)
+    const { pendingMatchings, manualFollowupMatching, loading } = useAppSelector((state) => state.matching)
     const [open, setOpen] = useState(false)
-    const [currentMatching, setCurrentMatching] = useState<any>(null)
+    const [currentMatching, setCurrentMatching] = useState<Matching | null>(null)
 
     useEffect(() => {
         if (user?.uid && userProfile?.role) {
             dispatch(fetchPendingMatchings({
                 userId: user.uid,
-                role: user.role as 'student' | 'tutor'
+                role: userProfile.role as 'student' | 'tutor'
             }))
         }
-    }, [user?.uid, user?.role, dispatch])
+    }, [user?.uid, userProfile?.role, dispatch])
 
     useEffect(() => {
-        if (pendingMatchings.length > 0 && !currentMatching) {
+        // Priorité au suivi déclenché manuellement
+        if (manualFollowupMatching) {
+            setCurrentMatching(manualFollowupMatching)
+            setOpen(true)
+        }
+        // Sinon, on suit la liste automatique
+        else if (pendingMatchings.length > 0 && !currentMatching) {
             setCurrentMatching(pendingMatchings[0])
             setOpen(true)
-        } else if (pendingMatchings.length === 0) {
+        } else if (pendingMatchings.length === 0 && !manualFollowupMatching) {
             setOpen(false)
             setCurrentMatching(null)
         }
-    }, [pendingMatchings, currentMatching])
+    }, [pendingMatchings, currentMatching, manualFollowupMatching])
 
     const handleAction = async (status: MatchingStatus) => {
         if (!currentMatching || !userProfile?.role) return
@@ -55,16 +62,23 @@ export function MatchingFollowupDialog() {
         setCurrentMatching(null)
     }
 
+    const handleOpenChange = (val: boolean) => {
+        if (!val) {
+            // Si on ferme, et que c'était un suivi manuel, on nettoie le state Redux
+            if (manualFollowupMatching) {
+                dispatch({ type: "matching/setManualFollowup", payload: null })
+            }
+            setCurrentMatching(null)
+        }
+        setOpen(val)
+    }
+
     if (!currentMatching) return null
 
-    const isStudent = userProfile?.role === "student"
+    const isStudent = user?.role === UserRole.Student
 
     return (
-        <Dialog open={true} onOpenChange={(val) => {
-            // Force l'utilisateur à répondre, on ne peut pas fermer sans action
-            if (!val) return;
-            setOpen(val);
-        }}>
+        <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogContent className="sm:max-w-125">
                 <DialogHeader>
                     <DialogTitle className="flex items-center gap-2">

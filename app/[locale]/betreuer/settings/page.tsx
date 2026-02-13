@@ -8,12 +8,19 @@ import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
 import { useAuth } from "@/hooks/use-auth"
-import { Save, Bell, Shield, Globe } from "lucide-react"
+import { Save, Bell, Shield, Globe, Mail } from "lucide-react"
+import { setLoading } from "../../auth/auth-slice"
+import { useAuthDispatch } from "@/hooks/use-auth-dispatch"
+import { toast } from "sonner"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function BetreuerSettingsPage() {
-  const { user } = useAuth()
   const [saving, setSaving] = useState(false)
-  
+  const { userProfile, user, logout } = useAuth()
+  const { sendPasswordReset, loading: authLoading } = useAuthDispatch()
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
   const [settings, setSettings] = useState({
     emailNotifications: true,
     bookingNotifications: true,
@@ -21,6 +28,28 @@ export default function BetreuerSettingsPage() {
     profileVisible: true,
     instantBooking: false,
   })
+
+
+  const handleResetPassword = async () => {
+    if (!user?.email) return
+
+    setLoading(true)
+    try {
+      await sendPasswordReset(user.email)
+      setResetSent(true)
+      setTimeout(() => setResetSent(false), 6000)
+      toast("Email sent", {
+        description: "Check your email or spam folder for a password reset link.",
+      })
+    } catch (err) {
+      console.error(err)
+      toast("Error", {
+        description: "Failed to send reset email. Please check your email address.",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleSave = async () => {
     setSaving(true)
@@ -37,6 +66,16 @@ export default function BetreuerSettingsPage() {
           Manage your account preferences and notifications
         </p>
       </div>
+
+      {resetSent && (
+        <Alert className="border-primary bg-primary/10">
+          <Mail className="h-4 w-4 text-primary" />
+          <AlertDescription className="text-primary font-medium">
+            Email de réinitialisation envoyé ! Si vous ne le voyez pas, veuillez vérifier vos **courriers indésirables (spam)**.
+          </AlertDescription>
+        </Alert>
+      )}
+
 
       {/* Account Settings */}
       <Card>
@@ -60,7 +99,7 @@ export default function BetreuerSettingsPage() {
               Contact support to change your email address
             </p>
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
             <div className="flex gap-2">
@@ -70,14 +109,28 @@ export default function BetreuerSettingsPage() {
                 value="••••••••"
                 disabled
               />
-              <Button variant="outline">Change</Button>
+              <Button variant="outline" onClick={async () => await handleResetPassword()}>Change</Button>
             </div>
+          </div>
+
+
+
+          <Separator />
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium text-destructive">Delete Account</p>
+              <p className="text-sm text-muted-foreground">
+                Permanently delete your account and all data
+              </p>
+            </div>
+            <Button variant="destructive">Delete</Button>
           </div>
         </CardContent>
       </Card>
 
       {/* Notification Settings */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Bell className="h-5 w-5" />
@@ -135,10 +188,10 @@ export default function BetreuerSettingsPage() {
             />
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Profile Settings */}
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Globe className="h-5 w-5" />
@@ -179,7 +232,7 @@ export default function BetreuerSettingsPage() {
             />
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Save Button */}
       <div className="flex justify-end">

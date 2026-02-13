@@ -8,4 +8,5 @@ export const firebaseCollections = {
   tutors: "tutors",
   reviews: "reviews",
   matchings: "matchings",
+  cities: "cities",
 };

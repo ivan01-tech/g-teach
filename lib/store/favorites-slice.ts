@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getFavorites, getCommentedProfiles, toggleFavorite as toggleFavoriteService } from "@/lib/services/favorite-service";
-import type { Tutor } from "@/lib/types";
+import type { Tutor, Review } from "@/lib/types";
 import type { RootState } from "@/lib/store";
+import { updateReview as updateReviewService } from "@/lib/services/review-service";
+import { toSerializable } from "@/lib/serializable-utils";
 
 export interface FavoritesState {
     favoriteTutors: Tutor[];
-    commentedTutors: Tutor[];
+    commentedTutors: { tutor: Tutor; review: Review }[];
     loading: boolean;
     error: string | null;
 }
@@ -33,6 +35,30 @@ export const fetchCommentedProfiles = createAsyncThunk(
     async (userId: string, { rejectWithValue }) => {
         try {
             return await getCommentedProfiles(userId);
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const updateReviewAction = createAsyncThunk(
+    "favorites/updateReview",
+    async ({
+        reviewId,
+        tutorId,
+        oldRating,
+        newRating,
+        comment
+    }: {
+        reviewId: string;
+        tutorId: string;
+        oldRating: number;
+        newRating: number;
+        comment: string;
+    }, { rejectWithValue }) => {
+        try {
+            await updateReviewService(reviewId, tutorId, oldRating, { rating: newRating, comment });
+            return { reviewId, newRating, comment };
         } catch (error: any) {
             return rejectWithValue(error.message);
         }
@@ -73,8 +99,18 @@ const favoritesSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload as string;
             })
-            .addCase(fetchCommentedProfiles.fulfilled, (state, action) => {
+            .addCase(fetchCommentedProfiles.fulfilled, (state, action: PayloadAction<{ tutor: Tutor; review: Review }[]>) => {
                 state.commentedTutors = action.payload;
+            })
+            .addCase(updateReviewAction.fulfilled, (state, action) => {
+                const { reviewId, newRating, comment } = action.payload;
+                const item = state.commentedTutors.find(c => c.review.id === reviewId);
+                if (item) {
+                    item.review.rating = newRating;
+                    item.review.comment = comment;
+                    // We might need to update tutor average rating here too if we want immediate UI reflect
+                    // but usually it's better to refetch or let it be slightly inconsistent until reload
+                }
             })
             .addCase(toggleFavorite.fulfilled, (state, action) => {
                 // We don't necessarily update the list here because we might not have the full tutor object

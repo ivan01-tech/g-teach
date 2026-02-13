@@ -40,7 +40,7 @@ export function useRegister() {
                 if (role === "tutor") {
                     router.push("/betreuer");
                 } else {
-                    router.push("/dashboard");
+                    router.push("/student");
                 }
             } else {
                 setError(resultAction.payload as string || "Failed to create account. Please try again.");

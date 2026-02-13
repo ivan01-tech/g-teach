@@ -83,19 +83,19 @@ export function Header() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="my-2" />
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/dashboard" className="w-full">
+                  <Link href="/student" className="w-full">
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/dashboard/profile" className="w-full">
+                  <Link href="/student/profile" className="w-full">
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/dashboard/settings" className="w-full">
+                  <Link href="/student/settings" className="w-full">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
                   </Link>
@@ -197,7 +197,7 @@ export function Header() {
 
                   <div className="grid gap-1">
                     <Link
-                      href="/dashboard"
+                      href="/student"
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -205,7 +205,7 @@ export function Header() {
                       Dashboard
                     </Link>
                     <Link
-                      href="/dashboard/profile"
+                      href="/student/profile"
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -213,7 +213,7 @@ export function Header() {
                       Profile
                     </Link>
                     <Link
-                      href="/dashboard/settings"
+                      href="/student/settings"
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >

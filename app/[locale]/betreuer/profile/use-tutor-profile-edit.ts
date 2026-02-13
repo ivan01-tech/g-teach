@@ -8,7 +8,8 @@ import {
     updateTutorProfile,
     uploadTutorPhoto,
 } from "@/lib/services/tutor-service";
-import type { AvailabilitySlot } from "@/lib/types";
+import { getCities, addCity } from "@/lib/services/city-service";
+import type { AvailabilitySlot, City } from "@/lib/types";
 
 export function useTutorProfileEdit() {
     const { user } = useAuth();
@@ -18,6 +19,8 @@ export function useTutorProfileEdit() {
     const [saving, setSaving] = useState(false);
     const [uploading, setUploading] = useState(false);
     const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+    const [cities, setCities] = useState<City[]>([]);
+    const [fetchingCities, setFetchingCities] = useState(false);
 
     const [formData, setFormData] = useState({
         displayName: "",
@@ -25,6 +28,7 @@ export function useTutorProfileEdit() {
         hourlyRate: "",
         // currency: "EUR",
         country: "",
+        city: "",
         timezone: "",
         teachingLevels: [] as string[],
         examTypes: [] as string[],
@@ -41,6 +45,7 @@ export function useTutorProfileEdit() {
                 hourlyRate: tutorProfile.hourlyRate?.toString() || "",
                 // currency: tutorProfile.currency || "EUR",
                 country: tutorProfile.country || "",
+                city: tutorProfile.city || "",
                 timezone: tutorProfile.timezone || "",
                 teachingLevels: tutorProfile.teachingLevels || [],
                 examTypes: tutorProfile.examTypes || [],
@@ -49,6 +54,21 @@ export function useTutorProfileEdit() {
             });
         }
     }, [tutorProfile]);
+
+    useEffect(() => {
+        const fetchCitiesData = async () => {
+            setFetchingCities(true);
+            try {
+                const data = await getCities();
+                setCities(data);
+            } catch (error) {
+                console.error("Error fetching cities:", error);
+            } finally {
+                setFetchingCities(false);
+            }
+        };
+        fetchCitiesData();
+    }, []);
 
     const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -109,6 +129,18 @@ export function useTutorProfileEdit() {
         }));
     };
 
+    const handleCreateCity = async (name: string) => {
+        try {
+            const cityId = await addCity(name);
+            const newCity: City = { id: cityId, name };
+            setCities((prev) => [...prev, newCity].sort((a, b) => a.name.localeCompare(b.name)));
+            setFormData((prev) => ({ ...prev, city: name }));
+            return newCity;
+        } catch (error) {
+            console.error("Error creating city:", error);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!user) return;
@@ -150,5 +182,8 @@ export function useTutorProfileEdit() {
         removeAvailabilitySlot,
         updateAvailabilitySlot,
         handleSubmit,
+        cities,
+        fetchingCities,
+        handleCreateCity,
     };
 }

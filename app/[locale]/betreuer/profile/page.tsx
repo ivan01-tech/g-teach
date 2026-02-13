@@ -18,7 +18,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { Camera, Save, Plus, X } from "lucide-react"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Camera, Save, Plus, X, Check, ChevronsUpDown, Loader2 } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { useAuth } from "@/hooks/use-auth"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import {
@@ -50,7 +64,13 @@ export default function BetreuerProfilePage() {
     removeAvailabilitySlot,
     updateAvailabilitySlot,
     handleSubmit,
+    cities,
+    fetchingCities,
+    handleCreateCity,
   } = useTutorProfileEdit()
+
+  const [open, setOpen] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
 
   if (loading) {
     return (
@@ -163,15 +183,81 @@ export default function BetreuerProfilePage() {
                     <SelectItem value="spain">Spain</SelectItem>
                   </SelectContent>
                 </Select>
-                {/* 
-                <Input
-                  id="country"
-                  value={formData.country}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, country: e.target.value }))
-                  }
-                  placeholder="e.g., Germany"
-                /> */}
+              </div>
+              <div className="space-y-2 flex flex-col pt-1">
+                <Label htmlFor="city" className="mb-1">City</Label>
+                <Popover open={open} onOpenChange={setOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={open}
+                      className="w-full justify-between font-normal"
+                      disabled={fetchingCities}
+                    >
+                      {formData.city
+                        ? cities.find((city) => city.name === formData.city)?.name || formData.city
+                        : "Select a city..."}
+                      {fetchingCities ? (
+                        <Loader2 className="ml-2 h-4 w-4 animate-spin shrink-0 opacity-50" />
+                      ) : (
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+                    <Command shouldFilter={false}>
+                      <CommandInput
+                        placeholder="Search city..."
+                        value={searchValue}
+                        onValueChange={setSearchValue}
+                      />
+                      <CommandList>
+                        <CommandEmpty className="py-2 px-4 text-sm">
+                          {searchValue ? (
+                            <Button
+                              variant="ghost"
+                              className="w-full justify-start font-normal text-primary p-0 h-auto"
+                              onClick={() => {
+                                handleCreateCity(searchValue)
+                                setOpen(false)
+                                setSearchValue("")
+                              }}
+                            >
+                              <Plus className="mr-2 h-4 w-4" />
+                              Add "{searchValue}"
+                            </Button>
+                          ) : (
+                            "No city found."
+                          )}
+                        </CommandEmpty>
+                        <CommandGroup>
+                          {cities
+                            .filter(city => city.name.toLowerCase().includes(searchValue.toLowerCase()))
+                            .map((city) => (
+                              <CommandItem
+                                key={city.id}
+                                value={city.name}
+                                onSelect={(currentValue) => {
+                                  setFormData(prev => ({ ...prev, city: currentValue }))
+                                  setOpen(false)
+                                  setSearchValue("")
+                                }}
+                              >
+                                <Check
+                                  className={cn(
+                                    "mr-2 h-4 w-4",
+                                    formData.city === city.name ? "opacity-100" : "opacity-0"
+                                  )}
+                                />
+                                {city.name}
+                              </CommandItem>
+                            ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
 

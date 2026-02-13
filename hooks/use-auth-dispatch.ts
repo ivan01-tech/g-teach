@@ -7,6 +7,7 @@ import {
   signIn,
   logout,
   updateUserProfile,
+  resetPassword,
 } from "@/app/[locale]/auth/thunks";
 import { UserRole } from "@/lib/roles";
 
@@ -36,7 +37,7 @@ export function useAuthDispatch() {
 
     updateUserProfile: (updates: any) => dispatch(updateUserProfile(updates)),
 
-    // sendPasswordReset: (email: string) => dispatch(sendPasswordResetEmail(email)),
+    sendPasswordReset: (email: string) => dispatch(resetPassword(email)),
 
     // State
     user,

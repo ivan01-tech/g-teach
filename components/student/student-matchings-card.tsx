@@ -10,7 +10,7 @@ import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { subscribeToMatchings } from "@/lib/services/matching-service"
-import { setAllMatchings, setLoading } from "@/lib/store/matching-slice"
+import { setAllMatchings, setLoading, setManualFollowup } from "@/lib/store/matching-slice"
 import type { Matching } from "@/lib/types"
 
 export function StudentMatchingsCard() {
@@ -123,9 +123,19 @@ export function StudentMatchingsCard() {
                 {getStatusBadge(matching.status)}
                 {matching.status !== "requested" && matching.status !== "refused" && (
                   <Button size="sm" variant="ghost" asChild>
-                    <Link href={`/dashboard/messages?tutor=${matching.tutorId}`}>
+                    <Link href={`/student/messages?tutor=${matching.tutorId}`}>
                       <MessageSquare className="h-4 w-4" />
                     </Link>
+                  </Button>
+                )}
+                {(matching.status === "open" || matching.status === "continued") && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => dispatch(setManualFollowup(matching))}
+                    title="Suivi de la mise en relation"
+                  >
+                    <Clock className="h-4 w-4 text-primary" />
                   </Button>
                 )}
               </div>

@@ -5,12 +5,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { MessageSquare, Check, X, Calendar, User } from "lucide-react"
+import { MessageSquare, Check, X, Calendar, User, Clock } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/hooks/use-auth"
 import { useAppDispatch, useAppSelector } from "@/hooks/redux-store-hooks"
 import { subscribeToMatchings } from "@/lib/services/matching-service"
-import { setAllMatchings, setLoading, acceptMatchingAction, refuseMatchingAction } from "@/lib/store/matching-slice"
+import { setAllMatchings, setLoading, acceptMatchingAction, refuseMatchingAction, setManualFollowup } from "@/lib/store/matching-slice"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { formatDate } from "@/lib/utils"
 import {
@@ -172,12 +172,24 @@ export default function TutorMatchingsPage() {
                             </>
                         ) : (
                             matching.status !== "refused" && matching.status !== "requested" && (
-                                <Button size="sm" asChild>
-                                    <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
-                                        <MessageSquare className="mr-2 h-4 w-4" />
-                                        Discuter
-                                    </Link>
-                                </Button>
+                                <>
+                                    <Button size="sm" asChild>
+                                        <Link href={`/betreuer/messages?student=${matching.learnerId}`}>
+                                            <MessageSquare className="mr-2 h-4 w-4" />
+                                            Discuter
+                                        </Link>
+                                    </Button>
+                                    {(matching.status === "open" || matching.status === "continued") && (
+                                        <Button
+                                            size="sm"
+                                            variant="outline"
+                                            onClick={() => dispatch(setManualFollowup(matching))}
+                                        >
+                                            <Clock className="mr-2 h-4 w-4" />
+                                            Suivi
+                                        </Button>
+                                    )}
+                                </>
                             )
                         )}
                     </div>

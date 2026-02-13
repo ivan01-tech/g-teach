@@ -24,10 +24,10 @@ export default function ForgotPasswordPage() {
 
     try {
       const result = await sendPasswordReset(email)
-      if (result.type === "auth/sendPasswordReset/fulfilled") {
+      if (result.type === "auth/resetPassword/fulfilled") {
         setSuccess(true)
       } else {
-        setError(result.payload || "Failed to send reset email. Please check your email address.")
+        setError((result.payload as string) || "Failed to send reset email. Please check your email address.")
       }
     } catch (err) {
       setError("Failed to send reset email. Please check your email address.")
@@ -55,8 +55,8 @@ export default function ForgotPasswordPage() {
           {success ? (
             <Alert className="border-accent bg-accent/10">
               <CheckCircle2 className="h-4 w-4 text-accent" />
-              <AlertDescription className="text-accent">
-                Password reset email sent! Check your inbox for further instructions.
+              <AlertDescription className="text-accent font-medium">
+                Password reset email sent! If you don't see it, please check your **spam folder**.
               </AlertDescription>
             </Alert>
           ) : (
