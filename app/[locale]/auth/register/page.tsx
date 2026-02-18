@@ -160,7 +160,7 @@ export default function RegisterPage() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {t("Creating account...")}
+                  {t("Creating account")}
                 </>
               ) : (
                 t("Create Account")

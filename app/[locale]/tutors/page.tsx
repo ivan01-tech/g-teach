@@ -111,8 +111,7 @@ export default function TutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-foreground sm:text-4xl">Find Your Perfect German Tutor</h1>
             <p className="mt-2 text-lg text-muted-foreground">
-              {t("Browse {tutors.length || 'many'}+ certified tutors and start learning today")}
-            </p>
+              Browse {activeFilterCount}+ certified tutors and start learning today </p>
 
             {/* Search Bar */}
             <div className="mt-6 flex gap-3">

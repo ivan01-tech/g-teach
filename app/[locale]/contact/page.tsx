@@ -167,7 +167,7 @@ export default function ContactPage() {
                         name="email"
                         type="email"
                         required
-                        placeholder={t("john@example.com")}
+                        placeholder={"john@example.com"}
                       />
                     </div>
 
@@ -204,7 +204,7 @@ export default function ContactPage() {
                         name="message"
                         required
                         rows={5}
-                        placeholder={t("Tell us more about your inquiry...")}
+                        placeholder={t("Tell us more about your inquiry")}
                       />
                     </div>
 
@@ -214,7 +214,7 @@ export default function ContactPage() {
                       className="w-full"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? t("Sending...") : t("Send Message")}
+                      {isSubmitting ? t("Sending") : t("Send Message")}
                     </Button>
                   </form>
                 )}
