@@ -41,8 +41,8 @@ export default function AboutPage() {
     { label: "Students", value: "10,000+" },
     { label: "Verified Tutors", value: "500+" },
     { label: "Lessons Completed", value: "50,000+" },
-    { label: "Countries", value: "40+" },
-  ]
+    // { label: "Countries", value: "40+" },
+  ]                                                                             
 
   return (
     <div className="flex min-h-screen flex-col">

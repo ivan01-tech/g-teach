@@ -1,6 +1,6 @@
 "use client"
 
-import { use, useState } from "react"
+import { use, useState, useEffect } from "react"
 import Link from "next/link"
 import { Header } from "@/components/landing/header"
 import { Footer } from "@/components/landing/footer"
@@ -34,6 +34,7 @@ import { useAuth } from "@/hooks/use-auth"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/lib/store"
 import { recordContact } from "@/lib/store/matching-slice"
+import { recordProfileViewThunk } from "@/lib/store/profile-views-slice"
 import { useRouter } from "next/navigation"
 
 export default function TutorProfilePage({ params }: { params: Promise<{ id: string }> }) {
@@ -49,6 +50,31 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
   const { user: learner } = useAuth()
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
+
+  const [viewRecorded, setViewRecorded] = useState(false)
+
+  useEffect(() => {
+    if (tutor && !viewRecorded) {
+      const sessionKey = `viewed_tutor_${tutor.uid}`
+      const sessionViewed = sessionStorage.getItem(sessionKey)
+
+      if (!sessionViewed) {
+        const metadata = {
+          device: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? "mobile" : "desktop",
+          browser: navigator.userAgent.split(" ").pop() || "unknown",
+        }
+
+        dispatch(recordProfileViewThunk({
+          tutorId: tutor.uid,
+          viewerId: learner?.uid,
+          metadata
+        }))
+
+        sessionStorage.setItem(sessionKey, "true")
+      }
+      setViewRecorded(true)
+    }
+  }, [tutor, learner, dispatch, viewRecorded])
 
   const handleContactTutor = async () => {
     if (learner && tutor) {

@@ -6,6 +6,7 @@ import favoritesReducer from "./store/favorites-slice"
 import matchingReducer from "./store/matching-slice"
 import tutorsReducer from "./store/tutors-slice"
 import bookingsReducer from "./store/bookings-slice"
+import profileViewsReducer from "./store/profile-views-slice"
 
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
         matching: matchingReducer,
         tutors: tutorsReducer,
         bookings: bookingsReducer,
+        profileViews: profileViewsReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
@@ -59,6 +61,7 @@ export const store = configureStore({
                     /tutors\..*\.\d+\.updatedAt/,
                     /favorites\..*\.\d+\.createdAt/,
                     /favorites\..*\.\d+\.updatedAt/,
+                    /profileViews\..*\.viewedAt/,
                     /matching.manualFollowupMatching\.contactDate/,
                     /matching.manualFollowupMatching\.acceptedAt/,
                     /matching.manualFollowupMatching\.closedAt/,

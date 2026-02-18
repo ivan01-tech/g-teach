@@ -91,44 +91,63 @@
       }
     }
   },
-  "examPrep": {
-    "title": "Préparez les examens officiels d’allemand",
-    "description": "Nos tuteurs sont spécialisés dans la préparation des étudiants aux principales certifications de langue allemande. Atteignez votre score cible avec un accompagnement expert.",
-    "findTutors": "Trouver des tuteurs {exam}",
-    "exams": {
-      "goethe": {
-        "description": "Le certificat de langue allemande le plus reconnu au monde.",
-        "features": [
-          "Pratique de l’oral",
-          "Ateliers d’écriture",
-          "Examens blancs",
-          "Révisions de grammaire"
-        ]
-      },
-      "telc": {
-        "description": "Certificats de langue européens reconnus par les employeurs et les institutions.",
-        "features": [
-          "Préparation axée sur l’emploi",
-          "Exercices d’écoute",
-          "Compréhension écrite",
-          "Coaching pour le certificat"
-        ]
-      },
-      "testdaf": {
-        "description": "Requis pour l’admission à l’université en Allemagne.",
-        "features": [
-          "Allemand académique",
-          "Préparation universitaire",
-          "Stratégies d’examen",
-          "Gestion du temps"
-        ]
-      }
+ "examPrep": {
+  "title": "Prepare for Official German Exams",
+  "description": "Our tutors specialize in preparing students for all major German language certifications. Achieve your target score with expert guidance.",
+  "findTutors": "Find {exam} Tutors",
+  "exams": {
+    "goethe": {
+      "description": "The most recognized German language certificate worldwide.",
+      "features": [
+        "Speaking practice",
+        "Writing workshops",
+        "Mock exams",
+        "Grammar review"
+      ]
+    },
+    "telc": {
+      "description": "European Language Certificates recognized by employers and institutions.",
+      "features": [
+        "Job-focused preparation",
+        "Listening exercises",
+        "Reading comprehension",
+        "Certificate coaching"
+      ]
+    },
+    "testdaf": {
+      "description": "Required for university admission in Germany.",
+      "features": [
+        "Academic German",
+        "University preparation",
+        "Test strategies",
+        "Time management"
+      ]
+    },
+    "ecl": {
+      "description": "An internationally recognized European language certificate focused on practical communication skills.",
+      "features": [
+        "Balanced skills training (Speaking, Writing, Listening, Reading)",
+        "Task-based speaking preparation",
+        "Writing structure and coherence practice",
+        "Exam simulation under real conditions"
+      ]
+    },
+    "osd": {
+      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+      "features": [
+        "Austrian German exposure",
+        "Integrated skills training",
+        "Oral exam preparation",
+        "Practical communication strategies"
+      ]
     }
-  },
+  }
+}
+,
   "cta": {
     "title": "Prêt à commencer votre voyage ?",
     "description": "Rejoignez des milliers d’étudiants qui ont atteint leurs objectifs de langue allemande avec G-Teach. Votre première leçon bénéficie d'une garantie de satisfaction.",
-    "getStarted": "Commencer gratuitement",
+    "getStarted": "Commencer",
     "browse": "Voir les tuteurs"
   },
   "footer": {
@@ -141,6 +160,52 @@
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d’utilisation",
       "cookies": "Politique de cookies"
+    }
+  },
+  "faq": {
+    "title": "Foire Aux Questions",
+    "description": "Tout ce que vous devez savoir sur G-Teach, la mise en relation et le fonctionnement de notre plateforme.",
+    "questions": {
+      "howItWorks": {
+        "question": "Comment fonctionne la plateforme ?",
+        "answer": "Notre plateforme met en relation des élèves et des répétiteurs qualifiés. Le processus est simple : l’élève crée un compte, recherche un répétiteur selon la matière, le niveau et la localisation, consulte les profils, et entre en contact via le chat intégré. Les cours se déroulent en dehors de la plateforme (en ligne ou en présentiel selon accord). Nous facilitons la mise en relation, mais nous ne dispensons pas de cours directement."
+      },
+      "credibility": {
+        "question": "Comment garantissez-vous la crédibilité des répétiteurs ?",
+        "answer": "La crédibilité est une priorité pour nous. Chaque répétiteur doit créer un profil détaillé et fournir des preuves justificatives (diplômes, attestations, certificats). Notre équipe analyse les documents, vérifie la cohérence des informations et valide ou refuse le profil. Si tout est conforme, le compte obtient le statut 'Profil Vérifié'."
+      },
+      "verifiedStatus": {
+        "question": "Quelle est la différence entre un profil vérifié et non vérifié ?",
+        "answer": "Un profil vérifié a une identité contrôlée, des compétences justifiées et un badge de confiance visible sur le profil. Un profil non vérifié ne contient que des informations déclaratives sans validation officielle. Nous recommandons fortement de privilégier les profils vérifiés."
+      },
+      "responsibility": {
+        "question": "La plateforme est-elle responsable en cas de problème ?",
+        "answer": "La plateforme facilite uniquement la mise en relation. Nous ne sommes pas responsables du contenu des cours, des paiements effectués en dehors de la plateforme ou des accords passés entre utilisateurs. Cependant, nous pouvons suspendre un compte ou retirer un profil en cas de signalement."
+      },
+      "pricing": {
+        "question": "La plateforme est-elle payante ?",
+        "answer": "Actuellement, la plateforme est gratuite pour tous les utilisateurs. À l’avenir, certains services premium pourraient être proposés (meilleure visibilité, statistiques avancées, etc.)."
+      },
+      "payments": {
+        "question": "Comment se déroulent les paiements ?",
+        "answer": "Les paiements se font directement entre l’élève et le répétiteur. La plateforme ne gère pas encore les transactions financières."
+      },
+      "reporting": {
+        "question": "Comment signaler un problème ou un comportement inapproprié ?",
+        "answer": "Chaque utilisateur peut signaler un profil ou un message, ou contacter le support. Après analyse, nous pouvons avertir, suspendre temporairement ou supprimer définitivement le profil."
+      },
+      "dataProtection": {
+        "question": "Mes données sont-elles protégées ?",
+        "answer": "Oui. Nous protégeons les données personnelles conformément aux normes de sécurité. Les documents soumis pour vérification ne sont pas visibles publiquement ; seul le statut 'Vérifié' apparaît sur le profil."
+      },
+      "unverifiedAccess": {
+        "question": "Pourquoi certains profils sont accessibles même s’ils ne sont pas vérifiés ?",
+        "answer": "Nous voulons permettre à tous les utilisateurs de rejoindre la plateforme rapidement. Cependant, les profils non vérifiés ne sont pas recommandés, bénéficient de moins de visibilité et n'ont pas le badge de confiance."
+      },
+      "postChat": {
+        "question": "Que se passe-t-il après un échange via le chat ?",
+        "answer": "Les deux parties discutent des modalités, conviennent du format (en ligne ou présentiel) et organisent les séances."
+      }
     }
   }
 }

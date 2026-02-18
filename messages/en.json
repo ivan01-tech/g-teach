@@ -89,46 +89,63 @@
         "title": "Start Learning",
         "desc": "Book your lessons and start your journey to German fluency with personalized instruction."
       }
-    } 
-  },
-  "examPrep": {
-    "title": "Prepare for Official German Exams",
-    "description": "Our tutors specialize in preparing students for all major German language certifications. Achieve your target score with expert guidance.",
-    "findTutors": "Find {exam} Tutors",
-    "exams": {
-      "goethe": {
-        "description": "The most recognized German language certificate worldwide.",
-        "features": [
-          "Speaking practice",
-          "Writing workshops",
-          "Mock exams",
-          "Grammar review"
-        ]
-      },
-      "telc": {
-        "description": "European Language Certificates recognized by employers and institutions.",
-        "features": [
-          "Job-focused preparation",
-          "Listening exercises",
-          "Reading comprehension",
-          "Certificate coaching"
-        ]
-      },
-      "testdaf": {
-        "description": "Required for university admission in Germany.",
-        "features": [
-          "Academic German",
-          "University preparation",
-          "Test strategies",
-          "Time management"
-        ]
-      }
     }
-  },
+  },"examPrep": {
+  "title": "Prepare for Official German Exams",
+  "description": "Our tutors specialize in preparing students for all major German language certifications. Achieve your target score with expert guidance.",
+  "findTutors": "Find {exam} Tutors",
+  "exams": {
+    "goethe": {
+      "description": "The most recognized German language certificate worldwide.",
+      "features": [
+        "Speaking practice",
+        "Writing workshops",
+        "Mock exams",
+        "Grammar review"
+      ]
+    },
+    "telc": {
+      "description": "European Language Certificates recognized by employers and institutions.",
+      "features": [
+        "Job-focused preparation",
+        "Listening exercises",
+        "Reading comprehension",
+        "Certificate coaching"
+      ]
+    },
+    "testdaf": {
+      "description": "Required for university admission in Germany.",
+      "features": [
+        "Academic German",
+        "University preparation",
+        "Test strategies",
+        "Time management"
+      ]
+    },
+    "ecl": {
+      "description": "An internationally recognized European language certificate focused on practical communication skills.",
+      "features": [
+        "Balanced skills training (Speaking, Writing, Listening, Reading)",
+        "Task-based speaking preparation",
+        "Writing structure and coherence practice",
+        "Exam simulation under real conditions"
+      ]
+    },
+    "osd": {
+      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+      "features": [
+        "Austrian German exposure",
+        "Integrated skills training",
+        "Oral exam preparation",
+        "Practical communication strategies"
+      ]
+    }
+  }
+},
   "cta": {
     "title": "Ready to Start Your German Journey?",
     "description": "Join thousands of students who have achieved their German language goals with G-Teach. Your first lesson comes with a satisfaction guarantee.",
-    "getStarted": "Get Started Free",
+    "getStarted": "Get Started",
     "browse": "Browse Tutors"
   },
   "footer": {
@@ -141,6 +158,52 @@
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
       "cookies": "Cookie Policy"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Everything you need to know about G-Teach, how we connect you with tutors, and how our platform works.",
+    "questions": {
+      "howItWorks": {
+        "question": "How does the platform work?",
+        "answer": "Our platform connects students with qualified tutors. The process is simple: the student creates an account, searches for a tutor by subject, level, and location, views profiles, and gets in touch via the integrated chat. Lessons take place outside the platform (online or in person by agreement). We facilitate the connection but do not provide lessons directly."
+      },
+      "credibility": {
+        "question": "How do you guarantee tutor credibility?",
+        "answer": "Credibility is our priority. Each tutor must create a detailed profile and provide supporting evidence (diplomas, certificates, attestations). Our team analyzes the submitted documents, verifies the consistency of information, and validates or rejects the profile. If everything is in order, the account receives 'Verified Profile' status."
+      },
+      "verifiedStatus": {
+        "question": "What is the difference between a verified and unverified profile?",
+        "answer": "A verified profile has a checked identity, justified skills, and a trust badge visible on the profile. An unverified profile contains only self-declared information without official validation. We strongly recommend prioritizing verified profiles."
+      },
+      "responsibility": {
+        "question": "Is the platform responsible in case of a problem?",
+        "answer": "The platform only facilitates the connection. We are not responsible for lesson content, payments made outside the platform, or agreements made between users. However, we can suspend an account or remove a profile in case of a report."
+      },
+      "pricing": {
+        "question": "Is the platform free to use?",
+        "answer": "Currently, the platform is free for all users. In the future, some premium services might be offered (better visibility, advanced statistics, etc.)."
+      },
+      "payments": {
+        "question": "How do payments work?",
+        "answer": "Payments are made directly between the student and the tutor. The platform does not yet manage financial transactions."
+      },
+      "reporting": {
+        "question": "How do I report a problem or inappropriate behavior?",
+        "answer": "Each user can report a profile or message, or contact support. After analysis, we can warn, temporarily suspend, or permanently delete the account."
+      },
+      "dataProtection": {
+        "question": "Is my data protected?",
+        "answer": "Yes. We protect personal data in accordance with security standards. Documents submitted for verification are not visible to the public; only the 'Verified' status appears on the profile."
+      },
+      "unverifiedAccess": {
+        "question": "Why are some profiles accessible even if they aren't verified?",
+        "answer": "We want to allow all users to join the platform quickly. However, unverified profiles are not recommended, have less visibility, and do not receive the trust badge."
+      },
+      "postChat": {
+        "question": "What happens after an exchange via chat?",
+        "answer": "Both parties discuss the terms, agree on the format (online or in person), and organize the sessions."
+      }
     }
   }
 }

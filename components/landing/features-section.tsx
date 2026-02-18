@@ -6,7 +6,7 @@ const featuresData = [
   { icon: MessageSquare, key: "chat" },
   { icon: Calendar, key: "booking" },
   { icon: Star, key: "reviews" },
-  { icon: Shield, key: "payments" },
+  // { icon: Shield, key: "payments" },
   { icon: Globe, key: "anywhere" },
 ]
 

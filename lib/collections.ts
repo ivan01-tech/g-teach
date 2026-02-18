@@ -9,4 +9,6 @@ export const firebaseCollections = {
   reviews: "reviews",
   matchings: "matchings",
   cities: "cities",
+  profileViews: "profileViews",
+  contactInquiries: "contactInquiries",
 };

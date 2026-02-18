@@ -36,8 +36,18 @@ export interface Tutor {
   createdAt: Date
   country?: string
   timezone?: string
+  profileViews?: number
   // Kept for backwards compatibility
   isVerified?: boolean
+}
+
+export interface ProfileView {
+  id: string
+  tutorId: string
+  viewerId?: string // Optional, if the viewer is logged in
+  viewedAt: any // Timestamp
+  device?: string
+  browser?: string
 }
 
 export interface City {
@@ -166,4 +176,16 @@ export interface Matching {
   // Monétisation
   isMonetized?: boolean // Est-ce une collaboration payante
   transactionId?: string // Référence à une transaction
+}
+
+export interface ContactInquiry {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  reason: string
+  subject: string
+  message: string
+  status: "pending" | "resolved" | "archived"
+  createdAt: any // Timestamp
 }
