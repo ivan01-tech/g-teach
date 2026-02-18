@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, MessageSquare, HelpCircle, Building } from "lucide-react"
+import { contactService } from "@/lib/services/contact-service"
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -39,25 +40,25 @@ export default function ContactPage() {
       icon: Mail,
       title: "Email",
       description: "For general inquiries",
-      value: "contact@g-teach.com",
+      value: "contact.gteach@gmail.com",
     },
     {
       icon: MessageSquare,
       title: "Student Support",
       description: "Help with your learning",
-      value: "students@g-teach.com",
+      value: "contact.gteach@gmail.com",
     },
     {
       icon: HelpCircle,
       title: "Tutor Support",
       description: "Help with your teaching",
-      value: "tutors@g-teach.com",
+      value: "contact.gteach@gmail.com",
     },
     {
       icon: Building,
       title: "Partnerships",
       description: "Business collaborations",
-      value: "partners@g-teach.com",
+      value: "contact.gteach@gmail.com",
     },
   ]
 
@@ -65,11 +66,25 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const formData = new FormData(e.currentTarget)
+      const data = {
+        firstName: formData.get("firstName") as string,
+        lastName: formData.get("lastName") as string,
+        email: formData.get("email") as string,
+        reason: formData.get("reason") as string,
+        subject: formData.get("subject") as string,
+        message: formData.get("message") as string,
+      }
 
-    setIsSubmitting(false)
-    setSubmitted(true)
+      await contactService.submitContactInquiry(data)
+      setSubmitted(true)
+    } catch (error) {
+      console.error("Failed to submit contact inquiry:", error)
+      // You might want to show an error message to the user here
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (

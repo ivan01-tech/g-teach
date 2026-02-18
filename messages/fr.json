@@ -91,44 +91,63 @@
       }
     }
   },
-  "examPrep": {
-    "title": "Préparez les examens officiels d’allemand",
-    "description": "Nos tuteurs sont spécialisés dans la préparation des étudiants aux principales certifications de langue allemande. Atteignez votre score cible avec un accompagnement expert.",
-    "findTutors": "Trouver des tuteurs {exam}",
-    "exams": {
-      "goethe": {
-        "description": "Le certificat de langue allemande le plus reconnu au monde.",
-        "features": [
-          "Pratique de l’oral",
-          "Ateliers d’écriture",
-          "Examens blancs",
-          "Révisions de grammaire"
-        ]
-      },
-      "telc": {
-        "description": "Certificats de langue européens reconnus par les employeurs et les institutions.",
-        "features": [
-          "Préparation axée sur l’emploi",
-          "Exercices d’écoute",
-          "Compréhension écrite",
-          "Coaching pour le certificat"
-        ]
-      },
-      "testdaf": {
-        "description": "Requis pour l’admission à l’université en Allemagne.",
-        "features": [
-          "Allemand académique",
-          "Préparation universitaire",
-          "Stratégies d’examen",
-          "Gestion du temps"
-        ]
-      }
+ "examPrep": {
+  "title": "Prepare for Official German Exams",
+  "description": "Our tutors specialize in preparing students for all major German language certifications. Achieve your target score with expert guidance.",
+  "findTutors": "Find {exam} Tutors",
+  "exams": {
+    "goethe": {
+      "description": "The most recognized German language certificate worldwide.",
+      "features": [
+        "Speaking practice",
+        "Writing workshops",
+        "Mock exams",
+        "Grammar review"
+      ]
+    },
+    "telc": {
+      "description": "European Language Certificates recognized by employers and institutions.",
+      "features": [
+        "Job-focused preparation",
+        "Listening exercises",
+        "Reading comprehension",
+        "Certificate coaching"
+      ]
+    },
+    "testdaf": {
+      "description": "Required for university admission in Germany.",
+      "features": [
+        "Academic German",
+        "University preparation",
+        "Test strategies",
+        "Time management"
+      ]
+    },
+    "ecl": {
+      "description": "An internationally recognized European language certificate focused on practical communication skills.",
+      "features": [
+        "Balanced skills training (Speaking, Writing, Listening, Reading)",
+        "Task-based speaking preparation",
+        "Writing structure and coherence practice",
+        "Exam simulation under real conditions"
+      ]
+    },
+    "osd": {
+      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+      "features": [
+        "Austrian German exposure",
+        "Integrated skills training",
+        "Oral exam preparation",
+        "Practical communication strategies"
+      ]
     }
-  },
+  }
+}
+,
   "cta": {
     "title": "Prêt à commencer votre voyage ?",
     "description": "Rejoignez des milliers d’étudiants qui ont atteint leurs objectifs de langue allemande avec G-Teach. Votre première leçon bénéficie d'une garantie de satisfaction.",
-    "getStarted": "Commencer gratuitement",
+    "getStarted": "Commencer",
     "browse": "Voir les tuteurs"
   },
   "footer": {

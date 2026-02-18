@@ -21,6 +21,7 @@ export function Footer() {
     ],
     company: [
       { name: th("about"), href: "/about" },
+      { name: "FAQ", href: "/faq" },
       { name: th("contact"), href: "/contact" },
     ],
     legal: [

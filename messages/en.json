@@ -124,11 +124,62 @@
         ]
       }
     }
-  },
+  },"examPrep": {
+  "title": "Prepare for Official German Exams",
+  "description": "Our tutors specialize in preparing students for all major German language certifications. Achieve your target score with expert guidance.",
+  "findTutors": "Find {exam} Tutors",
+  "exams": {
+    "goethe": {
+      "description": "The most recognized German language certificate worldwide.",
+      "features": [
+        "Speaking practice",
+        "Writing workshops",
+        "Mock exams",
+        "Grammar review"
+      ]
+    },
+    "telc": {
+      "description": "European Language Certificates recognized by employers and institutions.",
+      "features": [
+        "Job-focused preparation",
+        "Listening exercises",
+        "Reading comprehension",
+        "Certificate coaching"
+      ]
+    },
+    "testdaf": {
+      "description": "Required for university admission in Germany.",
+      "features": [
+        "Academic German",
+        "University preparation",
+        "Test strategies",
+        "Time management"
+      ]
+    },
+    "ecl": {
+      "description": "An internationally recognized European language certificate focused on practical communication skills.",
+      "features": [
+        "Balanced skills training (Speaking, Writing, Listening, Reading)",
+        "Task-based speaking preparation",
+        "Writing structure and coherence practice",
+        "Exam simulation under real conditions"
+      ]
+    },
+    "osd": {
+      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+      "features": [
+        "Austrian German exposure",
+        "Integrated skills training",
+        "Oral exam preparation",
+        "Practical communication strategies"
+      ]
+    }
+  }
+},
   "cta": {
     "title": "Ready to Start Your German Journey?",
     "description": "Join thousands of students who have achieved their German language goals with G-Teach. Your first lesson comes with a satisfaction guarantee.",
-    "getStarted": "Get Started Free",
+    "getStarted": "Get Started",
     "browse": "Browse Tutors"
   },
   "footer": {

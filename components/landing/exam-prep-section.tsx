@@ -19,6 +19,17 @@ const examsData = [
     name: "TestDaF",
     levels: ["TDN 3", "TDN 4", "TDN 5"],
   },
+
+  {
+    id: "ecl",
+    name: "ECL",
+    levels: [ "A2", "B1", "B2", "C1"],
+  },
+  {
+    id: "osd",
+    name: "ÖSD",
+    levels: ["A1", "A2", "B1", "B2", "C1"],
+  },
 ]
 
 export function ExamPrepSection() {

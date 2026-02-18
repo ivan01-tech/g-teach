@@ -16,26 +16,32 @@ import {
   CheckCircle2,
   Clock,
   Star,
+  Eye,
 } from "lucide-react"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import { getStudentRequests } from "@/lib/services/tutor-service"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/hooks/use-auth"
 import { TutorMatchingsCard } from "@/components/betreuer/tutor-matchings-card"
-import { TutorBookingsCard } from "@/components/betreuer/tutor-bookings-card"
+import { useDispatch, useSelector } from "react-redux"
+import { AppDispatch, RootState } from "@/lib/store"
+import { fetchProfileViewsThunk } from "@/lib/store/profile-views-slice"
 
 export default function BetreuerDashboard() {
   const { user } = useAuth()
-  const { tutorProfile, loading } = useTutorProfile()
+  const { tutorProfile, loading: profileLoading } = useTutorProfile()
   const [studentRequests, setStudentRequests] = useState<number>(0)
+  const dispatch = useDispatch<AppDispatch>()
+  const { recentViews, loading: viewsLoading } = useSelector((state: RootState) => state.profileViews)
 
   useEffect(() => {
     if (user) {
       getStudentRequests(user.uid).then((requests) => {
         setStudentRequests(requests.length)
       })
+      dispatch(fetchProfileViewsThunk(user.uid))
     }
-  }, [user])
+  }, [user, dispatch])
 
   const getProfileCompleteness = () => {
     if (!tutorProfile) return 0
@@ -52,7 +58,7 @@ export default function BetreuerDashboard() {
 
   const profileCompleteness = getProfileCompleteness()
 
-  if (loading) {
+  if (profileLoading) {
     return (
       <div className="flex min-h-100 items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
@@ -105,7 +111,7 @@ export default function BetreuerDashboard() {
       )}
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Students</CardTitle>
@@ -156,6 +162,17 @@ export default function BetreuerDashboard() {
             <p className="text-xs text-muted-foreground">
               {tutorProfile?.reviewCount || 0} reviews
             </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Profile Views</CardTitle>
+            <Eye className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{tutorProfile?.profileViews || 0}</div>
+            <p className="text-xs text-muted-foreground">Total profile visits</p>
           </CardContent>
         </Card>
       </div>
