@@ -21,6 +21,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { BookOpen, Loader2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { UserRole } from "@/lib/roles";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -28,16 +29,18 @@ export default function LoginPage() {
   const [localError, setLocalError] = useState("");
   const { signIn, loading, error: reduxError, user } = useAuthDispatch();
   const router = useRouter();
+  const t = useTranslations("auth.login");
+  const tCommon = useTranslations("auth.common");
 
   useEffect(() => {
     if (user) {
-      toast.success("Login successful");
+      toast.success(t("success"));
       console.log("LOGIN : ", user);
       router.push(
         user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/student" : "/auth/not-authorized",
       );
     }
-  }, [user, router]);
+  }, [user, router, t]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,8 +51,8 @@ export default function LoginPage() {
 
       if (result.type === "auth/signIn/fulfilled") {
         const payload = result.payload as any;
-        toast.success("Login successful", {
-          description: `Welcome back, ${payload?.role || "user"}!`,
+        toast.success(t("success"), {
+          description: t("welcomeBack", { role: payload?.role || "user" }),
         });
         console.log("LOGIN : ", payload);
         // router.push(
@@ -59,11 +62,11 @@ export default function LoginPage() {
         // Thunk rejected
         setLocalError(
           // result.payload ||
-          "Invalid email or password. Please try again.",
+          t("error"),
         );
       }
     } catch (err) {
-      setLocalError("Invalid email or password. Please try again.");
+      setLocalError(t("error"));
       console.error(err);
     }
   };
@@ -79,9 +82,9 @@ export default function LoginPage() {
 
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Welcome Back</CardTitle>
+          <CardTitle className="text-2xl">{t("title")}</CardTitle>
           <CardDescription>
-            Sign in to continue your German learning journey
+            {t("description")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -94,7 +97,7 @@ export default function LoginPage() {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{tCommon("email")}</Label>
               <Input
                 id="email"
                 type="email"
@@ -107,12 +110,12 @@ export default function LoginPage() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{tCommon("password")}</Label>
                 <Link
                   href="/auth/forgot-password"
                   className="text-sm text-primary hover:underline"
                 >
-                  Forgot password?
+                  {t("forgotPassword")}
                 </Link>
               </div>
               {/* <p className="text-[10px] text-muted-foreground italic -mt-1">
@@ -121,7 +124,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
+                placeholder={t("enterPassword", { fallback: "Enter your password" })}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -132,22 +135,22 @@ export default function LoginPage() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Signing in...
+                  {t("loading")}
                 </>
               ) : (
-                "Sign In"
+                t("submit")
               )}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account?{" "}
+            {t("noAccount")}{" "}
             <Link
               href="/auth/register"
               className="font-medium text-primary hover:underline"
             >
-              Sign up
+              {t("signUp")}
             </Link>
           </p>
         </CardFooter>

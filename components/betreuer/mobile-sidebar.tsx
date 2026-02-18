@@ -30,7 +30,7 @@ export function BetreuerMobileSidebar() {
         </SheetTrigger>
         <SheetContent side="left" className="w-64 p-0">
           <SheetHeader className="sr-only">
-            <SheetTitle>Navigation Menu</SheetTitle>
+            <SheetTitle>{"Navigation Menu"}</SheetTitle>
           </SheetHeader>
           <BetreuerSidebar
             className="h-full border-0"

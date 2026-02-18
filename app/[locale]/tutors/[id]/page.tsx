@@ -35,9 +35,11 @@ import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/lib/store"
 import { recordContact } from "@/lib/store/matching-slice"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 export default function TutorProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
+  const t = useTranslations()
   const { tutor, loading, error } = useTutor(id)
   const {
     reviews,
@@ -84,7 +86,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
           <h2 className="text-2xl font-bold text-foreground">Tutor not found</h2>
           <p className="text-muted-foreground mt-2">{error || "The tutor you are looking for does not exist."}</p>
           <Button variant="outline" className="mt-6" onClick={() => window.history.back()}>
-            Go Back
+        {t("Go Back")}
           </Button>
         </main>
         <Footer />
@@ -116,9 +118,9 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
           {!isVerified && (
             <Alert variant="destructive" className="mb-6 border-amber-500 bg-amber-50 text-amber-900">
               <AlertTriangle className="h-5 w-5 text-amber-600" />
-              <AlertTitle className="text-amber-800 font-bold">Attention : Profil non vérifié</AlertTitle>
+              <AlertTitle className="text-amber-800 font-bold">{t("Attention : Profil non vérifié")}</AlertTitle>
               <AlertDescription className="text-amber-700">
-                Ce tuteur n'a pas encore été vérifié par notre plateforme. G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions. Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification.
+                {t("Ce tuteur n'a pas encore été vérifié par notre plateforme. G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions. Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification.")}
               </AlertDescription>
             </Alert>
           )}
@@ -153,21 +155,21 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                           <CheckCircle2 className="h-5 w-5 text-primary" />
                         )}
                       </div>
-                      <p className="text-muted-foreground">German Tutor from {tutor.country}</p>
+                      <p className="text-muted-foreground"> {t("German Tutor from")} {tutor.country}</p>
 
                       <div className="mt-3 flex flex-wrap items-center gap-4">
                         <div className="flex items-center gap-1">
                           <Star className="h-5 w-5 fill-amber-400 text-amber-400" />
                           <span className="font-semibold">{tutor.rating}</span>
-                          <span className="text-muted-foreground">({tutor.reviewCount} reviews)</span>
+                          <span className="text-muted-foreground">({tutor.reviewCount} {t("reviews")})</span>
                         </div>
                         <div className="flex items-center gap-1 text-muted-foreground">
                           <Users className="h-4 w-4" />
-                          <span>{tutor.totalStudents} students</span>
+                          <span>{tutor.totalStudents} {t("students")}</span>
                         </div>
                         <div className="flex items-center gap-1 text-muted-foreground">
                           <BookOpen className="h-4 w-4" />
-                          <span>{tutor.totalLessons} lessons</span>
+                          <span>{tutor.totalLessons} {t("lessons")}</span>
                         </div>
                       </div>
 
@@ -200,9 +202,9 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
               {/* Tabs */}
               <Tabs defaultValue="about" className="mt-6">
                 <TabsList className="w-full justify-start">
-                  <TabsTrigger value="about">About</TabsTrigger>
-                  <TabsTrigger value="reviews">Reviews ({tutor.reviewCount})</TabsTrigger>
-                  <TabsTrigger value="availability">Availability</TabsTrigger>
+                  <TabsTrigger value="about">{t("About")}</TabsTrigger>
+                  <TabsTrigger value="reviews">{t("Reviews")} ({tutor.reviewCount})</TabsTrigger>
+                  <TabsTrigger value="availability">{t("Availability")}</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="about" className="mt-6">
@@ -215,7 +217,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
 
                       <div className="mt-6 grid gap-6 sm:grid-cols-2">
                         <div>
-                          <h4 className="mb-2 font-medium">Teaching Levels</h4>
+                          <h4 className="mb-2 font-medium">{t("Teaching Levels")}</h4>
                           <div className="flex flex-wrap gap-2">
                             {levelLabels.map((level) => (
                               <Badge key={level} variant="outline">
@@ -241,7 +243,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                   {/* Video Introduction */}
                   <Card className="mt-6">
                     <CardHeader>
-                      <CardTitle>Video Introduction</CardTitle>
+                      <CardTitle>{t("Video Introduction")}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="flex aspect-video items-center justify-center rounded-lg bg-muted">
@@ -249,7 +251,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                             <Play className="h-8 w-8 text-primary" />
                           </div>
-                          <p className="text-muted-foreground">Video introduction coming soon</p>
+                          <p className="text-muted-foreground">{t("Video introduction coming soon")}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -259,7 +261,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                 <TabsContent value="reviews" className="mt-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Student Reviews</CardTitle>
+                      <CardTitle>{t("Student Reviews")}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                       <ReviewForm tutorId={id} onSuccess={addReview} />
@@ -270,7 +272,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                         </div>
                       ) : reviews.length === 0 ? (
                         <div className="py-12 text-center text-muted-foreground">
-                          No reviews yet. Be the first to review!
+                          {t("No reviews yet. Be the first to review!")}
                         </div>
                       ) : (
                         <div className="space-y-6">
@@ -312,7 +314,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                 <TabsContent value="availability" className="mt-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Weekly Availability</CardTitle>
+                      <CardTitle>{t("Weekly Availability")}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3">
@@ -330,7 +332,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       </div>
                       <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
                         <Globe className="h-4 w-4" />
-                        Timezone: {tutor.timezone}
+                        {t("Timezone")}: {tutor.timezone}
                       </p>
                     </CardContent>
                   </Card>
@@ -356,7 +358,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                       onClick={handleContactTutor}
                     >
                       <MessageSquare className="h-4 w-4" />
-                      Send Message
+                      {t("Send Message")}
                     </Button>
                     {/* <Button variant="outline" className="w-full gap-2 bg-transparent" size="lg">
                       <Calendar className="h-4 w-4" />
@@ -370,7 +372,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                         <Clock className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Response Time</p>
+                        <p className="text-sm text-muted-foreground">{t("Response Time")}</p>
                         <p className="font-medium">Usually within 2 hours</p>
                       </div>
                     </div>
@@ -379,7 +381,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                         <Calendar className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Teaching Since</p>
+                        <p className="text-sm text-muted-foreground">{t("Teaching Since")}</p>
                         <p className="font-medium">{createdAtDate.getFullYear()}</p>
                       </div>
                     </div>
@@ -388,9 +390,9 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                         <CheckCircle2 className="h-5 w-5 text-accent" />
                       </div>
                       <div>
-                        <p className="text-sm text-muted-foreground">Status</p>
+                        <p className="text-sm text-muted-foreground">{t("Status")}</p>
                         <p className="font-medium">
-                          {tutor.isVerified ? "Verified Tutor" : "Pending Verification"}
+                          {tutor.isVerified ? t("Verified Tutor") : t("Pending Verification")}
                         </p>
                       </div>
                     </div>

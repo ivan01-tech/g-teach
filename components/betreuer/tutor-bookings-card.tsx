@@ -11,12 +11,13 @@ import { useAuth } from "@/hooks/use-auth"
 import { collection, query, where, getDocs } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import type { Booking } from "@/lib/types"
+import { useTranslations } from "next-intl"
 
 export function TutorBookingsCard() {
   const { user } = useAuth()
   const [bookings, setBookings] = useState<Booking[]>([])
   const [loading, setLoading] = useState(true)
-
+const t = useTranslations()
   useEffect(() => {
     if (!user?.uid) return
 
@@ -51,7 +52,7 @@ export function TutorBookingsCard() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Leçons Programmées</CardTitle>
+          <CardTitle>  Leçons Programmées</CardTitle>
         </CardHeader>
         <CardContent className="flex justify-center py-8">
           <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />

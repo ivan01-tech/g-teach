@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import {
   BookOpen,
@@ -43,6 +44,7 @@ interface MobileSidebarProps {
 export function MobileSidebar({ onClose }: MobileSidebarProps) {
   const pathname = usePathname()
   const { userProfile, logout } = useAuth()
+  const t = useTranslations()
 
   const navItems = userProfile?.role === "tutor" ? tutorNavItems : studentNavItems
 
@@ -73,7 +75,7 @@ export function MobileSidebar({ onClose }: MobileSidebarProps) {
               )}
             >
               <item.icon className="h-5 w-5" />
-              {item.label}
+              {t(item.label)}
             </Link>
           )
         })}
@@ -89,7 +91,7 @@ export function MobileSidebar({ onClose }: MobileSidebarProps) {
               {userProfile?.displayName || "User"}
             </p>
             <p className="truncate text-xs text-sidebar-foreground/70">
-              {userProfile?.role === "tutor" ? "Tutor" : "Student"}
+              {userProfile?.role === "tutor" ? t("Tutor") : t("Student")}
             </p>
           </div>
         </div>
@@ -102,7 +104,7 @@ export function MobileSidebar({ onClose }: MobileSidebarProps) {
           }}
         >
           <LogOut className="h-5 w-5" />
-          Sign Out
+          {t("Sign Out")}
         </Button>
       </div>
     </div>

@@ -3,6 +3,7 @@
 import { Bell, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useTranslations } from "next-intl"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +20,7 @@ import { Badge } from "@/components/ui/badge"
 export function BetreuerHeader() {
   const { user, logout } = useAuth()
   const { tutorProfile } = useTutorProfile()
+  const t = useTranslations()
 
   const getStatusColor = (status?: string) => {
     switch (status) {
@@ -34,11 +36,11 @@ export function BetreuerHeader() {
   const getStatusLabel = (status?: string) => {
     switch (status) {
       case "verified":
-        return "Verified"
+        return t("Verified")
       case "rejected":
-        return "Rejected"
+        return t("Rejected")
       default:
-        return "Pending"
+        return t("Pending")
     }
   }
 
@@ -51,10 +53,10 @@ export function BetreuerHeader() {
         </Button>
         <div className="hidden lg:block">
           <h1 className="text-lg font-semibold text-foreground">
-            Tutor Dashboard
+            {t("Tutor Dashboard")}
           </h1>
           <p className="text-sm text-muted-foreground">
-            Manage your profile and connect with students
+            {t("Manage your profile and connect with students")}
           </p>
         </div>
       </div>
@@ -74,7 +76,7 @@ export function BetreuerHeader() {
           <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
             2
           </span>
-          <span className="sr-only">Notifications</span>
+          <span className="sr-only">{t("Notifications")}</span>
         </Button>
 
         <DropdownMenu>
@@ -100,14 +102,14 @@ export function BetreuerHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/betreuer/profile">My Profile</Link>
+              <Link href="/betreuer/profile">{t("My Profile")}</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/betreuer/settings">Settings</Link>
+              <Link href="/betreuer/settings">{t("Settings")}</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => logout()}>
-              Sign Out
+              {t("Sign Out")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

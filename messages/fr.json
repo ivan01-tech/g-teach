@@ -142,5 +142,63 @@
       "terms": "Conditions d’utilisation",
       "cookies": "Politique de cookies"
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour",
+      "description": "Connectez-vous pour continuer votre apprentissage de l'allemand",
+      "submit": "Se connecter",
+      "loading": "Connexion en cours...",
+      "noAccount": "Pas encore de compte ?",
+      "signUp": "S'inscrire",
+      "success": "Connexion réussie",
+      "welcomeBack": "Bon retour, {role} !",
+      "error": "Email ou mot de passe invalide. Veuillez réessayer.",
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "register": {
+      "title": "Créez votre compte",
+      "description": "Commencez votre apprentissage de l'allemand dès aujourd'hui",
+      "iWantTo": "Je veux...",
+      "student": "Apprendre l'allemand",
+      "tutor": "Enseigner l'allemand",
+      "fullName": "Nom complet",
+      "email": "Email",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "submit": "Créer un compte",
+      "loading": "Création du compte...",
+      "terms": "En créant un compte, vous acceptez nos",
+      "tos": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "and": "et",
+      "alreadyAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter"
+    },
+    "common": {
+      "email": "Email",
+      "password": "Mot de passe",
+      "enterPassword": "Entrez votre mot de passe"
+    }
+  },
+  "dashboard": {
+    "nav": {
+      "dashboard": "Tableau de bord",
+      "findTutors": "Trouver des tuteurs",
+      "favorites": "Favoris",
+      "myMatchings": "Mes correspondances",
+      "messages": "Messages",
+      "profile": "Profil",
+      "settings": "Paramètres",
+      "myProfile": "Mon profil",
+      "availability": "Disponibilité",
+      "signOut": "Se déconnecter"
+    },
+    "common": {
+      "user": "Utilisateur",
+      "student": "Étudiant",
+      "tutor": "Tuteur",
+      "notifications": "Notifications"
+    }
   }
 }

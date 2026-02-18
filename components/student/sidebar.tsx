@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import {
   BookOpen,
@@ -40,6 +41,7 @@ const tutorNavItems = [
 export function DashboardSidebar() {
   const pathname = usePathname()
   const { user, logout } = useAuth()
+  const t = useTranslations()
 
   const navItems = user?.role === "tutor" ? tutorNavItems : studentNavItems
 
@@ -69,7 +71,7 @@ export function DashboardSidebar() {
               )}
             >
               <item.icon className="h-5 w-5" />
-              {item.label}
+              {t(item.label)}
             </Link>
           )
         })}
@@ -85,7 +87,7 @@ export function DashboardSidebar() {
               {user?.displayName || "User"}
             </p>
             <p className="truncate text-xs text-sidebar-foreground/70">
-              {user?.role === "tutor" ? "Tutor" : "Student"}
+              {user?.role === "tutor" ? t("Tutor") : t("Student")}
             </p>
           </div>
         </div>
@@ -95,7 +97,7 @@ export function DashboardSidebar() {
           onClick={() => logout()}
         >
           <LogOut className="h-5 w-5" />
-          Sign Out
+          {t("Sign Out")}
         </Button>
       </div>
     </aside>

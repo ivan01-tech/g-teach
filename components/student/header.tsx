@@ -24,12 +24,14 @@ import {
 import { MobileSidebar } from "./mobile-sidebar";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function DashboardHeader() {
   const { userProfile, user, logout } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const t = useTranslations("dashboard.nav");
+  const tCommon = useTranslations("dashboard.common");
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-border bg-background px-4 sm:px-6 lg:px-8">
@@ -62,7 +64,7 @@ export function DashboardHeader() {
         {/* Notifications */}
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="h-5 w-5" />
-          <span className="sr-only">Notifications</span>
+          <span className="sr-only">{tCommon("notifications")}</span>
           <span className="absolute right-1 top-1 flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
@@ -73,7 +75,7 @@ export function DashboardHeader() {
         <Button variant="ghost" size="icon" asChild>
           <Link href="/student/messages">
             <MessageSquare className="h-5 w-5" />
-            <span className="sr-only">Messages</span>
+            <span className="sr-only">{t("messages")}</span>
           </Link>
         </Button>
 
@@ -89,7 +91,7 @@ export function DashboardHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col">
-                <span>{user?.displayName || "User"}</span>
+                <span>{user?.displayName || tCommon("user")}</span>
                 <span className="text-xs font-normal text-muted-foreground">
                   {user?.email}
                 </span>
@@ -99,13 +101,13 @@ export function DashboardHeader() {
             <DropdownMenuItem asChild>
               <Link href="/student/profile" className="flex items-center">
                 <User className="mr-2 h-4 w-4" />
-                Profile
+                {t("profile")}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link href="/student/settings" className="flex items-center">
                 <Settings className="mr-2 h-4 w-4" />
-                Settings
+                {t("settings")}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
@@ -118,7 +120,7 @@ export function DashboardHeader() {
               className="text-destructive"
             >
               <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
+              {t("signOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

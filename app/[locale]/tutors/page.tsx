@@ -13,6 +13,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import type { Tutor } from "@/lib/types"
 
 import { useTutors } from "./use-tutors"
+import { useTranslations } from "next-intl"
 
 export interface FilterState {
   searchQuery: string
@@ -36,6 +37,7 @@ const initialFilters: FilterState = {
 
 export default function TutorsPage() {
   const { tutors, loading, error } = useTutors()
+  const t = useTranslations()
   const [filters, setFilters] = useState<FilterState>(initialFilters)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const searchParams = useSearchParams()
@@ -109,7 +111,7 @@ export default function TutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h1 className="text-3xl font-bold text-foreground sm:text-4xl">Find Your Perfect German Tutor</h1>
             <p className="mt-2 text-lg text-muted-foreground">
-              Browse {tutors.length || 'many'}+ certified tutors and start learning today
+              {t("Browse {tutors.length || 'many'}+ certified tutors and start learning today")}
             </p>
 
             {/* Search Bar */}
@@ -128,7 +130,7 @@ export default function TutorsPage() {
                 <SheetTrigger asChild>
                   <Button variant="outline" className="relative h-12 gap-2 lg:hidden bg-transparent">
                     <SlidersHorizontal className="h-5 w-5" />
-                    Filters
+                    {t("Filters")}
                     {activeFilterCount > 0 && (
                       <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground">
                         {activeFilterCount}
@@ -138,7 +140,7 @@ export default function TutorsPage() {
                 </SheetTrigger>
                 <SheetContent side="right" className="w-full overflow-y-auto sm:max-w-md">
                   <SheetHeader>
-                    <SheetTitle>Filters</SheetTitle>
+                    <SheetTitle>  {t("Filters")}</SheetTitle>
                   </SheetHeader>
                   <div className="mt-6">
                     <TutorFilters filters={filters} setFilters={setFilters} />
@@ -156,10 +158,10 @@ export default function TutorsPage() {
             <aside className="hidden w-72 shrink-0 lg:block">
               <div className="sticky top-24 rounded-xl border border-border bg-card p-6">
                 <div className="mb-4 flex items-center justify-between">
-                  <h2 className="font-semibold text-card-foreground">Filters</h2>
+                  <h2 className="font-semibold text-card-foreground">{t("Filters")}</h2>
                   {activeFilterCount > 0 && (
                     <Button variant="ghost" size="sm" onClick={clearFilters} className="h-auto p-0 text-sm">
-                      Clear all
+                      {t("Clear all")}
                     </Button>
                   )}
                 </div>
@@ -189,7 +191,7 @@ export default function TutorsPage() {
                     className="gap-1 lg:hidden"
                   >
                     <X className="h-4 w-4" />
-                    Clear filters
+                    {t("Clear filters")}
                   </Button>
                 )}
               </div>
@@ -211,7 +213,7 @@ export default function TutorsPage() {
                   <p className="text-lg font-medium text-card-foreground">No tutors found</p>
                   <p className="mt-1 text-muted-foreground">Try adjusting your filters</p>
                   <Button variant="outline" className="mt-4 bg-transparent" onClick={clearFilters}>
-                    Clear all filters
+                    {t("Clear all filters")}
                   </Button>
                 </div>
               ) : (

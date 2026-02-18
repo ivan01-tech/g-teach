@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { UserRole } from "@/lib/roles";
 import { useRegister } from "./use-register";
+import { useTranslations } from "next-intl";
 
 export default function RegisterPage() {
   const {
@@ -42,6 +43,8 @@ export default function RegisterPage() {
     handleSubmit,
   } = useRegister();
 
+  const t = useTranslations()
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
       <Link href="/" className="mb-8 flex items-center gap-2">
@@ -53,9 +56,9 @@ export default function RegisterPage() {
 
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Create Your Account</CardTitle>
+          <CardTitle className="text-2xl">{t("Create Your Account")}</CardTitle>
           <CardDescription>
-            Start your German learning journey today
+            {t("Start your German learning journey today")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -68,7 +71,7 @@ export default function RegisterPage() {
             )}
 
             <div className="space-y-3">
-              <Label>I want to...</Label>
+              <Label>{t("I want to...")}</Label>
               <RadioGroup
                 value={role}
                 onValueChange={(value) => setRole(value as UserRole)}
@@ -85,7 +88,7 @@ export default function RegisterPage() {
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                   >
                     <GraduationCap className="mb-2 h-6 w-6" />
-                    <span className="text-sm font-medium">Learn German</span>
+                    <span className="text-sm font-medium">{t("Learn German")}</span>
                   </Label>
                 </div>
                 <div>
@@ -99,18 +102,18 @@ export default function RegisterPage() {
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                   >
                     <Users className="mb-2 h-6 w-6" />
-                    <span className="text-sm font-medium">Teach German</span>
+                    <span className="text-sm font-medium">{t("Teach German")}</span>
                   </Label>
                 </div>
               </RadioGroup>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
+              <Label htmlFor="name">{t("Full Name")}</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Your full name"
+                placeholder={t("Your full name")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -118,11 +121,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("Email")}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder={t("you@example.com")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -130,11 +133,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t("Password")}</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Create a password"
+                placeholder={t("Create a password")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -142,11 +145,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword">{t("Confirm Password")}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
-                placeholder="Confirm your password"
+                placeholder={t("Confirm your password")}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -157,33 +160,33 @@ export default function RegisterPage() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating account...
+                  {t("Creating account...")}
                 </>
               ) : (
-                "Create Account"
+                t("Create Account")
               )}
             </Button>
 
             <p className="text-center text-xs text-muted-foreground">
-              By creating an account, you agree to our{" "}
+              {t("By creating an account, you agree to our")}{" "}
               <Link href="/terms" className="text-primary hover:underline">
-                Terms of Service
+                {t("Terms of Service")}
               </Link>{" "}
-              and{" "}
+              {t("and")}{" "}
               <Link href="/privacy" className="text-primary hover:underline">
-                Privacy Policy
+                {t("Privacy Policy")}
               </Link>
             </p>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+            {t("Already have an account?")}{" "}
             <Link
               href="/auth/login"
               className="font-medium text-primary hover:underline"
             >
-              Sign in
+              {t("Sign in")}
             </Link>
           </p>
         </CardFooter>

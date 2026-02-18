@@ -13,35 +13,35 @@ export default function AboutPage() {
   const values = [
     {
       icon: Shield,
-      title: "Quality",
+      title: t("Quality"),
       description:
-        "We verify every tutor to ensure students learn from qualified professionals. No compromises on credentials.",
+        t("We verify every tutor to ensure students learn from qualified professionals. No compromises on credentials."),
     },
     {
       icon: Target,
-      title: "Results",
+      title: t("Results"),
       description:
-        "We measure success by outcomes. Our platform is designed to help students achieve their language goals.",
+        t("We measure success by outcomes. Our platform is designed to help students achieve their language goals."),
     },
     {
       icon: Heart,
-      title: "Accessibility",
+      title: t("Accessibility"),
       description:
-        "Quality German education should be available to everyone, regardless of location or background.",
+        t("Quality German education should be available to everyone, regardless of location or background."),
     },
     {
       icon: Globe,
-      title: "Connection",
+      title: t("Connection"),
       description:
-        "We bridge the gap between learners and teachers, creating meaningful educational relationships.",
+         t("We bridge the gap between learners and teachers, creating meaningful educational relationships."),
     },
   ]
 
   const stats = [
-    { label: "Students", value: "10,000+" },
-    { label: "Verified Tutors", value: "500+" },
-    { label: "Lessons Completed", value: "50,000+" },
-    { label: "Countries", value: "40+" },
+    { label: t("Students"), value: "10,000+" },
+    { label: t("Verified Tutors"), value: "500+" },
+    { label: t("Lessons Completed"), value: "50,000+" },
+    { label: t("Countries"), value: "40+" },
   ]
 
   return (
@@ -183,7 +183,7 @@ export default function AboutPage() {
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/auth/register">Get Started</Link>
+                  <Link href="/auth/register"> {t("Get Started")}</Link>
                 </Button>
                 <Button
                   size="lg"

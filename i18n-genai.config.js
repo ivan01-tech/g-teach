@@ -9,7 +9,7 @@ export default {
 	skipDefaultLocale: false,
 
 	// File where extracted keys are stored
-	storageTranslationsFile: 'messages',
+	// storageTranslationsFile: 'messages',
 
 	// Supported locales
 	locales: [
@@ -21,7 +21,7 @@ export default {
 	matches: ['.ts', '.tsx', '.js', '.jsx'],
 
 	// Folder to scan for source files
-	sourceFolder: './',
+	sourceFolder: './components',
 
 	// Max keys per AI request
 	maxKeysPerRequest: 300,

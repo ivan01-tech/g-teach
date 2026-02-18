@@ -4,6 +4,7 @@ import React from "react"
 
 import { useState } from "react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { useAuthDispatch } from "@/hooks/use-auth-dispatch"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,6 +18,7 @@ export default function ForgotPasswordPage() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
   const { sendPasswordReset, loading } = useAuthDispatch()
+  const t = useTranslations()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,9 +48,9 @@ export default function ForgotPasswordPage() {
 
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">Reset Password</CardTitle>
+          <CardTitle className="text-2xl">{t("Reset Password")}</CardTitle>
           <CardDescription>
-            Enter your email address and we&apos;ll send you a link to reset your password
+            {t("Enter your email address and we'll send you a link to reset your password")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -56,7 +58,7 @@ export default function ForgotPasswordPage() {
             <Alert className="border-accent bg-accent/10">
               <CheckCircle2 className="h-4 w-4 text-accent" />
               <AlertDescription className="text-accent font-medium">
-                Password reset email sent! If you don't see it, please check your **spam folder**.
+                {t("Password reset email sent! If you don't see it, please check your spam folder.")}
               </AlertDescription>
             </Alert>
           ) : (
@@ -69,11 +71,11 @@ export default function ForgotPasswordPage() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t("Email")}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder={t("you@example.com")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -84,10 +86,10 @@ export default function ForgotPasswordPage() {
                 {loading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
+                    {t("Sending...")}
                   </>
                 ) : (
-                  "Send Reset Link"
+                  t("Send Reset Link")
                 )}
               </Button>
             </form>
@@ -99,7 +101,7 @@ export default function ForgotPasswordPage() {
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to sign in
+            {t("Back to sign in")}
           </Link>
         </CardFooter>
       </Card>

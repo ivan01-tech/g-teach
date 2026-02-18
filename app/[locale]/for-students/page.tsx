@@ -1,3 +1,5 @@
+"use client"
+
 import { Header } from "@/components/landing/header"
 import { Footer } from "@/components/landing/footer"
 import { Button } from "@/components/ui/button"
@@ -21,39 +23,39 @@ export default function ForStudentsPage() {
   const benefits = [
     {
       icon: ShieldCheck,
-      title: "Verified Tutors",
+      title: t("Verified Tutors"),
       description:
-        "Every tutor on G-Teach undergoes a rigorous verification process. We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals.",
+        t("Every tutor on G-Teach undergoes a rigorous verification process. We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals."),
     },
     {
       icon: Target,
-      title: "Targeted Exam Preparation",
+      title: t("Targeted Exam Preparation"),
       description:
-        "Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams. Our tutors specialize in exam strategies and help you succeed.",
+        t("Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams. Our tutors specialize in exam strategies and help you succeed."),
     },
     {
       icon: UserCheck,
-      title: "Personalized Learning",
+      title: t("Personalized Learning"),
       description:
-        "No generic courses. Get one-on-one attention tailored to your level, goals, and learning style. Your tutor adapts to your needs.",
+        t("No generic courses. Get one-on-one attention tailored to your level, goals, and learning style. Your tutor adapts to your needs."),
     },
     {
       icon: Clock,
-      title: "Save Time and Money",
+      title: t("Save Time and Money"),
       description:
-        "Skip the endless search for reliable tutors. Our platform connects you with the right match quickly, so you can focus on learning, not searching.",
+        t("Skip the endless search for reliable tutors. Our platform connects you with the right match quickly, so you can focus on learning, not searching."),
     },
     {
       icon: Award,
-      title: "Higher Success Rates",
+      title: t("Higher Success Rates"),
       description:
-        "Students who prepare with G-Teach tutors consistently achieve better exam results. Structured guidance leads to measurable progress.",
+        t("Students who prepare with G-Teach tutors consistently achieve better exam results. Structured guidance leads to measurable progress."),
     },
     {
       icon: TrendingUp,
-      title: "Track Your Progress",
+      title: t("Track Your Progress"),
       description:
-        "Monitor your learning journey with clear milestones. See how far you've come and what's next on your path to fluency.",
+        t("Monitor your learning journey with clear milestones. See how far you've come and what's next on your path to fluency.")  ,
     },
   ]
 
@@ -69,21 +71,21 @@ export default function ForStudentsPage() {
   const testimonials = [
     {
       quote:
-        "I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor. The targeted preparation made all the difference.",
+        t("I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor. The targeted preparation made all the difference."),
       author: "Sarah M.",
       role: "Student from France",
       rating: 5,
     },
     {
       quote:
-        "Finding a qualified German tutor used to be so difficult. G-Teach made it easy, and now I'm preparing for my C1 exam with confidence.",
+        t("Finding a qualified German tutor used to be so difficult. G-Teach made it easy, and now I'm preparing for my C1 exam with confidence."),
       author: "Ahmed K.",
       role: "Student from Egypt",
       rating: 5,
     },
     {
       quote:
-        "The personalized approach helped me overcome my fear of speaking German. My tutor adapted every lesson to my needs.",
+        t("The personalized approach helped me overcome my fear of speaking German. My tutor adapted every lesson to my needs.")  ,
       author: "Maria L.",
       role: "Student from Brazil",
       rating: 5,
@@ -108,10 +110,10 @@ export default function ForStudentsPage() {
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button size="lg" asChild>
-                  <Link href="/tutors">Find a Tutor</Link>
+                  <Link href="/tutors">{t("Find a Tutor")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="bg-transparent">
-                  <Link href="/how-it-works">How It Works</Link>
+                  <Link href="/how-it-works">{t("How It Works")}</Link>
                 </Button>
               </div>
             </div>
@@ -123,7 +125,7 @@ export default function ForStudentsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Why Choose G-Teach?
+                {t("Why Choose G-Teach?")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
                 {t(
@@ -140,10 +142,10 @@ export default function ForStudentsPage() {
                       <benefit.icon className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">
-                      {benefit.title}
+                      {t(benefit.title)}
                     </h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">
-                      {benefit.description}
+                      {t(benefit.description)}
                     </p>
                   </CardContent>
                 </Card>

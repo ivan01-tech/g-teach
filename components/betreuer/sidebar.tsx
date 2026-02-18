@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
@@ -36,6 +37,7 @@ interface BetreuerSidebarProps {
 export function BetreuerSidebar({ className, onNavigate }: BetreuerSidebarProps) {
   const pathname = usePathname()
   const { logout } = useAuth()
+  const t = useTranslations()
 
   const handleLogout = async () => {
     await logout()
@@ -54,7 +56,7 @@ export function BetreuerSidebar({ className, onNavigate }: BetreuerSidebarProps)
         </div>
         <span className="text-lg font-semibold">G-Teach</span>
         <span className="ml-auto rounded bg-sidebar-accent px-2 py-0.5 text-xs font-medium text-sidebar-accent-foreground">
-          Betreuer
+          {t("Betreuer")}
         </span>
       </div>
 
@@ -75,7 +77,7 @@ export function BetreuerSidebar({ className, onNavigate }: BetreuerSidebarProps)
               )}
             >
               <item.icon className="h-5 w-5" />
-              {item.name}
+              {t(item.name)}
             </Link>
           )
         })}
@@ -88,7 +90,7 @@ export function BetreuerSidebar({ className, onNavigate }: BetreuerSidebarProps)
           onClick={handleLogout}
         >
           <LogOut className="h-5 w-5" />
-          Sign Out
+          {t("Sign Out")}
         </Button>
       </div>
     </aside>

@@ -1,8 +1,11 @@
+"use client"
+
 import { Header } from "@/components/landing/header"
 import { Footer } from "@/components/landing/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import {
   UserPlus,
   Search,
@@ -15,6 +18,7 @@ import {
 } from "lucide-react"
 
 export default function HowItWorksPage() {
+  const t = useTranslations()
   const studentSteps = [
     {
       icon: UserPlus,
@@ -86,12 +90,12 @@ export default function HowItWorksPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                How G-Teach Works
+                {t("How G-Teach Works")}
               </h1>
               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                A simple, structured process to connect learners with qualified
-                German tutors. Whether you want to learn or teach, getting
-                started takes just minutes.
+                {t(
+                  "A simple, structured process to connect learners with qualified German tutors. Whether you want to learn or teach, getting started takes just minutes."
+                )}
               </p>
             </div>
           </div>
@@ -102,14 +106,15 @@ export default function HowItWorksPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-                For Students
+                {t("For Students")}
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Start Learning German
+                {t("Start Learning German")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Four simple steps to begin your German learning journey with
-                expert guidance.
+                {t(
+                  "Four simple steps to begin your German learning journey with expert guidance."
+                )}
               </p>
             </div>
 
@@ -129,10 +134,10 @@ export default function HowItWorksPage() {
                       </span>
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">
-                      {step.title}
+                      {t(step.title)}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      {step.description}
+                      {t(step.description)}
                     </p>
                     {index < studentSteps.length - 1 && (
                       <ArrowRight className="absolute -right-4 top-1/2 hidden h-8 w-8 -translate-y-1/2 text-muted-foreground/30 lg:block" />
@@ -144,7 +149,7 @@ export default function HowItWorksPage() {
 
             <div className="mt-12 text-center">
               <Button size="lg" asChild>
-                <Link href="/tutors">Find a Tutor</Link>
+                <Link href="/tutors">{t("Find a Tutor")}</Link>
               </Button>
             </div>
           </div>
@@ -155,14 +160,15 @@ export default function HowItWorksPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="inline-flex items-center rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent">
-                For Tutors
+                {t("For Tutors")}
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Start Teaching on G-Teach
+                {t("Start Teaching on G-Teach")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Join our platform and connect with motivated German learners
-                from around the world.
+                {t(
+                  "Join our platform and connect with motivated German learners from around the world."
+                )}
               </p>
             </div>
 
@@ -182,10 +188,10 @@ export default function HowItWorksPage() {
                       </span>
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">
-                      {step.title}
+                      {t(step.title)}
                     </h3>
                     <p className="text-sm text-muted-foreground">
-                      {step.description}
+                      {t(step.description)}
                     </p>
                     {index < tutorSteps.length - 1 && (
                       <ArrowRight className="absolute -right-4 top-1/2 hidden h-8 w-8 -translate-y-1/2 text-muted-foreground/30 lg:block" />
@@ -197,7 +203,7 @@ export default function HowItWorksPage() {
 
             <div className="mt-12 text-center">
               <Button size="lg" asChild>
-                <Link href="/auth/register">Become a Tutor</Link>
+                <Link href="/auth/register">{t("Become a Tutor")}</Link>
               </Button>
             </div>
           </div>
@@ -208,15 +214,16 @@ export default function HowItWorksPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-2xl bg-primary px-8 py-12 text-center lg:px-16 lg:py-16">
               <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
-                Ready to Get Started?
+                {t("Ready to Get Started?")}
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-                Join thousands of students and tutors already using G-Teach to
-                achieve their German language goals.
+                {t(
+                  "Join thousands of students and tutors already using G-Teach to achieve their German language goals."
+                )}
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/auth/register">Create Free Account</Link>
+                  <Link href="/auth/register">{t("Create Free Account")}</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -224,7 +231,7 @@ export default function HowItWorksPage() {
                   className="border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
                   asChild
                 >
-                  <Link href="/contact">Contact Us</Link>
+                  <Link href="/contact">{t("Contact Us")}</Link>
                 </Button>
               </div>
             </div>

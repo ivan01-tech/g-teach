@@ -1,8 +1,11 @@
+"use client"
+
 import { Header } from "@/components/landing/header"
 import { Footer } from "@/components/landing/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import {
   Eye,
   Users,
@@ -15,6 +18,7 @@ import {
 } from "lucide-react"
 
 export default function ForTutorsPage() {
+  const t = useTranslations()
   const benefits = [
     {
       icon: Eye,
@@ -98,19 +102,19 @@ export default function ForTutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                Advantages for Tutors
+                {t("Advantages for Tutors")}
               </h1>
               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                Join G-Teach and connect with motivated German learners. Build
-                your teaching practice on a professional platform designed for
-                success.
+                {t(
+                  "Join G-Teach and connect with motivated German learners. Build your teaching practice on a professional platform designed for success."
+                )}
               </p>
               <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
                 <Button size="lg" asChild>
-                  <Link href="/auth/register">Become a Tutor</Link>
+                  <Link href="/auth/register">{t("Become a Tutor")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild className="bg-transparent">
-                  <Link href="/how-it-works">How It Works</Link>
+                  <Link href="/how-it-works">{t("How It Works")}</Link>
                 </Button>
               </div>
             </div>
@@ -122,10 +126,10 @@ export default function ForTutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                Why Teach on G-Teach?
+                {t("Why Teach on G-Teach?")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                We provide the platform and students. You provide the expertise.
+                {t("We provide the platform and students. You provide the expertise.")}
               </p>
             </div>
 
@@ -137,10 +141,10 @@ export default function ForTutorsPage() {
                       <benefit.icon className="h-6 w-6 text-accent" />
                     </div>
                     <h3 className="mb-2 text-lg font-semibold text-foreground">
-                      {benefit.title}
+                      {t(benefit.title)}
                     </h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">
-                      {benefit.description}
+                      {t(benefit.description)}
                     </p>
                   </CardContent>
                 </Card>
@@ -154,10 +158,10 @@ export default function ForTutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                How to Join
+                {t("How to Join")}
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-                Get started in four simple steps.
+                {t("Get started in four simple steps.")}
               </p>
             </div>
 
@@ -173,10 +177,10 @@ export default function ForTutorsPage() {
                     )}
                   </div>
                   <h3 className="mb-2 text-lg font-semibold text-foreground">
-                    {step.title}
+                    {t(step.title)}
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    {step.description}
+                    {t(step.description)}
                   </p>
                 </div>
               ))}
@@ -190,36 +194,38 @@ export default function ForTutorsPage() {
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  What We Look For
+                  {t("What We Look For")}
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  G-Teach maintains high standards to ensure quality for our
-                  students. We welcome tutors who meet these criteria:
+                  {t(
+                    "G-Teach maintains high standards to ensure quality for our students. We welcome tutors who meet these criteria:"
+                  )}
                 </p>
                 <ul className="mt-8 space-y-4">
                   {requirements.map((req) => (
                     <li key={req} className="flex items-start gap-3">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                      <span className="text-muted-foreground">{req}</span>
+                      <span className="text-muted-foreground">{t(req)}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="rounded-2xl bg-muted/50 p-8 lg:p-12">
                 <h3 className="text-xl font-semibold text-foreground">
-                  Ready to Apply?
+                  {t("Ready to Apply?")}
                 </h3>
                 <p className="mt-4 text-muted-foreground">
-                  Join our community of professional German tutors and start
-                  connecting with motivated students today.
+                  {t(
+                    "Join our community of professional German tutors and start connecting with motivated students today."
+                  )}
                 </p>
                 <div className="mt-6">
                   <Button size="lg" asChild>
-                    <Link href="/auth/register">Start Application</Link>
+                    <Link href="/auth/register">{t("Start Application")}</Link>
                   </Button>
                 </div>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Application review typically takes 2-3 business days.
+                  {t("Application review typically takes 2-3 business days.")}
                 </p>
               </div>
             </div>
@@ -231,15 +237,16 @@ export default function ForTutorsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-balance text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
-                Share Your Expertise
+                {t("Share Your Expertise")}
               </h2>
               <p className="mt-4 text-lg text-primary-foreground/80">
-                G-Teach is more than a tutoring platform. It's a bridge between
-                competence, discipline, and the future.
+                {t(
+                  "G-Teach is more than a tutoring platform. It's a bridge between competence, discipline, and the future."
+                )}
               </p>
               <div className="mt-8">
                 <Button size="lg" variant="secondary" asChild>
-                  <Link href="/auth/register">Become a Tutor</Link>
+                  <Link href="/auth/register">{t("Become a Tutor")}</Link>
                 </Button>
               </div>
             </div>
