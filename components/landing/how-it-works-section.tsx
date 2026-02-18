@@ -9,7 +9,7 @@ const stepsData = [
 ]
 
 export function HowItWorksSection() {
-  const t = useTranslations("howItWorks")
+  const t = useTranslations("howItWorks1")
 
   return (
     <section id="how-it-works" className="py-16 sm:py-24">

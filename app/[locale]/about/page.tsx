@@ -56,7 +56,7 @@ export default function AboutPage() {
                 {t("About G-Teach")}
               </h1>
               <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                {t("German & Teach - A platform born from understanding that success in language learning requires more than motivation. It requires qualified guidance.")}
+                {t("German & Teach - A platform born from understanding that success in language learning requires more than motivation It requires qualified guidance.")}
               </p>
             </div>
           </div>

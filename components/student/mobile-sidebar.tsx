@@ -75,7 +75,7 @@ export function MobileSidebar({ onClose }: MobileSidebarProps) {
               )}
             >
               <item.icon className="h-5 w-5" />
-              {t(item.label)}
+              {(item.label)}
             </Link>
           )
         })}
