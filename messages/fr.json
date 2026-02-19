@@ -91,59 +91,58 @@
       }
     }
   },
- "examPrep": {
-  "title": "Prepare for Official German Exams",
-  "description": "Our tutors specialize in preparing students for all major German language certifications Achieve your target score with expert guidance.",
-  "findTutors": "Find {exam} Tutors",
-  "exams": {
-    "goethe": {
-      "description": "The most recognized German language certificate worldwide.",
-      "features": [
-        "Speaking practice",
-        "Writing workshops",
-        "Mock exams",
-        "Grammar review"
-      ]
-    },
-    "telc": {
-      "description": "European Language Certificates recognized by employers and institutions.",
-      "features": [
-        "Job-focused preparation",
-        "Listening exercises",
-        "Reading comprehension",
-        "Certificate coaching"
-      ]
-    },
-    "testdaf": {
-      "description": "Required for university admission in Germany.",
-      "features": [
-        "Academic German",
-        "University preparation",
-        "Test strategies",
-        "Time management"
-      ]
-    },
-    "ecl": {
-      "description": "An internationally recognized European language certificate focused on practical communication skills.",
-      "features": [
-        "Balanced skills training (Speaking, Writing, Listening, Reading)",
-        "Task-based speaking preparation",
-        "Writing structure and coherence practice",
-        "Exam simulation under real conditions"
-      ]
-    },
-    "osd": {
-      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
-      "features": [
-        "Austrian German exposure",
-        "Integrated skills training",
-        "Oral exam preparation",
-        "Practical communication strategies"
-      ]
+  "examPrep": {
+    "title": "Préparez les examens officiels d’allemand",
+    "description": "Nos tuteurs se spécialisent dans la préparation des étudiants à toutes les principales certifications linguistiques allemandes Atteignez votre score cible avec un accompagnement expert.",
+    "findTutors": "Trouver des tuteurs {exam}",
+    "exams": {
+      "goethe": {
+        "description": "Le certificat de langue allemande le plus reconnu au monde.",
+        "features": [
+          "Pratique orale",
+          "Ateliers d’écriture",
+          "Examens blancs",
+          "Révision grammaticale"
+        ]
+      },
+      "telc": {
+        "description": "Certificats de langue européens reconnus par les employeurs et institutions.",
+        "features": [
+          "Préparation orientée emploi",
+          "Exercices d’écoute",
+          "Compréhension écrite",
+          "Coaching pour la certification"
+        ]
+      },
+      "testdaf": {
+        "description": "Requis pour l’admission universitaire en Allemagne.",
+        "features": [
+          "Allemand académique",
+          "Préparation universitaire",
+          "Stratégies d’examen",
+          "Gestion du temps"
+        ]
+      },
+      "ecl": {
+        "description": "Un certificat de langue européen reconnu internationalement axé sur les compétences de communication pratique.",
+        "features": [
+          "Entraînement équilibré des compétences (oral, écrit, écoute, lecture)",
+          "Préparation orale basée sur des tâches",
+          "Pratique de la structure et de la cohérence en écrit",
+          "Simulation d’examen en conditions réelles"
+        ]
+      },
+      "osd": {
+        "description": "Un certificat d’allemand reconnu par l’État autrichien, accepté pour les études, le travail et les démarches de résidence.",
+        "features": [
+          "Immersion dans l’allemand autrichien",
+          "Entraînement intégré des compétences",
+          "Préparation à l’examen oral",
+          "Stratégies de communication pratique"
+        ]
+      }
     }
-  }
-}
-,
+  },
   "cta": {
     "title": "Prêt à commencer votre voyage ?",
     "description": "Rejoignez des milliers d’étudiants qui ont atteint leurs objectifs de langue allemande avec G-Teach Votre première leçon bénéficie d'une garantie de satisfaction.",
@@ -162,271 +161,493 @@
       "cookies": "Politique de cookies"
     }
   },
-  "auth": {
-    "login": {
-      "title": "Bon retour",
-      "description": "Connectez-vous pour continuer votre apprentissage de l'allemand",
-      "submit": "Se connecter",
-      "loading": "Connexion en cours...",
-      "noAccount": "Pas encore de compte ?",
-      "signUp": "S'inscrire",
-      "success": "Connexion réussie",
-      "welcomeBack": "Bon retour, {role} !",
-      "error": "Email ou mot de passe invalide Veuillez réessayer.",
-      "forgotPassword": "Mot de passe oublié ?"
-    },
-    "register": {
+  "howItWorksPage": {
+    "pageTitle": "Comment fonctionne G-Teach",
+    "pageSubtitle": "Un processus simple et structuré pour connecter les apprenants à des professeurs d’allemand qualifiés. Que vous souhaitiez apprendre ou enseigner, démarrer ne prend que quelques minutes.",
+    "forStudents": "Pour les élèves",
+    "startLearningTitle": "Commencer à apprendre l’allemand",
+    "startLearningSubtitle": "Quatre étapes simples pour débuter votre apprentissage de l’allemand avec un accompagnement d’expert.",
+    "studentStep1": {
       "title": "Créez votre compte",
-      "description": "Commencez votre apprentissage de l'allemand dès aujourd'hui",
-      "iWantTo": "Je veux...",
-      "student": "Apprendre l'allemand",
-      "tutor": "Enseigner l'allemand",
-      "fullName": "Nom complet",
-      "email": "Email",
-      "password": "Mot de passe",
-      "confirmPassword": "Confirmer le mot de passe",
-      "submit": "Créer un compte",
-      "loading": "Création du compte...",
-      "terms": "En créant un compte, vous acceptez nos",
-      "tos": "Conditions d'utilisation",
-      "privacy": "Politique de confidentialité",
-      "and": "et",
-      "alreadyAccount": "Vous avez déjà un compte ?",
-      "signIn": "Se connecter"
+      "desc": "Inscrivez-vous gratuitement et complétez votre profil Parlez-nous de votre niveau actuel et de vos objectifs d'apprentissage."
     },
-    "common": {
-      "email": "Email",
-      "password": "Mot de passe",
-      "enterPassword": "Entrez votre mot de passe"
+    "studentStep2": {
+      "title": "Trouvez votre tuteur",
+      "desc": "Parcourez nos tuteurs, filtrez par spécialisation, lisez les avis et trouvez celui qui vous correspond."
+    },
+    "studentStep3": {
+      "title": "Échangez par chat",
+      "desc": "Contactez directement les professeurs pour présenter vos objectifs, poser vos questions et planifier votre première séance. Sans engagement."
+    },
+    "studentStep4": {
+      "title": "Commencez à apprendre",
+      "desc": "Démarrez votre parcours personnalisé avec des cours structurés, une préparation aux examens et un suivi régulier de vos progrès."
+    },
+    "findTutorButton": "Trouver un professeur",
+    "forTutors": "Pour les professeurs",
+    "startTeachingTitle": "Commencer à enseigner sur G-Teach",
+    "startTeachingSubtitle": "Rejoignez notre plateforme et mettez-vous en relation avec des apprenants motivés du monde entier.",
+    "tutorStep1": {
+      "title": "Inscrivez-vous en tant que professeur",
+      "desc": "Créez votre compte professeur en indiquant vos qualifications, votre expérience pédagogique et vos spécialisations."
+    },
+    "tutorStep2": {
+      "title": "Soumettez vos documents",
+      "desc": "Téléchargez vos certificats, diplômes et CV. Notre équipe vérifie toutes les pièces pour garantir la qualité de la plateforme."
+    },
+    "tutorStep3": {
+      "title": "Obtenez la vérification",
+      "desc": "Une fois validé, votre profil devient visible pour les élèves. Le badge vérifié inspire confiance et attire plus d’élèves."
+    },
+    "tutorStep4": {
+      "title": "Développez votre activité",
+      "desc": "Connectez-vous avec des élèves motivés, gérez votre emploi du temps et construisez votre activité d’enseignement sur une plateforme professionnelle."
+    },
+    "becomeTutorButton": "Devenir professeur",
+    "ctaTitle": "Prêt à commencer ?",
+    "ctaSubtitle": "Rejoignez des milliers d’élèves et de professeurs qui utilisent déjà G-Teach pour atteindre leurs objectifs en allemand.",
+    "ctaCreateAccount": "Créer un compte gratuit",
+    "ctaContactUs": "Nous contacter"
+  },
+  "about": {
+    "pageTitle": "À propos de G-Teach",
+    "heroSubtitle": "German & Teach – Une plateforme née du constat que la réussite en apprentissage linguistique demande plus que de la motivation. Elle exige un encadrement qualifié.",
+    "ourStory": "Notre histoire",
+    "whyWeBuilt": "Pourquoi nous avons créé G-Teach",
+    "observation": "G-Teach est né d’un constat simple : beaucoup d’apprenants d’allemand échouent non pas par manque de motivation, mais par manque d’accès à un encadrement qualifié.",
+    "findingTutorHard": "Trouver un professeur d’allemand fiable et expérimenté est difficile.",
+    "studentsWaste": "Les élèves perdent du temps et de l’argent dans un apprentissage non structuré,",
+    "tutorsStruggle": "tandis que les professeurs qualifiés peinent à trouver des élèves sérieux.",
+    "weCreated": "Nous avons créé G-Teach pour résoudre ce problème. Notre plateforme",
+    "structuresLearning": "structure l’apprentissage de l’allemand,",
+    "betweenStudentsTutors": "sécurise la relation entre élèves et professeurs et accompagne chaque utilisateur",
+    "towardResults": "vers des résultats concrets.",
+    "ourMission": "Notre mission",
+    "missionText": "Structurer l’apprentissage de l’allemand, sécuriser les mises en relation avec des professeurs qualifiés et guider chaque utilisateur vers une réussite mesurable.",
+    "stats": {
+      "students": "Élèves",
+      "verifiedTutors": "Professeurs vérifiés",
+      "lessonsCompleted": "Leçons réalisées",
+      "countries": "Pays"
+    },
+    "ourValues": "Nos valeurs",
+    "valuesSubtitle": "Les principes qui guident tout ce que nous faisons chez G-Teach.",
+    "valueQuality": {
+      "title": "Qualité",
+      "desc": "Nous vérifions chaque professeur pour garantir que les élèves apprennent auprès de professionnels qualifiés. Aucun compromis sur les compétences."
+    },
+    "valueResults": {
+      "title": "Résultats",
+      "desc": "Nous mesurons la réussite par les résultats. Notre plateforme est conçue pour aider les élèves à atteindre leurs objectifs linguistiques."
+    },
+    "valueAccessibility": {
+      "title": "Accessibilité",
+      "desc": "Un enseignement de qualité en allemand doit être accessible à tous, quel que soit le lieu ou le parcours."
+    },
+    "valueConnection": {
+      "title": "Connexion",
+      "desc": "Nous rapprochons apprenants et enseignants pour créer des relations pédagogiques significatives."
+    },
+    "ourVision": "Notre vision",
+    "visionIntro": "G-Teach n’est pas seulement un site de cours particuliers. C’est un pont entre compétence, discipline et avenir.",
+    "visionWorld": "Nous imaginons un monde où chaque apprenant d’allemand a accès à",
+    "visionQualified": "un enseignement de qualité, où les professeurs peuvent développer une activité durable,",
+    "visionPractices": "et où les barrières linguistiques ne constituent plus",
+    "visionOpportunity": "un obstacle aux opportunités.",
+    "joinCommunity": "Rejoignez la communauté G-Teach",
+    "joinSubtitle": "Que vous appreniez l’allemand ou que vous l’enseigniez, nous sommes là pour accompagner votre parcours.",
+    "getStarted": "Commencer",
+    "contactUs": "Nous contacter"
+  },
+  "contact": {
+    "pageTitle": "Contactez-nous",
+    "pageSubtitle": "Une question, une suggestion ou une demande de partenariat ? Nous serions ravis de vous lire. Notre équipe répond généralement sous 24 heures.",
+    "sendMessageTitle": "Envoyez-nous un message",
+    "sendMessageSubtitle": "Remplissez le formulaire ci-dessous et nous vous répondrons dès que possible.",
+    "firstNameLabel": "Prénom",
+    "firstNamePlaceholder": "Jean",
+    "lastNameLabel": "Nom",
+    "lastNamePlaceholder": "Dupont",
+    "emailLabel": "Adresse email",
+    "emailPlaceholder": "jean@example.com",
+    "reasonLabel": "Motif du contact",
+    "reasonPlaceholder": "Sélectionnez un motif",
+    "reasons": {
+      "general": "Demande générale",
+      "student": "Support élève",
+      "tutor": "Support professeur",
+      "partnership": "Partenariat",
+      "press": "Presse & Médias",
+      "other": "Autre"
+    },
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "Comment pouvons-nous vous aider ?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Dites-nous en plus sur votre demande...",
+    "sendButton": "Envoyer le message",
+    "sendingButton": "Envoi en cours...",
+    "successTitle": "Message envoyé !",
+    "successMessage": "Merci de nous avoir contactés. Nous répondrons à votre demande sous 24 heures.",
+    "sendAnother": "Envoyer un autre message",
+    "otherWaysTitle": "Autres moyens de nous contacter",
+    "otherWaysSubtitle": "Choisissez la meilleure façon de nous joindre selon vos besoins.",
+    "faqTitle": "Questions fréquentes",
+    "faqSubtitle": "Avant de nous contacter, vous trouverez peut-être la réponse dans notre section FAQ.",
+    "viewFaq": "Voir la FAQ",
+    "contactCards": {
+      "email": {
+        "title": "Email",
+        "description": "Pour les demandes générales"
+      },
+      "student": {
+        "title": "Support élèves",
+        "description": "Aide pour votre apprentissage"
+      },
+      "tutor": {
+        "title": "Support professeurs",
+        "description": "Aide pour votre enseignement"
+      },
+      "partnership": {
+        "title": "Partenariats",
+        "description": "Collaborations professionnelles"
+      }
     }
   },
-  "dashboard": {
-    "nav": {
-      "dashboard": "Tableau de bord",
-      "findTutors": "Trouver des tuteurs",
-      "favorites": "Favoris",
-      "myMatchings": "Mes correspondances",
-      "messages": "Messages",
-      "profile": "Profil",
-      "settings": "Paramètres",
-      "myProfile": "Mon profil",
-      "availability": "Disponibilité",
-      "signOut": "Se déconnecter"
+  "faq": {
+    "title": "Questions fréquentes",
+    "description": "Retrouvez les réponses aux questions les plus courantes sur le fonctionnement de la plateforme, la vérification des profils, les responsabilités et la protection des données.",
+    "questions": {
+      "howItWorks": {
+        "question": "Comment fonctionne la plateforme ?",
+        "answer": "Notre plateforme met en relation des élèves et des répétiteurs qualifiés.\n\nLe processus est simple :\n\n- L’élève crée un compte.\n- Il recherche un répétiteur selon la matière, le niveau et la localisation.\n- Il consulte les profils disponibles.\n- Il entre en contact via le chat intégré.\n\nLes cours se déroulent en dehors de la plateforme (en ligne ou en présentiel selon accord).\n\nNous facilitons la mise en relation, mais nous ne dispensons pas de cours directement."
+      },
+      "credibility": {
+        "question": "Comment garantissez-vous la crédibilité des répétiteurs ?",
+        "answer": "La crédibilité est une priorité pour nous.\n\nChaque répétiteur doit :\n\n- Créer un profil détaillé\n- Renseigner ses compétences\n- Fournir des preuves justificatives (diplômes, attestations, certificats, expériences)\n\nNotre équipe :\n\n- Analyse les documents soumis\n- Vérifie la cohérence des informations\n- Valide ou refuse le profil\n\nSi les informations sont conformes → Le compte obtient le statut « Profil Vérifié »\nSinon → Le compte reste « Non vérifié »"
+      },
+      "verifiedStatus": {
+        "question": "Quelle est la différence entre un profil vérifié et non vérifié ?",
+        "answer": "**Profil vérifié**\n\n- Identité contrôlée\n- Compétences justifiées\n- Badge de confiance visible sur le profil\n\n**Profil non vérifié**\n\n- Informations déclaratives uniquement\n- Aucune validation officielle effectuée\n- Utilisation à la discrétion de l’élève\n\nNous recommandons fortement de privilégier les profils vérifiés."
+      },
+      "responsibility": {
+        "question": "La plateforme est-elle responsable en cas de problème ?",
+        "answer": "La plateforme facilite uniquement la mise en relation.\n\nNous ne sommes **pas responsables** :\n\n- Du contenu des cours\n- Des paiements effectués en dehors de la plateforme\n- Des accords passés entre utilisateurs\n\nCependant, nous pouvons :\n\n- Suspendre un compte\n- Retirer un profil\n- Enquêter en cas de signalement"
+      },
+      "pricing": {
+        "question": "La plateforme est-elle payante ?",
+        "answer": "Actuellement, la plateforme est **entièrement gratuite** pour tous les utilisateurs (élèves et répétiteurs).\n\nÀ l’avenir, certains services premium pourraient être proposés (meilleure visibilité, statistiques avancées, mise en avant des profils, etc.)."
+      },
+      "payments": {
+        "question": "Comment se déroulent les paiements ?",
+        "answer": "Les paiements se font **directement** entre l’élève et le répétiteur.\n\nLa plateforme ne gère pas encore les transactions financières."
+      },
+      "reporting": {
+        "question": "Comment signaler un problème ou un comportement inapproprié ?",
+        "answer": "Chaque utilisateur peut :\n\n- Signaler un profil\n- Signaler un message\n- Contacter le support\n\nAprès analyse, nous pouvons :\n\n- Avertir le compte\n- Suspendre temporairement\n- Supprimer définitivement le profil"
+      },
+      "dataProtection": {
+        "question": "Mes données sont-elles protégées ?",
+        "answer": "Oui.\n\nNous protégeons les données personnelles conformément aux normes de sécurité.\n\nLes documents soumis pour vérification **ne sont pas visibles publiquement**.\n\nSeul le statut « Vérifié » apparaît sur le profil."
+      },
+      "unverifiedAccess": {
+        "question": "Pourquoi certains profils sont accessibles même s’ils ne sont pas vérifiés ?",
+        "answer": "Nous voulons permettre à tous les utilisateurs de rejoindre la plateforme rapidement.\n\nCependant :\n\n- Les profils non vérifiés ne sont **pas recommandés**\n- Ils peuvent être moins visibles dans les résultats\n- Ils ne bénéficient pas du badge de confiance"
+      },
+      "postChat": {
+        "question": "Que se passe-t-il après un échange via le chat ?",
+        "answer": "Après le premier contact :\n\n- Les deux parties discutent des modalités\n- Elles conviennent du format (en ligne ou présentiel)\n- Elles organisent les séances\n\nElles peuvent laisser un avis (si cette fonctionnalité est activée plus tard).\n\nLa plateforme peut suivre :\n\n- Le nombre de mises en relation\n- Les interactions\n- Les statistiques globales (côté admin)"
+      }
     },
-    "common": {
-      "user": "Utilisateur",
-      "student": "Étudiant",
-      "tutor": "Tuteur",
-      "notifications": "Notifications"
+    "transparencyMessage": {
+      "title": "Message de transparence important",
+      "content": "La plateforme est un outil de connexion et **non** un organisme de formation.\n\nNous encourageons les utilisateurs à :\n\n- Vérifier les profils\n- Discuter clairement des conditions\n- Formaliser leurs accords"
     }
   },
-  "title": "",
-  "description": "",
-  "getStarted": "Commencer",
-  "browse": "Parcourir",
-  "findTutors": "Trouver un professeur",
-  "learn": "Apprendre",
-  "exams": "Examens",
-  "company": "Entreprise",
-  "allRightsReserved": "Tous droits réservés",
-  "howItWorks": "Comment ça marche",
-  "forStudents": "Pour les élèves",
-  "forTutors": "Pour les professeurs",
-  "about": "À propos",
-  "login": "Connexion",
-  "contact": "Contact",
-  "badge": "Badge",
-  "start": "Démarrer",
-  "subtitle": "",
-  "About G-Teach": "À propos de G-Teach",
-  "German & Teach - A platform born from understanding that success in language learning requires more than motivation It requires qualified guidance": "German & Teach – Une plateforme née du constat que la réussite en apprentissage linguistique demande plus que de la motivation Elle exige un encadrement qualifié.",
-  "Our Story": "Notre histoire",
-  "Why We Built G-Teach": "Pourquoi nous avons créé G-Teach",
-  "G-Teach was born from a simple observation: many German learners fail not because they lack motivation, but because they lack access to qualified guidance": "G-Teach est né d’un constat simple : beaucoup d’apprenants d’allemand échouent non pas par manque de motivation, mais par manque d’accès à un encadrement qualifié.",
-  "Finding a reliable, experienced German tutor is challenging": "Trouver un professeur d’allemand fiable et expérimenté est difficile.",
-  "Students waste time and money on unstructured learning,": "Les élèves perdent du temps et de l’argent dans un apprentissage non structuré,",
-  "while qualified tutors struggle to find serious students": "tandis que les professeurs qualifiés peinent à trouver des élèves sérieux.",
-  "We created G-Teach to solve this problem Our platform": "Nous avons créé G-Teach pour résoudre ce problème Notre plateforme",
-  "structures the learning of German, secures the connection": "structure l’apprentissage de l’allemand, sécurise la relation",
-  "between students and tutors, and accompanies each user": "entre élèves et professeurs et accompagne chaque utilisateur",
-  "toward concrete results": "vers des résultats concrets.",
-  "Our Mission": "Notre mission",
-  "To structure German language learning, secure qualified tutoring connections, and guide every user toward measurable success": "Structurer l’apprentissage de l’allemand, sécuriser les mises en relation avec des professeurs qualifiés et guider chaque utilisateur vers une réussite mesurable.",
-  "Our Values": "Nos valeurs",
-  "The principles that guide everything we do at G-Teach": "Les principes qui guident tout ce que nous faisons chez G-Teach.",
-  "Our Vision": "Notre vision",
-  "G-Teach is not just a tutoring website It's a bridge between competence, discipline, and the future": "G-Teach n’est pas seulement un site de cours particuliers C’est un pont entre compétence, discipline et avenir.",
-  "We envision a world where every German learner has access to": "Nous imaginons un monde où chaque apprenant d’allemand a accès à",
-  "qualified instruction, where tutors can build sustainable": "un enseignement de qualité, où les professeurs peuvent développer une activité durable,",
-  "teaching practices, and where language barriers no longer": "et où les barrières linguistiques ne constituent plus",
-  "stand in the way of opportunity": "un obstacle aux opportunités.",
-  "Join the G-Teach Community": "Rejoignez la communauté G-Teach",
-  "Whether you're learning German or teaching it, we're here to support your journey": "Que vous appreniez l’allemand ou que vous l’enseigniez, nous sommes là pour accompagner votre parcours.",
-  "Contact Us": "Contactez-nous",
-  "Advantages for Students": "Avantages pour les élèves",
-  "Learn German with confidence G-Teach connects you with verified tutors who specialize in exam preparation and personalized instruction": "Apprenez l’allemand en toute confiance G-Teach vous met en relation avec des professeurs vérifiés spécialisés dans la préparation aux examens et l’enseignement personnalisé.",
-  "We built G-Teach to solve the problems students face when learning German": "Nous avons créé G-Teach pour résoudre les problèmes rencontrés par les élèves qui apprennent l’allemand.",
-  "Our tutors specialize in preparing students for all major German language certifications": "Nos professeurs sont spécialisés dans la préparation à toutes les grandes certifications d’allemand.",
-  "What Students Say": "Ce qu’en disent les élèves",
-  "Real success stories from students who achieved their goals with G-Teach": "De vraies histoires de réussite d’élèves ayant atteint leurs objectifs grâce à G-Teach",
-  "Start Your German Learning Journey Today": "Commencez votre apprentissage de l’allemand aujourd’hui",
-  "Join thousands of successful students who found their perfect tutor on G-Teach": "Rejoignez des milliers d’élèves qui ont trouvé leur professeur idéal sur G-Teach.",
-  "Create Free Account": "Créer un compte gratuit",
-  "Quality": "Qualité",
-  "We verify every tutor to ensure students learn from qualified professionals No compromises on credentials": "Nous vérifions chaque professeur pour garantir que les élèves apprennent auprès de professionnels qualifiés Aucun compromis sur les compétences.",
-  "Results": "Résultats",
-  "We measure success by outcomes Our platform is designed to help students achieve their language goals": "Nous mesurons la réussite par les résultats Notre plateforme est conçue pour aider les élèves à atteindre leurs objectifs linguistiques.",
-  "Accessibility": "Accessibilité",
-  "Quality German education should be available to everyone, regardless of location or background": "Un enseignement de qualité en allemand doit être accessible à tous, quel que soit le lieu ou le parcours.",
-  "Connection": "Connexion",
-  "We bridge the gap between learners and teachers, creating meaningful educational relationships": "Nous rapprochons apprenants et enseignants pour créer des relations pédagogiques significatives.",
-  "Students": "Élèves",
-  "Verified Tutors": "Professeurs vérifiés",
-  "Lessons Completed": "Leçons réalisées",
-  "Countries": "Pays",
-  "Get Started": "Commencer",
-  "Reset Password": "Réinitialiser le mot de passe",
-  "Enter your email address and we'll send you a link to reset your password": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe",
-  "Password reset email sent! If you don't see it, please check your spam folder": "Email de réinitialisation envoyé ! Si vous ne le voyez pas, vérifiez votre dossier spam.",
-  "Email": "Email",
-  "Sending": "Envoi en cours...",
-  "Send Reset Link": "Envoyer le lien",
-  "Back to sign in": "Retour à la connexion",
-  "success": "succès",
-  "welcomeBack": "Ravi de vous revoir",
-  "error": "erreur",
-  "forgotPassword": "Mot de passe oublié",
-  "enterPassword": "Entrez votre mot de passe",
-  "loading": "Chargement",
-  "submit": "Valider",
-  "noAccount": "Pas encore de compte ?",
-  "signUp": "S’inscrire",
-  "You are not authorized to access this page": "Vous n’êtes pas autorisé à accéder à cette page",
-  "Login": "Se connecter",
-  "Create Your Account": "Créez votre compte",
-  "Start your German learning journey today": "Commencez votre apprentissage de l’allemand aujourd’hui",
-  "I want to": "Je veux...",
-  "Learn German": "Apprendre l’allemand",
-  "Teach German": "Enseigner l’allemand",
-  "Full Name": "Nom complet",
-  "Your full name": "Votre nom complet",
-  "Password": "Mot de passe",
-  "Create a password": "Créez un mot de passe",
-  "Confirm Password": "Confirmer le mot de passe",
-  "Confirm your password": "Confirmez votre mot de passe",
-  "Creating account": "Création du compte...",
-  "Create Account": "Créer le compte",
-  "By creating an account, you agree to our": "En créant un compte, vous acceptez nos",
-  "Terms of Service": "Conditions d’utilisation",
-  "and": "et notre",
-  "Privacy Policy": "Politique de confidentialité",
-  "Already have an account?": "Vous avez déjà un compte ?",
-  "Sign in": "Se connecter",
-  "Have a question, suggestion, or partnership inquiry? We'd love to hear from you Our team typically responds within 24 hours": "Une question, une suggestion ou une demande de partenariat ? Nous serions ravis de vous lire Notre équipe répond généralement sous 24 heures.",
-  "Send Us a Message": "Envoyez-nous un message",
-  "Fill out the form below and we'll get back to you as soon as possible": "Remplissez le formulaire ci-dessous et nous vous répondrons dès que possible.",
-  "Message Sent!": "Message envoyé !",
-  "Thank you for contacting us We'll respond to your inquiry within 24 hours": "Merci de nous avoir contactés Nous répondrons à votre demande sous 24 heures.",
-  "Send Another Message": "Envoyer un autre message",
-  "First Name": "Prénom",
-  "John": "Jean",
-  "Last Name": "Nom",
-  "Doe": "Dupont",
-  "Email Address": "Adresse email",
-  "Reason for Contact": "Motif du contact",
-  "Select a reason": "Sélectionnez un motif",
-  "Subject": "Sujet",
-  "How can we help?": "Comment pouvons-nous vous aider ?",
-  "Message": "Message",
-  "Tell us more about your inquiry": "Dites-nous en plus sur votre demande...",
-  "Send Message": "Envoyer le message",
-  "Other Ways to Reach Us": "Autres moyens de nous contacter",
-  "Choose the best way to get in touch based on your needs": "Choisissez la meilleure façon de nous contacter selon vos besoins.",
-  "Frequently Asked Questions": "Questions fréquentes",
-  "Before reaching out, you might find your answer in our FAQ section": "Avant de nous contacter, vous trouverez peut-être la réponse dans notre section FAQ.",
-  "View FAQ": "Voir la FAQ",
-  "Every tutor on G-Teach undergoes a rigorous verification process We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals": "Chaque professeur sur G-Teach passe par un processus de vérification rigoureux Nous contrôlons diplômes, certificats et expérience pédagogique pour garantir un enseignement de qualité.",
-  "Targeted Exam Preparation": "Préparation ciblée aux examens",
-  "Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams Our tutors specialize in exam strategies and help you succeed": "Préparez spécifiquement les examens Goethe-Zertifikat, TELC, ECL, TestDaF et DSH Nos professeurs maîtrisent les stratégies d’examen et vous aident à réussir.",
-  "Personalized Learning": "Apprentissage personnalisé",
-  "No generic courses Get one-on-one attention tailored to your level, goals, and learning style Your tutor adapts to your needs": "Pas de cours génériques Bénéficiez d’un accompagnement individuel adapté à votre niveau, vos objectifs et votre style d’apprentissage.",
-  "Save Time and Money": "Gagnez du temps et de l’argent",
-  "Skip the endless search for reliable tutors Our platform connects you with the right match quickly, so you can focus on learning, not searching": "Évitez les recherches interminables Notre plateforme vous met rapidement en contact avec le bon professeur.",
-  "Higher Success Rates": "Meilleurs taux de réussite",
-  "Students who prepare with G-Teach tutors consistently achieve better exam results Structured guidance leads to measurable progress": "Les élèves préparés avec G-Teach obtiennent systématiquement de meilleurs résultats Un encadrement structuré = progrès mesurables.",
-  "Track Your Progress": "Suivez vos progrès",
-  "Monitor your learning journey with clear milestones See how far you've come and what's next on your path to fluency": "Suivez votre parcours avec des étapes claires Voyez où vous en êtes et ce qu’il reste à faire pour atteindre la fluidité.",
-  "I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor The targeted preparation made all the difference": "J’ai réussi mon Goethe B2 du premier coup grâce à mon professeur G-Teach La préparation ciblée a tout changé.",
-  "Finding a qualified German tutor used to be so difficult G-Teach made it easy, and now I'm preparing for my C1 exam with confidence": "Trouver un bon prof d’allemand était très compliqué G-Teach a simplifié les choses, et je prépare maintenant mon C1 en toute confiance.",
-  "The personalized approach helped me overcome my fear of speaking German My tutor adapted every lesson to my needs": "L’approche personnalisée m’a aidé à surmonter ma peur de parler allemand Mon prof adaptait chaque cours à mes besoins.",
-  "Find a Tutor": "Trouver un professeur",
-  "How It Works": "Comment ça fonctionne",
-  "Why Choose G-Teach?": "Pourquoi choisir G-Teach ?",
-  "Advantages for Tutors": "Avantages pour les professeurs",
-  "Join G-Teach and connect with motivated German learners Build your teaching practice on a professional platform designed for success": "Rejoignez G-Teach et mettez-vous en relation avec des apprenants motivés Développez votre activité sur une plateforme professionnelle pensée pour la réussite.",
-  "Become a Tutor": "Devenir professeur",
-  "Why Teach on G-Teach?": "Pourquoi enseigner sur G-Teach ?",
-  "We provide the platform and students You provide the expertise": "Nous apportons la plateforme et les élèves Vous apportez votre expertise.",
-  "How to Join": "Comment rejoindre",
-  "Get started in four simple steps": "Commencez en quatre étapes simples.",
-  "What We Look For": "Ce que nous recherchons",
-  "G-Teach maintains high standards to ensure quality for our students We welcome tutors who meet these criteria:": "G-Teach maintient des standards élevés pour garantir la qualité Nous accueillons les professeurs qui remplissent ces critères :",
-  "Ready to Apply?": "Prêt à postuler ?",
-  "Join our community of professional German tutors and start connecting with motivated students today": "Rejoignez notre communauté de professeurs d’allemand professionnels et commencez à enseigner à des élèves motivés dès aujourd’hui.",
-  "Start Application": "Démarrer la candidature",
-  "Application review typically takes 2-3 business days": "L’examen des candidatures prend généralement 2 à 3 jours ouvrés.",
-  "Share Your Expertise": "Partagez votre expertise",
-  "G-Teach is more than a tutoring platform It's a bridge between competence, discipline, and the future": "G-Teach est plus qu’une plateforme de cours : c’est un pont entre compétence, discipline et avenir.",
-  "How G-Teach Works": "Comment fonctionne G-Teach",
-  "A simple, structured process to connect learners with qualified German tutors Whether you want to learn or teach, getting started takes just minutes": "Un processus simple et structuré pour connecter apprenants et professeurs qualifiés d’allemand Que vous vouliez apprendre ou enseigner, c’est prêt en quelques minutes.",
-  "For Students": "Pour les élèves",
-  "Start Learning German": "Commencer à apprendre l’allemand",
-  "Four simple steps to begin your German learning journey with expert guidance": "Quatre étapes simples pour débuter votre apprentissage de l’allemand avec un accompagnement d’expert.",
-  "For Tutors": "Pour les professeurs",
-  "Start Teaching on G-Teach": "Commencer à enseigner sur G-Teach",
-  "Join our platform and connect with motivated German learners from around the world": "Rejoignez notre plateforme et enseignez à des apprenants motivés du monde entier.",
-  "Ready to Get Started?": "Prêt à commencer ?",
-  "Join thousands of students and tutors already using G-Teach to achieve their German language goals": "Rejoignez les milliers d’élèves et professeurs qui utilisent déjà G-Teach pour atteindre leurs objectifs en allemand.",
-  "Go Back": "Retour",
-  "Attention : Profil non vérifié": "Attention : Profil non vérifié",
-  "Ce tuteur n'a pas encore été vérifié par notre plateforme G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification": "Ce professeur n’a pas encore été vérifié par notre plateforme G-TEACH décline toute responsabilité en cas de problème lors de vos échanges ou transactions Pour plus de sécurité, nous vous recommandons de choisir en priorité les professeurs avec le badge de vérification.",
-  "German Tutor from": "Professeur d’allemand de",
+  "forStudents": {
+    "pageTitle": "Avantages pour les élèves",
+    "pageSubtitle": "Apprenez l’allemand en toute confiance. G-Teach vous met en relation avec des professeurs vérifiés spécialisés dans la préparation aux examens et l’enseignement personnalisé.",
+    "findTutorButton": "Trouver un professeur",
+    "howItWorksButton": "Comment ça fonctionne",
+    "whyChooseTitle": "Pourquoi choisir G-Teach ?",
+    "whyChooseSubtitle": "Nous avons créé G-Teach pour résoudre les problèmes rencontrés par les élèves qui apprennent l’allemand.",
+    "benefits": {
+      "verifiedTutors": {
+        "title": "Professeurs vérifiés",
+        "desc": "Chaque professeur sur G-Teach passe par un processus de vérification rigoureux. Nous contrôlons diplômes, certificats et expérience pédagogique pour garantir un enseignement de qualité."
+      },
+      "targetedPrep": {
+        "title": "Préparation ciblée aux examens",
+        "desc": "Préparez spécifiquement les examens Goethe-Zertifikat, TELC, ECL, TestDaF et DSH. Nos professeurs maîtrisent les stratégies d’examen et vous aident à réussir."
+      },
+      "personalized": {
+        "title": "Apprentissage personnalisé",
+        "desc": "Pas de cours génériques. Bénéficiez d’un accompagnement individuel adapté à votre niveau, vos objectifs et votre style d’apprentissage."
+      },
+      "saveTimeMoney": {
+        "title": "Gagnez du temps et de l’argent",
+        "desc": "Évitez les recherches interminables. Notre plateforme vous met rapidement en contact avec le bon professeur."
+      },
+      "higherSuccess": {
+        "title": "Meilleurs taux de réussite",
+        "desc": "Les élèves préparés avec G-Teach obtiennent systématiquement de meilleurs résultats. Un encadrement structuré = progrès mesurables."
+      },
+      "trackProgress": {
+        "title": "Suivez vos progrès",
+        "desc": "Suivez votre parcours avec des étapes claires. Voyez où vous en êtes et ce qu’il reste à faire pour atteindre la fluidité."
+      }
+    },
+    "examPrepTitle": "Préparation aux examens",
+    "examPrepSubtitle": "Nos professeurs sont spécialisés dans la préparation à toutes les grandes certifications d’allemand.",
+    "findExamTutorsButton": "Trouver des professeurs pour examens",
+    "exams": [
+      {
+        "key": "goethe",
+        "name": "Goethe-Zertifikat",
+        "levels": "A1 – C2"
+      },
+      {
+        "key": "telc",
+        "name": "TELC",
+        "levels": "A1 – C2"
+      },
+      {
+        "key": "testdaf",
+        "name": "TestDaF",
+        "levels": "B2 – C1"
+      },
+      {
+        "key": "dsh",
+        "name": "DSH",
+        "levels": "B2 – C2"
+      },
+      {
+        "key": "ecl",
+        "name": "ECL",
+        "levels": "A2 – C1"
+      },
+      {
+        "key": "osd",
+        "name": "ÖSD",
+        "levels": "A1 – C2"
+      }
+    ],
+    "testimonialsTitle": "Ce qu’en disent les élèves",
+    "testimonialsSubtitle": "De vraies histoires de réussite d’élèves ayant atteint leurs objectifs grâce à G-Teach.",
+    "testimonials": [
+      {
+        "key": "sarah",
+        "quote": "J’ai réussi mon Goethe B2 du premier coup grâce à mon professeur G-Teach. La préparation ciblée a tout changé.",
+        "author": "Sarah M.",
+        "role": "Élève en France"
+      },
+      {
+        "key": "ahmed",
+        "quote": "Trouver un bon prof d’allemand était très compliqué. G-Teach a simplifié les choses, et je prépare maintenant mon C1 en toute confiance.",
+        "author": "Ahmed K.",
+        "role": "Élève en Égypte"
+      },
+      {
+        "key": "maria",
+        "quote": "L’approche personnalisée m’a aidé à surmonter ma peur de parler allemand. Mon prof adaptait chaque cours à mes besoins.",
+        "author": "Maria L.",
+        "role": "Élève au Brésil"
+      }
+    ],
+    "ctaTitle": "Commencez votre apprentissage de l’allemand aujourd’hui",
+    "ctaSubtitle": "Rejoignez des milliers d’élèves qui ont trouvé leur professeur idéal sur G-Teach.",
+    "createAccountButton": "Créer un compte gratuit"
+  },
+  "forTutors": {
+    "pageTitle": "Avantages pour les professeurs",
+    "pageSubtitle": "Rejoignez G-Teach et mettez-vous en relation avec des apprenants motivés d’allemand. Développez votre activité sur une plateforme professionnelle pensée pour la réussite.",
+    "becomeTutorButton": "Devenir professeur",
+    "howItWorksButton": "Comment ça fonctionne",
+    "whyTeachTitle": "Pourquoi enseigner sur G-Teach ?",
+    "whyTeachSubtitle": "Nous apportons la plateforme et les élèves. Vous apportez votre expertise.",
+    "benefits": {
+      "visibility": {
+        "title": "Visibilité professionnelle",
+        "desc": "Mettez en avant vos qualifications, votre expérience et votre style d’enseignement sur un profil dédié. Touchez des élèves qui recherchent activement des professeurs d’allemand."
+      },
+      "motivatedStudents": {
+        "title": "Élèves motivés",
+        "desc": "Connectez-vous avec des apprenants sérieux ayant des objectifs précis : préparation aux examens, développement professionnel ou croissance personnelle. Plus de temps perdu avec des élèves non engagés."
+      },
+      "structuredPlatform": {
+        "title": "Plateforme structurée",
+        "desc": "Concentrez-vous sur l’enseignement : nous gérons le reste. Messagerie intégrée, gestion des disponibilités et du profil pour que vous puissiez vous focaliser sur votre métier."
+      },
+      "credentialValidation": {
+        "title": "Validation des compétences",
+        "desc": "Votre statut vérifié inspire confiance. Les élèves savent qu’ils choisissent un professionnel qualifié, ce qui se traduit par plus de réservations."
+      },
+      "incomeOpportunities": {
+        "title": "Opportunités de revenus",
+        "desc": "Fixez vos tarifs et vos disponibilités. Construisez une activité d’enseignement durable avec un flux régulier d’élèves en quête de qualité."
+      },
+      "flexibleSchedule": {
+        "title": "Horaires flexibles",
+        "desc": "Enseignez quand cela vous convient. Gérez vos créneaux et acceptez les élèves qui correspondent à votre emploi du temps et à vos préférences pédagogiques."
+      }
+    },
+    "howToJoinTitle": "Comment rejoindre",
+    "howToJoinSubtitle": "Commencez en quatre étapes simples.",
+    "steps": [
+      {
+        "key": "createProfile",
+        "number": "01",
+        "title": "Créez votre profil",
+        "desc": "Inscrivez-vous et construisez votre profil professeur avec vos qualifications, votre expérience pédagogique et vos spécialisations."
+      },
+      {
+        "key": "submitDocuments",
+        "number": "02",
+        "title": "Soumettez vos documents",
+        "desc": "Téléchargez vos certificats, diplômes et CV. Nous vérifions toutes les pièces pour garantir la qualité de la plateforme."
+      },
+      {
+        "key": "getVerified",
+        "number": "03",
+        "title": "Obtenez la vérification",
+        "desc": "Notre équipe examine votre candidature. Une fois approuvé, votre profil devient visible pour les élèves."
+      },
+      {
+        "key": "startTeaching",
+        "number": "04",
+        "title": "Commencez à enseigner",
+        "desc": "Connectez-vous avec des élèves, planifiez vos séances et développez votre activité sur une plateforme professionnelle."
+      }
+    ],
+    "whatWeLookForTitle": "Ce que nous recherchons",
+    "whatWeLookForSubtitle": "G-Teach maintient des standards élevés pour garantir la qualité. Nous accueillons les professeurs qui remplissent ces critères :",
+    "requirements": [
+      "Certificat d’enseignement ou diplôme pertinent",
+      "Expérience avérée dans l’enseignement de l’allemand",
+      "Photo de profil claire et bio professionnelle",
+      "Communication réactive avec les élèves",
+      "Engagement envers la réussite des élèves"
+    ],
+    "readyToApplyTitle": "Prêt à postuler ?",
+    "readyToApplySubtitle": "Rejoignez notre communauté de professeurs d’allemand professionnels et commencez à enseigner à des élèves motivés dès aujourd’hui.",
+    "startApplicationButton": "Démarrer la candidature",
+    "reviewTime": "L’examen des candidatures prend généralement 2 à 3 jours ouvrés.",
+    "shareExpertiseTitle": "Partagez votre expertise",
+    "shareExpertiseSubtitle": "G-Teach est plus qu’une plateforme de cours : c’est un pont entre compétence, discipline et avenir.",
+    "becomeTutorCta": "Devenir professeur"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "back": "Retour",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "email": "Email",
+    "password": "Mot de passe",
+    "close": "Fermer"
+  },
+  "login": {
+    "title": "Bon retour",
+    "description": "Connectez-vous pour continuer votre apprentissage de l’allemand",
+    "submit": "Se connecter",
+    "loading": "Connexion en cours...",
+    "noAccount": "Pas encore de compte ?",
+    "signUp": "S’inscrire",
+    "success": "Connexion réussie",
+    "welcomeBack": "Bon retour, {role} !",
+    "error": "Email ou mot de passe invalide. Veuillez réessayer.",
+    "forgotPassword": "Mot de passe oublié ?",
+    "enterPassword": "Entrez votre mot de passe"
+  },
+  "register": {
+    "title": "Créez votre compte",
+    "description": "Commencez votre apprentissage de l’allemand dès aujourd’hui",
+    "iWantTo": "Je veux...",
+    "student": "Apprendre l’allemand",
+    "tutor": "Enseigner l’allemand",
+    "fullName": "Nom complet",
+    "yourFullName": "Votre nom complet",
+    "email": "Email",
+    "password": "Mot de passe",
+    "createPassword": "Créez un mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "confirmYourPassword": "Confirmez votre mot de passe",
+    "submit": "Créer un compte",
+    "creating": "Création du compte...",
+    "termsIntro": "En créant un compte, vous acceptez nos",
+    "terms": "Conditions d’utilisation",
+    "and": "et",
+    "privacy": "Politique de confidentialité",
+    "alreadyAccount": "Vous avez déjà un compte ?",
+    "signIn": "Se connecter"
+  },
+  "forgot-password": {
+    "title": "Réinitialiser le mot de passe",
+    "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe",
+    "emailPlaceholder": "vous@exemple.com",
+    "sendButton": "Envoyer le lien de réinitialisation",
+    "sending": "Envoi en cours...",
+    "successTitle": "Email de réinitialisation envoyé !",
+    "successMessage": "Si vous ne le voyez pas, vérifiez votre dossier spam.",
+    "errorMessage": "Échec de l'envoi de l'email de réinitialisation. Vérifiez votre adresse email.",
+    "backToLogin": "Retour à la connexion"
+  },
+  "tutorSearch": {
+    "pageTitle": "Trouvez votre professeur d’allemand idéal",
+    "pageSubtitle": "Parcourez {count} professeurs certifiés et commencez à apprendre dès aujourd’hui",
+    "searchPlaceholder": "Rechercher par nom, spécialisation ou mot-clé...",
+    "filters": "Filtres",
+    "clearAll": "Tout effacer",
+    "clearFilters": "Effacer les filtres",
+    "clearAllFilters": "Supprimer tous les filtres",
+    "loadingTutors": "Chargement des professeurs...",
+    "errorLoading": "Oups ! Une erreur est survenue",
+    "tryAgain": "Réessayer",
+    "noTutorsFound": "Aucun professeur trouvé",
+    "noTutorsTryAdjust": "Essayez de modifier vos filtres",
+    "showingTutors": "Affichage de <strong>{count}</strong> professeurs",
+    "showingTutorsLoading": "Chargement des professeurs...",
+    "showingTutorsError": "Erreur lors du chargement"
+  },
+  "tutor-profile": {
+    "attentionNonVerified": "Attention : Profil non vérifié",
+    "nonVerifiedWarning": "Ce tuteur n’a pas encore été vérifié par notre plateforme. G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions. Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification.",
+    "germanTutorFrom": "Professeur d’allemand de",
+    "reviews": "avis",
+    "students": "élèves",
+    "lessons": "leçons",
+    "about": "À propos",
+    "reviewsTab": "Avis ({count})",
+    "availability": "Disponibilités",
+    "teachingLevels": "Niveaux enseignés",
+    "videoIntroduction": "Vidéo de présentation",
+    "videoComingSoon": "Vidéo de présentation bientôt disponible",
+    "studentReviews": "Avis des élèves",
+    "noReviewsYet": "Pas encore d’avis. Soyez le premier à en laisser un !",
+    "weeklyAvailability": "Disponibilités hebdomadaires",
+    "timezone": "Fuseau horaire",
+    "responseTime": "Temps de réponse",
+    "usuallyWithin": "Généralement sous 2 heures",
+    "teachingSince": "Enseigne depuis",
+    "status": "Statut",
+    "verifiedTutor": "Professeur vérifié",
+    "pendingVerification": "En attente de vérification",
+    "sendMessage": "Envoyer un message",
+    "goBack": "Retour"
+  },
+
+
+ "tutor-card" :{
+  "nonVerified": "Non vérifié - Prudence",
   "reviews": "avis",
   "students": "élèves",
   "lessons": "leçons",
-  "About": "À propos",
-  "Reviews": "Avis",
-  "Availability": "Disponibilités",
-  "Teaching Levels": "Niveaux enseignés",
-  "Video Introduction": "Vidéo de présentation",
-  "Video introduction coming soon": "Vidéo de présentation bientôt disponible",
-  "Student Reviews": "Avis des élèves",
-  "No reviews yet Be the first to review!": "Pas encore d’avis Soyez le premier à en laisser un !",
-  "Weekly Availability": "Disponibilités hebdomadaires",
-  "Timezone": "Fuseau horaire",
-  "Response Time": "Temps de réponse",
-  "Teaching Since": "Enseigne depuis",
-  "Status": "Statut",
-  "Verified Tutor": "Professeur vérifié",
-  "Pending Verification": "En attente de vérification",
-  "Filters": "Filtres",
-  "Clear all": "Tout effacer",
-  "Clear filters": "Effacer les filtres",
-  "Clear all filters": "Supprimer tous les filtres",
-  "Verified": "Vérifié",
-  "Rejected": "Refusé",
-  "Pending": "En attente",
-  "Tutor Dashboard": "Tableau de bord professeur",
-  "Manage your profile and connect with students": "Gérez votre profil et connectez-vous avec des élèves",
-  "Notifications": "Notifications",
-  "My Profile": "Mon profil",
-  "Settings": "Paramètres",
-  "Sign Out": "Se déconnecter",
-  "Betreuer": "Accompagnateur",
-  "messages": "messages",
-  "profile": "profil",
-  "settings": "paramètres",
-  "signOut": "déconnexion",
-  "Tutor": "Professeur",
-  "Student": "Élève"
+  "teachesLevels": "Niveaux enseignés :",
+  "message": "Message",
+  "viewProfile": "Voir le profil",
+  "addToFavorites": "Ajouter aux favoris",
+  "removeFromFavorites": "Retirer des favoris"
+}
 }

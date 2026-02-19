@@ -1,0 +1,164 @@
+{
+  "header": {
+    "howItWorks": "Comment ça marche",
+    "findTutors": "Trouver des tuteurs",
+    "forStudents": "Pour les étudiants",
+    "forTutors": "Pour les tuteurs",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "getStarted": "Commencer"
+  },
+  "hero": {
+    "badge": "Approuvé par plus de 10 000 apprenants d’allemand",
+    "title": "Maîtrisez l’allemand avec des tuteurs <primary>experts</primary>",
+    "description": "Entrez en contact avec des tuteurs d’allemand certifiés et atteignez vos objectifs linguistiques Que vous prépariez les examens Goethe, TELC ou TestDaF, notre approche personnalisée garantit votre réussite.",
+    "start": "Commencez à apprendre dès aujourd’hui",
+    "browse": "Voir les tuteurs",
+    "stats": {
+      "tutors": "Tuteurs experts",
+      "passRate": "Taux de réussite",
+      "availability": "Disponibilité"
+    },
+    "features": {
+      "certified": {
+        "title": "Tuteurs certifiés",
+        "desc": "Tous les tuteurs sont vérifiés, disposent de qualifications pédagogiques et d’un niveau natif."
+      },
+      "exam": {
+        "title": "Préparation aux examens",
+        "desc": "Préparation spécialisée pour les examens Goethe, TELC, TestDaF et DSH."
+      },
+      "oneOnOne": {
+        "title": "Cours individuels (1-à-1)",
+        "desc": "Des leçons personnalisées adaptées à votre style d’apprentissage et à vos objectifs."
+      },
+      "flexible": {
+        "title": "Horaires flexibles",
+        "desc": "Réservez vos cours aux horaires qui vous conviennent, 7 jours sur 7."
+      }
+    }
+  },
+  "features1": {
+    "title": "Tout ce dont vous avez besoin pour réussir",
+    "description": "Notre plateforme offre tous les outils nécessaires pour apprendre l’allemand efficacement et préparer vos examens de certification.",
+    "items": {
+      "matching": {
+        "title": "Mise en relation intelligente",
+        "desc": "Trouvez le tuteur idéal en fonction de votre niveau, vos objectifs, votre emploi du temps et votre budget Filtrez par spécialisation, disponibilité et évaluations."
+      },
+      "chat": {
+        "title": "Chat en temps réel",
+        "desc": "Communiquez directement avec les tuteurs via notre système de messagerie intégré Discutez de vos objectifs et planifiez vos leçons facilement."
+      },
+      "booking": {
+        "title": "Réservation facile",
+        "desc": "Réservez vos cours en quelques clics Consultez la disponibilité des tuteurs en temps réel et reprogrammez si nécessaire."
+      },
+      "reviews": {
+        "title": "Avis vérifiés",
+        "desc": "Lisez des avis authentiques d’autres étudiants Prenez des décisions éclairées basées sur des expériences réelles."
+      },
+      "payments": {
+        "title": "Paiements sécurisés",
+        "desc": "Payez en toute sécurité via notre plateforme Garantie satisfait ou remboursé si vous n'êtes pas satisfait de votre première leçon."
+      },
+      "anywhere": {
+        "title": "Apprenez partout",
+        "desc": "Prenez des cours de n’importe où dans le monde Tout ce dont vous avez besoin est d'une connexion internet et d'un appareil."
+      }
+    }
+  },
+  "howItWorks1": {
+    "title": "Comment G-Teach fonctionne",
+    "subtitle": "Commencez en quatre étapes simples et débutez votre apprentissage de l’allemand aujourd’hui.",
+    "steps": {
+      "step1": {
+        "title": "Créez votre compte",
+        "desc": "Inscrivez-vous gratuitement et complétez votre profil Parlez-nous de votre niveau actuel et de vos objectifs d'apprentissage."
+      },
+      "step2": {
+        "title": "Trouvez votre tuteur",
+        "desc": "Parcourez nos tuteurs, filtrez par spécialisation, lisez les avis et trouvez celui qui vous correspond."
+      },
+      "step3": {
+        "title": "Échangez & discutez",
+        "desc": "Envoyez un message pour vous présenter Discutez de vos objectifs et planifiez un cours d’essai."
+      },
+      "step4": {
+        "title": "Commencez à apprendre",
+        "desc": "Réservez vos cours et commencez votre voyage vers la maîtrise de l’allemand avec un enseignement personnalisé."
+      }
+    }
+  },
+  "examPrep": {
+    "title": "Préparez les examens officiels d’allemand",
+    "description": "Nos tuteurs se spécialisent dans la préparation des étudiants à toutes les principales certifications linguistiques allemandes Atteignez votre score cible avec un accompagnement expert.",
+    "findTutors": "Trouver des tuteurs {exam}",
+    "exams": {
+      "goethe": {
+        "description": "Le certificat de langue allemande le plus reconnu au monde.",
+        "features": [
+          "Pratique orale",
+          "Ateliers d’écriture",
+          "Examens blancs",
+          "Révision grammaticale"
+        ]
+      },
+      "telc": {
+        "description": "Certificats de langue européens reconnus par les employeurs et institutions.",
+        "features": [
+          "Préparation orientée emploi",
+          "Exercices d’écoute",
+          "Compréhension écrite",
+          "Coaching pour la certification"
+        ]
+      },
+      "testdaf": {
+        "description": "Requis pour l’admission universitaire en Allemagne.",
+        "features": [
+          "Allemand académique",
+          "Préparation universitaire",
+          "Stratégies d’examen",
+          "Gestion du temps"
+        ]
+      },
+      "ecl": {
+        "description": "Un certificat de langue européen reconnu internationalement axé sur les compétences de communication pratique.",
+        "features": [
+          "Entraînement équilibré des compétences (oral, écrit, écoute, lecture)",
+          "Préparation orale basée sur des tâches",
+          "Pratique de la structure et de la cohérence en écrit",
+          "Simulation d’examen en conditions réelles"
+        ]
+      },
+      "osd": {
+        "description": "Un certificat d’allemand reconnu par l’État autrichien, accepté pour les études, le travail et les démarches de résidence.",
+        "features": [
+          "Immersion dans l’allemand autrichien",
+          "Entraînement intégré des compétences",
+          "Préparation à l’examen oral",
+          "Stratégies de communication pratique"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Prêt à commencer votre voyage ?",
+    "description": "Rejoignez des milliers d’étudiants qui ont atteint leurs objectifs de langue allemande avec G-Teach Votre première leçon bénéficie d'une garantie de satisfaction.",
+    "getStarted": "Commencer",
+    "browse": "Voir les tuteurs"
+  },
+  "footer": {
+    "description": "Connectez-vous avec des tuteurs d’allemand experts et atteignez vos objectifs linguistiques Préparez Goethe, TELC, TestDaF et plus encore.",
+    "learn": "Apprendre",
+    "exams": "Examens",
+    "company": "Entreprise",
+    "allRightsReserved": "© {year} G-Teach Tous droits réservés.",
+    "legal": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d’utilisation",
+      "cookies": "Politique de cookies"
+    }
+  }
+}

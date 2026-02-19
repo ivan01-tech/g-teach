@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useState } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -12,19 +12,19 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   BookOpen,
   Loader2,
   AlertCircle,
   GraduationCap,
   Users,
-} from "lucide-react";
-import { UserRole } from "@/lib/roles";
-import { useRegister } from "./use-register";
-import { useTranslations } from "next-intl";
+} from "lucide-react"
+import { UserRole } from "@/lib/roles"
+import { useRegister } from "./use-register"
+import { useTranslations } from "next-intl"
 
 export default function RegisterPage() {
   const {
@@ -41,9 +41,10 @@ export default function RegisterPage() {
     error,
     loading,
     handleSubmit,
-  } = useRegister();
+  } = useRegister()
 
-  const t = useTranslations()
+  const t = useTranslations("register")
+  const tCommon = useTranslations("common")
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
@@ -56,11 +57,10 @@ export default function RegisterPage() {
 
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t("Create Your Account")}</CardTitle>
-          <CardDescription>
-            {t("Start your German learning journey today")}
-          </CardDescription>
+          <CardTitle className="text-2xl">{t("title")}</CardTitle>
+          <CardDescription>{t("description")}</CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
@@ -71,49 +71,42 @@ export default function RegisterPage() {
             )}
 
             <div className="space-y-3">
-              <Label>{t("I want to...")}</Label>
+              <Label>{t("iWantTo")}</Label>
               <RadioGroup
                 value={role}
                 onValueChange={(value) => setRole(value as UserRole)}
                 className="grid grid-cols-2 gap-4"
               >
                 <div>
-                  <RadioGroupItem
-                    value="student"
-                    id="student"
-                    className="peer sr-only"
-                  />
+                  <RadioGroupItem value="student" id="student" className="peer sr-only" />
                   <Label
                     htmlFor="student"
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                   >
                     <GraduationCap className="mb-2 h-6 w-6" />
-                    <span className="text-sm font-medium">{t("Learn German")}</span>
+                    <span className="text-sm font-medium">{t("student")}</span>
                   </Label>
                 </div>
+
                 <div>
-                  <RadioGroupItem
-                    value="tutor"
-                    id="tutor"
-                    className="peer sr-only"
-                  />
+                  <RadioGroupItem value="tutor" id="tutor" className="peer sr-only" />
                   <Label
                     htmlFor="tutor"
                     className="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
                   >
                     <Users className="mb-2 h-6 w-6" />
-                    <span className="text-sm font-medium">{t("Teach German")}</span>
+                    <span className="text-sm font-medium">{t("tutor")}</span>
                   </Label>
                 </div>
               </RadioGroup>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="name">{t("Full Name")}</Label>
+              <Label htmlFor="name">{t("fullName")}</Label>
               <Input
                 id="name"
                 type="text"
-                placeholder={t("Your full name")}
+                placeholder={t("yourFullName")}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -121,11 +114,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">{t("Email")}</Label>
+              <Label htmlFor="email">{tCommon("email")}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder={t("you@example.com")}
+                placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -133,11 +126,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">{t("Password")}</Label>
+              <Label htmlFor="password">{tCommon("password")}</Label>
               <Input
                 id="password"
                 type="password"
-                placeholder={t("Create a password")}
+                placeholder={t("createPassword")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -145,11 +138,11 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">{t("Confirm Password")}</Label>
+              <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
               <Input
                 id="confirmPassword"
                 type="password"
-                placeholder={t("Confirm your password")}
+                placeholder={t("confirmYourPassword")}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
@@ -160,37 +153,38 @@ export default function RegisterPage() {
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {t("Creating account")}
+                  {t("creating")}
                 </>
               ) : (
-                t("Create Account")
+                t("submit")
               )}
             </Button>
 
             <p className="text-center text-xs text-muted-foreground">
-              {t("By creating an account, you agree to our")}{" "}
+              {t("termsIntro")}{" "}
               <Link href="/terms" className="text-primary hover:underline">
-                {t("Terms of Service")}
+                {t("terms")}
               </Link>{" "}
               {t("and")}{" "}
               <Link href="/privacy" className="text-primary hover:underline">
-                {t("Privacy Policy")}
+                {t("privacy")}
               </Link>
             </p>
           </form>
         </CardContent>
+
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
-            {t("Already have an account?")}{" "}
+            {t("alreadyAccount")}{" "}
             <Link
               href="/auth/login"
               className="font-medium text-primary hover:underline"
             >
-              {t("Sign in")}
+              {t("signIn")}
             </Link>
           </p>
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }

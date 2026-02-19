@@ -17,7 +17,8 @@ import {
 
 import { useRouter } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { LayoutDashboard, Settings } from "lucide-react"
+import { LayoutDashboard, Settings, Globe } from "lucide-react"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function Header() {
   const t = useTranslations("header")
@@ -120,6 +121,9 @@ export function Header() {
               </Button>
             </>
           )}
+          <div className="ml-2 border-l pl-2">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -239,6 +243,10 @@ export function Header() {
                   </Button>
                 </div>
               )}
+              <div className="flex items-center justify-between border-t border-border pt-4 mt-4 px-2">
+                <span className="text-sm font-medium text-muted-foreground">Language</span>
+                <LanguageSwitcher />
+              </div>
             </div>
           </div>
         </div>

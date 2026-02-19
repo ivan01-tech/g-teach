@@ -122,60 +122,27 @@
           "Test strategies",
           "Time management"
         ]
+      },
+      "ecl": {
+        "description": "An internationally recognized European language certificate focused on practical communication skills.",
+        "features": [
+          "Balanced skills training (Speaking, Writing, Listening, Reading)",
+          "Task-based speaking preparation",
+          "Writing structure and coherence practice",
+          "Exam simulation under real conditions"
+        ]
+      },
+      "osd": {
+        "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+        "features": [
+          "Austrian German exposure",
+          "Integrated skills training",
+          "Oral exam preparation",
+          "Practical communication strategies"
+        ]
       }
     }
-  },"examPrep": {
-  "title": "Prepare for Official German Exams",
-  "description": "Our tutors specialize in preparing students for all major German language certifications Achieve your target score with expert guidance.",
-  "findTutors": "Find {exam} Tutors",
-  "exams": {
-    "goethe": {
-      "description": "The most recognized German language certificate worldwide.",
-      "features": [
-        "Speaking practice",
-        "Writing workshops",
-        "Mock exams",
-        "Grammar review"
-      ]
-    },
-    "telc": {
-      "description": "European Language Certificates recognized by employers and institutions.",
-      "features": [
-        "Job-focused preparation",
-        "Listening exercises",
-        "Reading comprehension",
-        "Certificate coaching"
-      ]
-    },
-    "testdaf": {
-      "description": "Required for university admission in Germany.",
-      "features": [
-        "Academic German",
-        "University preparation",
-        "Test strategies",
-        "Time management"
-      ]
-    },
-    "ecl": {
-      "description": "An internationally recognized European language certificate focused on practical communication skills.",
-      "features": [
-        "Balanced skills training (Speaking, Writing, Listening, Reading)",
-        "Task-based speaking preparation",
-        "Writing structure and coherence practice",
-        "Exam simulation under real conditions"
-      ]
-    },
-    "osd": {
-      "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
-      "features": [
-        "Austrian German exposure",
-        "Integrated skills training",
-        "Oral exam preparation",
-        "Practical communication strategies"
-      ]
-    }
-  }
-},
+  },
   "cta": {
     "title": "Ready to Start Your German Journey?",
     "description": "Join thousands of students who have achieved their German language goals with G-Teach Your first lesson comes with a satisfaction guarantee.",
@@ -194,214 +161,491 @@
       "cookies": "Cookie Policy"
     }
   },
-  "title": "",
-  "description": "",
-  "getStarted": "Get Started",
-  "browse": "Browse",
-  "findTutors": "Find Tutors",
-  "learn": "Learn",
-  "exams": "Exams",
-  "company": "Company",
-  "allRightsReserved": "All Rights Reserved",
-  "howItWorks": "How It Works",
-  "forStudents": "For Students",
-  "forTutors": "For Tutors",
-  "about": "About",
-  "login": "Login",
-  "contact": "Contact",
-  "badge": "Badge",
-  "start": "Start",
-  "subtitle": "",
-  "About G-Teach": "About G-Teach",
-  "German & Teach - A platform born from understanding that success in language learning requires more than motivation It requires qualified guidance": "German & Teach - A platform born from understanding that success in language learning requires more than motivation It requires qualified guidance.",
-  "Our Story": "Our Story",
-  "Why We Built G-Teach": "Why We Built G-Teach",
-  "G-Teach was born from a simple observation: many German learners fail not because they lack motivation, but because they lack access to qualified guidance": "G-Teach was born from a simple observation: many German learners fail not because they lack motivation, but because they lack access to qualified guidance.",
-  "Finding a reliable, experienced German tutor is challenging": "Finding a reliable, experienced German tutor is challenging.",
-  "Students waste time and money on unstructured learning,": "Students waste time and money on unstructured learning,",
-  "while qualified tutors struggle to find serious students": "while qualified tutors struggle to find serious students.",
-  "We created G-Teach to solve this problem Our platform": "We created G-Teach to solve this problem Our platform",
-  "structures the learning of German, secures the connection": "structures the learning of German, secures the connection",
-  "between students and tutors, and accompanies each user": "between students and tutors, and accompanies each user",
-  "toward concrete results": "toward concrete results.",
-  "Our Mission": "Our Mission",
-  "To structure German language learning, secure qualified tutoring connections, and guide every user toward measurable success": "To structure German language learning, secure qualified tutoring connections, and guide every user toward measurable success.",
-  "Our Values": "Our Values",
-  "The principles that guide everything we do at G-Teach": "The principles that guide everything we do at G-Teach.",
-  "Our Vision": "Our Vision",
-  "G-Teach is not just a tutoring website It's a bridge between competence, discipline, and the future": "G-Teach is not just a tutoring website It's a bridge between competence, discipline, and the future.",
-  "We envision a world where every German learner has access to": "We envision a world where every German learner has access to",
-  "qualified instruction, where tutors can build sustainable": "qualified instruction, where tutors can build sustainable",
-  "teaching practices, and where language barriers no longer": "teaching practices, and where language barriers no longer",
-  "stand in the way of opportunity": "stand in the way of opportunity.",
-  "Join the G-Teach Community": "Join the G-Teach Community",
-  "Whether you're learning German or teaching it, we're here to support your journey": "Whether you're learning German or teaching it, we're here to support your journey.",
-  "Contact Us": "Contact Us",
-  "Advantages for Students": "Advantages for Students",
-  "Learn German with confidence G-Teach connects you with verified tutors who specialize in exam preparation and personalized instruction": "Learn German with confidence G-Teach connects you with verified tutors who specialize in exam preparation and personalized instruction.",
-  "We built G-Teach to solve the problems students face when learning German": "We built G-Teach to solve the problems students face when learning German.",
-  "Our tutors specialize in preparing students for all major German language certifications": "Our tutors specialize in preparing students for all major German language certifications.",
-  "What Students Say": "What Students Say",
-  "Real success stories from students who achieved their goals with G-Teach": "Real success stories from students who achieved their goals with G-Teach.",
-  "Start Your German Learning Journey Today": "Start Your German Learning Journey Today",
-  "Join thousands of successful students who found their perfect tutor on G-Teach": "Join thousands of successful students who found their perfect tutor on G-Teach.",
-  "Create Free Account": "Create Free Account",
-  "Quality": "Quality",
-  "We verify every tutor to ensure students learn from qualified professionals No compromises on credentials": "We verify every tutor to ensure students learn from qualified professionals No compromises on credentials.",
-  "Results": "Results",
-  "We measure success by outcomes Our platform is designed to help students achieve their language goals": "We measure success by outcomes Our platform is designed to help students achieve their language goals.",
-  "Accessibility": "Accessibility",
-  "Quality German education should be available to everyone, regardless of location or background": "Quality German education should be available to everyone, regardless of location or background.",
-  "Connection": "Connection",
-  "We bridge the gap between learners and teachers, creating meaningful educational relationships": "We bridge the gap between learners and teachers, creating meaningful educational relationships.",
-  "Students": "Students",
-  "Verified Tutors": "Verified Tutors",
-  "Lessons Completed": "Lessons Completed",
-  "Countries": "Countries",
-  "Get Started": "Get Started",
-  "Reset Password": "Reset Password",
-  "Enter your email address and we'll send you a link to reset your password": "Enter your email address and we'll send you a link to reset your password",
-  "Password reset email sent! If you don't see it, please check your spam folder": "Password reset email sent! If you don't see it, please check your spam folder.",
-  "Email": "Email",
-  "you@example.com": "you@example.com",
-  "Sending": "Sending...",
-  "Send Reset Link": "Send Reset Link",
-  "Back to sign in": "Back to sign in",
-  "success": "success",
-  "welcomeBack": "Welcome back",
-  "error": "error",
-  "forgotPassword": "Forgot password",
-  "enterPassword": "Enter password",
-  "loading": "Loading",
-  "submit": "Submit",
-  "noAccount": "Don't have an account?",
-  "signUp": "Sign up",
-  "You are not authorized to access this page": "You are not authorized to access this page",
-  "Login": "Login",
-  "Create Your Account": "Create Your Account",
-  "Start your German learning journey today": "Start your German learning journey today",
-  "I want to": "I want to...",
-  "Learn German": "Learn German",
-  "Teach German": "Teach German",
-  "Full Name": "Full Name",
-  "Your full name": "Your full name",
-  "Password": "Password",
-  "Create a password": "Create a password",
-  "Confirm Password": "Confirm Password",
-  "Confirm your password": "Confirm your password",
-  "Creating account": "Creating account...",
-  "Create Account": "Create Account",
-  "By creating an account, you agree to our": "By creating an account, you agree to our",
-  "Terms of Service": "Terms of Service",
-  "and": "and",
-  "Privacy Policy": "Privacy Policy",
-  "Already have an account?": "Already have an account?",
-  "Sign in": "Sign in",
-  "Have a question, suggestion, or partnership inquiry? We'd love to hear from you Our team typically responds within 24 hours": "Have a question, suggestion, or partnership inquiry? We'd love to hear from you Our team typically responds within 24 hours.",
-  "Send Us a Message": "Send Us a Message",
-  "Fill out the form below and we'll get back to you as soon as possible": "Fill out the form below and we'll get back to you as soon as possible.",
-  "Message Sent!": "Message Sent!",
-  "Thank you for contacting us We'll respond to your inquiry within 24 hours": "Thank you for contacting us We'll respond to your inquiry within 24 hours.",
-  "Send Another Message": "Send Another Message",
-  "First Name": "First Name",
-  "John": "John",
-  "Last Name": "Last Name",
-  "Doe": "Doe",
-  "Email Address": "Email Address",
-  "Reason for Contact": "Reason for Contact",
-  "Select a reason": "Select a reason",
-  "Subject": "Subject",
-  "How can we help?": "How can we help?",
-  "Message": "Message",
-  "Tell us more about your inquiry": "Tell us more about your inquiry...",
-  "Send Message": "Send Message",
-  "Other Ways to Reach Us": "Other Ways to Reach Us",
-  "Choose the best way to get in touch based on your needs": "Choose the best way to get in touch based on your needs.",
-  "Frequently Asked Questions": "Frequently Asked Questions",
-  "Before reaching out, you might find your answer in our FAQ section": "Before reaching out, you might find your answer in our FAQ section.",
-  "View FAQ": "View FAQ",
-  "Every tutor on G-Teach undergoes a rigorous verification process We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals": "Every tutor on G-Teach undergoes a rigorous verification process We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals.",
-  "Targeted Exam Preparation": "Targeted Exam Preparation",
-  "Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams Our tutors specialize in exam strategies and help you succeed": "Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams Our tutors specialize in exam strategies and help you succeed.",
-  "Personalized Learning": "Personalized Learning",
-  "No generic courses Get one-on-one attention tailored to your level, goals, and learning style Your tutor adapts to your needs": "No generic courses Get one-on-one attention tailored to your level, goals, and learning style Your tutor adapts to your needs.",
-  "Save Time and Money": "Save Time and Money",
-  "Skip the endless search for reliable tutors Our platform connects you with the right match quickly, so you can focus on learning, not searching": "Skip the endless search for reliable tutors Our platform connects you with the right match quickly, so you can focus on learning, not searching.",
-  "Higher Success Rates": "Higher Success Rates",
-  "Students who prepare with G-Teach tutors consistently achieve better exam results Structured guidance leads to measurable progress": "Students who prepare with G-Teach tutors consistently achieve better exam results Structured guidance leads to measurable progress.",
-  "Track Your Progress": "Track Your Progress",
-  "Monitor your learning journey with clear milestones See how far you've come and what's next on your path to fluency": "Monitor your learning journey with clear milestones See how far you've come and what's next on your path to fluency.",
-  "I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor The targeted preparation made all the difference": "I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor The targeted preparation made all the difference.",
-  "Finding a qualified German tutor used to be so difficult G-Teach made it easy, and now I'm preparing for my C1 exam with confidence": "Finding a qualified German tutor used to be so difficult G-Teach made it easy, and now I'm preparing for my C1 exam with confidence.",
-  "The personalized approach helped me overcome my fear of speaking German My tutor adapted every lesson to my needs": "The personalized approach helped me overcome my fear of speaking German My tutor adapted every lesson to my needs.",
-  "Find a Tutor": "Find a Tutor",
-  "How It Works": "How It Works",
-  "Why Choose G-Teach?": "Why Choose G-Teach?",
-  "Advantages for Tutors": "Advantages for Tutors",
-  "Join G-Teach and connect with motivated German learners Build your teaching practice on a professional platform designed for success": "Join G-Teach and connect with motivated German learners Build your teaching practice on a professional platform designed for success.",
-  "Become a Tutor": "Become a Tutor",
-  "Why Teach on G-Teach?": "Why Teach on G-Teach?",
-  "We provide the platform and students You provide the expertise": "We provide the platform and students You provide the expertise.",
-  "How to Join": "How to Join",
-  "Get started in four simple steps": "Get started in four simple steps.",
-  "What We Look For": "What We Look For",
-  "G-Teach maintains high standards to ensure quality for our students We welcome tutors who meet these criteria:": "G-Teach maintains high standards to ensure quality for our students We welcome tutors who meet these criteria:",
-  "Ready to Apply?": "Ready to Apply?",
-  "Join our community of professional German tutors and start connecting with motivated students today": "Join our community of professional German tutors and start connecting with motivated students today.",
-  "Start Application": "Start Application",
-  "Application review typically takes 2-3 business days": "Application review typically takes 2-3 business days.",
-  "Share Your Expertise": "Share Your Expertise",
-  "G-Teach is more than a tutoring platform It's a bridge between competence, discipline, and the future": "G-Teach is more than a tutoring platform It's a bridge between competence, discipline, and the future.",
-  "How G-Teach Works": "How G-Teach Works",
-  "A simple, structured process to connect learners with qualified German tutors Whether you want to learn or teach, getting started takes just minutes": "A simple, structured process to connect learners with qualified German tutors Whether you want to learn or teach, getting started takes just minutes.",
-  "For Students": "For Students",
-  "Start Learning German": "Start Learning German",
-  "Four simple steps to begin your German learning journey with expert guidance": "Four simple steps to begin your German learning journey with expert guidance.",
-  "For Tutors": "For Tutors",
-  "Start Teaching on G-Teach": "Start Teaching on G-Teach",
-  "Join our platform and connect with motivated German learners from around the world": "Join our platform and connect with motivated German learners from around the world.",
-  "Ready to Get Started?": "Ready to Get Started?",
-  "Join thousands of students and tutors already using G-Teach to achieve their German language goals": "Join thousands of students and tutors already using G-Teach to achieve their German language goals.",
-  "Go Back": "Go Back",
-  "Attention : Profil non vérifié": "Attention: Profile not verified",
-  "Ce tuteur n'a pas encore été vérifié par notre plateforme G-TEACH décline toute responsabilité en cas de problème lors de vos communications ou transactions Pour plus de sécurité, nous vous recommandons de privilégier les tuteurs ayant le badge de vérification": "This tutor has not yet been verified by our platform G-TEACH declines any responsibility in case of problems during your communications or transactions For more safety, we recommend prioritizing tutors with the verification badge.",
-  "German Tutor from": "German Tutor from",
-  "reviews": "reviews",
-  "students": "students",
-  "lessons": "lessons",
-  "About": "About",
-  "Reviews": "Reviews",
-  "Availability": "Availability",
-  "Teaching Levels": "Teaching Levels",
-  "Video Introduction": "Video Introduction",
-  "Video introduction coming soon": "Video introduction coming soon",
-  "Student Reviews": "Student Reviews",
-  "No reviews yet Be the first to review!": "No reviews yet Be the first to review!",
-  "Weekly Availability": "Weekly Availability",
-  "Timezone": "Timezone",
-  "Response Time": "Response Time",
-  "Teaching Since": "Teaching Since",
-  "Status": "Status",
-  "Verified Tutor": "Verified Tutor",
-  "Pending Verification": "Pending Verification",
-  "Filters": "Filters",
-  "Clear all": "Clear all",
-  "Clear filters": "Clear filters",
-  "Clear all filters": "Clear all filters",
-  "Verified": "Verified",
-  "Rejected": "Rejected",
-  "Pending": "Pending",
-  "Tutor Dashboard": "Tutor Dashboard",
-  "Manage your profile and connect with students": "Manage your profile and connect with students",
-  "Notifications": "Notifications",
-  "My Profile": "My Profile",
-  "Settings": "Settings",
-  "Sign Out": "Sign Out",
-  "Betreuer": "Tutor",
-  "messages": "messages",
-  "profile": "profile",
-  "settings": "settings",
-  "signOut": "sign out",
-  "Tutor": "Tutor",
-  "Student": "Student"
+  "howItWorksPage": {
+    "pageTitle": "How G-Teach Works",
+    "pageSubtitle": "A simple and structured process to connect learners with qualified German teachers. Whether you want to learn or teach, getting started only takes a few minutes.",
+    "forStudents": "For Students",
+    "startLearningTitle": "Start Learning German",
+    "startLearningSubtitle": "Four simple steps to begin your German learning journey with expert guidance.",
+    "studentStep1": {
+      "title": "Create Your Account",
+      "desc": "Sign up for free and complete your profile Tell us about your current level and learning goals."
+    },
+    "studentStep2": {
+      "title": "Find Your Tutor",
+      "desc": "Browse our tutors, filter by specialization, read reviews and find the one that suits you."
+    },
+    "studentStep3": {
+      "title": "Chat with Your Tutor",
+      "desc": "Directly contact tutors to introduce your goals, ask questions and schedule your first session. No commitment required."
+    },
+    "studentStep4": {
+      "title": "Start Learning",
+      "desc": "Begin your personalized learning journey with structured lessons, exam preparation, and regular progress tracking."
+    },
+    "findTutorButton": "Find a Tutor",
+    "forTutors": "For Tutors",
+    "startTeachingTitle": "Start Teaching on G-Teach",
+    "startTeachingSubtitle": "Join our platform and connect with motivated learners from around the world.",
+    "tutorStep1": {
+      "title": "Sign Up as a Tutor",
+      "desc": "Create your tutor account by providing your qualifications, teaching experience and specializations."
+    },
+    "tutorStep2": {
+      "title": "Submit Your Documents",
+      "desc": "Upload your certificates, diplomas and CV. Our team verifies all documents to ensure platform quality."
+    },
+    "tutorStep3": {
+      "title": "Get Verified",
+      "desc": "Once verified, your profile becomes visible to students. The verified badge inspires confidence and attracts more students."
+    },
+    "tutorStep4": {
+      "title": "DDevelop Your Activity",
+      "desc": "Connect with motivated students, manage your schedule and build your teaching activity on a professional platform."
+    },
+    "becomeTutorButton": "Become a Tutor",
+    "ctaTitle": "Ready to Start?",
+    "ctaSubtitle": "Join thousands of students and tutors who are already using G-Teach to achieve their German language goals.",
+    "ctaCreateAccount": "Create Free Account",
+    "ctaContactUs": "Contact Us"
+  },
+  "about": {
+    "pageTitle": "About G-Teach",
+    "heroSubtitle": "German & Teach – A platform born from understanding that success in language learning requires more than motivation. It requires qualified guidance.",
+    "ourStory": "Our Story",
+    "whyWeBuilt": "Why We Built G-Teach",
+    "observation": "G-Teach was born from a simple observation: many German learners fail not because they lack motivation, but because they lack access to qualified guidance.",
+    "findingTutorHard": "Finding a reliable, experienced German tutor is challenging.",
+    "studentsWaste": "Students waste time and money on unstructured learning,",
+    "tutorsStruggle": "while qualified tutors struggle to find serious students.",
+    "weCreated": "We created G-Teach to solve this problem. Our platform",
+    "structuresLearning": "structures the learning of German, secures the connection",
+    "betweenStudentsTutors": "between students and tutors, and accompanies each user",
+    "towardResults": "toward concrete results.",
+    "ourMission": "Our Mission",
+    "missionText": "To structure German language learning, secure qualified tutoring connections, and guide every user toward measurable success.",
+    "stats": {
+      "students": "Students",
+      "verifiedTutors": "Verified Tutors",
+      "lessonsCompleted": "Lessons Completed",
+      "countries": "Countries"
+    },
+    "ourValues": "Our Values",
+    "valuesSubtitle": "The principles that guide everything we do at G-Teach.",
+    "valueQuality": {
+      "title": "Quality",
+      "desc": "We verify each tutor to ensure students learn from qualified professionals. No compromise on skills."
+    },
+    "valueResults": {
+      "title": "RResults",
+      "desc": "We measure success by results. Our platform is designed to help students achieve their language goals."
+    },
+    "valueAccessibility": {
+      "title": "Accessibility",
+      "desc": "Quality German instruction should be accessible to everyone, regardless of location or background."
+    },
+    "valueConnection": {
+      "title": "Connection",
+      "desc": "We connect learners and teachers to create meaningful educational relationships."
+    },
+    "ourVision": "Our Vision",
+    "visionIntro": "G-Teach is not just a tutoring website. It's a bridge between competence, discipline, and the future.",
+    "visionWorld": "We envision a world where every German learner has access to",
+    "visionQualified": "qualified instruction, where tutors can build sustainable",
+    "visionPractices": "teaching practices, and where language barriers no longer",
+    "visionOpportunity": "stand in the way of opportunity.",
+    "joinCommunity": "Join the G-Teach Community",
+    "joinSubtitle": "Whether you're learning German or teaching it, we're here to support your journey.",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us"
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "Have a question, suggestion, or partnership inquiry? We'd love to hear from you. Our team typically responds within 24 hours.",
+    "sendMessageTitle": "Send Us a Message",
+    "sendMessageSubtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "firstNameLabel": "First Name",
+    "firstNamePlaceholder": "John",
+    "lastNameLabel": "Last Name",
+    "lastNamePlaceholder": "Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "john@example.com",
+    "reasonLabel": "Reason for Contact",
+    "reasonPlaceholder": "Select a reason",
+    "reasons": {
+      "general": "General Inquiry",
+      "student": "Student Support",
+      "tutor": "Tutor Support",
+      "partnership": "Partnership",
+      "press": "Press & Media",
+      "other": "Other"
+    },
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "How can we help?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "sendButton": "Send Message",
+    "sendingButton": "Sending...",
+    "successTitle": "Message Sent!",
+    "successMessage": "Thank you for contacting us. We'll respond to your inquiry within 24 hours.",
+    "sendAnother": "Send Another Message",
+    "otherWaysTitle": "Other Ways to Reach Us",
+    "otherWaysSubtitle": "Choose the best way to get in touch based on your needs.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqSubtitle": "Before reaching out, you might find your answer in our FAQ section.",
+    "viewFaq": "View FAQ",
+    "contactCards": {
+      "email": {
+        "title": "Email",
+        "description": "For general inquiries"
+      },
+      "student": {
+        "title": "Student Support",
+        "description": "Help with your learning"
+      },
+      "tutor": {
+        "title": "Tutor Support",
+        "description": "Help with your teaching"
+      },
+      "partnership": {
+        "title": "Partnerships",
+        "description": "Business collaborations"
+      }
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to the most common questions about how the platform works, profile verification, responsibilities, and data protection.",
+    "questions": {
+      "howItWorks": {
+        "question": "How does the platform work?",
+        "answer": "Our platform connects students with qualified tutors.\n\nThe process is simple:\n\n- The student creates an account.\n- He searches for a tutor based on subject, level and location.\n- He reviews available profiles.\n- He contacts the tutor via the integrated chat.\n\nClasses take place outside the platform (online or in-person depending on agreement).\n\nWe facilitate the connection, but we do not directly provide lessons."
+      },
+      "credibility": {
+        "question": "How do you ensure the credibility of tutors?",
+        "answer": "Credibility is a priority for us.\n\nEach tutor must:\n\n- Create a detailed profile\n- Fill in their skills\n- Provide justifying evidence (diplomas, certificates, experience)\n\nOur team:\n\n- Reviews submitted documents\n- Checks information consistency\n- Verifies or rejects the profile\n\nIf the information is compliant → The account gets the status \"Verified Profile\"\nOtherwise → The account remains \"Unverified\""
+      },
+      "verifiedStatus": {
+        "question": "What is the difference between a verified and unverified profile?",
+        "answer": "**Verified Profile**\n\n- Identity controlled\n- Skills justified\n- Trust badge visible on profile\n\n**Unverified Profile**\n\n- Only declarative information\n- No official validation performed\n- Use at the student's discretion\n\nWe strongly recommend choosing verified profiles."
+      },
+      "responsibility": {
+        "question": "Is the platform responsible in case of a problem?",
+        "answer": "The platform only facilitates the connection.\n\nWe are **not responsible** for:\n\n- The content of the lessons\n- Payments made outside the platform\n- Agreements made between users\n\nHowever, we can:\n\n- Suspend an account\n- Remove a profile\n- Investigate in case of a report"
+      },
+      "pricing": {
+        "question": "Is the platform free?",
+        "answer": "Currently, the platform is **completely free** for all users (students and tutors).\n\nIn the future, some premium services may be offered (better visibility, advanced statistics, profile highlighting, etc.)."
+      },
+      "payments": {
+        "question": "How do payments work?",
+        "answer": "Payments are made **directly** between the student and the tutor.\n\nThe platform does not yet manage financial transactions."
+      },
+      "reporting": {
+        "question": "How to report a problem or inappropriate behavior?",
+        "answer": "Each user can:\n\n- Report a profile\n- Report a message\n- Contact support\n\nAfter analysis, we can:\n\n- Warn the account\n- Temporarily suspend it\n- Permanently delete the profile"
+      },
+      "dataProtection": {
+        "question": "Are my data protected?",
+        "answer": "Yes.\n\nWe protect personal data in accordance with security standards.\n\nDocuments submitted for verification are **not publicly visible**.\n\nOnly the status \"Verified\" appears on the profile."
+      },
+      "unverifiedAccess": {
+        "question": "Why are some profiles accessible even if they are not verified?",
+        "answer": "We want to allow all users to join the platform quickly.\n\nHowever:\n\n- Unverified profiles are **not recommended**\n- They may be less visible in search results\n- They do not display the trust badge"
+      },
+      "postChat": {
+        "question": "What happens after a chat exchange?",
+        "answer": "After the first contact:\n\n- Both parties discuss the terms\n- They agree on the format (online or in-person)\n- They organize the sessions\n\nThey can leave a review (if this feature is enabled later).\n\nThe platform can track:\n\n- The number of connections\n- Interactions\n- Overall statistics (admin side)"
+      }
+    },
+    "transparencyMessage": {
+      "title": "Important Transparency Notice",
+      "content": "The platform is a connection tool and **not** a training organization.\n\nWe encourage users to:\n\n- Verify profiles\n- Clearly discuss terms\n- Formalize their agreements"
+    }
+  },
+  "forStudents": {
+    "pageTitle": "Advantages for Students",
+    "pageSubtitle": "Learn German with confidence. G-Teach connects you with verified tutors who specialize in exam preparation and personalized instruction.",
+    "findTutorButton": "Find a Tutor",
+    "howItWorksButton": "How It Works",
+    "whyChooseTitle": "Why Choose G-Teach?",
+    "whyChooseSubtitle": "We built G-Teach to solve the problems students face when learning German.",
+    "benefits": {
+      "verifiedTutors": {
+        "title": "Verified Tutors",
+        "desc": "Every tutor on G-Teach undergoes a rigorous verification process. We check credentials, certificates, and teaching experience to ensure you learn from qualified professionals."
+      },
+      "targetedPrep": {
+        "title": "Targeted Exam Preparation",
+        "desc": "Prepare specifically for Goethe-Zertifikat, TELC, ECL, TestDaF, and DSH exams. Our tutors specialize in exam strategies and help you succeed."
+      },
+      "personalized": {
+        "title": "Personalized Learning",
+        "desc": "No generic courses. Get one-on-one attention tailored to your level, goals, and learning style."
+      },
+      "saveTimeMoney": {
+        "title": "Save Time and Money",
+        "desc": "Skip the endless search for reliable tutors. Our platform connects you with the right match quickly."
+      },
+      "higherSuccess": {
+        "title": "Higher Success Rates",
+        "desc": "Students who prepare with G-Teach tutors consistently achieve better exam results. Structured guidance leads to measurable progress."
+      },
+      "trackProgress": {
+        "title": "Track Your Progress",
+        "desc": "Monitor your learning journey with clear milestones. See how far you've come and what's next."
+      }
+    },
+    "examPrepTitle": "Exam Preparation",
+    "examPrepSubtitle": "Our tutors specialize in preparing students for all major German language certifications.",
+    "findExamTutorsButton": "Find Exam Tutors",
+    "exams": [
+      {
+        "key": "goethe",
+        "name": "Goethe-Zertifikat",
+        "levels": "A1 – C2"
+      },
+      {
+        "key": "telc",
+        "name": "TELC",
+        "levels": "A1 – C2"
+      },
+      {
+        "key": "testdaf",
+        "name": "TestDaF",
+        "levels": "B2 – C1"
+      },
+      {
+        "key": "dsh",
+        "name": "DSH",
+        "levels": "B2 – C2"
+      },
+      {
+        "key": "ecl",
+        "name": "ECL",
+        "levels": "A2 – C1"
+      },
+      {
+        "key": "osd",
+        "name": "ÖSD",
+        "levels": "A1 – C2"
+      }
+    ],
+    "testimonialsTitle": "What Students Say",
+    "testimonialsSubtitle": "Real success stories from students who achieved their goals with G-Teach.",
+    "testimonials": [
+      {
+        "key": "sarah",
+        "quote": "I passed my Goethe B2 exam on the first try thanks to my G-Teach tutor. The targeted preparation made all the difference.",
+        "author": "Sarah M.",
+        "role": "Student from France"
+      },
+      {
+        "key": "ahmed",
+        "quote": "Finding a qualified German tutor used to be so difficult. G-Teach made it easy, and now I'm preparing for my C1 exam with confidence.",
+        "author": "Ahmed K.",
+        "role": "Student from Egypt"
+      },
+      {
+        "key": "maria",
+        "quote": "The personalized approach helped me overcome my fear of speaking German. My tutor adapted every lesson to my needs.",
+        "author": "Maria L.",
+        "role": "Student from Brazil"
+      }
+    ],
+    "ctaTitle": "Start Your German Learning Journey Today",
+    "ctaSubtitle": "Join thousands of successful students who found their perfect tutor on G-Teach.",
+    "createAccountButton": "Create Free Account"
+  },
+  "forTutors": {
+    "pageTitle": "Advantages for Tutors",
+    "pageSubtitle": "Join G-Teach and connect with motivated German learners. Build your teaching practice on a professional platform designed for success.",
+    "becomeTutorButton": "Become a Tutor",
+    "howItWorksButton": "How It Works",
+    "whyTeachTitle": "Why Teach on G-Teach?",
+    "whyTeachSubtitle": "We provide the platform and students. You provide the expertise.",
+    "benefits": {
+      "visibility": {
+        "title": "Professional Visibility",
+        "desc": "Showcase your qualifications, experience, and teaching style on a dedicated profile. Reach students actively searching for German tutors."
+      },
+      "motivatedStudents": {
+        "title": "Motivated Students",
+        "desc": "Connect with serious learners who have specific goals – exam preparation, professional development, or personal growth. No time wasted on uncommitted students."
+      },
+      "structuredPlatform": {
+        "title": "Structured Platform",
+        "desc": "Focus on teaching while we handle the rest. Built-in messaging, scheduling, and profile management let you concentrate on what you do best."
+      },
+      "credentialValidation": {
+        "title": "Credential Validation",
+        "desc": "Your verified status builds trust. Students know they're choosing a qualified professional, which means more bookings for you."
+      },
+      "incomeOpportunities": {
+        "title": "Income Opportunities",
+        "desc": "Set your own rates and availability. Build a sustainable teaching practice with a steady stream of students seeking quality instruction."
+      },
+      "flexibleSchedule": {
+        "title": "Flexible Schedule",
+        "desc": "Teach when it works for you. Manage your availability and accept students that fit your schedule and teaching preferences."
+      }
+    },
+    "howToJoinTitle": "How to Join",
+    "howToJoinSubtitle": "Get started in four simple steps.",
+    "steps": [
+      {
+        "key": "createProfile",
+        "number": "01",
+        "title": "Create Your Profile",
+        "desc": "Sign up and build your tutor profile with your qualifications, teaching experience, and specializations."
+      },
+      {
+        "key": "submitDocuments",
+        "number": "02",
+        "title": "Submit Documents",
+        "desc": "Upload your certificates, diplomas, and CV. We verify all credentials to maintain platform quality."
+      },
+      {
+        "key": "getVerified",
+        "number": "03",
+        "title": "Get Verified",
+        "desc": "Our team reviews your application. Once approved, your profile becomes visible to students."
+      },
+      {
+        "key": "startTeaching",
+        "number": "04",
+        "title": "Start Teaching",
+        "desc": "Connect with students, schedule sessions, and grow your teaching practice on a professional platform."
+      }
+    ],
+    "whatWeLookForTitle": "What We Look For",
+    "whatWeLookForSubtitle": "G-Teach maintains high standards to ensure quality for our students. We welcome tutors who meet these criteria:",
+    "requirements": [
+      "Teaching certificate or relevant degree",
+      "Proven experience teaching German",
+      "Clear profile photo and professional bio",
+      "Responsive communication with students",
+      "Commitment to student success"
+    ],
+    "readyToApplyTitle": "Ready to Apply?",
+    "readyToApplySubtitle": "Join our community of professional German tutors and start connecting with motivated students today.",
+    "startApplicationButton": "Start Application",
+    "reviewTime": "Application review typically takes 2-3 business days.",
+    "shareExpertiseTitle": "Share Your Expertise",
+    "shareExpertiseSubtitle": "G-Teach is more than a tutoring platform. It's a bridge between competence, discipline, and the future.",
+    "becomeTutorCta": "Become a Tutor"
+  },
+  "login": {
+    "title": "Welcome back",
+    "description": "Log in to continue your German learning journey",
+    "submit": "Sign in",
+    "loading": "Signing in...",
+    "noAccount": "Don't have an account yet?",
+    "signUp": "Sign up",
+    "success": "Login successful",
+    "welcomeBack": "Welcome back, {role}!",
+    "error": "Invalid email or password. Please try again.",
+    "forgotPassword": "Forgot password?",
+    "enterPassword": "Enter your password"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success!",
+    "back": "Go Back",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "email": "Email",
+    "password": "Password",
+    "close": "Close"
+  },
+  "register": {
+    "title": "Create Your Account",
+    "description": "Start your German learning journey today",
+    "iWantTo": "I want to...",
+    "student": "Learn German",
+    "tutor": "Teach German",
+    "fullName": "Full Name",
+    "yourFullName": "Your full name",
+    "email": "Email",
+    "password": "Password",
+    "createPassword": "Create a password",
+    "confirmPassword": "Confirm Password",
+    "confirmYourPassword": "Confirm your password",
+    "submit": "Create Account",
+    "creating": "Creating account...",
+    "termsIntro": "By creating an account, you agree to our",
+    "terms": "Terms of Service",
+    "and": "and",
+    "privacy": "Privacy Policy",
+    "alreadyAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "forgot-password": {
+    "title": "Reset Password",
+    "description": "Enter your email address and we'll send you a link to reset your password",
+    "emailPlaceholder": "you@example.com",
+    "sendButton": "Send Reset Link",
+    "sending": "Sending...",
+    "successTitle": "Password reset email sent!",
+    "successMessage": "If you don't see it, please check your spam folder.",
+    "errorMessage": "Failed to send reset email. Please check your email address.",
+    "backToLogin": "Back to sign in"
+  },
+  "tutorSearch": {
+    "pageTitle": "Find Your Perfect German Tutor",
+    "pageSubtitle": "Browse {count} certified tutors and start learning today",
+    "searchPlaceholder": "Search by name, specialization, or keyword...",
+    "filters": "Filters",
+    "clearAll": "Clear all",
+    "clearFilters": "Clear filters",
+    "clearAllFilters": "Clear all filters",
+    "loadingTutors": "Loading tutors...",
+    "errorLoading": "Oops! Something went wrong",
+    "tryAgain": "Try again",
+    "noTutorsFound": "No tutors found",
+    "noTutorsTryAdjust": "Try adjusting your filters",
+    "showingTutors": "Showing <strong>{count}</strong> tutors",
+    "showingTutorsLoading": "Loading tutors...",
+    "showingTutorsError": "Error loading tutors"
+  },
+  "tutor-profile": {
+    "attentionNonVerified": "Attention: Profile not verified",
+    "nonVerifiedWarning": "This tutor has not yet been verified by our platform. G-TEACH declines any responsibility in case of issues during your communications or transactions. For more safety, we recommend prioritizing tutors with the verification badge.",
+    "germanTutorFrom": "German Tutor from",
+    "reviews": "reviews",
+    "students": "students",
+    "lessons": "lessons",
+    "about": "About",
+    "reviewsTab": "Reviews ({count})",
+    "availability": "Availability",
+    "teachingLevels": "Teaching Levels",
+    "videoIntroduction": "Video Introduction",
+    "videoComingSoon": "Video introduction coming soon",
+    "studentReviews": "Student Reviews",
+    "noReviewsYet": "No reviews yet. Be the first to review!",
+    "weeklyAvailability": "Weekly Availability",
+    "timezone": "Timezone",
+    "responseTime": "Response Time",
+    "usuallyWithin": "Usually within 2 hours",
+    "teachingSince": "Teaching Since",
+    "status": "Status",
+    "verifiedTutor": "Verified Tutor",
+    "pendingVerification": "Pending Verification",
+    "sendMessage": "Send Message",
+    "goBack": "Go Back"
+  },
+  "tutor-card": {
+    "nonVerified": "Not Verified - Caution",
+    "reviews": "reviews",
+    "students": "students",
+    "lessons": "lessons",
+    "teachesLevels": "Teaches levels:",
+    "message": "Message",
+    "viewProfile": "View Profile",
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites"
+  }
 }

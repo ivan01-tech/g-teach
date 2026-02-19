@@ -1,3 +1,5 @@
+"use client"
+
 import { UserPlus, Search, MessageSquare, Video } from "lucide-react"
 import { useTranslations } from "next-intl"
 

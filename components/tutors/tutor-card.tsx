@@ -8,6 +8,7 @@ import { Star, CheckCircle2, User, MessageSquare, Heart, AlertTriangle } from "l
 import type { Tutor } from "@/lib/types"
 import { SPECIALIZATIONS, GERMAN_LEVELS } from "@/lib/types"
 import { useFavorites } from "@/hooks/use-favorites"
+import { useTranslations } from "next-intl"
 
 interface TutorCardProps {
   tutor: Tutor
@@ -16,28 +17,33 @@ interface TutorCardProps {
 export function TutorCard({ tutor }: TutorCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites()
   const favorite = isFavorite(tutor.uid)
+  const t = useTranslations("tutor-card")
 
-  // const isVerified = true
   const isVerified = tutor.verificationStatus === "verified" || tutor.isVerified
 
   const specializationLabels = tutor.specializations
-    .slice(0, 3)
-    .map((s) => SPECIALIZATIONS.find((spec) => spec.value === s)?.label || s)
+    ?.slice(0, 3)
+    .map((s) => SPECIALIZATIONS.find((spec) => spec.value === s)?.label || s) ?? []
 
   const levelLabels = tutor.teachingLevels
-    .map((l) => GERMAN_LEVELS.find((level) => level.value === l)?.value.toUpperCase() || l)
+    ?.map((l) => GERMAN_LEVELS.find((level) => level.value === l)?.value.toUpperCase() || l) ?? []
 
   return (
-    <Card className={`group overflow-hidden transition-shadow hover:shadow-md ${!isVerified ? 'border-amber-200' : ''}`}>
+    <Card
+      className={`group overflow-hidden transition-shadow hover:shadow-md ${
+        !isVerified ? "border-amber-200" : ""
+      }`}
+    >
       <CardContent className="p-0">
         {!isVerified && (
           <div className="bg-amber-50 px-4 py-1.5 flex items-center gap-2 border-b border-amber-100">
             <AlertTriangle className="h-3.5 w-3.5 text-amber-600" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-700">
-              Non vérifié - Prudence
+              {t("nonVerified")}
             </span>
           </div>
         )}
+
         {/* Header */}
         <div className="relative bg-primary/5 p-4">
           <div className="flex items-start gap-4">
@@ -46,7 +52,7 @@ export function TutorCard({ tutor }: TutorCardProps) {
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                 {tutor.photoURL ? (
                   <img
-                    src={tutor.photoURL || "/placeholder.svg"}
+                    src={tutor.photoURL}
                     alt={tutor.displayName}
                     className="h-full w-full rounded-full object-cover"
                   />
@@ -63,15 +69,16 @@ export function TutorCard({ tutor }: TutorCardProps) {
             <div className="flex-1">
               <div className="flex items-center gap-2">
                 <h3 className="font-semibold text-card-foreground">{tutor.displayName}</h3>
-                {isVerified && (
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                )}
+                {isVerified && <CheckCircle2 className="h-4 w-4 text-primary" />}
               </div>
               <p className="text-sm text-muted-foreground">{tutor.country}</p>
+
               <div className="mt-1 flex items-center gap-1">
                 <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                <span className="text-sm font-medium">{tutor.rating}</span>
-                <span className="text-sm text-muted-foreground">({tutor.reviewCount} reviews)</span>
+                <span className="text-sm font-medium">{tutor.rating ?? "—"}</span>
+                <span className="text-sm text-muted-foreground">
+                  ({tutor.reviewCount ?? 0} {t("reviews")})
+                </span>
               </div>
             </div>
 
@@ -85,9 +92,12 @@ export function TutorCard({ tutor }: TutorCardProps) {
                 e.stopPropagation()
                 toggleFavorite(tutor.uid)
               }}
+              title={favorite ? t("removeFromFavorites") : t("addToFavorites")}
             >
               <Heart className={`h-4 w-4 ${favorite ? "fill-primary text-primary" : ""}`} />
-              <span className="sr-only">Add to favorites</span>
+              <span className="sr-only">
+                {favorite ? t("removeFromFavorites") : t("addToFavorites")}
+              </span>
             </Button>
           </div>
         </div>
@@ -95,7 +105,7 @@ export function TutorCard({ tutor }: TutorCardProps) {
         {/* Body */}
         <div className="p-4">
           {/* Bio */}
-          <p className="line-clamp-2 text-sm text-muted-foreground">{tutor.bio}</p>
+          <p className="line-clamp-2 text-sm text-muted-foreground">{tutor.bio || "—"}</p>
 
           {/* Specializations */}
           <div className="mt-3 flex flex-wrap gap-1">
@@ -108,19 +118,21 @@ export function TutorCard({ tutor }: TutorCardProps) {
 
           {/* Levels */}
           <div className="mt-3">
-            <p className="text-xs text-muted-foreground">Teaches levels:</p>
-            <p className="text-sm font-medium">{levelLabels.join(" - ")}</p>
+            <p className="text-xs text-muted-foreground">{t("teachesLevels")}</p>
+            <p className="text-sm font-medium">
+              {levelLabels.length > 0 ? levelLabels.join(" - ") : "—"}
+            </p>
           </div>
 
           {/* Stats */}
           <div className="mt-4 grid grid-cols-2 gap-4 border-t border-border pt-4">
             <div>
-              <p className="text-xs text-muted-foreground">Students</p>
-              <p className="font-medium">{tutor.totalStudents}</p>
+              <p className="text-xs text-muted-foreground">{t("students")}</p>
+              <p className="font-medium">{tutor.totalStudents ?? 0}</p>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground">Lessons</p>
-              <p className="font-medium">{tutor.totalLessons}</p>
+              <p className="text-xs text-muted-foreground">{t("lessons")}</p>
+              <p className="font-medium">{tutor.totalLessons ?? 0}</p>
             </div>
           </div>
 
@@ -128,19 +140,23 @@ export function TutorCard({ tutor }: TutorCardProps) {
           <div className="mt-4 flex items-center justify-between">
             <div>
               <p className="text-2xl font-bold text-foreground">
-                {tutor.hourlyRate}
-                <span className="text-sm font-normal text-muted-foreground"> {tutor.currency}/hr</span>
+                {tutor.hourlyRate ?? "—"}
+                <span className="text-sm font-normal text-muted-foreground">
+                  {" "}
+                  {tutor.currency ?? "€"}/hr
+                </span>
               </p>
             </div>
+
             <div className="flex gap-2">
               <Button variant="outline" size="sm" asChild>
                 <Link href={`/tutors/${tutor.uid}`}>
                   <MessageSquare className="mr-1 h-4 w-4" />
-                  Message
+                  {t("message")}
                 </Link>
               </Button>
               <Button size="sm" asChild>
-                <Link href={`/tutors/${tutor.uid}`}>View Profile</Link>
+                <Link href={`/tutors/${tutor.uid}`}>{t("viewProfile")}</Link>
               </Button>
             </div>
           </div>
