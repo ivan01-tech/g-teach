@@ -39,7 +39,7 @@
       }
     }
   },
-  "features": {
+  "features1": {
     "title": "Tout ce dont vous avez besoin pour réussir",
     "description": "Notre plateforme offre tous les outils nécessaires pour apprendre l’allemand efficacement et préparer vos examens de certification.",
     "items": {
@@ -333,7 +333,6 @@
   "Last Name": "Nom",
   "Doe": "Dupont",
   "Email Address": "Adresse email",
-  "john@example.com": "jean@exemple.com",
   "Reason for Contact": "Motif du contact",
   "Select a reason": "Sélectionnez un motif",
   "Subject": "Sujet",
@@ -410,7 +409,6 @@
   "Status": "Statut",
   "Verified Tutor": "Professeur vérifié",
   "Pending Verification": "En attente de vérification",
-  "Browse {tutors.length || 'many'}+ certified tutors and start learning today": "Parcourez {tutors.length || 'plus de'} professeurs certifiés et commencez à apprendre aujourd’hui",
   "Filters": "Filtres",
   "Clear all": "Tout effacer",
   "Clear filters": "Effacer les filtres",
@@ -430,11 +428,5 @@
   "settings": "paramètres",
   "signOut": "déconnexion",
   "Tutor": "Professeur",
-  "Student": "Élève",
-  "email.placeholder":        "you@example.com",
-  "email.example":            "john@example.com",
-  "button.sending":           "Sending...",
-  "role.select-label":        "I want to...",
-  "status.creating-account":  "Creating account...",l
-  "tutors.browse-count":      "Browse {count}+ certified tutors and start learning today
+  "Student": "Élève"
 }

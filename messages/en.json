@@ -39,7 +39,7 @@
       }
     }
   },
-  "features": {
+  "features1": {
     "title": "Everything You Need to Succeed",
     "description": "Our platform provides all the tools you need to learn German effectively and prepare for your certification exams.",
     "items": {
@@ -308,7 +308,6 @@
   "Last Name": "Last Name",
   "Doe": "Doe",
   "Email Address": "Email Address",
-  "john@example.com": "john@example.com",
   "Reason for Contact": "Reason for Contact",
   "Select a reason": "Select a reason",
   "Subject": "Subject",
@@ -385,7 +384,6 @@
   "Status": "Status",
   "Verified Tutor": "Verified Tutor",
   "Pending Verification": "Pending Verification",
-  "Browse {tutors.length || 'many'}+ certified tutors and start learning today": "Browse {tutors.length || 'many'}+ certified tutors and start learning today",
   "Filters": "Filters",
   "Clear all": "Clear all",
   "Clear filters": "Clear filters",

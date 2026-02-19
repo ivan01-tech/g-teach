@@ -11,7 +11,7 @@ const featuresData = [
 ]
 
 export function FeaturesSection() {
-  const t = useTranslations("features")
+  const t = useTranslations("features1")
 
   return (
     <section id="features" className="bg-muted/30 py-16 sm:py-24">
