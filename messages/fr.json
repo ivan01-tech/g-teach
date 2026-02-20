@@ -637,17 +637,167 @@
     "sendMessage": "Envoyer un message",
     "goBack": "Retour"
   },
-
-
- "tutor-card" :{
-  "nonVerified": "Non vérifié - Prudence",
-  "reviews": "avis",
-  "students": "élèves",
-  "lessons": "leçons",
-  "teachesLevels": "Niveaux enseignés :",
-  "message": "Message",
-  "viewProfile": "Voir le profil",
-  "addToFavorites": "Ajouter aux favoris",
-  "removeFromFavorites": "Retirer des favoris"
-}
+  "tutor-card": {
+    "nonVerified": "Non vérifié - Prudence",
+    "reviews": "avis",
+    "students": "élèves",
+    "lessons": "leçons",
+    "teachesLevels": "Niveaux enseignés :",
+    "message": "Message",
+    "viewProfile": "Voir le profil",
+    "addToFavorites": "Ajouter aux favoris",
+    "removeFromFavorites": "Retirer des favoris"
+  },
+  "privacy": {
+    "pageTitle": "Politique de confidentialité",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "intro": "Chez G-Teach, nous accordons une importance primordiale à la protection de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre plateforme.",
+    "section1Title": "1. Données collectées",
+    "section1Text": "Nous collectons les données suivantes lorsque vous créez un compte ou utilisez nos services :",
+    "section1Items": [
+      "Informations d'identification : nom complet, adresse email, mot de passe (chiffré)",
+      "Données de profil : photo, biographie, qualifications, spécialisations",
+      "Documents de vérification (pour les professeurs) : diplômes, certificats, CV",
+      "Données d'utilisation : pages visitées, interactions, messages échangés",
+      "Données techniques : adresse IP, type de navigateur, données de cookies"
+    ],
+    "section2Title": "2. Utilisation de vos données",
+    "section2Text": "Vos données sont utilisées exclusivement pour :",
+    "section2Items": [
+      "Créer et gérer votre compte utilisateur",
+      "Faciliter la mise en relation entre élèves et professeurs",
+      "Vérifier les qualifications des professeurs",
+      "Améliorer nos services et l'expérience utilisateur",
+      "Assurer la sécurité de la plateforme",
+      "Communiquer avec vous (notifications, support)"
+    ],
+    "section3Title": "3. Protection de vos données",
+    "section3Text": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données personnelles. Les documents soumis pour vérification ne sont jamais rendus publics. Seule l'équipe d'administration autorisée y a accès dans le cadre du processus de vérification.",
+    "section4Title": "4. Partage des données",
+    "section4Text": "G-Teach ne vend pas vos données personnelles à des tiers. Vos informations peuvent être partagées uniquement dans les cas suivants :",
+    "section4Items": [
+      "Avec d'autres utilisateurs de la plateforme dans la limite des informations affichées sur votre profil public",
+      "Avec nos prestataires techniques (hébergement, authentification) dans le strict cadre de nos contrats",
+      "Si requis par la loi ou une autorité compétente"
+    ],
+    "section5Title": "5. Vos droits",
+    "section5Text": "Conformément à la réglementation applicable, vous disposez des droits suivants sur vos données :",
+    "section5Items": [
+      "Droit d'accès : consulter les données que nous détenons sur vous",
+      "Droit de rectification : corriger des données inexactes",
+      "Droit à l'effacement : demander la suppression de votre compte",
+      "Droit à la portabilité : exporter vos données",
+      "Droit d'opposition : refuser certains traitements"
+    ],
+    "section6Title": "6. Conservation des données",
+    "section6Text": "Vos données sont conservées aussi longtemps que votre compte est actif. Après suppression de votre compte, les données sont effacées dans un délai de 30 jours, sauf obligation légale de conservation.",
+    "section7Title": "7. Contact",
+    "section7Text": "Pour toute question relative à vos données personnelles ou pour exercer vos droits, contactez-nous à :",
+    "contactEmail": "privacy@g-teach.com",
+    "cookieNotice": "Pour plus d'informations sur notre utilisation des cookies, consultez notre",
+    "cookieLink": "Politique de cookies"
+  },
+  "terms": {
+    "pageTitle": "Conditions d'utilisation",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "intro": "En utilisant la plateforme G-Teach, vous acceptez les présentes conditions d'utilisation. Veuillez les lire attentivement avant de créer un compte ou d'utiliser nos services.",
+    "section1Title": "1. Description du service",
+    "section1Text": "G-Teach est une plateforme de mise en relation entre des élèves souhaitant apprendre l'allemand et des professeurs particuliers qualifiés. La plateforme facilite la recherche, la prise de contact et la communication entre les deux parties. G-Teach n'est pas un organisme de formation et ne dispense pas de cours directement.",
+    "section2Title": "2. Création de compte",
+    "section2Items": [
+      "Vous devez avoir au moins 16 ans pour créer un compte",
+      "Vous vous engagez à fournir des informations exactes et à jour",
+      "Vous êtes responsable de la confidentialité de vos identifiants",
+      "Un seul compte par personne est autorisé",
+      "G-Teach se réserve le droit de suspendre ou supprimer tout compte ne respectant pas ces conditions"
+    ],
+    "section3Title": "3. Responsabilités des élèves",
+    "section3Items": [
+      "Utiliser la plateforme de manière respectueuse et professionnelle",
+      "Ne pas publier de contenu inapproprié ou offensant dans les messages",
+      "Respecter les accords conclus avec les professeurs",
+      "Signaler tout comportement abusif à l'équipe G-Teach"
+    ],
+    "section4Title": "4. Responsabilités des professeurs",
+    "section4Items": [
+      "Fournir des informations exactes sur leurs qualifications et expériences",
+      "Soumettre des documents de vérification authentiques",
+      "Assurer un enseignement de qualité et professionnel",
+      "Respecter les élèves et maintenir une communication appropriée",
+      "Mettre à jour leur profil si leurs disponibilités changent"
+    ],
+    "section5Title": "5. Paiements et transactions",
+    "section5Text": "Les paiements s'effectuent directement entre l'élève et le professeur. G-Teach ne gère pas les transactions financières et ne peut être tenu responsable de tout litige financier entre utilisateurs. Nous recommandons de formaliser vos accords avant de commencer les cours.",
+    "section6Title": "6. Limitation de responsabilité",
+    "section6Text": "G-Teach agit en tant qu'intermédiaire de mise en relation. La plateforme ne peut être tenue responsable :",
+    "section6Items": [
+      "Du contenu ou de la qualité des cours dispensés",
+      "Des accords conclus entre utilisateurs en dehors de la plateforme",
+      "Des paiements effectués directement entre élèves et professeurs",
+      "Des comportements des utilisateurs"
+    ],
+    "section7Title": "7. Propriété intellectuelle",
+    "section7Text": "Le contenu de la plateforme G-Teach (logo, design, textes) est protégé par le droit d'auteur. Toute reproduction non autorisée est interdite. Les contenus partagés par les utilisateurs restent leur propriété.",
+    "section8Title": "8. Modifications des conditions",
+    "section8Text": "G-Teach se réserve le droit de modifier ces conditions d'utilisation à tout moment. Les utilisateurs seront informés de toute modification significative. La poursuite de l'utilisation de la plateforme après notification vaut acceptation des nouvelles conditions.",
+    "section9Title": "9. Contact",
+    "section9Text": "Pour toute question concernant ces conditions d'utilisation, contactez-nous à :",
+    "contactEmail": "legal@g-teach.com"
+  },
+  "cookies": {
+    "pageTitle": "Politique de cookies",
+    "lastUpdated": "Dernière mise à jour : {date}",
+    "intro": "Cette politique de cookies explique ce que sont les cookies, comment G-Teach les utilise et comment vous pouvez les contrôler.",
+    "section1Title": "1. Qu'est-ce qu'un cookie ?",
+    "section1Text": "Un cookie est un petit fichier texte stocké sur votre appareil (ordinateur, smartphone, tablette) lors de votre visite sur un site web. Les cookies sont largement utilisés pour faire fonctionner les sites web efficacement et pour fournir des informations aux propriétaires du site.",
+    "section2Title": "2. Types de cookies utilisés",
+    "cookieTypes": [
+      {
+        "name": "Cookies essentiels",
+        "desc": "Ces cookies sont indispensables au fonctionnement de la plateforme. Ils permettent la gestion de votre session de connexion et garantissent la sécurité de vos données. Ils ne peuvent pas être désactivés."
+      },
+      {
+        "name": "Cookies fonctionnels",
+        "desc": "Ces cookies mémorisent vos préférences (langue, région, paramètres d'affichage) pour personnaliser votre expérience sur G-Teach."
+      },
+      {
+        "name": "Cookies analytiques",
+        "desc": "Ces cookies nous aident à comprendre comment les visiteurs interagissent avec notre plateforme. Nous utilisons ces données anonymes pour améliorer nos services."
+      },
+      {
+        "name": "Cookies de performance",
+        "desc": "Ces cookies collectent des informations sur la façon dont vous utilisez la plateforme (pages visitées, temps passé) afin d'optimiser les performances."
+      }
+    ],
+    "section3Title": "3. Gestion des cookies",
+    "section3Text": "Vous pouvez contrôler et gérer les cookies de plusieurs façons :",
+    "section3Items": [
+      "Via les paramètres de votre navigateur : vous pouvez bloquer ou supprimer les cookies directement depuis les options de votre navigateur",
+      "Via notre bandeau de cookies : lors de votre première visite, vous pouvez choisir d'accepter ou refuser les cookies non essentiels",
+      "En désactivant les cookies analytiques : sans impact sur les fonctionnalités de la plateforme"
+    ],
+    "section3Note": "Notez que le blocage de certains cookies peut affecter votre expérience sur G-Teach, notamment pour les fonctionnalités de connexion.",
+    "section4Title": "4. Durée de conservation",
+    "cookieDurations": [
+      {
+        "type": "Cookies de session",
+        "duration": "Supprimés à la fermeture du navigateur"
+      },
+      {
+        "type": "Cookies persistants (préférences)",
+        "duration": "12 mois"
+      },
+      {
+        "type": "Cookies analytiques",
+        "duration": "13 mois maximum"
+      }
+    ],
+    "section5Title": "5. Services tiers",
+    "section5Text": "G-Teach peut utiliser des services tiers (authentification Firebase, analyses) qui déposent leurs propres cookies. Ces services disposent de leurs propres politiques de confidentialité.",
+    "section6Title": "6. Contact",
+    "section6Text": "Pour toute question relative à notre politique de cookies, contactez-nous à :",
+    "contactEmail": "privacy@g-teach.com",
+    "privacyNotice": "Pour plus d'informations sur la gestion de vos données, consultez notre",
+    "privacyLink": "Politique de confidentialité"
+  }
 }

@@ -647,5 +647,157 @@
     "viewProfile": "View Profile",
     "addToFavorites": "Add to favorites",
     "removeFromFavorites": "Remove from favorites"
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy",
+    "lastUpdated": "Last updated: {date}",
+    "intro": "At G-Teach, the protection of your personal data is our top priority. This privacy policy explains how we collect, use, and protect your information when you use our platform.",
+    "section1Title": "1. Data We Collect",
+    "section1Text": "We collect the following data when you create an account or use our services:",
+    "section1Items": [
+      "Identification information: full name, email address, password (encrypted)",
+      "Profile data: photo, biography, qualifications, specializations",
+      "Verification documents (for tutors): diplomas, certificates, CV",
+      "Usage data: pages visited, interactions, messages exchanged",
+      "Technical data: IP address, browser type, cookie data"
+    ],
+    "section2Title": "2. How We Use Your Data",
+    "section2Text": "Your data is used exclusively to:",
+    "section2Items": [
+      "Create and manage your user account",
+      "Facilitate connections between students and tutors",
+      "Verify tutor qualifications",
+      "Improve our services and user experience",
+      "Ensure platform security",
+      "Communicate with you (notifications, support)"
+    ],
+    "section3Title": "3. Data Protection",
+    "section3Text": "We implement technical and organizational security measures to protect your personal data. Documents submitted for verification are never made public. Only authorized administrative staff have access to them as part of the verification process.",
+    "section4Title": "4. Data Sharing",
+    "section4Text": "G-Teach does not sell your personal data to third parties. Your information may be shared only in the following cases:",
+    "section4Items": [
+      "With other platform users within the scope of information displayed on your public profile",
+      "With our technical providers (hosting, authentication) strictly within the scope of our contracts",
+      "If required by law or a competent authority"
+    ],
+    "section5Title": "5. Your Rights",
+    "section5Text": "In accordance with applicable regulations, you have the following rights regarding your data:",
+    "section5Items": [
+      "Right of access: review the data we hold about you",
+      "Right of rectification: correct inaccurate data",
+      "Right to erasure: request deletion of your account",
+      "Right to portability: export your data",
+      "Right to object: refuse certain processing"
+    ],
+    "section6Title": "6. Data Retention",
+    "section6Text": "Your data is retained as long as your account is active. After account deletion, data is erased within 30 days, unless there is a legal obligation to retain it.",
+    "section7Title": "7. Contact",
+    "section7Text": "For any questions regarding your personal data or to exercise your rights, contact us at:",
+    "contactEmail": "privacy@g-teach.com",
+    "cookieNotice": "For more information about our use of cookies, please see our",
+    "cookieLink": "Cookie Policy"
+  },
+  "terms": {
+    "pageTitle": "Terms of Service",
+    "lastUpdated": "Last updated: {date}",
+    "intro": "By using the G-Teach platform, you agree to these Terms of Service. Please read them carefully before creating an account or using our services.",
+    "section1Title": "1. Service Description",
+    "section1Text": "G-Teach is a platform that connects students who wish to learn German with qualified private tutors. The platform facilitates searching, contacting, and communicating between both parties. G-Teach is not a training institution and does not provide lessons directly.",
+    "section2Title": "2. Account Creation",
+    "section2Items": [
+      "You must be at least 16 years old to create an account",
+      "You agree to provide accurate and up-to-date information",
+      "You are responsible for keeping your login credentials confidential",
+      "Only one account per person is allowed",
+      "G-Teach reserves the right to suspend or delete any account that violates these terms"
+    ],
+    "section3Title": "3. Student Responsibilities",
+    "section3Items": [
+      "Use the platform in a respectful and professional manner",
+      "Do not post inappropriate or offensive content in messages",
+      "Honor agreements made with tutors",
+      "Report any abusive behavior to the G-Teach team"
+    ],
+    "section4Title": "4. Tutor Responsibilities",
+    "section4Items": [
+      "Provide accurate information about their qualifications and experience",
+      "Submit authentic verification documents",
+      "Provide quality and professional instruction",
+      "Respect students and maintain appropriate communication",
+      "Update their profile if their availability changes"
+    ],
+    "section5Title": "5. Payments and Transactions",
+    "section5Text": "Payments are made directly between the student and the tutor. G-Teach does not handle financial transactions and cannot be held responsible for any financial disputes between users. We recommend formalizing your agreements before starting lessons.",
+    "section6Title": "6. Limitation of Liability",
+    "section6Text": "G-Teach acts as a connection intermediary. The platform cannot be held responsible for:",
+    "section6Items": [
+      "The content or quality of lessons provided",
+      "Agreements made between users outside the platform",
+      "Payments made directly between students and tutors",
+      "User behavior"
+    ],
+    "section7Title": "7. Intellectual Property",
+    "section7Text": "The content of the G-Teach platform (logo, design, texts) is protected by copyright. Any unauthorized reproduction is prohibited. Content shared by users remains their property.",
+    "section8Title": "8. Changes to Terms",
+    "section8Text": "G-Teach reserves the right to modify these Terms of Service at any time. Users will be notified of any significant changes. Continued use of the platform after notification constitutes acceptance of the new terms.",
+    "section9Title": "9. Contact",
+    "section9Text": "For any questions regarding these Terms of Service, contact us at:",
+    "contactEmail": "legal@g-teach.com"
+  },
+  "cookies": {
+    "pageTitle": "Cookie Policy",
+    "lastUpdated": "Last updated: {date}",
+    "intro": "This cookie policy explains what cookies are, how G-Teach uses them, and how you can control them.",
+    "section1Title": "1. What is a Cookie?",
+    "section1Text": "A cookie is a small text file stored on your device (computer, smartphone, tablet) when you visit a website. Cookies are widely used to make websites work efficiently and to provide information to website owners.",
+    "section2Title": "2. Types of Cookies We Use",
+    "cookieTypes": [
+      {
+        "name": "Essential Cookies",
+        "desc": "These cookies are essential for the platform to function. They manage your login session and ensure the security of your data. They cannot be disabled."
+      },
+      {
+        "name": "Functional Cookies",
+        "desc": "These cookies remember your preferences (language, region, display settings) to personalize your experience on G-Teach."
+      },
+      {
+        "name": "Analytics Cookies",
+        "desc": "These cookies help us understand how visitors interact with our platform. We use this anonymous data to improve our services."
+      },
+      {
+        "name": "Performance Cookies",
+        "desc": "These cookies collect information about how you use the platform (pages visited, time spent) to optimize performance."
+      }
+    ],
+    "section3Title": "3. Managing Cookies",
+    "section3Text": "You can control and manage cookies in several ways:",
+    "section3Items": [
+      "Via your browser settings: you can block or delete cookies directly from your browser options",
+      "Via our cookie banner: on your first visit, you can choose to accept or reject non-essential cookies",
+      "By disabling analytics cookies: with no impact on platform functionality"
+    ],
+    "section3Note": "Please note that blocking certain cookies may affect your experience on G-Teach, particularly for login functionality.",
+    "section4Title": "4. Retention Period",
+    "cookieDurations": [
+      {
+        "type": "Session cookies",
+        "duration": "Deleted when the browser is closed"
+      },
+      {
+        "type": "Persistent cookies (preferences)",
+        "duration": "12 months"
+      },
+      {
+        "type": "Analytics cookies",
+        "duration": "Maximum 13 months"
+      }
+    ],
+    "section5Title": "5. Third-Party Services",
+    "section5Text": "G-Teach may use third-party services (Firebase authentication, analytics) that set their own cookies. These services have their own privacy policies.",
+    "section6Title": "6. Contact",
+    "section6Text": "For any questions about our cookie policy, contact us at:",
+    "contactEmail": "privacy@g-teach.com",
+    "privacyNotice": "For more information about how we manage your data, see our",
+    "privacyLink": "Privacy Policy"
   }
 }
