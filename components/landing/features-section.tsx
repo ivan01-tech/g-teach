@@ -1,4 +1,4 @@
-import { Search, MessageSquare, Calendar, Star, Shield, Globe } from "lucide-react"
+import { Search, MessageSquare, Calendar, Star, Globe } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 const featuresData = [
