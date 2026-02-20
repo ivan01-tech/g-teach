@@ -1,4 +1,3 @@
-// app/[locale]/layout.tsx
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import type { Metadata, Viewport } from 'next';
@@ -47,19 +46,34 @@ export default async function LocaleLayout({
   // Await params here (required in Next.js 15+)
   const { locale } = await params;
 
-  let messages;
+  // Load messages for the specific locale (merge legacy + modular files)
+  const resolvedLocale = locale || 'en';
+
+  let legacyMessages = {} as Record<string, any>;
   try {
-    // Adjust if your JSON exports .default vs .translations
-    messages = (await import(`@/messages/${locale}.json`)).default;
-    // If structured as { translations: {...} }, use: .translations instead
+    legacyMessages = (await import(`@/messages/${resolvedLocale}.json`)).default;
   } catch (error) {
     notFound();
   }
 
+  const newMessages: Record<string, any> = {};
+  const moduleFiles = ['dashboard', 'messages', 'booking', 'reviews', 'profile', 'howItWorks1', 'features1', 'examPrep', 'about'];
+  for (const file of moduleFiles) {
+    try {
+      const moduleContent = await import(`@/messages/${resolvedLocale}/${file}.json`);
+      const content = moduleContent.default || moduleContent;
+      Object.assign(newMessages, content);
+    } catch (e) {
+      // missing file is fine
+    }
+  }
+
+  const messages = { ...legacyMessages, ...newMessages };
+
   return (
-    <html lang={locale}>
+    <html lang={resolvedLocale}>
       <body className={`${inter.className} font-sans antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={resolvedLocale} messages={messages}>
         <ToastProvider1 />
         <ToastProvider />
           <ReduxProvider>

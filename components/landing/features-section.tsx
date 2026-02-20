@@ -26,7 +26,7 @@ export function FeaturesSection() {
         </div>
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {featuresData.map((feature) => (
+           {featuresData.map((feature) => (
             <div
               key={feature.key}
               className="group relative rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-md"
@@ -41,7 +41,7 @@ export function FeaturesSection() {
                 {t(`items.${feature.key}.desc`)}
               </p>
             </div>
-          ))}
+          ))} 
         </div>
       </div>
     </section>

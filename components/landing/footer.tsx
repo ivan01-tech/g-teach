@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
-import { BookOpen } from "lucide-react"
+import { BookOpen, Globe } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function Footer() {
   const t = useTranslations("footer")
@@ -103,7 +106,8 @@ export function Footer() {
             <p className="text-sm text-muted-foreground">
               {t("allRightsReserved", { year: new Date().getFullYear() })}
             </p>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-6">
+              <LanguageSwitcher />
               {navigation.legal.map((item) => (
                 <Link
                   key={item.name}

@@ -1,0 +1,36 @@
+{
+    "examPrep": {
+        "title": "Prepare for Official German Exams",
+        "description": "Our tutors specialize in preparing students for all major German language certifications Achieve your target score with expert guidance.",
+        "findTutors": "Find {exam} Tutors",
+        "exams": {
+            "goethe": {
+                "description": "The most recognized German language certificate worldwide.",
+                "features": [
+                    "Speaking practice",
+                    "Writing workshops",
+                    "Mock exams",
+                    "Grammar review"
+                ]
+            },
+            "telc": {
+                "description": "European Language Certificates recognized by employers and institutions.",
+                "features": [
+                    "Job-focused preparation",
+                    "Listening exercises",
+                    "Reading comprehension",
+                    "Certificate coaching"
+                ]
+            },
+            "testdaf": {
+                "description": "Required for university admission in Germany.",
+                "features": [
+                    "Academic German",
+                    "University preparation",
+                    "Test strategies",
+                    "Time management"
+                ]
+            }
+        }
+    }
+}

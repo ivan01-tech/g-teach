@@ -1,14 +1,12 @@
-"use client";
+"use client"
 
-import React, { useEffect } from "react";
-
-import { useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuthDispatch } from "@/hooks/use-auth-dispatch";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useAuthDispatch } from "@/hooks/use-auth-dispatch"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -16,60 +14,61 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { BookOpen, Loader2, AlertCircle } from "lucide-react";
-import { toast } from "sonner";
-import { UserRole } from "@/lib/roles";
-import { useTranslations } from "next-intl";
+} from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { BookOpen, Loader2, AlertCircle } from "lucide-react"
+import { toast } from "sonner"
+import { UserRole } from "@/lib/roles"
+import { useTranslations } from "next-intl"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [localError, setLocalError] = useState("");
-  const { signIn, loading, error: reduxError, user } = useAuthDispatch();
-  const router = useRouter();
-  const t = useTranslations("auth.login");
-  const tCommon = useTranslations("auth.common");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [localError, setLocalError] = useState("")
+
+  const { signIn, loading, error: reduxError, user } = useAuthDispatch()
+  const router = useRouter()
+
+  const tCommon = useTranslations("common")
+  const t = useTranslations("login")
 
   useEffect(() => {
     if (user) {
-      toast.success(t("success"));
-      console.log("LOGIN : ", user);
-      router.push(
-        user.role === UserRole.Tutor ? "/betreuer" : user.role == UserRole.Student ? "/student" : "/auth/not-authorized",
-      );
+      toast.success(t("success"), {
+        description: t("welcomeBack", { role: user.role?.toLowerCase() || "utilisateur" }),
+      })
+
+      // Redirection selon le rôle
+      const dashboardPath =
+        user.role === UserRole.Tutor
+          ? "/betreuer"
+          : user.role === UserRole.Student
+            ? "/student"
+            : "/auth/not-authorized"
+
+      router.push(dashboardPath)
     }
-  }, [user, router, t]);
+  }, [user, router, t])
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLocalError("");
+    e.preventDefault()
+    setLocalError("")
 
     try {
-      const result = await signIn(email, password);
+      const result = await signIn(email, password)
 
       if (result.type === "auth/signIn/fulfilled") {
-        const payload = result.payload as any;
-        toast.success(t("success"), {
-          description: t("welcomeBack", { role: payload?.role || "user" }),
-        });
-        console.log("LOGIN : ", payload);
-        // router.push(
-        //   payload?.role === UserRole.Tutor ? "/betreuer" : "/student",
-        // );
+        // Le useEffect gère la redirection et le toast
+        // Pas besoin de refaire ici
       } else {
-        // Thunk rejected
-        setLocalError(
-          // result.payload ||
-          t("error"),
-        );
+        // Erreur du thunk
+        setLocalError(reduxError || t("error"))
       }
-    } catch (err) {
-      setLocalError(t("error"));
-      console.error(err);
+    } catch (err: any) {
+      setLocalError(t("error"))
+      console.error("Login error:", err)
     }
-  };
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-muted/30 px-4 py-12">
@@ -83,16 +82,15 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">{t("title")}</CardTitle>
-          <CardDescription>
-            {t("description")}
-          </CardDescription>
+          <CardDescription>{t("description")}</CardDescription>
         </CardHeader>
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             {(localError || reduxError) && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{localError || reduxError}</AlertDescription>
+                <AlertDescription>{localError || reduxError || t("error")}</AlertDescription>
               </Alert>
             )}
 
@@ -105,6 +103,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                autoComplete="email"
               />
             </div>
 
@@ -118,16 +117,15 @@ export default function LoginPage() {
                   {t("forgotPassword")}
                 </Link>
               </div>
-              {/* <p className="text-[10px] text-muted-foreground italic -mt-1">
-                (If you reset your password, remember to check your **spam folder**)
-              </p> */}
+
               <Input
                 id="password"
                 type="password"
-                placeholder={t("enterPassword", { fallback: "Enter your password" })}
+                placeholder={t("enterPassword")}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete="current-password"
               />
             </div>
 
@@ -143,6 +141,7 @@ export default function LoginPage() {
             </Button>
           </form>
         </CardContent>
+
         <CardFooter className="flex justify-center">
           <p className="text-sm text-muted-foreground">
             {t("noAccount")}{" "}
@@ -156,5 +155,5 @@ export default function LoginPage() {
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }

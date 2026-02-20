@@ -1,0 +1,164 @@
+{
+  "header": {
+    "howItWorks": "How It Works",
+    "findTutors": "Find Tutors",
+    "forStudents": "For Students",
+    "forTutors": "For Tutors",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log In",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "badge": "Trusted by over 10,000 German learners",
+    "title": "Master German with <primary>expert</primary> tutors",
+    "description": "Connect with certified German tutors and achieve your language goals Whether you're preparing for Goethe, TELC, or TestDaF, our personalized approach ensures your success.",
+    "start": "Start learning today",
+    "browse": "View tutors",
+    "stats": {
+      "tutors": "Expert Tutors",
+      "passRate": "Pass Rate",
+      "availability": "Availability"
+    },
+    "features": {
+      "certified": {
+        "title": "Certified Tutors",
+        "desc": "All tutors are verified, with teaching qualifications and native-level fluency."
+      },
+      "exam": {
+        "title": "Exam Prep",
+        "desc": "Specialized preparation for Goethe, TELC, TestDaF, and DSH exams."
+      },
+      "oneOnOne": {
+        "title": "1-on-1 Lessons",
+        "desc": "Personalized lessons tailored to your learning style and goals."
+      },
+      "flexible": {
+        "title": "Flexible Schedule",
+        "desc": "Book lessons at times that work for you, 7 days a week."
+      }
+    }
+  },
+  "features1": {
+    "title": "Everything You Need to Succeed",
+    "description": "Our platform provides all the tools you need to learn German effectively and prepare for your certification exams.",
+    "items": {
+      "matching": {
+        "title": "Smart Tutor Matching",
+        "desc": "Find the perfect tutor based on your level, goals, schedule, and budget Filter by specialization, availability, and ratings."
+      },
+      "chat": {
+        "title": "Real-time Chat",
+        "desc": "Communicate directly with tutors through our built-in messaging system Discuss your goals and schedule lessons easily."
+      },
+      "booking": {
+        "title": "Easy Booking",
+        "desc": "Book lessons with just a few clicks View tutor availability in real-time and reschedule when needed."
+      },
+      "reviews": {
+        "title": "Verified Reviews",
+        "desc": "Read authentic reviews from other students Make informed decisions based on real experiences."
+      },
+      "payments": {
+        "title": "Secure Payments",
+        "desc": "Pay safely through our platform Money-back guarantee if you're not satisfied with your first lesson."
+      },
+      "anywhere": {
+        "title": "Learn Anywhere",
+        "desc": "Take lessons from anywhere in the world All you need is an internet connection and a device."
+      }
+    }
+  },
+  "howItWorks1": {
+    "title": "How G-Teach Works",
+    "subtitle": "Get started in four simple steps and begin your German learning journey today.",
+    "steps": {
+      "step1": {
+        "title": "Create Your Account",
+        "desc": "Sign up for free and complete your profile Tell us about your current level and learning goals."
+      },
+      "step2": {
+        "title": "Find Your Tutor",
+        "desc": "Browse our tutors, filter by specialization, read reviews, and find the perfect match for your needs."
+      },
+      "step3": {
+        "title": "Connect & Discuss",
+        "desc": "Send a message to introduce yourself Discuss your goals and schedule a trial lesson."
+      },
+      "step4": {
+        "title": "Start Learning",
+        "desc": "Book your lessons and start your journey to German fluency with personalized instruction."
+      }
+    }
+  },
+  "examPrep": {
+    "title": "Prepare for Official German Exams",
+    "description": "Our tutors specialize in preparing students for all major German language certifications Achieve your target score with expert guidance.",
+    "findTutors": "Find {exam} Tutors",
+    "exams": {
+      "goethe": {
+        "description": "The most recognized German language certificate worldwide.",
+        "features": [
+          "Speaking practice",
+          "Writing workshops",
+          "Mock exams",
+          "Grammar review"
+        ]
+      },
+      "telc": {
+        "description": "European Language Certificates recognized by employers and institutions.",
+        "features": [
+          "Job-focused preparation",
+          "Listening exercises",
+          "Reading comprehension",
+          "Certificate coaching"
+        ]
+      },
+      "testdaf": {
+        "description": "Required for university admission in Germany.",
+        "features": [
+          "Academic German",
+          "University preparation",
+          "Test strategies",
+          "Time management"
+        ]
+      },
+      "ecl": {
+        "description": "An internationally recognized European language certificate focused on practical communication skills.",
+        "features": [
+          "Balanced skills training (Speaking, Writing, Listening, Reading)",
+          "Task-based speaking preparation",
+          "Writing structure and coherence practice",
+          "Exam simulation under real conditions"
+        ]
+      },
+      "osd": {
+        "description": "An Austrian state-recognized German language certificate accepted for study, work, and residence purposes.",
+        "features": [
+          "Austrian German exposure",
+          "Integrated skills training",
+          "Oral exam preparation",
+          "Practical communication strategies"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to Start Your German Journey?",
+    "description": "Join thousands of students who have achieved their German language goals with G-Teach Your first lesson comes with a satisfaction guarantee.",
+    "getStarted": "Get Started",
+    "browse": "Browse Tutors"
+  },
+  "footer": {
+    "description": "Connect with expert German tutors and achieve your language goals Prepare for Goethe, TELC, TestDaF, and more.",
+    "learn": "Learn",
+    "exams": "Exams",
+    "company": "Company",
+    "allRightsReserved": "© {year} G-Teach All rights reserved.",
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    }
+  }
+}
