@@ -155,7 +155,7 @@ export default function TutorsPage() {
                     {t("clearAll")}
                   </Button>
                 )}
-              </div>
+              </div>''
               <TutorFilters filters={filters} setFilters={setFilters} />
             </div>
           </aside>

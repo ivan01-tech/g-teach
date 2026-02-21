@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, use } from "react"
+import { useState, useEffect, use, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -33,6 +33,7 @@ import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useTutor } from "@/app/[locale]/tutors/[id]/use-tutor"
 import { useReviews } from "@/app/[locale]/tutors/[id]/use-reviews"
+import LoadingScreen from "@/components/ui/loading-screen"
 
 export default function TutorProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
@@ -122,6 +123,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
     : new Date(tutor.createdAt || Date.now())
 
   return (
+    <Suspense fallback={<LoadingScreen />}>
     <main className="flex-1 bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {!isVerified && (
@@ -389,5 +391,6 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
         </div>
       </div>
     </main>
+    </Suspense>
   )
 }

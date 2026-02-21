@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { subscribeToTutors } from "@/lib/services/tutor-service";
 import { setTutors, setLoading, setError } from "@/lib/store/tutors-slice";
 import { AppDispatch } from "@/lib/store";
-import type { Tutor } from "@/lib/types";
 import { useAppSelector } from "@/hooks/redux-store-hooks";
 
 export function useTutors() {

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useOptimistic } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -17,6 +18,12 @@ interface TutorCardProps {
 export function TutorCard({ tutor }: TutorCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites()
   const favorite = isFavorite(tutor.uid)
+
+  const [optFavorite, addOptimisticFavorite] = useOptimistic(
+    favorite,
+    (state) => !state
+  )
+
   const t = useTranslations("tutor-card")
 
   const isVerified = tutor.verificationStatus === "verified" || tutor.isVerified
@@ -90,13 +97,14 @@ export function TutorCard({ tutor }: TutorCardProps) {
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
+                addOptimisticFavorite(undefined)
                 toggleFavorite(tutor.uid)
               }}
-              title={favorite ? t("removeFromFavorites") : t("addToFavorites")}
+              title={optFavorite ? t("removeFromFavorites") : t("addToFavorites")}
             >
-              <Heart className={`h-4 w-4 ${favorite ? "fill-primary text-primary" : ""}`} />
+              <Heart className={`h-4 w-4 ${optFavorite ? "fill-primary text-primary" : ""}`} />
               <span className="sr-only">
-                {favorite ? t("removeFromFavorites") : t("addToFavorites")}
+                {optFavorite ? t("removeFromFavorites") : t("addToFavorites")}
               </span>
             </Button>
           </div>

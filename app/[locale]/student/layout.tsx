@@ -1,20 +1,4 @@
-import React from "react"
-import { DashboardHeader } from "@/components/student/header"
-import { DashboardSidebar } from "@/components/student/sidebar"
-
-export default function StudentLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen">
-      <DashboardSidebar />
-      <div className="lg:pl-64">
-        <DashboardHeader />
-        <main className="p-4">{children}</main>
-      </div>
-    </div>
-  )
-}
 "use client";
-
 import React from "react";
 
 import { useEffect } from "react";
@@ -60,5 +44,6 @@ export default function DashboardLayout({
         <MatchingFollowupDialog />
       </div>
     </div>
+
   );
 }
