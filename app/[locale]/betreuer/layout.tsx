@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { BetreuerHeader } from "@/components/betreuer/header";
 import { DashboardSidebar } from "@/components/student/sidebar";
