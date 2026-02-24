@@ -189,3 +189,27 @@ export interface ContactInquiry {
   status: "pending" | "resolved" | "archived"
   createdAt: any // Timestamp
 }
+
+export interface School {
+  id: string
+  name: string
+  logo: string
+  location: {
+    city: string
+    country: string
+  }
+  exams: string[]
+  isVerified: boolean
+  rating: number
+  reviewCount: number
+  levels: string[]
+  description?: string
+}
+
+export interface SchoolFilterState {
+  searchQuery: string
+  country: string
+  city: string
+  examType: string
+  level: string
+}

@@ -799,5 +799,41 @@
     "contactEmail": "privacy@g-teach.com",
     "privacyNotice": "Pour plus d'informations sur la gestion de vos données, consultez notre",
     "privacyLink": "Politique de confidentialité"
+  },
+  "schools": {
+    "badge": "Partenaires Institutionnels",
+    "pageTitle": "Trouvez les meilleures écoles de langues",
+    "pageSubtitle": "Parcourez {count} institutions prestigieuses pour accélérer votre apprentissage de l'allemand avec des programmes immersifs et des experts certifiés.",
+    "searchPlaceholder": "Rechercher par nom d'école, ville ou description...",
+    "filters": "Filtres",
+    "clearAll": "Tout effacer",
+    "clearFilters": "Effacer les filtres",
+    "clearAllFilters": "Supprimer tous les filtres",
+    "loading": "Chargement des écoles...",
+    "noSchoolsFound": "Aucune école trouvée",
+    "noSchoolsTryAdjust": "Essayez de modifier vos filtres ou votre recherche pour trouver plus de résultats.",
+    "resultFound": "école trouvée",
+    "resultsFound": "écoles trouvées",
+    "showingFiltered": "Affichage des résultats selon vos critères sélectionnés."
+  },
+  "school-card": {
+    "verified": "Institution Vérifiée",
+    "examsPrepared": "Examens Préparés",
+    "levelsAvailable": "niveaux disponibles",
+    "viewProfile": "Voir le Profil"
+  },
+  "school-filters": {
+    "country": "Pays",
+    "city": "Ville",
+    "level": "Niveau d'allemand",
+    "examType": "Type d'examen",
+    "allCountries": "Tous les pays",
+    "allCities": "Toutes les villes",
+    "allLevels": "Tous les niveaux",
+    "allExams": "Tous les examens",
+    "selectCountry": "Sélectionner un pays",
+    "selectCity": "Sélectionner une ville",
+    "selectLevel": "Sélectionner un niveau",
+    "selectExam": "Sélectionner un examen"
   }
-} 
+}

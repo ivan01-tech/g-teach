@@ -799,5 +799,41 @@
     "contactEmail": "privacy@g-teach.com",
     "privacyNotice": "For more information about how we manage your data, see our",
     "privacyLink": "Privacy Policy"
+  },
+  "schools": {
+    "badge": "Institutional Partners",
+    "pageTitle": "Find the Best Language Schools",
+    "pageSubtitle": "Browse {count} prestigious institutions to accelerate your German learning with immersive programs and certified experts.",
+    "searchPlaceholder": "Search by school name, city, or description...",
+    "filters": "Filters",
+    "clearAll": "Clear all",
+    "clearFilters": "Clear filters",
+    "clearAllFilters": "Clear all filters",
+    "loading": "Loading schools...",
+    "noSchoolsFound": "No schools found",
+    "noSchoolsTryAdjust": "Try adjusting your filters or search query to find more results.",
+    "resultFound": "school found",
+    "resultsFound": "schools found",
+    "showingFiltered": "Showing results based on your selected criteria."
+  },
+  "school-card": {
+    "verified": "Verified Institution",
+    "examsPrepared": "Exams Prepared",
+    "levelsAvailable": "levels available",
+    "viewProfile": "View Profile"
+  },
+  "school-filters": {
+    "country": "Country",
+    "city": "City",
+    "level": "German Level",
+    "examType": "Exam Type",
+    "allCountries": "All Countries",
+    "allCities": "All Cities",
+    "allLevels": "All Levels",
+    "allExams": "All Exams",
+    "selectCountry": "Select country",
+    "selectCity": "Select city",
+    "selectLevel": "Select level",
+    "selectExam": "Select exam"
   }
 }
