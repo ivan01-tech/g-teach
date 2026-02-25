@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f3a697c2a8846e129e27ec1b30ca567ae4350ca
 "use client";
 import React from "react";
 

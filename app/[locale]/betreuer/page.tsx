@@ -17,12 +17,14 @@ import {
   Clock,
   Star,
   Eye,
+  BookOpen,
 } from "lucide-react"
 import { useTutorProfile } from "@/hooks/use-tutor-profile"
 import { getStudentRequests } from "@/lib/services/tutor-service"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/hooks/use-auth"
 import { TutorMatchingsCard } from "@/components/betreuer/tutor-matchings-card"
+import { TutorSchoolsCard } from "@/components/betreuer/tutor-schools-card"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/lib/store"
 import { fetchProfileViewsThunk } from "@/lib/store/profile-views-slice"
@@ -179,7 +181,7 @@ export default function BetreuerDashboard() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <TutorMatchingsCard />
-        {/* <TutorBookingsCard /> */}
+        <TutorSchoolsCard />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -251,6 +253,12 @@ export default function BetreuerDashboard() {
             <CardDescription>Common tasks and shortcuts</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
+            <Button asChild variant="outline" className="w-full justify-start bg-transparent">
+              <Link href="/betreuer/schools">
+                <BookOpen className="mr-2 h-4 w-4" />
+                Manage Schools
+              </Link>
+            </Button>
             <Button asChild variant="outline" className="w-full justify-start bg-transparent">
               <Link href="/betreuer/documents">
                 <FileCheck className="mr-2 h-4 w-4" />

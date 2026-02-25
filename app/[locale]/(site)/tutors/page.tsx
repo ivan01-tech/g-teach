@@ -14,7 +14,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import type { Tutor } from "@/lib/types"
 import { useTranslations } from "next-intl"
 import { useTutors } from "../../tutors/use-tutors"
 

@@ -14,6 +14,7 @@ import {
   LogOut,
   BookOpen,
   Contact,
+  School,
 } from "lucide-react"
 import { useAuth } from "@/hooks/use-auth"
 import { Button } from "@/components/ui/button"
@@ -24,8 +25,7 @@ const navigation = [
   { name: "Documents", href: "/betreuer/documents", icon: FileCheck },
   { name: "Messages", href: "/betreuer/messages", icon: MessageSquare },
   { name: "Matchings", href: "/betreuer/matchings", icon: Contact },
-  // { name: "Bookings", href: "/betreuer/bookings", icon: Calendar },
-  // { name: "Resources", href: "/betreuer/resources", icon: BookOpen },
+  { name: "My Schools", href: "/betreuer/schools", icon: School },
   { name: "Settings", href: "/betreuer/settings", icon: Settings },
 ]
 

@@ -11,4 +11,5 @@ export const firebaseCollections = {
   cities: "cities",
   profileViews: "profileViews",
   contactInquiries: "contactInquiries",
+  schools: "schools",
 };

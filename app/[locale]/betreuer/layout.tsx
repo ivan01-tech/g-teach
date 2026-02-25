@@ -41,24 +41,19 @@ export default function BetreuerLayout({
 
   return (
     <div className="min-h-screen">
-      <DashboardSidebar />
-      <div className="lg:pl-64">
-        <BetreuerHeader />
-        <main className="p-4">
-          {children}
-          <div className="flex min-h-screen bg-background">
-            <BetreuerSidebar className="hidden lg:flex" />
-            <div className="flex flex-1 flex-col">
-              <BetreuerHeader />
-              <BetreuerMobileSidebar />
-              <main className="flex-1 overflow-auto p-4 lg:p-6">
-                {children}
-              </main>
-              <MatchingFollowupDialog />
-            </div>
+      <main className="min-h-screen">
+        <div className="flex min-h-screen bg-background">
+          <BetreuerSidebar className="hidden lg:flex" />
+          <div className="flex flex-1 flex-col">
+            <BetreuerHeader />
+            <BetreuerMobileSidebar />
+            <main className="flex-1 overflow-auto p-4 lg:p-6">
+              {children}
+            </main>
+            <MatchingFollowupDialog />
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }

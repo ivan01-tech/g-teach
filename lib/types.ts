@@ -192,18 +192,39 @@ export interface ContactInquiry {
 
 export interface School {
   id: string
+  tutorId: string
   name: string
-  logo: string
+  logo?: string | null
   location: {
     city: string
     country: string
+    address?: string | null
+    latitude: number | null
+    longitude: number | null
   }
   exams: string[]
-  isVerified: boolean
+  levels: string[]
+  verificationStatus: VerificationStatus
   rating: number
   reviewCount: number
-  levels: string[]
-  description?: string
+  description?: string | null
+  about?: string | null // About the language school
+  phone?: string | null
+  email?: string | null
+  website?: string | null
+  googleMapsUrl?: string | null // Link for directions
+  socialMedia?: { 
+    facebook?: string | null
+    twitter?: string | null
+    instagram?: string | null
+    linkedin?: string | null
+  }
+  profileViews?: number | null
+  totalStudents?: number | null
+  totalLessons?: number | null
+  verificationMessage?: string | null
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface SchoolFilterState {
