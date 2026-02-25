@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { School } from "@/lib/types"
 import { SchoolsList } from "@/components/betreuer/schools-list"
 import { SchoolFormDialog } from "@/components/betreuer/school-form-dialog"
@@ -8,8 +9,11 @@ import { SchoolStatsDialog } from "@/components/betreuer/school-stats-dialog"
 import { SchoolPreviewDialog } from "@/components/betreuer/school-preview-dialog"
 import { SchoolContactDialog } from "@/components/betreuer/school-contact-dialog"
 import { SchoolSubmitDialog } from "@/components/betreuer/school-submit-dialog"
+import { useAuth } from "@/hooks/use-auth"
 
 export default function SchoolsPage() {
+  const router = useRouter()
+  const { user } = useAuth()
   const [formDialogOpen, setFormDialogOpen] = useState(false)
   const [statsDialogOpen, setStatsDialogOpen] = useState(false)
   const [previewDialogOpen, setPreviewDialogOpen] = useState(false)
@@ -27,6 +31,10 @@ export default function SchoolsPage() {
   const handleEditClick = (school: School) => {
     setSelectedSchool(school)
     setFormDialogOpen(true)
+  }
+
+  const handleEditProfileClick = () => {
+    router.push("/betreuer/profile")
   }
 
   const handleStatsClick = (school: School) => {
@@ -71,6 +79,8 @@ export default function SchoolsPage() {
         onContactClick={handleContactClick}
         onSubmitClick={handleSubmitClick}
         onSchoolsUpdate={setSchools}
+        onEditProfileClick={handleEditProfileClick}
+        tutor={user || undefined}
       />
 
       <SchoolFormDialog

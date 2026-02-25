@@ -869,7 +869,7 @@
     "uploadLogo": "Upload Logo",
     "city": "City",
     "country": "Country",
-    "address": "Address",
+    "cameroonOnly": "Schools are currently available in Cameroon only",
     "fullAddress": "Full address",
     "exams": "Exams",
     "commaSeparated": "comma separated",
@@ -925,7 +925,19 @@
     "locationAccurate": "Location details are accurate",
     "manageSchools": "Manage Schools",
     "neverCreatedSchools": "You haven't created any schools yet.",
-    "copyToClipboard": "copied to clipboard"
+    "copyToClipboard": "copied to clipboard",
+    "You can manage one language school on the platform": "You can manage one language school on the platform",
+    "Complete Your Profile": "Complete Your Profile",
+    "Complete your profile to increase your school's visibility and credibility on the platform": "Complete your profile to increase your school's visibility and credibility on the platform",
+    "Update Profile": "Update Profile",
+    "Create your language school to start offering lessons to students on the platform": "Create your language school to start offering lessons to students on the platform",
+    "Profile Views": "Profile Views",
+    "Exams Offered": "Exams Offered",
+    "No exams configured": "No exams configured",
+    "Levels Offered": "Levels Offered",
+    "No levels configured": "No levels configured",
+    "Student Reviews": "Student Reviews",
+    "review": "review"
   },
   "location": {
     "exactLocation": "Exact Location",
@@ -938,6 +950,18 @@
     "clickDirectly": "Click directly on the map to place a marker at your school location",
     "orSearch": "Or search for your address to find the location automatically",
     "dragMarker": "Drag the marker to adjust the exact position",
-    "helpStudentsFind": "This helps students find your school easily"
+    "helpStudentsFind": "This helps students find your school easily",
+    "Your Rating": "Your Rating",
+    "Your Comment": "Your Comment",
+    "Post Review": "Post Review",
+    "Sign in to leave a review": "Sign in to leave a review",
+    "No reviews yet. Be the first to review!": "No reviews yet. Be the first to review!",
+    "Please select a rating": "Please select a rating",
+    "Please write a comment": "Please write a comment",
+    "You must be logged in to leave a review": "You must be logged in to leave a review",
+    "Your review has been posted": "Your review has been posted",
+    "Failed to add review": "Failed to add review",
+    "Share your experience with this school...": "Share your experience with this school..."
   }
 }
+

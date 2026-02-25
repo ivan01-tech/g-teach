@@ -366,13 +366,13 @@ export function SchoolFormDialog({ open, school, onOpenChange, onSuccess }: Scho
                   <Label htmlFor="locationCountry">{t("Country")}</Label>
                   <Input
                     id="locationCountry"
-                    name="locationCountry"
-                    value={formData.locationCountry}
-                    onChange={handleInputChange}
-                    placeholder={t("Country")}
-                    required
-                    disabled={loading}
+                    value="Cameroon"
+                    disabled
+                    className="bg-muted cursor-not-allowed"
                   />
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {t("cameroonOnly")}
+                  </p>
                 </div>
               </div>
 

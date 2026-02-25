@@ -20,20 +20,13 @@ interface SchoolFiltersProps {
 export function SchoolFilters({ filters, setFilters }: SchoolFiltersProps) {
     const t = useTranslations("school-filters")
 
-    const countries = [
-        { value: "all", label: t("allCountries") },
-        { value: "germany", label: "Germany" },
-        { value: "austria", label: "Austria" },
-        { value: "switzerland", label: "Switzerland" },
-    ]
-
     const cities = [
         { value: "all", label: t("allCities") },
-        { value: "berlin", label: "Berlin" },
-        { value: "munich", label: "Munich" },
-        { value: "hamburg", label: "Hamburg" },
-        { value: "vienna", label: "Vienna" },
-        { value: "zurich", label: "Zurich" },
+        { value: "yaoundé", label: "Yaoundé" },
+        { value: "douala", label: "Douala" },
+        { value: "bamenda", label: "Bamenda" },
+        { value: "buea", label: "Buea" },
+        { value: "kumbo", label: "Kumbo" },
     ]
 
     const updateFilter = (key: keyof SchoolFilterState, value: string) => {
@@ -42,28 +35,6 @@ export function SchoolFilters({ filters, setFilters }: SchoolFiltersProps) {
 
     return (
         <div className="space-y-6">
-            {/* Country Filter */}
-            <div className="space-y-2.5">
-                <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">
-                    {t("country")}
-                </Label>
-                <Select
-                    value={filters.country || "all"}
-                    onValueChange={(value) => updateFilter("country", value)}
-                >
-                    <SelectTrigger className="h-10 border-border/60 bg-background/50 focus:ring-1 focus:ring-primary/20">
-                        <SelectValue placeholder={t("selectCountry")} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {countries.map((c) => (
-                            <SelectItem key={c.value} value={c.value}>
-                                {c.label}
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
-
             {/* City Filter */}
             <div className="space-y-2.5">
                 <Label className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">

@@ -869,7 +869,7 @@
     "uploadLogo": "Télécharger le logo",
     "city": "Ville",
     "country": "Pays",
-    "address": "Adresse",
+    "cameroonOnly": "Les écoles ne sont actuellement disponibles qu'au Cameroun",
     "fullAddress": "Adresse complète",
     "exams": "Examens",
     "commaSeparated": "séparés par des virgules",
@@ -938,6 +938,31 @@
     "clickDirectly": "Cliquez directement sur la carte pour placer un marqueur à la localisation de votre école",
     "orSearch": "Ou recherchez votre adresse pour localiser automatiquement",
     "dragMarker": "Faites glisser le marqueur pour ajuster la position exacte",
-    "helpStudentsFind": "Cela aide les étudiants à trouver votre école facilement"
+    "helpStudentsFind": "Cela aide les étudiants à trouver votre école facilement",
+    "Your Rating": "Votre Note",
+    "Your Comment": "Votre Commentaire",
+    "Post Review": "Publier l'Avis",
+    "Sign in to leave a review": "Connectez-vous pour laisser un avis",
+    "No reviews yet. Be the first to review!": "Pas d'avis encore. Soyez le premier à commenter !",
+    "Please select a rating": "Veuillez sélectionner une note",
+    "Please write a comment": "Veuillez écrire un commentaire",
+    "You must be logged in to leave a review": "Vous devez être connecté pour laisser un avis",
+    "Your review has been posted": "Votre avis a été publié",
+    "Failed to add review": "Impossible d'ajouter l'avis",
+    "Share your experience with this school...": "Partagez votre expérience avec cette école...",
+    "You can manage one language school on the platform": "Vous pouvez gérer une seule école de langues sur la plateforme",
+    "Complete Your Profile": "Complétez Votre Profil",
+    "Complete your profile to increase your school's visibility and credibility on the platform": "Complétez votre profil pour augmenter la visibilité et la crédibilité de votre école sur la plateforme",
+    "Update Profile": "Mettre à Jour le Profil",
+    "Create your language school to start offering lessons to students on the platform": "Créez votre école de langues pour commencer à proposer des cours aux étudiants sur la plateforme",
+    "Profile Views": "Vues du Profil",
+    "Exams Offered": "Examens Proposés",
+    "No exams configured": "Aucun examen configuré",
+    "Levels Offered": "Niveaux Proposés",
+    "No levels configured": "Aucun niveau configuré",
+    "Student Reviews": "Avis des Étudiants",
+    "review": "avis"
   }
 }
+
+

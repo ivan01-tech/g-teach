@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { LayoutDashboard, Settings, Globe } from "lucide-react"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { UserRole } from "@/lib/roles"
 
 export function Header() {
   const t = useTranslations("header")
@@ -32,7 +33,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
@@ -84,19 +85,19 @@ export function Header() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="my-2" />
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/student" className="w-full">
+                  <Link href={user.role === UserRole.Tutor ? "/betreuer/" : "/student/"} className="w-full">
                     <LayoutDashboard className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/student/profile" className="w-full">
+                  <Link href={user.role === UserRole.Tutor ? "/betreuer/profile" : "/student/profile"} className="w-full">
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link href="/student/settings" className="w-full">
+                  <Link href={user.role === UserRole.Tutor ? "/betreuer/settings" : "/student/settings"} className="w-full">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
                   </Link>
@@ -201,7 +202,7 @@ export function Header() {
 
                   <div className="grid gap-1">
                     <Link
-                      href="/student"
+                      href={user.role === UserRole.Tutor ? "/betreuer/" : "/student/"}
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -209,7 +210,9 @@ export function Header() {
                       Dashboard
                     </Link>
                     <Link
-                      href="/student/profile"
+
+
+                      href={user.role === UserRole.Tutor ? "/betreuer/profile" : "/student/profile"}
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -217,7 +220,7 @@ export function Header() {
                       Profile
                     </Link>
                     <Link
-                      href="/student/settings"
+                      href={user.role === UserRole.Tutor ? "/betreuer/settings" : "/student/settings"}
                       className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
                       onClick={() => setMobileMenuOpen(false)}
                     >

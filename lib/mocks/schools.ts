@@ -6,8 +6,8 @@ export const MOCK_SCHOOLS: School[] = [
         name: "Berlin Language Academy",
         logo: "https://api.dicebear.com/7.x/initials/svg?seed=BLA&backgroundColor=004e9a",
         location: {
-            city: "Berlin",
-            country: "Germany",
+            city: "Yaoundé",
+            country: "Cameroon",
         },
         exams: ["Goethe-Zertifikat", "TestDaF", "TELC"],
         isVerified: true,
@@ -21,8 +21,8 @@ export const MOCK_SCHOOLS: School[] = [
         name: "Munich German Center",
         logo: "https://api.dicebear.com/7.x/initials/svg?seed=MGC&backgroundColor=007bff",
         location: {
-            city: "Munich",
-            country: "Germany",
+            city: "Douala",
+            country: "Cameroon",
         },
         exams: ["Goethe-Zertifikat", "DSH"],
         isVerified: true,
@@ -36,8 +36,8 @@ export const MOCK_SCHOOLS: School[] = [
         name: "Hamburg International School",
         logo: "https://api.dicebear.com/7.x/initials/svg?seed=HIS&backgroundColor=6c757d",
         location: {
-            city: "Hamburg",
-            country: "Germany",
+            city: "Bamenda",
+            country: "Cameroon",
         },
         exams: ["TestDaF", "TELC"],
         isVerified: false,
@@ -52,7 +52,7 @@ export const MOCK_SCHOOLS: School[] = [
         logo: "https://api.dicebear.com/7.x/initials/svg?seed=VLH&backgroundColor=dc3545",
         location: {
             city: "Vienna",
-            country: "Austria",
+            country: "Cameroon",
         },
         exams: ["ÖSD", "TELC"],
         isVerified: true,
@@ -67,7 +67,7 @@ export const MOCK_SCHOOLS: School[] = [
         logo: "https://api.dicebear.com/7.x/initials/svg?seed=ZSG&backgroundColor=28a745",
         location: {
             city: "Zurich",
-            country: "Switzerland",
+            country: "Cameroon",
         },
         exams: ["Goethe-Zertifikat", "TELC"],
         isVerified: true,

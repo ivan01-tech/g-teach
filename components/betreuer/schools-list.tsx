@@ -35,6 +35,7 @@ import {
   MessageSquare,
   Star,
 } from "lucide-react"
+import { SchoolDashboard } from "@/components/betreuer/school-dashboard"
 
 interface SchoolsListProps {
   onCreateClick: () => void
@@ -44,6 +45,8 @@ interface SchoolsListProps {
   onContactClick: (school: School) => void
   onSubmitClick: (school: School) => void
   onSchoolsUpdate?: (schools: School[]) => void
+  onEditProfileClick?: () => void
+  tutor?: any
 }
 
 export function SchoolsList({
@@ -54,6 +57,8 @@ export function SchoolsList({
   onContactClick,
   onSubmitClick,
   onSchoolsUpdate,
+  onEditProfileClick,
+  tutor,
 }: SchoolsListProps) {
   const { user } = useAuth()
   const t = useTranslations()
@@ -98,28 +103,6 @@ export function SchoolsList({
     }
   }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "verified":
-        return "bg-green-500/10 text-green-700 border-green-200"
-      case "rejected":
-        return "bg-red-500/10 text-red-700 border-red-200"
-      default:
-        return "bg-yellow-500/10 text-yellow-700 border-yellow-200"
-    }
-  }
-
-  const getStatusLabel = (status: string) => {
-    switch (status) {
-      case "verified":
-        return t("Verified")
-      case "rejected":
-        return t("Rejected")
-      default:
-        return t("Pending Verification")
-    }
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -128,16 +111,24 @@ export function SchoolsList({
     )
   }
 
+  // Maximum one school per tutor
+  const maxSchoolsReached = schools.length >= 1
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-foreground">{t("tutor-schools.myLanguageSchools")}</h2>
           <p className="text-muted-foreground">
-            {t("tutor-schools.manageYourRealSchools")}
+            {t("You can manage one language school on the platform")}
           </p>
         </div>
-        <Button onClick={onCreateClick} className="gap-2">
+        <Button
+          onClick={onCreateClick}
+          disabled={maxSchoolsReached}
+          className="gap-2"
+          title={maxSchoolsReached ? "You can only create one school" : ""}
+        >
           <Plus className="h-4 w-4" />
           {t("tutor-schools.addSchool")}
         </Button>
@@ -150,8 +141,8 @@ export function SchoolsList({
               <MessageSquare className="h-6 w-6 text-muted-foreground" />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-foreground">{t("No schools yet")}</h3>
-            <p className="mt-2 text-center text-muted-foreground">
-              {t("Create your first school to get started!")}
+            <p className="mt-2 text-center text-muted-foreground max-w-xs">
+              {t("Create your language school to start offering lessons to students on the platform")}
             </p>
             <Button onClick={onCreateClick} className="mt-4 gap-2">
               <Plus className="h-4 w-4" />
@@ -160,109 +151,12 @@ export function SchoolsList({
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4">
-          {schools.map((school) => (
-            <Card key={school.id} className="overflow-hidden">
-              <CardHeader className="pb-3">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4 flex-1">
-                    {school.logo && (
-                      <img
-                        src={school.logo}
-                        alt={school.name}
-                        className="h-16 w-16 rounded-lg object-cover"
-                      />
-                    )}
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <CardTitle className="text-lg">{school.name}</CardTitle>
-                        <Badge className={`${getStatusColor(school.verificationStatus)}`}>
-                          {getStatusLabel(school.verificationStatus)}
-                        </Badge>
-                      </div>
-                      <CardDescription className="mt-1">
-                        {school.location.city}, {school.location.country}
-                      </CardDescription>
-                      {school.description && (
-                        <p className="mt-2 text-sm text-foreground/70 line-clamp-2">
-                          {school.description}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <MoreVertical className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem onClick={() => onEditClick(school)}>
-                        <Edit className="mr-2 h-4 w-4" />
-                        {t("Edit")}
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onPreviewClick(school)}>
-                        <Eye className="mr-2 h-4 w-4" />
-                        {t("Preview")}
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onStatsClick(school)}>
-                        <BarChart3 className="mr-2 h-4 w-4" />
-                        {t("Statistics")}
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onContactClick(school)}>
-                        <Mail className="mr-2 h-4 w-4" />
-                        {t("Contact Info")}
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      {school.verificationStatus !== "verified" && (
-                        <>
-                          <DropdownMenuItem onClick={() => onSubmitClick(school)}>
-                            <Send className="mr-2 h-4 w-4" />
-                            {t("Submit for Verification")}
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                        </>
-                      )}
-                      <DropdownMenuItem
-                        onClick={() => setDeleteId(school.id)}
-                        className="text-red-600"
-                      >
-                        <Trash2 className="mr-2 h-4 w-4" />
-                        {t("Delete")}
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </CardHeader>
-
-              <CardContent>
-                <div className="flex flex-wrap items-center gap-4">
-                  {school.rating > 0 && (
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm font-medium">
-                        {school.rating.toFixed(1)} ({school.reviewCount} {t("reviews")})
-                      </span>
-                    </div>
-                  )}
-                  {school.exams && school.exams.length > 0 && (
-                    <div>
-                      <p className="text-xs text-muted-foreground mb-1">{t("Exams")}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {school.exams.map((exam) => (
-                          <Badge key={exam} variant="secondary" className="text-xs">
-                            {exam}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <SchoolDashboard
+          school={schools[0]}
+          tutor={tutor}
+          onEditClick={() => onEditClick(schools[0])}
+          onEditProfileClick={onEditProfileClick || (() => {})}
+        />
       )}
 
       <AlertDialog open={!!deleteId} onOpenChange={(open) => !open && setDeleteId(null)}>

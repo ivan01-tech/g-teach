@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { SchoolCard } from "@/components/schools/school-card"
 import { SchoolFilters } from "@/components/schools/school-filters"
+import { SchoolPublicDialog } from "@/components/schools/school-public-dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Search, SlidersHorizontal, X, GraduationCap } from "lucide-react"
+import { Search, SlidersHorizontal, X, GraduationCap, Loader2 } from "lucide-react"
 import {
     Sheet,
     SheetContent,
@@ -15,11 +16,11 @@ import {
 } from "@/components/ui/sheet"
 import type { School, SchoolFilterState } from "@/lib/types"
 import { useTranslations } from "next-intl"
-import { MOCK_SCHOOLS } from "@/lib/mocks/schools"
+import { listenToPublicSchools } from "@/lib/services/school-service"
 
 const initialFilters: SchoolFilterState = {
     searchQuery: "",
-    country: "",
+    country: "Cameroon",
     city: "",
     examType: "",
     level: "",
@@ -29,9 +30,35 @@ export default function SchoolsPage() {
     const t = useTranslations("schools")
     const [filters, setFilters] = useState<SchoolFilterState>(initialFilters)
     const [filtersOpen, setFiltersOpen] = useState(false)
+    const [schools, setSchools] = useState<School[]>([])
+    const [selectedSchool, setSelectedSchool] = useState<School | undefined>()
+    const [profileDialogOpen, setProfileDialogOpen] = useState(false)
+    const [loading, setLoading] = useState(true)
 
-    // Use mock data for now
-    const schools = MOCK_SCHOOLS
+    useEffect(() => {
+        setLoading(true);
+
+        const unsubscribe = listenToPublicSchools({
+            onUpdate: (newSchools, more, lastDoc) => {
+                setSchools(newSchools);
+                setLoading(false);
+            },
+            onError: (err) => {
+                console.error(err);
+                setLoading(false);
+            },
+        });
+
+
+        return () => {
+            unsubscribe();
+        };
+    }, []); // recharge si filtres changent → ajoute dépendances
+
+    const handleViewProfile = (school: School) => {
+        setSelectedSchool(school)
+        setProfileDialogOpen(true)
+    }
 
     const filteredSchools = useMemo(() => {
         return schools.filter((school) => {
@@ -45,7 +72,6 @@ export default function SchoolsPage() {
                 }
             }
 
-            if (filters.country && school.location.country.toLowerCase() !== filters.country.toLowerCase()) return false
             if (filters.city && school.location.city.toLowerCase() !== filters.city.toLowerCase()) return false
             if (filters.examType && !school.exams.some(e => e.toLowerCase().includes(filters.examType.toLowerCase()))) return false
             if (filters.level && !school.levels.some(l => l.toLowerCase() === filters.level.toLowerCase())) return false
@@ -56,7 +82,6 @@ export default function SchoolsPage() {
 
     const activeFilterCount = useMemo(() => {
         let count = 0
-        if (filters.country) count++
         if (filters.city) count++
         if (filters.examType) count++
         if (filters.level) count++
@@ -193,7 +218,7 @@ export default function SchoolsPage() {
                                 <p className="mt-2 text-slate-500 max-w-xs mx-auto">{t("noSchoolsTryAdjust")}</p>
                                 <Button
                                     variant="outline"
-                                    className="mt-8 min-w-[160px] rounded-xl border-border/60"
+                                    className="mt-8 min-w-40 rounded-xl border-border/60"
                                     onClick={clearFilters}
                                 >
                                     {t("clearAllFilters")}
@@ -202,13 +227,24 @@ export default function SchoolsPage() {
                         ) : (
                             <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
                                 {filteredSchools.map((school) => (
-                                    <SchoolCard key={school.id} school={school} />
+                                    <SchoolCard
+                                        key={school.id}
+                                        school={school}
+                                        onViewProfile={handleViewProfile}
+                                    />
                                 ))}
                             </div>
                         )}
                     </div>
                 </div>
             </div>
+
+            {/* School Public Dialog */}
+            <SchoolPublicDialog
+                open={profileDialogOpen}
+                school={selectedSchool}
+                onOpenChange={setProfileDialogOpen}
+            />
         </div>
     )
 }

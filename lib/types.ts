@@ -73,6 +73,26 @@ export interface Review {
   createdAt: Date
 }
 
+export interface SchoolReview {
+  id: string
+  schoolId: string
+  studentId: string
+  studentName: string
+  studentPhoto?: string
+  rating: number
+  comment: string
+  createdAt: Date
+}
+
+export interface SchoolProfileView {
+  id: string
+  schoolId: string
+  viewerId?: string
+  viewedAt: any
+  device?: string
+  browser?: string
+}
+
 export interface Booking {
   id: string
   tutorId: string
