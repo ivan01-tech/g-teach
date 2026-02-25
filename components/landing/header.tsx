@@ -50,6 +50,9 @@ export function Header() {
           <Link href="/tutors" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             {t("findTutors")}
           </Link>
+          <Link href="/find-schools" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            {t("findSchools")}
+          </Link>
           <Link href="/for-students" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
             {t("forStudents")}
           </Link>
@@ -155,6 +158,13 @@ export function Header() {
               onClick={() => setMobileMenuOpen(false)}
             >
               {t("findTutors")}
+            </Link>
+            <Link
+              href="/find-schools"
+              className="block rounded-md px-3 py-2 text-base font-medium text-muted-foreground hover:bg-muted hover:text-foreground"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t("findSchools")}
             </Link>
             <Link
               href="/for-students"

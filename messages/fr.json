@@ -2,6 +2,7 @@
   "header": {
     "howItWorks": "Comment ça marche",
     "findTutors": "Trouver des tuteurs",
+    "findSchools": "Trouver des Écoles",
     "forStudents": "Pour les étudiants",
     "forTutors": "Pour les tuteurs",
     "about": "À propos",
@@ -962,6 +963,168 @@
     "No levels configured": "Aucun niveau configuré",
     "Student Reviews": "Avis des Étudiants",
     "review": "avis"
+  },
+  "findSchools": {
+    "badge": "Découvrez les Écoles de Langues",
+    "title": "Trouvez l'École de Langues Idéale pour Vos Objectifs",
+    "subtitle": "Recherchez, comparez et connectez-vous avec des écoles de langues vérifiées. De la préparation à l'examen à la pratique conversationnelle, trouvez l'école qui correspond à vos besoins et à votre budget.",
+    "browseSchoolsButton": "Parcourir les Écoles",
+    "createSchoolButton": "Créer une École",
+    "heroSubtext": "Plus de 100 écoles de langues vérifiées prêtes à vous aider à maîtriser l'allemand",
+    "verifiedSchools": "Écoles Vérifiées",
+    "examTypes": "Types d'Examens",
+    "activeStudents": "Étudiants Actifs",
+    
+    "problemTitle": "Le Défi de Trouver une École de Langues de Qualité",
+    "problemSubtitle": "Les étudiants rencontrent souvent des difficultés dans le processus de sélection d'école. Voici les points douloureux les plus courants:",
+    "hardFind": {
+      "title": "Difficile à Trouver",
+      "description": "Les informations éparses sur plusieurs sites Web rendent difficile la découverte d'écoles de langues fiables."
+    },
+    "lackTransparency": {
+      "title": "Manque de Transparence",
+      "description": "Informations limitées sur les méthodes d'enseignement, les qualifications des instructeurs et les résultats réels des étudiants."
+    },
+    "noComparison": {
+      "title": "Pas de Comparaison Facile",
+      "description": "Difficile de comparer les écoles côte à côte sur les prix, les programmes, l'emplacement et les spécialisations."
+    },
+    "trustConcern": {
+      "title": "Préoccupation de Confiance",
+      "description": "Préoccupations concernant la légitimité de l'école, les normes de qualité et si elles tiennent leurs promesses."
+    },
+    
+    "solutionTitle": "Notre Solution",
+    "solutionSubtitle": "Nous avons construit une plateforme qui résout chaque défi dans la recherche d'une école de langues:",
+    "verifiedInstitutions": {
+      "title": "Institutions Vérifiées",
+      "description": "Toutes les écoles de notre plateforme sont vérifiées et surveillées pour assurer les normes de qualité et la légitimité."
+    },
+    "locationBased": {
+      "title": "Recherche par Localisation",
+      "description": "Trouvez des écoles dans votre ville ou explorez les options à travers le Cameroun avec une cartographie précise."
+    },
+    "examFocused": {
+      "title": "Filtrage Axé sur l'Examen",
+      "description": "Filtrez les écoles par type d'examen: Goethe, TELC, ÖSD, ECL, TestDaF, DSH - et niveaux de langue A1-C2."
+    },
+    "directContact": {
+      "title": "Contact Direct",
+      "description": "Obtenez des numéros de téléphone, des emails et des liens de site Web. Contactez les écoles directement sans intermédiaires."
+    },
+    "transparentProfiles": {
+      "title": "Profils Transparents",
+      "description": "Informations complètes sur l'école, y compris les cours, les prix, les avis des étudiants et les notes."
+    },
+    
+    "advantagesTitle": "Pourquoi Choisir Notre Répertoire d'Écoles",
+    "advantagesSubtitle": "Expérience le moyen le plus facile de trouver et de rejoindre une école de langues:",
+    "verifiedBadge": {
+      "title": "Système de Badge Vérifié",
+      "description": "Sachez que vous traitez avec des institutions légitimes et vérifiées en matière de qualité."
+    },
+    "easyComparison": {
+      "title": "Comparaison Facile",
+      "description": "Visualisez les informations des écoles côte à côte pour prendre rapidement des décisions éclairées."
+    },
+    "localInternational": {
+      "title": "Local et International",
+      "description": "Accédez aux écoles de langues locales et reconnenues internationalement avec une seule recherche."
+    },
+    "examPrep": {
+      "title": "Accent sur la Préparation à l'Examen",
+      "description": "Trouvez des écoles spécialisées dans l'examen exact pour lequel vous vous préparez."
+    },
+    "timeSaving": {
+      "title": "Recherche Économe en Temps",
+      "description": "Trouvez votre école idéale en quelques minutes au lieu de heures de recherche et d'appels téléphoniques."
+    },
+    "studentSuccess": {
+      "title": "Histoires de Succès des Étudiants",
+      "description": "Lisez les avis réels et les évaluations d'autres étudiants qui ont fréquenté ces écoles."
+    },
+    
+    "howItWorksTitle": "Comment Trouver Votre École de Langues",
+    "howItWorksSubtitle": "Il faut seulement 5 étapes simples pour trouver et rejoindre une école de langues:",
+    "step1": {
+      "title": "Rechercher par Localisation",
+      "description": "Commencez par sélectionner votre ville ou parcourir toutes les écoles disponibles."
+    },
+    "step2": {
+      "title": "Filtrer par Besoins",
+      "description": "Affinez par type d'examen, niveau de langue et autres préférences."
+    },
+    "step3": {
+      "title": "Voir les Détails",
+      "description": "Consultez les profils des écoles, les programmes, les prix et les avis des étudiants."
+    },
+    "step4": {
+      "title": "Contacter l'École",
+      "description": "Contactez directement par téléphone, email ou leur site Web."
+    },
+    "step5": {
+      "title": "Commencer à Apprendre",
+      "description": "Inscrivez-vous et commencez votre parcours d'apprentissage des langues en toute confiance."
+    },
+    
+    "trustBadge": "Pourquoi Nous Faire Confiance",
+    "trustTitle": "Construit sur la Confiance et la Transparence",
+    "trustSubtitle": "Nous maintenons les normes les plus élevées pour assurer une expérience sûre et fiable pour chaque étudiant.",
+    "verificationProcess": {
+      "title": "Vérification Rigoureuse",
+      "description": "Chaque école passe par notre processus de vérification approfondi pour assurer la qualité et la légitimité."
+    },
+    "secureCommunication": {
+      "title": "Communication Sécurisée",
+      "description": "Canaux de communication sécurisés et directs entre les étudiants et les écoles sans frais cachés."
+    },
+    "communityDriven": {
+      "title": "Avis Communautaires",
+      "description": "Les avis réels des étudiants et les évaluations vous aident à prendre des décisions éclairées basées sur de véritables expériences."
+    },
+    "studentProtection": {
+      "title": "Protection des Étudiants",
+      "description": "Nous soutenons les écoles vérifiées et supportons les étudiants tout au long de leur parcours d'apprentissage."
+    },
+    
+    "finalCTATitle": "Prêt à Trouver Votre École de Langues Idéale?",
+    "finalCTASubtitle": "Rejoignez des milliers d'étudiants qui ont trouvé leur école de langues idéale sur G-Teach. Commencez votre recherche aujourd'hui et franchissez la prochaine étape de votre parcours d'apprentissage de l'allemand.",
+    "exploreNowButton": "Parcourir les Écoles",
+    "needHelpButton": "Besoin d'Aide?",
+    "finalCTANote": "Aucun engagement requis. Parcourez les écoles, comparez les options et contactez directement."
+  },
+  "home": {
+    "schoolsBadge": "Découvrez les Écoles de Langues",
+    "schoolsTitle": "Trouvez des Écoles de Langues Vérifiées Près de Chez Vous",
+    "schoolsDescription": "Nous venons de lancer une nouvelle fonctionnalité : découvrez et connectez-vous avec des écoles de langues vérifiées. Que vous recherctiez des cours en groupe, des cours intensifs ou une préparation à l'examen, trouvez l'école idéale qui correspond à vos objectifs d'apprentissage et à votre budget.",
+    "schoolsLearnButton": "En Savoir Plus sur les Écoles",
+    "schoolsBrowseButton": "Parcourir Toutes les Écoles",
+    "schoolsFeatures": {
+      "verifiedSchools": {
+        "title": "Institutions Vérifiées",
+        "description": "Toutes les écoles sont vérifiées pour garantir des normes de qualité"
+      },
+      "easySearch": {
+        "title": "Recherche Facile par Localisation",
+        "description": "Trouvez des écoles de langues dans votre ville avec cartographie précise"
+      },
+      "smartFilter": {
+        "title": "Filtrage Intelligent",
+        "description": "Filtrez par type d'examen, niveau de langue et spécialisations"
+      },
+      "communityReviews": {
+        "title": "Avis Communautaires",
+        "description": "Lisez les avis réels des étudiants qui ont fréquenté ces écoles"
+      }
+    },
+    "schoolsCardLocalSearch": "Recherche Locale",
+    "schoolsCardLocalSearchDesc": "Trouvez des écoles de langues dans votre ville ou explorez les options au Cameroun.",
+    "schoolsCardQuickComparison": "Comparaison Rapide",
+    "schoolsCardQuickComparisonDesc": "Comparez les écoles côte à côte pour trouver la meilleure pour vous.",
+    "schoolsCardSmartFilter": "Filtres Intelligents",
+    "schoolsCardSmartFilterDesc": "Filtrez par type d'examen (Goethe, TELC, ÖSD, etc) et niveau de langue.",
+    "schoolsCardTrustedReviews": "Avis de Confiance",
+    "schoolsCardTrustedReviewsDesc": "Consultez les notes réelles et les retours des étudiants vérifiés."
   }
 }
 

@@ -50,8 +50,7 @@ export default function SchoolsPage() {
   const handleContactClick = (school: School) => {
     setSelectedSchool(school)
     setContactDialogOpen(true)
-  }
-
+  } 
   const handleSubmitClick = (school: School) => {
     setSelectedSchool(school)
     setSubmitDialogOpen(true)

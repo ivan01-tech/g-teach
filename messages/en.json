@@ -2,6 +2,7 @@
   "header": {
     "howItWorks": "How It Works",
     "findTutors": "Find Tutors",
+    "findSchools": "Find Schools",
     "forStudents": "For Students",
     "forTutors": "For Tutors",
     "about": "About",
@@ -962,6 +963,168 @@
     "Your review has been posted": "Your review has been posted",
     "Failed to add review": "Failed to add review",
     "Share your experience with this school...": "Share your experience with this school..."
+  },
+  "findSchools": {
+    "badge": "Discover Language Schools",
+    "title": "Find the Perfect Language School for Your Goals",
+    "subtitle": "Search, compare, and connect with verified language schools. From exam preparation to conversation practice, find the right school that matches your needs and budget.",
+    "browseSchoolsButton": "Browse Schools Now",
+    "createSchoolButton": "Create a School",
+    "heroSubtext": "Over 100 verified language schools ready to help you master German",
+    "verifiedSchools": "Verified Schools",
+    "examTypes": "Exam Types",
+    "activeStudents": "Active Students",
+    
+    "problemTitle": "The Challenge of Finding a Quality Language School",
+    "problemSubtitle": "Students often struggle with the school selection process. Here are the most common pain points:",
+    "hardFind": {
+      "title": "Difficult to Find",
+      "description": "Scattered information across multiple websites makes it hard to discover reliable language schools."
+    },
+    "lackTransparency": {
+      "title": "Lack of Transparency",
+      "description": "Limited information about teaching methods, instructor qualifications, and actual student outcomes."
+    },
+    "noComparison": {
+      "title": "No Easy Comparison",
+      "description": "Difficult to compare schools side-by-side on pricing, curriculum, location, and specializations."
+    },
+    "trustConcern": {
+      "title": "Trust Concern",
+      "description": "Concerns about school legitimacy, quality standards, and whether they deliver on their promises."
+    },
+    
+    "solutionTitle": "Our Solution",
+    "solutionSubtitle": "We've built a platform that solves every challenge in finding a language school:",
+    "verifiedInstitutions": {
+      "title": "Verified Institutions",
+      "description": "All schools on our platform are verified and monitored to ensure quality standards and legitimacy."
+    },
+    "locationBased": {
+      "title": "Location-Based Search",
+      "description": "Find schools in your city or explore options across Cameroon with precise location mapping."
+    },
+    "examFocused": {
+      "title": "Exam-Focused Filtering",
+      "description": "Filter schools by exam type: Goethe, TELC, ÖSD, ECL, TestDaF, DSH - and language levels A1-C2."
+    },
+    "directContact": {
+      "title": "Direct Contact",
+      "description": "Get phone numbers, emails, and website links. Contact schools directly without intermediaries."
+    },
+    "transparentProfiles": {
+      "title": "Transparent Profiles",
+      "description": "Complete school information including courses, pricing, student reviews, and ratings."
+    },
+    
+    "advantagesTitle": "Why Choose Our School Directory",
+    "advantagesSubtitle": "Experience the easiest way to find and join a language school:",
+    "verifiedBadge": {
+      "title": "Verified Badge System",
+      "description": "Know that you're dealing with legitimate, quality-vetted institutions."
+    },
+    "easyComparison": {
+      "title": "Easy Comparison",
+      "description": "View side-by-side school information to make informed decisions quickly."
+    },
+    "localInternational": {
+      "title": "Local & International",
+      "description": "Access both local and internationally-recognized language schools with a single search."
+    },
+    "examPrep": {
+      "title": "Exam Preparation Focus",
+      "description": "Find schools specializing in the exact exam you're preparing for."
+    },
+    "timeSaving": {
+      "title": "Time-Saving Search",
+      "description": "Find your perfect school in minutes instead of hours of research and phone calls."
+    },
+    "studentSuccess": {
+      "title": "Student Success Stories",
+      "description": "Read real reviews and ratings from other students who've attended these schools."
+    },
+    
+    "howItWorksTitle": "How to Find Your Language School",
+    "howItWorksSubtitle": "It takes just 5 simple steps to find and join a language school:",
+    "step1": {
+      "title": "Search by Location",
+      "description": "Start by selecting your city or browsing all available schools."
+    },
+    "step2": {
+      "title": "Filter by Needs",
+      "description": "Narrow down by exam type, language level, and other preferences."
+    },
+    "step3": {
+      "title": "View Details",
+      "description": "Check school profiles, curriculum, pricing, and student reviews."
+    },
+    "step4": {
+      "title": "Contact School",
+      "description": "Reach out directly via phone, email, or their website."
+    },
+    "step5": {
+      "title": "Start Learning",
+      "description": "Enroll and begin your language learning journey with confidence."
+    },
+    
+    "trustBadge": "Why Trust Us",
+    "trustTitle": "Built on Trust and Transparency",
+    "trustSubtitle": "We maintain the highest standards to ensure a safe and reliable experience for every student.",
+    "verificationProcess": {
+      "title": "Rigorous Verification",
+      "description": "Each school goes through our thorough verification process to ensure quality and legitimacy."
+    },
+    "secureCommunication": {
+      "title": "Secure Communication",
+      "description": "Safe, direct communication channels between students and schools with no hidden fees."
+    },
+    "communityDriven": {
+      "title": "Community Reviews",
+      "description": "Real student reviews and ratings help you make informed decisions based on actual experiences."
+    },
+    "studentProtection": {
+      "title": "Student Protection",
+      "description": "We stand behind verified schools and support students throughout their learning journey."
+    },
+    
+    "finalCTATitle": "Ready to Find Your Perfect Language School?",
+    "finalCTASubtitle": "Join thousands of students who've found their ideal language school on G-Teach. Start your search today and take the next step in your German learning journey.",
+    "exploreNowButton": "Explore Schools",
+    "needHelpButton": "Need Help?",
+    "finalCTANote": "No commitment required. Browse schools, compare options, and reach out directly."
+  },
+  "home": {
+    "schoolsBadge": "Discover Language Schools",
+    "schoolsTitle": "Find Verified Language Schools Near You",
+    "schoolsDescription": "We've just launched a new feature: discover and connect with verified language schools. Whether you're looking for group classes, intensive courses, or exam preparation, find the perfect school that matches your learning goals and budget.",
+    "schoolsLearnButton": "Learn More About Schools",
+    "schoolsBrowseButton": "Browse All Schools",
+    "schoolsFeatures": {
+      "verifiedSchools": {
+        "title": "Verified Institutions",
+        "description": "All schools are vetted and monitored to ensure quality standards"
+      },
+      "easySearch": {
+        "title": "Easy Location Search",
+        "description": "Find schools in your city with precise location mapping"
+      },
+      "smartFilter": {
+        "title": "Smart Filtering",
+        "description": "Filter by exam type, language level, and specializations"
+      },
+      "communityReviews": {
+        "title": "Community Reviews",
+        "description": "Read real reviews from students who've attended these schools"
+      }
+    },
+    "schoolsCardLocalSearch": "Local Search",
+    "schoolsCardLocalSearchDesc": "Find language schools in your city or explore options across Cameroon.",
+    "schoolsCardQuickComparison": "Quick Comparison",
+    "schoolsCardQuickComparisonDesc": "Compare schools side-by-side to find the best fit for you.",
+    "schoolsCardSmartFilter": "Smart Filters",
+    "schoolsCardSmartFilterDesc": "Filter by exam type (Goethe, TELC, ÖSD, etc) and language level.",
+    "schoolsCardTrustedReviews": "Trusted Reviews",
+    "schoolsCardTrustedReviewsDesc": "See real ratings and feedback from verified students."
   }
 }
 
