@@ -1,0 +1,24 @@
+{
+  "howItWorks1": {
+    "title": "Comment G-Teach fonctionne",
+    "subtitle": "Commencez en quatre étapes simples et débutez votre apprentissage de l'allemand aujourd'hui.",
+    "steps": {
+      "step1": {
+        "title": "Créez votre compte",
+        "desc": "Inscrivez-vous gratuitement et complétez votre profil Parlez-nous de votre niveau actuel et de vos objectifs d'apprentissage."
+      },
+      "step2": {
+        "title": "Trouvez votre tuteur",
+        "desc": "Parcourez nos tuteurs, filtrez par spécialisation, lisez les avis et trouvez celui qui vous correspond."
+      },
+      "step3": {
+        "title": "Échangez & discutez",
+        "desc": "Envoyez un message pour vous présenter Discutez de vos objectifs et planifiez un cours d'essai."
+      },
+      "step4": {
+        "title": "Commencez à apprendre",
+        "desc": "Réservez vos cours et commencez votre voyage vers la maîtrise de l'allemand avec un enseignement personnalisé."
+      }
+    }
+  }
+}

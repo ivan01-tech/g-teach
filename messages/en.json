@@ -956,13 +956,12 @@
     "Your Comment": "Your Comment",
     "Post Review": "Post Review",
     "Sign in to leave a review": "Sign in to leave a review",
-    "No reviews yet. Be the first to review!": "No reviews yet. Be the first to review!",
+    "shareYourExperience": "Share your experience with this school...",
     "Please select a rating": "Please select a rating",
     "Please write a comment": "Please write a comment",
     "You must be logged in to leave a review": "You must be logged in to leave a review",
     "Your review has been posted": "Your review has been posted",
-    "Failed to add review": "Failed to add review",
-    "Share your experience with this school...": "Share your experience with this school..."
+    "Failed to add review": "Failed to add review"
   },
   "findSchools": {
     "badge": "Discover Language Schools",

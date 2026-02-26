@@ -1,0 +1,24 @@
+{
+  "howItWorks1": {
+    "title": "How G-Teach Works",
+    "subtitle": "Get started in four simple steps and begin your German learning journey today.",
+    "steps": {
+      "step1": {
+        "title": "Create Your Account",
+        "desc": "Sign up for free and complete your profile Tell us about your current level and learning goals."
+      },
+      "step2": {
+        "title": "Find Your Tutor",
+        "desc": "Browse our tutors, filter by specialization, read reviews, and find the perfect match for your needs."
+      },
+      "step3": {
+        "title": "Connect & Discuss",
+        "desc": "Send a message to introduce yourself Discuss your goals and schedule a trial lesson."
+      },
+      "step4": {
+        "title": "Start Learning",
+        "desc": "Book your lessons and start your journey to German fluency with personalized instruction."
+      }
+    }
+  }
+}

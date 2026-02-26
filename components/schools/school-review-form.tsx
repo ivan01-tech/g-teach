@@ -114,7 +114,7 @@ export function SchoolReviewForm({ schoolId, onReviewAdded }: SchoolReviewFormPr
             <div>
                 <label className="block text-sm font-medium mb-2">{t("Your Comment")}</label>
                 <Textarea
-                    placeholder={t("Share your experience with this school...")}
+                    placeholder={t("shareYourExperience")}
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     rows={4}

@@ -1,0 +1,32 @@
+{
+  "features1": {
+    "title": "Everything You Need to Succeed",
+    "description": "Our platform provides all the tools you need to learn German effectively and prepare for your certification exams.",
+    "items": {
+      "matching": {
+        "title": "Smart Tutor Matching",
+        "desc": "Find the perfect tutor based on your level, goals, schedule, and budget Filter by specialization, availability, and ratings."
+      },
+      "chat": {
+        "title": "Real-time Chat",
+        "desc": "Communicate directly with tutors through our built-in messaging system Discuss your goals and schedule lessons easily."
+      },
+      "booking": {
+        "title": "Easy Booking",
+        "desc": "Book lessons with just a few clicks View tutor availability in real-time and reschedule when needed."
+      },
+      "reviews": {
+        "title": "Verified Reviews",
+        "desc": "Read authentic reviews from other students Make informed decisions based on real experiences."
+      },
+      "payments": {
+        "title": "Secure Payments",
+        "desc": "Pay safely through our platform Money-back guarantee if you're not satisfied with your first lesson."
+      },
+      "anywhere": {
+        "title": "Learn Anywhere",
+        "desc": "Take lessons from anywhere in the world All you need is an internet connection and a device."
+      }
+    }
+  }
+}

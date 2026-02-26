@@ -1,0 +1,32 @@
+{
+  "features1": {
+    "title": "Tout ce dont vous avez besoin pour réussir",
+    "description": "Notre plateforme offre tous les outils nécessaires pour apprendre l'allemand efficacement et préparer vos examens de certification.",
+    "items": {
+      "matching": {
+        "title": "Mise en relation intelligente",
+        "desc": "Trouvez le tuteur idéal en fonction de votre niveau, vos objectifs, votre emploi du temps et votre budget Filtrez par spécialisation, disponibilité et évaluations."
+      },
+      "chat": {
+        "title": "Chat en temps réel",
+        "desc": "Communiquez directement avec les tuteurs via notre système de messagerie intégré Discutez de vos objectifs et planifiez vos leçons facilement."
+      },
+      "booking": {
+        "title": "Réservation facile",
+        "desc": "Réservez vos cours en quelques clics Consultez la disponibilité des tuteurs en temps réel et reprogrammez si nécessaire."
+      },
+      "reviews": {
+        "title": "Avis vérifiés",
+        "desc": "Lisez des avis authentiques d'autres étudiants Prenez des décisions éclairées basées sur des expériences réelles."
+      },
+      "payments": {
+        "title": "Paiements sécurisés",
+        "desc": "Payez en toute sécurité via notre plateforme Garantie satisfait ou remboursé si vous n'êtes pas satisfait de votre première leçon."
+      },
+      "anywhere": {
+        "title": "Apprenez partout",
+        "desc": "Prenez des cours de n'importe où dans le monde Tout ce dont vous avez besoin est d'une connexion internet et d'un appareil."
+      }
+    }
+  }
+}

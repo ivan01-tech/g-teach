@@ -1,0 +1,54 @@
+{
+  "examPrep": {
+    "title": "Préparez les examens officiels d'allemand",
+    "description": "Nos tuteurs se spécialisent dans la préparation des étudiants à toutes les principales certifications linguistiques allemandes Atteignez votre score cible avec un accompagnement expert.",
+    "findTutors": "Trouver des tuteurs {exam}",
+    "exams": {
+      "goethe": {
+        "description": "Le certificat de langue allemande le plus reconnu au monde.",
+        "features": [
+          "Pratique orale",
+          "Ateliers d'écriture",
+          "Examens blancs",
+          "Révision grammaticale"
+        ]
+      },
+      "telc": {
+        "description": "Certificats de langue européens reconnus par les employeurs et institutions.",
+        "features": [
+          "Préparation orientée emploi",
+          "Exercices d'écoute",
+          "Compréhension écrite",
+          "Coaching pour la certification"
+        ]
+      },
+      "testdaf": {
+        "description": "Requis pour l'admission universitaire en Allemagne.",
+        "features": [
+          "Allemand académique",
+          "Préparation universitaire",
+          "Stratégies d'examen",
+          "Gestion du temps"
+        ]
+      },
+      "ecl": {
+        "description": "Un certificat de langue européen reconnu internationalement axé sur les compétences de communication pratique.",
+        "features": [
+          "Entraînement équilibré des compétences (oral, écrit, écoute, lecture)",
+          "Préparation orale basée sur des tâches",
+          "Pratique de la structure et de la cohérence en écrit",
+          "Simulation d'examen en conditions réelles"
+        ]
+      },
+      "osd": {
+        "description": "Un certificat d'allemand reconnu par l'État autrichien, accepté pour les études, le travail et les démarches de résidence.",
+        "features": [
+          "Immersion dans l'allemand autrichien",
+          "Entraînement intégré des compétences",
+          "Préparation à l'examen oral",
+          "Stratégies de communication pratique"
+        ]
+      }
+    }
+  }
+}

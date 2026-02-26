@@ -47,7 +47,7 @@ export function SchoolReviewsList({ schoolId }: SchoolReviewsListProps) {
     if (reviews.length === 0) {
         return (
             <div className="py-8 text-center text-muted-foreground">
-                <p>{t("No reviews yet. Be the first to review!")}</p>
+                <p>{t("noReviewsYet")}</p>
             </div>
         )
     }
