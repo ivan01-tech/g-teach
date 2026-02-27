@@ -8,7 +8,15 @@
     "about": "À propos",
     "contact": "Contact",
     "login": "Connexion",
-    "getStarted": "Commencer"
+    "Student": "Étudiant",
+    "Tutor": "Tuteur",
+    "getStarted": "Commencer",
+    "toggleMenu": "Toggle menu",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "profile": "Profil",
+    "settings": "Paramètres",
+    "signOut": "Déconnexion"
   },
   "hero": {
     "badge": "Approuvé par plus de 10 000 apprenants d’allemand",
@@ -536,19 +544,6 @@
     "shareExpertiseSubtitle": "G-Teach est plus qu’une plateforme de cours : c’est un pont entre compétence, discipline et avenir.",
     "becomeTutorCta": "Devenir professeur"
   },
-  "common": {
-    "loading": "Chargement...",
-    "error": "Une erreur s'est produite",
-    "success": "Succès !",
-    "back": "Retour",
-    "cancel": "Annuler",
-    "save": "Enregistrer",
-    "delete": "Supprimer",
-    "edit": "Modifier",
-    "email": "Email",
-    "password": "Mot de passe",
-    "close": "Fermer"
-  },
   "login": {
     "title": "Bon retour",
     "description": "Connectez-vous pour continuer votre apprentissage de l’allemand",
@@ -619,6 +614,7 @@
     "reviews": "avis",
     "students": "élèves",
     "lessons": "leçons",
+    "requestConnection": "Demander une connexion",
     "about": "À propos",
     "reviewsTab": "Avis ({count})",
     "availability": "Disponibilités",
@@ -973,7 +969,6 @@
     "verifiedSchools": "Écoles Vérifiées",
     "examTypes": "Types d'Examens",
     "activeStudents": "Étudiants Actifs",
-    
     "problemTitle": "Le Défi de Trouver une École de Langues de Qualité",
     "problemSubtitle": "Les étudiants rencontrent souvent des difficultés dans le processus de sélection d'école. Voici les points douloureux les plus courants:",
     "hardFind": {
@@ -992,7 +987,6 @@
       "title": "Préoccupation de Confiance",
       "description": "Préoccupations concernant la légitimité de l'école, les normes de qualité et si elles tiennent leurs promesses."
     },
-    
     "solutionTitle": "Notre Solution",
     "solutionSubtitle": "Nous avons construit une plateforme qui résout chaque défi dans la recherche d'une école de langues:",
     "verifiedInstitutions": {
@@ -1015,7 +1009,6 @@
       "title": "Profils Transparents",
       "description": "Informations complètes sur l'école, y compris les cours, les prix, les avis des étudiants et les notes."
     },
-    
     "advantagesTitle": "Pourquoi Choisir Notre Répertoire d'Écoles",
     "advantagesSubtitle": "Expérience le moyen le plus facile de trouver et de rejoindre une école de langues:",
     "verifiedBadge": {
@@ -1042,7 +1035,6 @@
       "title": "Histoires de Succès des Étudiants",
       "description": "Lisez les avis réels et les évaluations d'autres étudiants qui ont fréquenté ces écoles."
     },
-    
     "howItWorksTitle": "Comment Trouver Votre École de Langues",
     "howItWorksSubtitle": "Il faut seulement 5 étapes simples pour trouver et rejoindre une école de langues:",
     "step1": {
@@ -1065,7 +1057,6 @@
       "title": "Commencer à Apprendre",
       "description": "Inscrivez-vous et commencez votre parcours d'apprentissage des langues en toute confiance."
     },
-    
     "trustBadge": "Pourquoi Nous Faire Confiance",
     "trustTitle": "Construit sur la Confiance et la Transparence",
     "trustSubtitle": "Nous maintenons les normes les plus élevées pour assurer une expérience sûre et fiable pour chaque étudiant.",
@@ -1085,7 +1076,6 @@
       "title": "Protection des Étudiants",
       "description": "Nous soutenons les écoles vérifiées et supportons les étudiants tout au long de leur parcours d'apprentissage."
     },
-    
     "finalCTATitle": "Prêt à Trouver Votre École de Langues Idéale?",
     "finalCTASubtitle": "Rejoignez des milliers d'étudiants qui ont trouvé leur école de langues idéale sur G-Teach. Commencez votre recherche aujourd'hui et franchissez la prochaine étape de votre parcours d'apprentissage de l'allemand.",
     "exploreNowButton": "Parcourir les Écoles",
@@ -1124,7 +1114,73 @@
     "schoolsCardSmartFilterDesc": "Filtrez par type d'examen (Goethe, TELC, ÖSD, etc) et niveau de langue.",
     "schoolsCardTrustedReviews": "Avis de Confiance",
     "schoolsCardTrustedReviewsDesc": "Consultez les notes réelles et les retours des étudiants vérifiés."
+  },
+  "connectionRequest": {
+    "title": "Demande de Connexion",
+    "description": "Envoyez une demande de connexion à {tutorName}. Vous pouvez ajouter des détails sur ce que vous souhaitez apprendre.",
+    "success": {
+      "title": "Demande de connexion envoyée !",
+      "description": "{tutorName} examinera votre demande et vous répondra bientôt."
+    },
+    "fields": {
+      "subject": {
+        "label": "Sujet de la leçon (optionnel)",
+        "placeholder": "e.g. German Grammar, Business German"
+      },
+      "lessonType": {
+        "label": "Type de leçon (optionnel)",
+        "placeholder": "Sélectionnez le type de leçon que vous souhaitez"
+      },
+      "notes": {
+        "label": "Notes supplémentaires (optionnel)",
+        "placeholder": "Dites au tuteur vos objectifs, niveau actuel, disponibilité, etc."
+      }
+    },
+    "lessonTypes": {
+      "one-time": "Leçon ponctuelle",
+      "regular": "Leçons régulières",
+      "exam-prep": "Préparation à l'examen",
+      "conversation": "Pratique de conversation"
+    },
+    "actions": {
+      "cancel": "Annuler",
+      "send": "Envoyer la Demande",
+      "sending": "Envoi en cours..."
+    }
+  },
+  "sidebar": {
+    "nav": {
+      "dashboard": "Tableau de Bord",
+      "findTutors": "Trouver des tuteurs",
+      "favorites": "Favoris",
+      "connections": "Connexions",
+      "myMatchings": "Mes Correspondances",
+      "messages": "Messages",
+      "profile": "Profil",
+      "myProfile": "Mon Profil",
+      "availability": "Disponibilité",
+      "settings": "Paramètres"
+    },
+    "anonymousUser": "Utilisateur",
+    "signOut": "Se Déconnecter"
+  },
+  "roles": {
+    "student": "Étudiant",
+    "tutor": "Tuteur"
+  },
+
+  "common": {
+    "anonymousUser": "Utilisateur Anonyme",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "back": "Retour",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "email": "Email",
+    "password": "Mot de passe",
+    "close": "Fermer"
   }
 }
-
-

@@ -25,6 +25,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { useAuth } from "@/hooks/use-auth"
 import { TutorMatchingsCard } from "@/components/betreuer/tutor-matchings-card"
 import { TutorSchoolsCard } from "@/components/betreuer/tutor-schools-card"
+import { ConnectionsWidget } from "@/components/dashboard/connections-widget"
+import { TutorProfileMetrics } from "@/components/dashboard/tutor-profile-metrics"
 import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/lib/store"
 import { fetchProfileViewsThunk } from "@/lib/store/profile-views-slice"
@@ -177,6 +179,12 @@ export default function BetreuerDashboard() {
             <p className="text-xs text-muted-foreground">Total profile visits</p>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Connections & Metrics */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <ConnectionsWidget role="tutor" />
+        <TutorProfileMetrics tutorId={user?.uid || ""} compact={true} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

@@ -23,11 +23,11 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { SPECIALIZATIONS, GERMAN_LEVELS } from "@/lib/types"
 import { ReviewForm } from "@/components/tutors/review-form"
+import { ConnectionRequestDialog } from "@/components/tutors/connection-request-dialog"
 import { useFavorites } from "@/hooks/use-favorites"
 import { useAuth } from "@/hooks/use-auth"
 import { useDispatch } from "react-redux"
 import { AppDispatch } from "@/lib/store"
-import { recordContact } from "@/lib/store/matching-slice"
 import { recordProfileViewThunk } from "@/lib/store/profile-views-slice"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
@@ -48,6 +48,8 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
   const router = useRouter()
 
   const [viewRecorded, setViewRecorded] = useState(false)
+  const [connectionDialogOpen, setConnectionDialogOpen] = useState(false)
+  const [connectionCreated, setConnectionCreated] = useState(false)
 
   useEffect(() => {
     if (tutor && !viewRecorded) {
@@ -74,18 +76,20 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
     }
   }, [tutor, learner, dispatch, viewRecorded])
 
-  const handleContactTutor = async () => {
-    if (learner && tutor) {
-      await dispatch(
-        recordContact({
-          learnerId: learner.uid,
-          tutorId: tutor.uid,
-          learnerName: learner.displayName,
-          tutorName: tutor.displayName,
-        })
-      )
+  const handleRequestConnection = () => {
+    if (!learner) {
+      router.push(`/auth/login`)
+      return
     }
-    router.push(`/student/messages?tutor=${id}`)
+    setConnectionDialogOpen(true)
+  }
+
+  const handleConnectionSuccess = () => {
+    setConnectionCreated(true)
+    // Redirect to connections page after a short delay
+    setTimeout(() => {
+      router.push(`/student/connections`)
+    }, 2000)
   }
 
   if (loading) {
@@ -123,6 +127,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
     : new Date(tutor.createdAt || Date.now())
 
   return (
+    <>
     <Suspense fallback={<LoadingScreen />}>
     <main className="flex-1 bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -346,9 +351,9 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                 </div>
 
                 <div className="mt-6 space-y-3">
-                  <Button className="w-full gap-2" size="lg" onClick={handleContactTutor}>
+                  <Button className="w-full gap-2" size="lg" onClick={handleRequestConnection}>
                     <MessageSquare className="h-4 w-4" />
-                    {t("sendMessage")}
+                    {t("requestConnection", { fallback: "Request Connection" })}
                   </Button>
                 </div>
 
@@ -392,5 +397,14 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
       </div>
     </main>
     </Suspense>
-  )
+
+    <ConnectionRequestDialog
+      open={connectionDialogOpen}
+      tutorId={tutor.uid}
+      tutorName={tutor.displayName}
+      onOpenChange={setConnectionDialogOpen}
+      onSuccess={handleConnectionSuccess}
+    />
+    </> )
+  
 }

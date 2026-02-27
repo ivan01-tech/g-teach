@@ -24,6 +24,7 @@ const navigation = [
   { name: "Profile", href: "/betreuer/profile", icon: User },
   { name: "Documents", href: "/betreuer/documents", icon: FileCheck },
   { name: "Messages", href: "/betreuer/messages", icon: MessageSquare },
+  { name: "Connections", href: "/betreuer/connections", icon: Contact },
   { name: "Matchings", href: "/betreuer/matchings", icon: Contact },
   { name: "My Schools", href: "/betreuer/schools", icon: School },
   { name: "Settings", href: "/betreuer/settings", icon: Settings },

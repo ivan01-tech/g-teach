@@ -30,8 +30,9 @@ export function DashboardHeader() {
   const { userProfile, user, logout } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const t = useTranslations("dashboard.nav");
-  const tCommon = useTranslations("dashboard.common");
+
+  const t = useTranslations("header");
+  const tCommon = useTranslations("common"); // ou "header" selon ton organisation
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-border bg-background px-4 sm:px-6 lg:px-8">
@@ -40,7 +41,7 @@ export function DashboardHeader() {
         <SheetTrigger asChild>
           <Button variant="ghost" size="icon" className="lg:hidden">
             <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">{t("toggleMenu")}</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-64 p-0">
@@ -49,7 +50,7 @@ export function DashboardHeader() {
       </Sheet>
 
       {/* Mobile Logo */}
-      <Link href="/" className="flex items-center gap-2 lg:hidden">
+      <Link href="/" className="flex items-center gap-2 lg:hidden" onClick={() => setMobileMenuOpen(false)}>
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
           <BookOpen className="h-4 w-4 text-primary-foreground" />
         </div>
@@ -64,7 +65,7 @@ export function DashboardHeader() {
         {/* Notifications */}
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="h-5 w-5" />
-          <span className="sr-only">{tCommon("notifications")}</span>
+          <span className="sr-only">{t("notifications")}</span>
           <span className="absolute right-1 top-1 flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
@@ -91,9 +92,9 @@ export function DashboardHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col">
-                <span>{user?.displayName || tCommon("user")}</span>
+                <span>{user?.displayName || tCommon("anonymousUser")}</span>
                 <span className="text-xs font-normal text-muted-foreground">
-                  {user?.email}
+                  {user?.email || "—"}
                 </span>
               </div>
             </DropdownMenuLabel>
@@ -115,9 +116,8 @@ export function DashboardHeader() {
               onClick={async () => {
                 await logout();
                 router.replace("/auth/login");
-                //  redirect("/auth/login");
               }}
-              className="text-destructive"
+              className="text-destructive focus:text-destructive"
             >
               <LogOut className="mr-2 h-4 w-4" />
               {t("signOut")}

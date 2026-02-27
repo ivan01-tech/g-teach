@@ -233,7 +233,7 @@ export interface School {
   email?: string | null
   website?: string | null
   googleMapsUrl?: string | null // Link for directions
-  socialMedia?: { 
+  socialMedia?: {
     facebook?: string | null
     twitter?: string | null
     instagram?: string | null
@@ -253,4 +253,156 @@ export interface SchoolFilterState {
   city: string
   examType: string
   level: string
+}
+
+
+// ==================
+
+
+/**
+ * Connection Lifecycle System Types
+ * Manages the relationship tracking between students and tutors
+ */
+
+export type ConnectionStatus =
+  | 'initiated'           // Student just contacted tutor
+  | 'in_discussion'       // Active chat exchange
+  | 'agreed'              // Both parties confirmed agreement
+  | 'collaboration_started' // Tutoring/lessons have begun
+  | 'completed'           // Partnership ended naturally
+  | 'cancelled';          // One party cancelled
+
+export type ConfirmationStatus = 'pending' | 'confirmed' | 'declined';
+
+export interface ConnectionConfirmation {
+  studentConfirmed: ConfirmationStatus;
+  tutorConfirmed: ConfirmationStatus;
+  studentConfirmedAt?: number; // timestamp
+  tutorConfirmedAt?: number;   // timestamp
+}
+
+export interface Connection {
+  id: string;
+  studentId: string;
+  tutorId: string;
+  status: ConnectionStatus;
+  confirmation: ConnectionConfirmation;
+studentConfirmedAt: number; // timestamp
+  // Timeline tracking
+  initiatedAt: number;
+  discussionStartedAt?: number;
+  agreedAt?: number;
+  collaborationStartedAt?: number;
+  completedAt?: number;
+  cancelledAt?: number;
+
+  // Metadata
+  subject?: string; // German language, Goethe exam prep, etc.
+  proposedLessonType?: string; // 1-on-1, group, etc.
+  notes?: string; // Initial contact message
+
+  // Reminder tracking
+  lastReminderSentAt?: number;
+  reminderCount: number;
+
+  // Feedback references
+  studentFeedbackId?: string;
+  tutorFeedbackId?: string;
+
+  // Activity tracking
+  lastActivityAt: number;
+  messageCount: number; // Auto-updated via chat
+}
+
+export interface Feedback {
+  id: string;
+  connectionId: string;
+  giverId: string;    // Student or Tutor ID
+  recipientId: string;
+  giverType: 'student' | 'tutor';
+
+  // Rating
+  rating: number; // 1-5 stars
+  ratingCategories?: {
+    communication?: number;
+    professionalism?: number;
+    knowledgeability?: number;
+    punctuality?: number;
+    reliability?: number;
+  };
+
+  // Review
+  review: string; // Max 500 characters
+  wouldRecommend: boolean;
+
+  // Metadata
+  createdAt: number;
+  updatedAt?: number;
+
+  // Flags
+  flaggedAsInappropriate?: boolean;
+  moderationStatus?: 'pending' | 'approved' | 'rejected';
+}
+
+export interface Reminder {
+  id: string;
+  connectionId: string;
+  reminderId: string;      // Student or Tutor ID
+  reminderType: 'confirmation' | 'follow_up' | 'feedback' | 'inactive';
+
+  status: 'sent' | 'read' | 'dismissed';
+  sentAt: number;
+  readAt?: number;
+
+  message: string;
+  actionUrl?: string;
+}
+
+export interface ConnectionMetrics {
+  // Tutor metrics
+  totalConnections: number;
+  activeConnections: number;
+  successfulConnections: number; // Agreements that moved to collaboration
+  averageRating: number;
+  totalReviews: number;
+  responseTimeHours: number;
+  cancellationRate: number; // % of initiated connections that were cancelled
+
+  // Student reliability
+  reliabilityScore: number; // 0-100
+  connectionHistoryCount: number;
+  averageGradeGiven: number;
+  cancelledByStudentCount: number;
+
+  updatedAt: number;
+}
+
+export interface ReminderConfig {
+  // Days to wait before sending reminders
+  confirmationReminderDays: number; // Default: 3
+  inactiveReminderDays: number;     // Default: 7
+  feedbackReminderDays: number;     // Default: 14 after completion
+  maxReminders: number;              // Default: 3
+}
+
+// Database schema structure
+export interface UserProfile {
+  connectionMetrics?: {
+    asStudent?: ConnectionMetrics;
+    asTutor?: ConnectionMetrics;
+  };
+  recentConnections?: string[]; // Last 5 connection IDs
+  lastActivityAt?: number;
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL?: string;
+  role: UserRole;
+  createdAt: string; // Serialized date for Redux
+  learningLevel?: string;
+  targetExam?: string;
+  specializations?: string[];
+  hourlyRate?: number;
+  bio?: string;
+  isVerified?: boolean;
 }

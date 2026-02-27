@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { auth, db } from "@/lib/firebase";
 import { UserRole } from "@/lib/roles";
-import { User } from "@/lib/types";
+import { User, UserProfile } from "@/lib/types";
 import {
   logout,
   signIn,
@@ -13,21 +13,6 @@ import {
   updateUserProfile,
   fetchUserProfile,
 } from "./thunks";
-
-export interface UserProfile {
-  uid: string;
-  email: string;
-  displayName: string;
-  photoURL?: string;
-  role: UserRole;
-  createdAt: string; // Serialized date for Redux
-  learningLevel?: string;
-  targetExam?: string;
-  specializations?: string[];
-  hourlyRate?: number;
-  bio?: string;
-  isVerified?: boolean;
-}
 
 export interface AuthState {
   user: User | null;

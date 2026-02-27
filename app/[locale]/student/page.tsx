@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/use-auth"
 import { StudentMatchingsCard } from "@/components/student/student-matchings-card"
 import { StudentBookingsCard } from "@/components/student/student-bookings-card"
 import { MatchingFollowupDialog } from "@/components/student/matching-followup-dialog"
+import { ConnectionsWidget } from "@/components/dashboard/connections-widget"
 import { useAppSelector } from "@/hooks/redux-store-hooks"
 
 export default function DashboardPage() {
@@ -149,7 +150,7 @@ export default function DashboardPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           {isStudent ? (
             <>
-              <StudentMatchingsCard />
+              <ConnectionsWidget role="student" />
               <StudentBookingsCard />
             </>
           ) : (

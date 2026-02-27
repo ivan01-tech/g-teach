@@ -8,7 +8,15 @@
     "about": "About",
     "contact": "Contact",
     "login": "Log In",
-    "getStarted": "Get Started"
+    "Student": "Student",
+    "Tutor": "Tutor",
+    "getStarted": "Get Started",
+    "toggleMenu": "Toggle menu",
+    "notifications": "Notifications",
+    "messages": "Messages",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign Out"
   },
   "hero": {
     "badge": "Trusted by over 10,000 German learners",
@@ -560,7 +568,8 @@
     "edit": "Edit",
     "email": "Email",
     "password": "Password",
-    "close": "Close"
+    "close": "Close",
+    "anonymousUser": "Anonymous User"
   },
   "register": {
     "title": "Create Your Account",
@@ -632,6 +641,7 @@
     "responseTime": "Response Time",
     "usuallyWithin": "Usually within 2 hours",
     "teachingSince": "Teaching Since",
+    "requestConnection": "Request Connection",
     "status": "Status",
     "verifiedTutor": "Verified Tutor",
     "pendingVerification": "Pending Verification",
@@ -973,7 +983,6 @@
     "verifiedSchools": "Verified Schools",
     "examTypes": "Exam Types",
     "activeStudents": "Active Students",
-    
     "problemTitle": "The Challenge of Finding a Quality Language School",
     "problemSubtitle": "Students often struggle with the school selection process. Here are the most common pain points:",
     "hardFind": {
@@ -992,7 +1001,6 @@
       "title": "Trust Concern",
       "description": "Concerns about school legitimacy, quality standards, and whether they deliver on their promises."
     },
-    
     "solutionTitle": "Our Solution",
     "solutionSubtitle": "We've built a platform that solves every challenge in finding a language school:",
     "verifiedInstitutions": {
@@ -1015,7 +1023,6 @@
       "title": "Transparent Profiles",
       "description": "Complete school information including courses, pricing, student reviews, and ratings."
     },
-    
     "advantagesTitle": "Why Choose Our School Directory",
     "advantagesSubtitle": "Experience the easiest way to find and join a language school:",
     "verifiedBadge": {
@@ -1042,7 +1049,6 @@
       "title": "Student Success Stories",
       "description": "Read real reviews and ratings from other students who've attended these schools."
     },
-    
     "howItWorksTitle": "How to Find Your Language School",
     "howItWorksSubtitle": "It takes just 5 simple steps to find and join a language school:",
     "step1": {
@@ -1065,7 +1071,6 @@
       "title": "Start Learning",
       "description": "Enroll and begin your language learning journey with confidence."
     },
-    
     "trustBadge": "Why Trust Us",
     "trustTitle": "Built on Trust and Transparency",
     "trustSubtitle": "We maintain the highest standards to ensure a safe and reliable experience for every student.",
@@ -1085,7 +1090,6 @@
       "title": "Student Protection",
       "description": "We stand behind verified schools and support students throughout their learning journey."
     },
-    
     "finalCTATitle": "Ready to Find Your Perfect Language School?",
     "finalCTASubtitle": "Join thousands of students who've found their ideal language school on G-Teach. Start your search today and take the next step in your German learning journey.",
     "exploreNowButton": "Explore Schools",
@@ -1124,6 +1128,58 @@
     "schoolsCardSmartFilterDesc": "Filter by exam type (Goethe, TELC, ÖSD, etc) and language level.",
     "schoolsCardTrustedReviews": "Trusted Reviews",
     "schoolsCardTrustedReviewsDesc": "See real ratings and feedback from verified students."
+  },
+  "connectionRequest": {
+    "title": "Request Connection",
+    "description": "Send a connection request to {tutorName}. You can add details about what you'd like to learn.",
+    "success": {
+      "title": "Connection request sent!",
+      "description": "{tutorName} will review your request and respond soon."
+    },
+    "fields": {
+      "subject": {
+        "label": "Subject / Topic",
+        "placeholder": "e.g. German Grammar, Business German"
+      },
+      "lessonType": {
+        "label": "Lesson Type (optional)",
+        "placeholder": "Select lesson type"
+      },
+      "notes": {
+        "label": "Additional notes (optional)",
+        "placeholder": "Tell the tutor about your goals, current level, availability, etc."
+      }
+    },
+    "lessonTypes": {
+      "one-time": "One-time lesson",
+      "regular": "Regular lessons",
+      "exam-prep": "Exam preparation",
+      "conversation": "Conversation practice"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "send": "Send Request",
+      "sending": "Sending..."
+    }
+  },
+  "sidebar": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "findTutors": "Find Tutors",
+      "favorites": "Favorites",
+      "connections": "Connections",
+      "myMatchings": "My Matchings",
+      "messages": "Messages",
+      "profile": "Profile",
+      "myProfile": "My Profile",
+      "availability": "Availability",
+      "settings": "Settings"
+    },
+    "anonymousUser": "User",
+    "signOut": "Sign Out"
+  },
+  "roles": {
+    "student": "Student",
+    "tutor": "Tutor"
   }
 }
-

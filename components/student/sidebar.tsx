@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useTranslations } from "next-intl"
-import { cn } from "@/lib/utils"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 import {
   BookOpen,
   LayoutDashboard,
@@ -14,36 +14,41 @@ import {
   Settings,
   LogOut,
   Heart,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@/hooks/use-auth"
+  ConciergeBell,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 
+// On définit les items avec des clés de traduction au lieu de libellés fixes
 const studentNavItems = [
-  { href: "/student", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/tutors", label: "Find Tutors", icon: Search },
-  { href: "/student/favorites", label: "Favorites", icon: Heart },
-  // { href: "/student/bookings", label: "My Bookings", icon: Calendar },
-  { href: "/student/matchings", label: "My Matchings", icon: Calendar },
-  { href: "/student/messages", label: "Messages", icon: MessageSquare },
-  { href: "/student/profile", label: "Profile", icon: User },
-  { href: "/student/settings", label: "Settings", icon: Settings },
-]
+  { href: "/student", key: "dashboard" },
+  { href: "/tutors", key: "findTutors" },
+  { href: "/student/favorites", key: "favorites" },
+  { href: "/student/connections", key: "connections" },
+  { href: "/student/matchings", key: "myMatchings" },
+  { href: "/student/messages", key: "messages" },
+  { href: "/student/profile", key: "profile" },
+  { href: "/student/settings", key: "settings" },
+];
 
 const tutorNavItems = [
-  { href: "/student", label: "Dashboard", icon: LayoutDashboard },
-  // { href: "/student/bookings", label: "Bookings", icon: Calendar },
-  { href: "/student/messages", label: "Messages", icon: MessageSquare },
-  { href: "/student/profile", label: "My Profile", icon: User },
-  { href: "/student/availability", label: "Availability", icon: Calendar },
-  { href: "/student/settings", label: "Settings", icon: Settings },
-]
+  { href: "/student", key: "dashboard" }, // même dashboard pour les deux rôles
+  { href: "/student/messages", key: "messages" },
+  { href: "/student/profile", key: "myProfile" },
+  { href: "/student/availability", key: "availability" },
+  { href: "/student/settings", key: "settings" },
+];
 
 export function DashboardSidebar() {
-  const pathname = usePathname()
-  const { user, logout } = useAuth()
-  const t = useTranslations()
+  const pathname = usePathname();
+  const { user, logout } = useAuth();
 
-  const navItems = user?.role === "tutor" ? tutorNavItems : studentNavItems
+  // Namespace principal pour la sidebar
+  const t = useTranslations("sidebar");
+  // Namespace pour les rôles (header ou commun)
+  const tr = useTranslations("roles");
+
+  const navItems = user?.role === "tutor" ? tutorNavItems : studentNavItems;
 
   return (
     <aside className="fixed inset-y-0 left-0 z-50 hidden w-64 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
@@ -58,7 +63,7 @@ export function DashboardSidebar() {
 
       <nav className="flex-1 space-y-1 overflow-y-auto p-4">
         {navItems.map((item) => {
-          const isActive = pathname === item.href
+          const isActive = pathname === item.href;
           return (
             <Link
               key={item.href}
@@ -70,10 +75,20 @@ export function DashboardSidebar() {
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
               )}
             >
-              <item.icon className="h-5 w-5" />
-              {(item.label)}
+              {item.key === "dashboard" && <LayoutDashboard className="h-5 w-5" />}
+              {item.key === "findTutors" && <Search className="h-5 w-5" />}
+              {item.key === "favorites" && <Heart className="h-5 w-5" />}
+              {item.key === "connections" && <ConciergeBell className="h-5 w-5" />}
+              {item.key === "myMatchings" && <Calendar className="h-5 w-5" />}
+              {item.key === "messages" && <MessageSquare className="h-5 w-5" />}
+              {item.key === "profile" && <User className="h-5 w-5" />}
+              {item.key === "myProfile" && <User className="h-5 w-5" />}
+              {item.key === "availability" && <Calendar className="h-5 w-5" />}
+              {item.key === "settings" && <Settings className="h-5 w-5" />}
+
+              {t(`nav.${item.key}`)}
             </Link>
-          )
+          );
         })}
       </nav>
 
@@ -84,22 +99,23 @@ export function DashboardSidebar() {
           </div>
           <div className="flex-1 truncate">
             <p className="truncate text-sm font-medium text-sidebar-foreground">
-              {user?.displayName || "User"}
+              {user?.displayName || t("anonymousUser")}
             </p>
             <p className="truncate text-xs text-sidebar-foreground/70">
-              {user?.role === "tutor" ? t("Tutor") : t("Student")}
+              {user?.role === "tutor" ? tr("tutor") : tr("student")}
             </p>
           </div>
         </div>
+
         <Button
           variant="ghost"
           className="w-full justify-start gap-3 text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
           onClick={() => logout()}
         >
           <LogOut className="h-5 w-5" />
-          {t("Sign Out")}
+          {t("signOut")}
         </Button>
       </div>
     </aside>
-  )
+  );
 }
