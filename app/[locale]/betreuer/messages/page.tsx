@@ -11,7 +11,7 @@ import { useMessageTutors } from "./use-message-tutors"
 
 function BetreuerMessagesContent() {
   const { user } = useAuth()
-  const { conversations, selectedConversation, messages, loading, mobileShowChat, handleSelectConversation, handleBackToList, handleSendMessage, getOtherParticipant } = useMessageTutors()
+  const { conversations, selectedConversation, messages, loading, mobileShowChat, isConnectionLocked, handleSelectConversation, handleBackToList, handleSendMessage, getOtherParticipant } = useMessageTutors()
 
   if (loading) {
     return (
@@ -52,6 +52,7 @@ function BetreuerMessagesContent() {
               otherParticipant={getOtherParticipant(selectedConversation)}
               onSendMessage={handleSendMessage}
               onBack={handleBackToList}
+              isConnectionLocked={isConnectionLocked}
             />
           ) : (
             <EmptyChat />

@@ -1180,6 +1180,44 @@
   },
   "roles": {
     "student": "Student",
-    "tutor": "Tutor"
+    "tutor": "Tutor",
+    "betreuer": "Supervisor"
+  },
+  "betreuerSidebar": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "documents": "Documents",
+      "messages": "Messages",
+      "connections": "Connections",
+      "matchings": "Matchings",
+      "mySchools": "My Schools",
+      "settings": "Settings"
+    },
+    "signOut": "Sign Out"
+  },
+  "betreuerHeader": {
+    "toggleMenu": "Toggle menu",
+    "title": "Tutor Dashboard",
+    "subtitle": "Manage your profile and connect with students",
+    "notifications": "Notifications",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "signOut": "Sign Out",
+    "userAvatar": "User avatar",
+    "anonymousUser": "User"
+  },
+  "status": {
+    "verified": "Verified",
+    "pending": "Pending",
+    "rejected": "Rejected"
+  },
+  "tutorSchools": {
+    "title": "My Language Schools",
+    "description": "Manage your real schools and connect with students ({count})",
+    "noSchoolsYet": "You haven't created any schools yet.",
+    "createFirstSchool": "Create Your First School",
+    "manageSchools": "Manage Schools",
+    "andMore": "and {count} more {count, plural, one {school} other {schools}}"
   }
 }

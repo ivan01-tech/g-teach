@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Bell, Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useTranslations } from "next-intl"
+import { Bell, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslations } from "next-intl";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,52 +11,56 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useAuth } from "@/hooks/use-auth"
-import Link from "next/link"
-import { useTutorProfile } from "@/hooks/use-tutor-profile"
-import { Badge } from "@/components/ui/badge"
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/hooks/use-auth";
+import Link from "next/link";
+import { useTutorProfile } from "@/hooks/use-tutor-profile";
+import { Badge } from "@/components/ui/badge";
+import { LanguageSwitcher } from "../language-switcher";
 
 export function BetreuerHeader() {
-  const { user, logout } = useAuth()
-  const { tutorProfile } = useTutorProfile()
-  const t = useTranslations()
+  const { user, logout } = useAuth();
+  const { tutorProfile } = useTutorProfile();
+
+  const t = useTranslations("betreuerHeader");
+  const ts = useTranslations("status"); // namespace pour les statuts de vérification
 
   const getStatusColor = (status?: string) => {
     switch (status) {
       case "verified":
-        return "bg-green-500/10 text-green-600 border-green-500/20"
+        return "bg-green-500/10 text-green-600 border-green-500/20";
       case "rejected":
-        return "bg-red-500/10 text-red-600 border-red-500/20"
+        return "bg-red-500/10 text-red-600 border-red-500/20";
       default:
-        return "bg-yellow-500/10 text-yellow-600 border-yellow-500/20"
+        return "bg-yellow-500/10 text-yellow-600 border-yellow-500/20";
     }
-  }
+  };
 
   const getStatusLabel = (status?: string) => {
     switch (status) {
       case "verified":
-        return t("Verified")
+        return ts("verified");
       case "rejected":
-        return t("Rejected")
+        return ts("rejected");
       default:
-        return t("Pending")
+        return ts("pending");
     }
-  }
+  };
 
   return (
     <header className="flex h-16 items-center justify-between border-b border-border bg-card px-4 lg:px-6">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" className="lg:hidden">
           <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle menu</span>
+          <span className="sr-only">{t("toggleMenu")}</span>
         </Button>
+
         <div className="hidden lg:block">
           <h1 className="text-lg font-semibold text-foreground">
-            {t("Tutor Dashboard")}
+            {t("title")}
           </h1>
           <p className="text-sm text-muted-foreground">
-            {t("Manage your profile and connect with students")}
+            {t("subtitle")}
           </p>
         </div>
       </div>
@@ -76,8 +80,12 @@ export function BetreuerHeader() {
           <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
             2
           </span>
-          <span className="sr-only">{t("Notifications")}</span>
+          <span className="sr-only">{t("notifications")}</span>
         </Button>
+
+        <div className="ml-2 border-l pl-2">
+          <LanguageSwitcher />
+        </div>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -85,7 +93,7 @@ export function BetreuerHeader() {
               <Avatar className="h-9 w-9">
                 <AvatarImage
                   src={tutorProfile?.photoURL || user?.photoURL || ""}
-                  alt={user?.displayName || "User"}
+                  alt={user?.displayName || t("userAvatar")}
                 />
                 <AvatarFallback className="bg-primary text-primary-foreground">
                   {user?.displayName?.charAt(0) || "T"}
@@ -96,24 +104,29 @@ export function BetreuerHeader() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">{user?.displayName}</p>
+                <p className="text-sm font-medium">
+                  {user?.displayName || t("anonymousUser")}
+                </p>
                 <p className="text-xs text-muted-foreground">{user?.email}</p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/betreuer/profile">{t("My Profile")}</Link>
+              <Link href="/betreuer/profile">{t("myProfile")}</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/betreuer/settings">{t("Settings")}</Link>
+              <Link href="/betreuer/settings">{t("settings")}</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => logout()}>
-              {t("Sign Out")}
+            <DropdownMenuItem
+              onClick={() => logout()}
+              className="text-destructive focus:text-destructive"
+            >
+              {t("signOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
     </header>
-  )
+  );
 }

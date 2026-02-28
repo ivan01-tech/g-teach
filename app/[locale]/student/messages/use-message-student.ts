@@ -1,5 +1,6 @@
 import { useAuth } from "@/hooks/use-auth"
 import { chatService } from "@/lib/services/chat-service"
+import { ConnectionService } from "@/lib/services/connection.service"
 import { Conversation, Message } from "@/lib/types"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -15,6 +16,7 @@ export const useMessageStudent = () => {
     const [messages, setMessages] = useState<Message[]>([])
     const [loading, setLoading] = useState(true)
     const [mobileShowChat, setMobileShowChat] = useState(false)
+    const [isConnectionLocked, setIsConnectionLocked] = useState(false)
 
     useEffect(() => {
         if (!user) return
@@ -42,6 +44,7 @@ export const useMessageStudent = () => {
     useEffect(() => {
         if (!selectedConversation) {
             setMessages([])
+            setIsConnectionLocked(false)
             return
         }
 
@@ -54,6 +57,28 @@ export const useMessageStudent = () => {
         if (user) {
             chatService.markAsRead(selectedConversation.id, user.uid)
         }
+
+        // Check if connection is locked (not yet agreed)
+        const checkConnectionStatus = async () => {
+            if (selectedConversation.connectionId) {
+                try {
+                    const connection = await ConnectionService.getConnection(selectedConversation.connectionId)
+                    if (connection) {
+                        const isLocked = connection.status !== 'agreed' && 
+                                        connection.status !== 'collaboration_started' && 
+                                        connection.status !== 'completed'
+                        setIsConnectionLocked(isLocked)
+                    }
+                } catch (error) {
+                    console.error('Error checking connection status:', error)
+                    setIsConnectionLocked(false)
+                }
+            } else {
+                setIsConnectionLocked(false)
+            }
+        }
+
+        checkConnectionStatus()
 
         return () => unsubscribe()
     }, [selectedConversation, user])
@@ -130,6 +155,7 @@ export const useMessageStudent = () => {
         messages,
         loading,
         mobileShowChat,
+        isConnectionLocked,
         handleSelectConversation,
         handleBackToList,
         handleSendMessage,

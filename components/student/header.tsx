@@ -25,6 +25,7 @@ import { MobileSidebar } from "./mobile-sidebar";
 import { useAuth } from "@/hooks/use-auth";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "../language-switcher";
 
 export function DashboardHeader() {
   const { userProfile, user, logout } = useAuth();
@@ -79,6 +80,10 @@ export function DashboardHeader() {
             <span className="sr-only">{t("messages")}</span>
           </Link>
         </Button>
+
+         <div className="ml-2 border-l pl-2">
+                    <LanguageSwitcher />
+                  </div>
 
         {/* User Menu */}
         <DropdownMenu>

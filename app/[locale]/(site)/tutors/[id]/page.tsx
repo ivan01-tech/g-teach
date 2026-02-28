@@ -345,7 +345,7 @@ export default function TutorProfilePage({ params }: { params: Promise<{ id: str
                     {tutor.hourlyRate ?? "—"}
                     <span className="text-lg font-normal text-muted-foreground">
                       {" "}
-                      {tutor.currency ?? "€"}/hr
+                      {tutor.currency ?? "FCFA"}/hr
                     </span>
                   </p>
                 </div>

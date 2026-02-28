@@ -15,7 +15,7 @@ import {
   increment,
 } from "firebase/firestore"
 import { db } from "../firebase"
-import type { Conversation, Message } from "../types"
+import type { Conversation, Message, Connection } from "../types"
 import { firebaseCollections } from "../collections"
 
 export interface ConversationWithDetails extends Conversation {
@@ -52,17 +52,46 @@ export async function getConversations(userId: string): Promise<ConversationWith
 }
 
 export const chatService = {
-  // Get or create a conversation between two users
+  // Helper: Check if connection is active (allows messaging)
+    async isConnectionActive(connectionId?: string): Promise<boolean> {
+    if (!connectionId) return false;
+    
+    try {
+      const connRef = doc(db, 'connections', connectionId);
+      const connDoc = await getDoc(connRef);
+      if (!connDoc.exists()) return false;
+      
+      const connection = connDoc.data() as Connection;
+      // Only allow messaging if connection is agreed or ongoing
+      return connection.status === 'agreed' || 
+             connection.status === 'collaboration_started' ||
+             connection.status === 'completed';
+    } catch (error) {
+      console.error('Error checking connection status:', error);
+      return false;
+    }
+  },
+
+  // Get or create a conversation between two users (requires active connection)
   async getOrCreateConversation(
-    { userId1, userId2, user1Name, user2Name, user1Photo, user2Photo }: {
+    { userId1, userId2, user1Name, user2Name, user1Photo, user2Photo, connectionId }: {
       userId1: string,
       userId2: string,
       user1Name: string,
       user2Name: string,
       user1Photo?: string,
-      user2Photo?: string
+      user2Photo?: string,
+      connectionId?: string
     }
   ): Promise<string> {
+    // Verify connection is active before allowing conversation
+    if (connectionId) {
+      const isActive = await this.isConnectionActive(connectionId);
+      if (!isActive) {
+        throw new Error('Connection not yet accepted. Messaging unavailable.');
+      }
+    }
+
     const conversationsRef = collection(db, firebaseCollections.conversations)
 
     // Check if conversation already exists
@@ -81,8 +110,9 @@ export const chatService = {
       return existingConversation.id
     }
 
-    // Create new conversation
+    // Create new conversation with connectionId link
     const newConversation = await addDoc(conversationsRef, {
+      connectionId: connectionId || null,
       participants: [userId1, userId2],
       participantNames: {
         [userId1]: user1Name,
@@ -156,7 +186,7 @@ export const chatService = {
     })
   },
 
-  // Send a message
+  // Send a message (with connection status guard)
   async sendMessage(
     conversationId: string,
     senderId: string,
@@ -166,6 +196,23 @@ export const chatService = {
   ): Promise<void> {
     const messagesRef = collection(db, firebaseCollections.conversations, conversationId, firebaseCollections.messages)
     const conversationRef = doc(db, firebaseCollections.conversations, conversationId)
+
+    // Get conversation and check if it has an active connection
+    const conversationDoc = await getDoc(conversationRef)
+    if (!conversationDoc.exists()) {
+      throw new Error('Conversation not found');
+    }
+
+    const conversationData = conversationDoc.data();
+    const connectionId = conversationData?.connectionId;
+
+    // If conversation is linked to a connection, verify it's active
+    if (connectionId) {
+      const isActive = await this.isConnectionActive(connectionId);
+      if (!isActive) {
+        throw new Error('Cannot send message: Connection not yet accepted.');
+      }
+    }
 
     // Add the message
     await addDoc(messagesRef, {
@@ -178,8 +225,6 @@ export const chatService = {
     })
 
     // Get conversation to find the other participant
-    const conversationDoc = await getDoc(conversationRef)
-    const conversationData = conversationDoc.data()
     const otherParticipant = conversationData?.participants.find(
       (p: string) => p !== senderId
     )

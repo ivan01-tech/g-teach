@@ -151,7 +151,7 @@ export function TutorCard({ tutor }: TutorCardProps) {
                 {tutor.hourlyRate ?? "—"}
                 <span className="text-sm font-normal text-muted-foreground">
                   {" "}
-                  {tutor.currency ?? "€"}/hr
+                  {tutor.currency ?? "FCFA"}/hr
                 </span>
               </p>
             </div>

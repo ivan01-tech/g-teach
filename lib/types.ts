@@ -122,6 +122,7 @@ export interface Message {
 
 export interface Conversation {
   id: string
+  connectionId?: string // Link to Connection document
   participants: string[]
   participantNames: Record<string, string>
   participantPhotos: Record<string, string>

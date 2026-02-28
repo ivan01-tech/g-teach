@@ -27,6 +27,7 @@ import {
   ConnectionMetrics 
 } from '@/lib/types';
 import { firebaseCollections } from '../collections';
+import { chatService } from './chat-service';
 
 const CONNECTIONS_COLLECTION = 'connections';
 const METRICS_COLLECTION = 'connectionMetrics';
@@ -105,7 +106,7 @@ export class ConnectionService {
       const connection = connDoc.data() as Connection;
       const isStudent = connection.studentId === userId;
       const isTutor = connection.tutorId === userId;
-
+console.log("connection Data : ",isStudent,isTutor,connection)
       if (!isStudent && !isTutor) {
         throw new Error('User is not part of this connection');
       }
@@ -142,6 +143,35 @@ export class ConnectionService {
           successfulConnections: increment(1),
           activeConnections: increment(1),
         });
+
+        // Update the connection document first
+        await updateDoc(connRef, updateData);
+
+        // Then create the conversation for messaging
+        try {
+          const studentDoc = await getDoc(doc(db, firebaseCollections.users, connection.studentId));
+          const tutorDoc = await getDoc(doc(db, firebaseCollections.users, connection.tutorId));
+
+          if (studentDoc.exists() && tutorDoc.exists()) {
+            const studentData = studentDoc.data();
+            const tutorData = tutorDoc.data();
+
+            await chatService.getOrCreateConversation({
+              userId1: connection.studentId,
+              userId2: connection.tutorId,
+              user1Name: studentData.displayName || 'Student',
+              user2Name: tutorData.displayName || 'Tutor',
+              user1Photo: studentData.photoURL,
+              user2Photo: tutorData.photoURL,
+              connectionId: connectionId,
+            });
+          }
+        } catch (chatError) {
+          console.error('Error creating conversation after agreement:', chatError);
+          // Don't throw - connection is still valid even if chat creation fails
+        }
+
+        return; // Return early since we've already updated the doc
       }
 
       await updateDoc(connRef, updateData);

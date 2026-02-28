@@ -24,6 +24,7 @@ interface ChatWindowProps {
   otherParticipant: { id: string; name: string; photo: string }
   onSendMessage: (text: string) => void
   onBack: () => void
+  isConnectionLocked?: boolean
 }
 
 export function ChatWindow({
@@ -33,6 +34,7 @@ export function ChatWindow({
   otherParticipant,
   onSendMessage,
   onBack,
+  isConnectionLocked = false,
 }: ChatWindowProps) {
   const [inputValue, setInputValue] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -209,16 +211,31 @@ export function ChatWindow({
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="border-t border-border p-4">
+      <form onSubmit={handleSubmit} className="border-t border-border p-4 space-y-3">
+        {isConnectionLocked && (
+          <div className="rounded-lg bg-amber-50 border border-amber-200 p-3">
+            <p className="text-sm text-amber-800 font-medium">
+              ⏳ Waiting for tutor to accept your connection request
+            </p>
+            <p className="text-xs text-amber-700 mt-1">
+              You'll be able to message once they confirm
+            </p>
+          </div>
+        )}
         <div className="flex gap-2">
           <Input
             ref={inputRef}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type a message..."
+            placeholder={isConnectionLocked ? "Messaging locked..." : "Type a message..."}
             className="flex-1"
+            disabled={isConnectionLocked}
           />
-          <Button type="submit" size="icon" disabled={!inputValue.trim()}>
+          <Button 
+            type="submit" 
+            size="icon" 
+            disabled={!inputValue.trim() || isConnectionLocked}
+          >
             <Send className="h-4 w-4" />
           </Button>
         </div>

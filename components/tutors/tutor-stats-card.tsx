@@ -129,7 +129,7 @@ export function TutorStatsCard() {
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">
-                            €{financialSummary.totalEarnings.toFixed(2)}
+                            FCFA{financialSummary.totalEarnings.toFixed(2)}
                         </div>
                         <p className="text-xs text-muted-foreground mt-2">
                             {financialSummary.completedTransactions} transactions

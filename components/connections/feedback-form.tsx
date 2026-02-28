@@ -18,6 +18,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Star } from 'lucide-react';
 import { FeedbackService } from '@/lib/services/feedback.service';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/use-auth';
 
 const feedbackSchema = z.object({
   rating: z.number().min(1).max(5),
@@ -47,6 +48,7 @@ export function FeedbackForm({
 }: FeedbackFormProps) {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const form = useForm<FeedbackFormData>({
     resolver: zodResolver(feedbackSchema),
@@ -59,9 +61,17 @@ export function FeedbackForm({
 
   const onSubmit = async (data: FeedbackFormData) => {
     try {
+      if(!user || !user.uid){
+        toast({
+          title: "Cannot submit feedback",
+          description: "You must be logged in to submit feedback.",
+          variant: "destructive"
+        });
+        return
+      }
       setLoading(true);
 
-      const feedback = await FeedbackService.submitFeedback(connectionId, '', {
+      const feedback = await FeedbackService.submitFeedback(connectionId, user?.uid, {
         rating: data.rating,
         ratingCategories: {
           communication: data.communication,

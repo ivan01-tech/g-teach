@@ -19,6 +19,7 @@ function MessagesContent() {
     messages,
     loading,
     mobileShowChat,
+    isConnectionLocked,
     handleSelectConversation,
     handleBackToList,
     handleSendMessage,
@@ -75,6 +76,7 @@ function MessagesContent() {
               otherParticipant={getOtherParticipant(selectedConversation)}
               onSendMessage={handleSendMessage}
               onBack={handleBackToList}
+              isConnectionLocked={isConnectionLocked}
             />
           )
         ) : (

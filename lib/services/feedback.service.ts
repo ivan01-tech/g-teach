@@ -60,6 +60,7 @@ export class FeedbackService {
       const isStudent = connection.studentId === giverId;
       const isTutor = connection.tutorId === giverId;
       const recipientId = isStudent ? connection.tutorId : connection.studentId;
+console.log("connection Data : ",{isStudent,isTutor,connection,recipientId,giverId})
 
       if (!isStudent && !isTutor) {
         throw new Error('User is not part of this connection');

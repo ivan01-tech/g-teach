@@ -25,40 +25,55 @@ export function useConnection({
   refreshInterval = 30000, // 30 seconds
 }: UseConnectionOptions) {
   const [connections, setConnections] = useState<Connection[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Start as true for initial load
   const [error, setError] = useState<Error | null>(null);
+  const [isInitialLoadComplete, setIsInitialLoadComplete] = useState(false);
 
-  // Fetch user's connections
+  // Manual fetch function (for explicit refreshes or polling)
   const fetchConnections = useCallback(async () => {
     try {
-      setLoading(true);
       setError(null);
       const data = await ConnectionService.getUserConnections(userId, role);
       setConnections(data);
     } catch (err) {
       setError(err instanceof Error ? err : new Error('Unknown error'));
-    } finally {
-      setLoading(false);
     }
   }, [userId, role]);
 
-  // Auto-refresh connections
+  // Primary: Real-time listener for connections
   useEffect(() => {
-    fetchConnections();
-
-    if (autoRefresh) {
-      const interval = setInterval(fetchConnections, refreshInterval);
-      return () => clearInterval(interval);
+    if (!userId) {
+      setLoading(false);
+      setIsInitialLoadComplete(true);
+      return;
     }
-  }, [fetchConnections, autoRefresh, refreshInterval]);
 
-// 
-  useEffect(() => {
-    const unsubscribe = ConnectionService.observeUserConnections(userId, (connections) => {
-      setConnections(connections);
-    });
+    const unsubscribe = ConnectionService.observeUserConnections(
+      userId,
+      (connections) => {
+        setConnections(connections);
+        // Mark loading as complete on first data arrival
+        if (!isInitialLoadComplete) {
+          setLoading(false);
+          setIsInitialLoadComplete(true);
+        }
+      },
+      role
+    );
+
     return unsubscribe;
-  }, [userId]);
+  }, [userId, role, isInitialLoadComplete]);
+
+  // Optional: Auto-refresh polling (if explicitly enabled)
+  useEffect(() => {
+    if (!autoRefresh || !userId) return;
+
+    const interval = setInterval(() => {
+      fetchConnections();
+    }, refreshInterval);
+
+    return () => clearInterval(interval);
+  }, [userId, role, autoRefresh, refreshInterval, fetchConnections]);
 
   // Initiate new connection
   const initiateConnection = useCallback(

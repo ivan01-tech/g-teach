@@ -1164,11 +1164,6 @@
     "anonymousUser": "Utilisateur",
     "signOut": "Se Déconnecter"
   },
-  "roles": {
-    "student": "Étudiant",
-    "tutor": "Tuteur"
-  },
-
   "common": {
     "anonymousUser": "Utilisateur Anonyme",
     "loading": "Chargement...",
@@ -1182,5 +1177,51 @@
     "email": "Email",
     "password": "Mot de passe",
     "close": "Fermer"
+  },
+
+  "roles": {
+    "student": "Étudiant",
+    "tutor": "Tuteur",
+    "betreuer": "Superviseur"
+  },
+
+  "betreuerSidebar": {
+    "nav": {
+      "dashboard": "Tableau de Bord",
+      "profile": "Profil",
+      "documents": "Documents",
+      "messages": "Messages",
+      "connections": "Connexions",
+      "matchings": "Correspondances",
+      "mySchools": "Mes Écoles",
+      "settings": "Paramètres"
+    },
+    "signOut": "Se Déconnecter"
+  },
+
+  "betreuerHeader": {
+    "toggleMenu": "Ouvrir/fermer le menu",
+    "title": "Tableau de bord Encadrant",
+    "subtitle": "Gérez votre profil et connectez-vous avec les élèves",
+    "notifications": "Notifications",
+    "myProfile": "Mon profil",
+    "settings": "Paramètres",
+    "signOut": "Se déconnecter",
+    "userAvatar": "Avatar utilisateur",
+    "anonymousUser": "Utilisateur"
+  },
+  "status": {
+    "verified": "Vérifié",
+    "pending": "En attente",
+    "rejected": "Rejeté"
+  },
+
+  "tutorSchools": {
+    "title": "Mes écoles de langues",
+    "description": "Gérez vos vraies écoles et connectez-vous avec les élèves ({count})",
+    "noSchoolsYet": "Vous n'avez pas encore créé d'école.",
+    "createFirstSchool": "Créer votre première école",
+    "manageSchools": "Gérer les écoles",
+    "andMore": "et {count} {count, plural, one {école supplémentaire} other {écoles supplémentaires}}"
   }
 }
