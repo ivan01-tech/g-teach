@@ -77,7 +77,7 @@ export default async function LocaleLayout({
         <ToastProvider1 />
         <ToastProvider />
           <ReduxProvider>
-            <Bootstrap></Bootstrap>
+            <Bootstrap />
             <AuthProvider>
               {children}
             </AuthProvider>

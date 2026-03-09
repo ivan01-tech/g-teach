@@ -8,9 +8,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { useAppSelector } from "@/hooks/redux-store-hooks"
+import { getCities } from "@/lib/services/city-service"
 import { EXAM_TYPES, GERMAN_LEVELS } from "@/lib/types"
-import type { SchoolFilterState } from "@/lib/types"
+import type { City, SchoolFilterState } from "@/lib/types"
 import { useTranslations } from "next-intl"
+import { useEffect, useState } from "react"
 
 interface SchoolFiltersProps {
     filters: SchoolFilterState
@@ -19,19 +22,13 @@ interface SchoolFiltersProps {
 
 export function SchoolFilters({ filters, setFilters }: SchoolFiltersProps) {
     const t = useTranslations("school-filters")
-
-    const cities = [
-        { value: "all", label: t("allCities") },
-        { value: "yaoundé", label: "Yaoundé" },
-        { value: "douala", label: "Douala" },
-        { value: "bamenda", label: "Bamenda" },
-        { value: "buea", label: "Buea" },
-        { value: "kumbo", label: "Kumbo" },
-    ]
-
+    const { } = useAppSelector((state) => state)
+    const cities = useAppSelector((state) => state.cities.cities)
     const updateFilter = (key: keyof SchoolFilterState, value: string) => {
         setFilters({ ...filters, [key]: value === "all" ? "" : value })
     }
+
+
 
     return (
         <div className="space-y-6">
@@ -49,8 +46,8 @@ export function SchoolFilters({ filters, setFilters }: SchoolFiltersProps) {
                     </SelectTrigger>
                     <SelectContent>
                         {cities.map((c) => (
-                            <SelectItem key={c.value} value={c.value}>
-                                {c.label}
+                            <SelectItem key={c.id} value={c.name}>
+                                {c.name}
                             </SelectItem>
                         ))}
                     </SelectContent>

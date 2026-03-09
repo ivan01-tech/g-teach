@@ -5,6 +5,7 @@ import authReducer from "@/app/[locale]/auth/auth-slice"
 import favoritesReducer from "./store/favorites-slice"
 import matchingReducer from "./store/matching-slice"
 import tutorsReducer from "./store/tutors-slice"
+import citiesReducer from "./store/cities-slice"
 import bookingsReducer from "./store/bookings-slice"
 import profileViewsReducer from "./store/profile-views-slice"
 
@@ -12,6 +13,7 @@ import profileViewsReducer from "./store/profile-views-slice"
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        cities: citiesReducer,
         favorites: favoritesReducer,
         matching: matchingReducer,
         tutors: tutorsReducer,

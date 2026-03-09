@@ -18,7 +18,7 @@ import {
   deleteObject,
 } from "firebase/storage"
 import { db, storage } from "@/lib/firebase"
-import type { Tutor, TutorDocument, User, VerificationStatus } from "@/lib/types"
+import type { City, Tutor, TutorDocument, User, VerificationStatus } from "@/lib/types"
 import { firebaseCollections } from "../collections"
 import { toSerializable } from "../serializable-utils"
 
@@ -169,6 +169,20 @@ export function subscribeToTutors(callback: (tutors: Tutor[]) => void) {
   return onSnapshot(q, (snapshot) => {
     const tutors = snapshot.docs.map((doc) => toSerializable(doc.data()) as Tutor)
     callback(tutors)
+  })
+}
+
+export function subscribeToCities(callback: (cities: City[]) => void) {
+    console.log("Listening to tutors and cities...");
+
+  const citiesRef = collection(db, firebaseCollections.cities)
+  const q = query(citiesRef)
+
+  return onSnapshot(q, (snapshot) => {
+    console.log("Listening to tutors and cities...");
+
+    const cities = snapshot.docs.map((doc) => toSerializable(doc.data()) as City)
+    callback(cities)
   })
 }
 
