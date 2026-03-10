@@ -20,6 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { LayoutDashboard, Settings, Globe } from "lucide-react"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { UserRole } from "@/lib/roles"
+import Image from "next/image"
 
 export function Header() {
   const t = useTranslations("header")
@@ -36,10 +37,9 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-            <BookOpen className="h-6 w-6 text-primary-foreground" />
+          <div className="flex items-center justify-center rounded-lg">
+          <Image src="/logos/image_white_bg.png"  alt="G-Teach Logo"  width={100} height={50} />
           </div>
-          <span className="text-xl font-bold text-foreground">G-Teach</span>
         </Link>
 
         {/* Desktop Navigation */}

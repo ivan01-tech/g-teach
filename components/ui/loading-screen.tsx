@@ -1,10 +1,11 @@
 "use client";
 
 import { Loader } from "lucide-react";
+import Image from "next/image";
 
 export default function LoadingScreen() {
     return (
-        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-colors duration-500">
+        <div className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-background transition-colors duration-500">
             <div className="relative flex items-center justify-center">
                 {/* Outer Glow - using primary color */}
                 <div className="absolute inset-0 scale-150 animate-pulse bg-primary/10 blur-3xl rounded-full" />
@@ -15,9 +16,10 @@ export default function LoadingScreen() {
 
             {/* Text Branding */}
             <div className="mt-8 flex flex-col items-center gap-2 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                <h1 className="text-2xl font-bold tracking-tight text-foreground">
-                    G-Teach
-                </h1>
+                {/* insert image logo */}
+                <div>
+                    <Image src="/logos/image_white_bg.png" alt="G-Teach Logo" width={300} height={100} />
+                </div>
                 <p className="text-sm font-medium text-muted-foreground">
                     Initialisation de votre espace...
                 </p>
